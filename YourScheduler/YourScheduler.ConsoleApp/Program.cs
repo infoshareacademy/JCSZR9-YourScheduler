@@ -10,7 +10,7 @@ namespace YourScheduler
 {
     internal class Program
     {
-        User someuser = new User()
+        User someuser = new User();
         static void Main(string[] args)
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
