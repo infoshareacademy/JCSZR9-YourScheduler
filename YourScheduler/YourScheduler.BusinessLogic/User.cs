@@ -115,6 +115,7 @@ namespace YourScheduler.BusinessLogic
 
         public User(int id, string name, string surname, string email, string displayName, string password)
         {
+            Id = id;
             Name = name;
             Surname = surname;
             Email = email;
@@ -124,7 +125,10 @@ namespace YourScheduler.BusinessLogic
 
         public void DisplayUserInfo()
         {
+
         }
+
+
 
 
     }
