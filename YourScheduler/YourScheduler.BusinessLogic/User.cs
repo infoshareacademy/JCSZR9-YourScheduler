@@ -123,9 +123,17 @@ namespace YourScheduler.BusinessLogic
             Password = password;
         }
 
-        public void DisplayUserInfo()
+        private void ChangePassword(string newPassword)
         {
-
+            _password = newPassword;
+        }
+        private void ChangeEmail(string newEmail)
+        {
+            _email = newEmail;
+        }
+        private void ChangeDisplayName(string newName)
+        {
+            DisplayName = newName;
         }
 
 
