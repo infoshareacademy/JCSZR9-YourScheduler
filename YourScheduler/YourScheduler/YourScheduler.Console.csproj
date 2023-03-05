@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YourScheduler.BusinessLogic\YourScheduler.BusinessLogic.csproj">
+      <Project>{69894288-7556-4bae-b0d7-1853d765cb14}</Project>
+      <Name>YourScheduler.BusinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
