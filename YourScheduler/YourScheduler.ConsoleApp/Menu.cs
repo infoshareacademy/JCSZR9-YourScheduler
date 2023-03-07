@@ -15,61 +15,62 @@ namespace YourScheduler.ConsoleApp
         {
             string loggedUser = "marpudlik@wp.pl";
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Console.WriteLine($"Podaj {i + 1} user");
-            //    UserTemporary user = new UserTemporary
-            //    {
-            //        Id = i + 1,
-            //        Name = _cliHelper.GetStringFromUser("Get name of User"),
-            //        Surname = _cliHelper.GetStringFromUser("Get surname of User"),
-            //        Email = _cliHelper.GetStringFromUser("Get email"),
-            //        Password = _cliHelper.GetStringFromUser("Password")
-            //    };
-
-            //    _usersStore.users.Add(user);
-            //}
-
-            Console.WriteLine("Choose operation");
-            Console.WriteLine("1 - Show User Profile");
-            Console.WriteLine("2 - Show Teams");
-            Console.WriteLine("3 - Show Events");
-            Console.WriteLine("4 - Add Event");
-            Console.WriteLine("5 - Add User");
-            ChooseOperation(loggedUser);
+            ChooseOperation(); 
+          
         }
 
-        void ChooseOperation(string loggedUser)
+        void ChooseOperation()
         {
-            int operation;
+            bool exit=false;
             do
             {
-                operation = _cliHelper.GetIntFromUser("Choose number of operation 1, 2, 3, 4, 5");
-            } while (operation <= 0 || operation > 5);
+               
+                Console.WriteLine("Choose operation");
+                Console.WriteLine("1 - exit");
+                Console.WriteLine("2 - Show User Profile");
+                Console.WriteLine("3 - Show Teams");
+                Console.WriteLine("4 - Show Events");
+                Console.WriteLine("5 - Add Event");
+                Console.WriteLine("6 - Add User");
 
-            switch (operation)
-            {
-                case 1:
-                    ShowUserProfile(loggedUser);
-                    break;
-                case 2:
-                    ShowTeams();
-                    break;
-                case 3:
-                    ShowEvents();
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                default:
-                    Console.WriteLine("You get wrong number operation");
-                    break;
-            }
+
+                int operation;
+                do
+                {
+                    operation = _cliHelper.GetIntFromUser("Write number choosen operation 1-exit,2, 3, 4, 5, 6");
+                } while (operation < 0 || operation > 5);
+
+                switch (operation)
+                {
+                    case 1:
+                        exit = true;
+                        break;
+                    case 2:
+                        Console.WriteLine("dupa");
+                        //ShowUserProfile(loggedUser);
+                        break;
+                    case 3:
+                        ShowTeams();
+                        break;
+                    case 4:
+                        ShowEvents();
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+
+                    default:
+                        Console.WriteLine("You get wrong number operation");
+                        break;
+                }
+            } while (!exit);
+           
+           
+           
         }
 
-        void ShowUserProfile(string loggedUser)
+        void ShowUserProfile()
         {
             //bool ifUserExist = false;
             //foreach (var user in _usersStore.users)
