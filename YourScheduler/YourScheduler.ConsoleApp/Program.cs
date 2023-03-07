@@ -5,15 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.BusinessLogic;
+using YourScheduler.ConsoleApp;
 
 namespace YourScheduler
 {
     internal class Program
     {
-        User someuser = new User();
+       // User someuser = new User();
         static void Main(string[] args)
+        {         
+            Program program = new Program();
+            program.run();
+        }
+
+        private void run()
         {
-            Console.WriteLine("Witaj! Aplikacja YourScheduler");
+            Menu menu = new Menu();
+            menu.RunMenu();
         }
     }
 
