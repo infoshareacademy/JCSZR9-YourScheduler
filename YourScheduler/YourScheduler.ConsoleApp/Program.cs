@@ -10,10 +10,62 @@ namespace YourScheduler
 {
     internal class Program
     {
-        User someuser = new User();
         static void Main(string[] args)
         {
-            Console.WriteLine("Witaj! Aplikacja YourScheduler");
+            //Console.WriteLine("Witaj! Aplikacja YourScheduler");
+
+
+
+            //var filePath = Path.Combine
+            //string rawCSV = System.IO.File.ReadAllText(pathToFile);
+            //Console.WriteLine(rawCSV);
+
+            List <User> users = CSVManager.GetUsers("users.csv");
+
+            foreach (var user in users)
+            {
+                Console.WriteLine(user.Id);
+                Console.WriteLine(user.Email);
+                Console.WriteLine(user.Password);
+                Console.WriteLine(user.Name);
+                Console.WriteLine(user.Surname);
+                Console.WriteLine(user.DisplayName);
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("----------------------------");
+            Console.ReadLine();
+
+            users.Add(new User { Id = 3, Email = "dupaduap", Password = "ksjdnfkjshdf", Name = "aaabb", Surname = "plpko", DisplayName = "eirut" });
+            users.Add(new User { Id = 89, Email = "a@b", Password = "hh", Name = "oo", Surname = "qq", DisplayName = "1233" });
+            users.Add(new User { Id = 7, Email = "iuuio67", Password = "dsfgdfg", Name = "oo", Surname = "qq", DisplayName = "yjghjhg" });
+
+
+            CSVManager.UpdateUsers(users, "users.csv");
+
+            List<User> users2 = CSVManager.GetUsers("users.csv");
+
+            foreach (var user in users2)
+            {
+                Console.WriteLine(user.Id);
+                Console.WriteLine(user.Email);
+                Console.WriteLine(user.Password);
+                Console.WriteLine(user.Name);
+                Console.WriteLine(user.Surname);
+                Console.WriteLine(user.DisplayName);
+                Console.WriteLine();
+            }
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 

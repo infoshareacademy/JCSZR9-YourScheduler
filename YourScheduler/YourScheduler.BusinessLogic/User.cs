@@ -16,7 +16,7 @@ namespace YourScheduler.BusinessLogic
 
         }
 
-        int Id { get; set; }
+        public int Id { get; set; }
 
         private string _name;
 
@@ -112,7 +112,7 @@ namespace YourScheduler.BusinessLogic
             }
         }
 
-
+        /*
         public User(int id, string name, string surname, string email, string displayName, string password)
         {
             Id = id;
@@ -122,6 +122,7 @@ namespace YourScheduler.BusinessLogic
             DisplayName = displayName;
             Password = password;
         }
+        */
 
         private void ChangePassword(string newPassword)
         {
