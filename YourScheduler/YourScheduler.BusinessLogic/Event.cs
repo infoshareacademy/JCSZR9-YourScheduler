@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YourScheduler.BusinessLogic
 {
-    internal class Event
+    public class Event
     {
         public int Id { get; set; }
         public string Name { get; set; }
