@@ -14,17 +14,15 @@ namespace YourScheduler
        // User someuser = new User();
         static void Main(string[] args)
         {         
-            //Program program = new Program();
-            //program.run();
+            Program program = new Program();
+            program.run();
+        }
+
+        private void run()
+        {
             Menu menu = new Menu();
             menu.RunMenu();
         }
-
-        //private void run()
-        //{
-        //    Menu menu = new Menu();
-        //    menu.RunMenu();
-        //}
     }
 
 }
