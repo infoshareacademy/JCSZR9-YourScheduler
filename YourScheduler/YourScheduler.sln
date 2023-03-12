@@ -3,12 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourScheduler.Console", "YourScheduler\YourScheduler.Console.csproj", "{7495A72B-D86C-4105-9A47-CB353C491DE0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{69894288-7556-4BAE-B0D7-1853D765CB14} = {69894288-7556-4BAE-B0D7-1853D765CB14}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.BusinessLogic", "YourScheduler.BusinessLogic\YourScheduler.BusinessLogic.csproj", "{69894288-7556-4BAE-B0D7-1853D765CB14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourScheduler.BusinessLogic", "YourScheduler.BusinessLogic\YourScheduler.BusinessLogic.csproj", "{69894288-7556-4BAE-B0D7-1853D765CB14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourScheduler.ConsoleApp", "YourScheduler.ConsoleApp\YourScheduler.ConsoleApp.csproj", "{37BB3534-4481-45BC-9C5B-5E81568B91D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7495A72B-D86C-4105-9A47-CB353C491DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7495A72B-D86C-4105-9A47-CB353C491DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7495A72B-D86C-4105-9A47-CB353C491DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7495A72B-D86C-4105-9A47-CB353C491DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69894288-7556-4BAE-B0D7-1853D765CB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69894288-7556-4BAE-B0D7-1853D765CB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69894288-7556-4BAE-B0D7-1853D765CB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69894288-7556-4BAE-B0D7-1853D765CB14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37BB3534-4481-45BC-9C5B-5E81568B91D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37BB3534-4481-45BC-9C5B-5E81568B91D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37BB3534-4481-45BC-9C5B-5E81568B91D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37BB3534-4481-45BC-9C5B-5E81568B91D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
