@@ -96,18 +96,20 @@ namespace YourScheduler.ConsoleApp
 
         void ShowTeams()
         {
-            //foreach (var item in collection)
-            //{
+            Console.WriteLine("\nZarządzanie zespołami:\n");
 
-            //}
+            Teams teams = new Teams();
+
+            teams.TeamsMethod();
         }
 
         void ShowEvents()
         {
-            //foreach (var item in collection)
-            //{
+            Console.WriteLine("\nDUPA\n");
 
-            //}
+            EventsMethod events = new EventsMethod();
+
+            events.MakeEvent();
 
         }
     }
