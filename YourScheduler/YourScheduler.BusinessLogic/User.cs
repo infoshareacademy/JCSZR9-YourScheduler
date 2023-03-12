@@ -68,6 +68,7 @@ namespace YourScheduler.BusinessLogic
                 if (IsInputValid(value))
                 {
                     _email = value;
+                    return;
                 }
                 else
                 {
@@ -123,17 +124,17 @@ namespace YourScheduler.BusinessLogic
             Password = password;
         }
 
-        private void ChangePassword(string newPassword)
+        public void ChangePassword(string newPassword)
         {
             _password = newPassword;
         }
-        private void ChangeEmail(string newEmail)
+        public void ChangeEmail(string newEmail)
         {
-            _email = newEmail;
+            Email = newEmail;
         }
-        private void ChangeDisplayName(string newName)
+        public void ChangeDisplayName(string newName)
         {
-            DisplayName = newName;
+            _displayname = newName;
         }
 
 

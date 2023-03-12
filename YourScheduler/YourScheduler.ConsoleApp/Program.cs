@@ -11,9 +11,11 @@ namespace YourScheduler
 {
     internal class Program
     {
-       // User someuser = new User();
         static void Main(string[] args)
-        {         
+        {
+            User Kamil = new User(0, "Kamil", "Majewski", "SomeMail@Mail.com", "Milva", "HiddenPW213");
+            Kamil.ChangeEmail("   nnnn ");
+            Console.WriteLine(Kamil.Email);
             Program program = new Program();
             program.run();
         }
