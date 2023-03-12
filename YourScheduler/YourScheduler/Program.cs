@@ -11,6 +11,16 @@ namespace YourScheduler
         static void Main(string[] args)
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
+
+            Teams teams = new Teams();
+
+            teams.TeamsMethod();
+           
+
+
+
+
+
         }
     }
 

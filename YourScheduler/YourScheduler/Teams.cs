@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace YourScheduler
 {
-    internal class Teams
+    public class Teams
     {
-        static void Main(string[] args)
+        public void TeamsMethod()
         {
             
-
             while (true)
             {
                 Console.WriteLine("1. Dodaj grupę");
