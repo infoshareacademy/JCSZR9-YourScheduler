@@ -38,7 +38,7 @@ namespace YourScheduler.ConsoleApp
                 do
                 {
                     operation = _cliHelper.GetIntFromUser("Write number choosen operation 1-exit,2, 3, 4, 5, 6");
-                } while (operation < 0 || operation > 5);
+                } while (operation < 0 || operation > 6);
 
                 switch (operation)
                 {
@@ -46,7 +46,7 @@ namespace YourScheduler.ConsoleApp
                         exit = true;
                         break;
                     case 2:
-                        Console.WriteLine("dupa");
+                        Console.WriteLine("hej");
                         //ShowUserProfile(loggedUser);
                         break;
                     case 3:
