@@ -12,15 +12,13 @@ namespace YourScheduler
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Witaj! Aplikacja YourScheduler");
+            Console.WriteLine(CSVManager.GetUsersFilePath());
+            Console.WriteLine(CSVManager.GetEventsFilePath());
+            Console.WriteLine();
 
-
-
-            //var filePath = Path.Combine
-            //string rawCSV = System.IO.File.ReadAllText(pathToFile);
-            //Console.WriteLine(rawCSV);
-
-            List <User> users = CSVManager.GetUsers("users.csv");
+            Console.WriteLine("Witaj! Aplikacja YourScheduler");
+            
+            List <User> users = CSVManager.GetUsers();
 
             foreach (var user in users)
             {
@@ -41,9 +39,9 @@ namespace YourScheduler
             users.Add(new User { Id = 7, Email = "iuuio67", Password = "dsfgdfg", Name = "oo", Surname = "qq", DisplayName = "yjghjhg" });
 
 
-            CSVManager.UpdateUsers(users, "users.csv");
+            CSVManager.UpdateUsers(users);
 
-            List<User> users2 = CSVManager.GetUsers("users.csv");
+            List<User> users2 = CSVManager.GetUsers();
 
             foreach (var user in users2)
             {
@@ -55,18 +53,6 @@ namespace YourScheduler
                 Console.WriteLine(user.DisplayName);
                 Console.WriteLine();
             }
-
-
-
-
-
-
-
-
-
-
-
         }
     }
-
 }

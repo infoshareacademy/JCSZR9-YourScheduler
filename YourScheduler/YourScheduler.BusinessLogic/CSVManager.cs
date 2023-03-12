@@ -9,12 +9,23 @@ namespace YourScheduler.BusinessLogic
 {
     public class CSVManager
     {
-        public static List<User> GetUsers(string fileName)
+        static string projectDirectory = Directory.GetParent((Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString())).ToString();
+        static string usersFileName = "users.csv";
+        static string eventsFileName = "events.csv";
+        public static string GetUsersFilePath()
         {
-            var filePath = Path.Combine(Environment.CurrentDirectory, "Data", fileName);
- 
+            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", usersFileName);
+            return filePath;
+        }
+        public static string GetEventsFilePath()
+        {
+            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", eventsFileName);
+            return filePath;
+        }
+        public static List<User> GetUsers()
+        {
             List<User> users = new List<User> ();
-            string[] linesFromCSV = System.IO.File.ReadAllLines(filePath);
+            string[] linesFromCSV = System.IO.File.ReadAllLines(GetUsersFilePath());
             foreach (var line in linesFromCSV)
             {
                 User newUser = new User();
@@ -29,9 +40,8 @@ namespace YourScheduler.BusinessLogic
             }
             return users;
         }
-        public static void UpdateUsers(List <User> users, string fileName)
+        public static void UpdateUsers(List <User> users)
         {
-            var filePath = Path.Combine(Environment.CurrentDirectory, "Data", fileName);
             string[] linesToCSV = new string[users.Count];
             for (int i = 0; i < users.Count; i++)
             {
@@ -42,7 +52,7 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] += users[i].Surname + ",";
                 linesToCSV[i] += users[i].DisplayName;
             }
-            File.WriteAllLines(filePath, linesToCSV);
+            File.WriteAllLines(GetUsersFilePath(), linesToCSV);
         }
     }
 }
