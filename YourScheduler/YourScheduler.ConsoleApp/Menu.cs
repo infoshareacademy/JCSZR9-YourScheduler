@@ -46,7 +46,7 @@ namespace YourScheduler.ConsoleApp
                         exit = true;
                         break;
                     case 2:
-                        Console.WriteLine("dupa");
+                        Console.WriteLine("hej");
                         //ShowUserProfile(loggedUser);
                         break;
                     case 3:
