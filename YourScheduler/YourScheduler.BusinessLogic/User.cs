@@ -7,7 +7,7 @@ namespace YourScheduler.BusinessLogic
     {
         private bool IsInputValid(string input)
         {
-            if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
                 return false;
             else
             {
@@ -16,7 +16,7 @@ namespace YourScheduler.BusinessLogic
 
         }
 
-        int Id { get; set; }
+        public int Id { get; set; }
 
         private string _name;
 
