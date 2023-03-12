@@ -7,7 +7,7 @@ namespace YourScheduler.BusinessLogic
     {
         private bool IsInputValid(string input)
         {
-            if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
                 return false;
             else
             {
@@ -16,7 +16,7 @@ namespace YourScheduler.BusinessLogic
 
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         private string _name;
 
@@ -112,10 +112,9 @@ namespace YourScheduler.BusinessLogic
             }
         }
 
-        /*
-        public User(int id, string name, string surname, string email, string displayName, string password)
+
+        public User(string name, string surname, string email, string displayName, string password)
         {
-            Id = id;
             Name = name;
             Surname = surname;
             Email = email;
@@ -124,21 +123,23 @@ namespace YourScheduler.BusinessLogic
         }
         */
 
-        private void ChangePassword(string newPassword)
+        public void ChangePassword(string newPassword)
         {
-            _password = newPassword;
+            Password = newPassword;
         }
-        private void ChangeEmail(string newEmail)
+        public void ChangeEmail(string newEmail)
         {
-            _email = newEmail;
+            Email = newEmail;
         }
-        private void ChangeDisplayName(string newName)
+        public void ChangeDisplayName(string newDisplayName)
         {
-            DisplayName = newName;
+            DisplayName = newDisplayName;
         }
-
-
-
+        
+        public Event CreateEvent(string name, string description, DateTime date, List<User> participants, bool isOpen)
+        {
+            return new Event(name, description, date, participants, isOpen);
+        }
 
     }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.BusinessLogic;
+using YourScheduler.ConsoleApp;
 
 namespace YourScheduler
 {
@@ -53,6 +54,17 @@ namespace YourScheduler
                 Console.WriteLine(user.DisplayName);
                 Console.WriteLine();
             }
+            User Kamil = new User(0, "Kamil", "Majewski", "SomeMail@Mail.com", "Milva", "HiddenPW213");
+            Kamil.ChangeEmail("   nnnn ");
+            Console.WriteLine(Kamil.Email);
+            Program program = new Program();
+            program.run();
+        }
+
+        private void run()
+        {
+            Menu menu = new Menu();
+            menu.RunMenu();
         }
     }
 }
