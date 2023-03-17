@@ -8,14 +8,14 @@ namespace YourScheduler.BusinessLogic
 {
     public class Event
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public List<User> Participants { get; set; }
+        public List<Guid> Participants { get; set; }
         public bool IsOpen { get; set; }
 
-        public Event(string name, string description, DateTime date, List<User> participants, bool isopen)
+        public Event(string name, string description, DateTime date, List<Guid> participants, bool isopen)
         {
             Name = name;
             Description = description;
@@ -24,14 +24,9 @@ namespace YourScheduler.BusinessLogic
             IsOpen = isopen;
         }
 
-        public void AddUser(User user)
+        public void AddUser(Guid userID)
         {
-            Participants.Add(user);
+            Participants.Add(userID);
         }
-
-
-
-
-
     }
 }
