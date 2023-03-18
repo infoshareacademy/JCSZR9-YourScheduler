@@ -83,6 +83,14 @@ namespace YourScheduler.BusinessLogic
             }
             return events;
         }
+
+        public static void AddNewEvent(Event newEvent)
+        {
+            var addNewEventToCSV = $"{newEvent.Id},{newEvent.Name},{newEvent.Description},{newEvent.Date},{string.Join("|", newEvent.Participants)},{newEvent.IsOpen}";
+
+            File.AppendAllText(GetEventsFilePath(), addNewEventToCSV);
+        }
+
         public static void UpdateEvents(List<Event> events)
         {
             string[] linesToCSV = new string[events.Count];
