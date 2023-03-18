@@ -61,7 +61,7 @@ namespace YourScheduler.ConsoleApp
                         break;
 
                     default:
-                        Console.WriteLine("Wybrałeś zły numer operacji");
+                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-7");
                         break;
                 }
             } while (!exit);
@@ -108,6 +108,10 @@ namespace YourScheduler.ConsoleApp
                         break;
 
                     case 4:
+                        break;
+
+                    default:
+                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-4");
                         break;
                 }
             }while(!exit);
