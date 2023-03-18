@@ -35,6 +35,14 @@ namespace YourScheduler.BusinessLogic
             }
             return users;
         }
+
+        public static void AddNewUser(User user)
+        {
+            var addNewUserToCSV = $"{user.Id},{user.Email},{user.Password},{user.Name},{user.Surname},{user.DisplayName}";
+
+            File.AppendAllText(GetUsersFilePath(), addNewUserToCSV);
+        }
+
         public static void UpdateUsers(List <User> users)
         {
             string[] linesToCSV = new string[users.Count];
