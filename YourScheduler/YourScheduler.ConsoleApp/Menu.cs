@@ -20,20 +20,21 @@ namespace YourScheduler.ConsoleApp
             do
             {
                
-                Console.WriteLine("Wybór operacji");
+                Console.WriteLine("\nWybór operacji:");
                 Console.WriteLine("1 - Wyjście");
                 Console.WriteLine("2 - Profil użytkownika");
                 Console.WriteLine("3 - Zespoły");
                 Console.WriteLine("4 - Wydarzenia");
                 Console.WriteLine("5 - Dodaj wydarzenie");
                 Console.WriteLine("6 - Dodaj użytkownika");
+                Console.WriteLine("7 - Edytuj profil użytkownika");
 
 
                 int operation;
                 do
                 {
-                    operation = _cliHelper.GetIntFromUser("Wybierz numer operacji: 1, 2, 3, 4, 5, 6");
-                } while (operation < 0 || operation > 6);
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                } while (operation < 0 || operation > 7);
 
                 switch (operation)
                 {
@@ -55,6 +56,9 @@ namespace YourScheduler.ConsoleApp
                     case 6:
                         AddNewUser();
                         break;
+                    case 7:
+                        UpdateUserProfile();
+                        break;
 
                     default:
                         Console.WriteLine("Wybrałeś zły numer operacji");
@@ -75,7 +79,39 @@ namespace YourScheduler.ConsoleApp
             CSVManager.AddNewUser(user);
         }
 
-    
+        void UpdateUserProfile()
+        {
+            bool exit = false;
+            do
+            {
+                Console.WriteLine("\nEdycja profilu użytkownika:");
+                Console.WriteLine("1 - Wyjście");
+                Console.WriteLine("2 - Zmiana nazwy użytkownika");
+                Console.WriteLine("3 - Zmiana e-mail");
+                Console.WriteLine("4 - Zmiana hasła");
+
+                int operation;
+                do
+                {
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                } while (operation < 0 || operation > 4);
+
+                switch (operation)
+                {
+                    case 1: exit = true;
+                        break;
+
+                    case 2:
+                        break;
+
+                    case 3:
+                        break;
+
+                    case 4:
+                        break;
+                }
+            }while(!exit);
+        }
 
         void ShowUserProfile()
         {
