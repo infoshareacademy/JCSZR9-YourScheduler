@@ -1,4 +1,5 @@
-﻿using YourScheduler.BusinessLogic;
+﻿using System.ComponentModel;
+using YourScheduler.BusinessLogic;
 
 namespace YourScheduler.ConsoleApp
 {
@@ -19,19 +20,19 @@ namespace YourScheduler.ConsoleApp
             do
             {
                
-                Console.WriteLine("Choose operation");
-                Console.WriteLine("1 - exit");
-                Console.WriteLine("2 - Show User Profile");
-                Console.WriteLine("3 - Show Teams");
-                Console.WriteLine("4 - Show Events");
-                Console.WriteLine("5 - Add Event");
-                Console.WriteLine("6 - Add User");
+                Console.WriteLine("Wybór operacji");
+                Console.WriteLine("1 - Wyjście");
+                Console.WriteLine("2 - Profil użytkownika");
+                Console.WriteLine("3 - Zespoły");
+                Console.WriteLine("4 - Wydarzenia");
+                Console.WriteLine("5 - Dodaj wydarzenie");
+                Console.WriteLine("6 - Dodaj użytkownika");
 
 
                 int operation;
                 do
                 {
-                    operation = _cliHelper.GetIntFromUser("Write number choosen operation 1-exit,2, 3, 4, 5, 6");
+                    operation = _cliHelper.GetIntFromUser("Wybierz numer operacji: 1, 2, 3, 4, 5, 6");
                 } while (operation < 0 || operation > 6);
 
                 switch (operation)
@@ -56,7 +57,7 @@ namespace YourScheduler.ConsoleApp
                         break;
 
                     default:
-                        Console.WriteLine("You get wrong number operation");
+                        Console.WriteLine("Wybrałeś zły numer operacji");
                         break;
                 }
             } while (!exit);
@@ -73,6 +74,8 @@ namespace YourScheduler.ConsoleApp
 
             CSVManager.AddNewUser(user);
         }
+
+    
 
         void ShowUserProfile()
         {
