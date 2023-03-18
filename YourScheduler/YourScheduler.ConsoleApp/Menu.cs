@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YourScheduler.BusinessLogic;
+﻿using YourScheduler.BusinessLogic;
 
 namespace YourScheduler.ConsoleApp
 {
@@ -13,7 +8,6 @@ namespace YourScheduler.ConsoleApp
         private CliHelper _cliHelper = new CliHelper();
         internal void RunMenu()
         {
-            string loggedUser = "marpudlik@wp.pl";
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
             ChooseOperation(); 
           
@@ -58,6 +52,7 @@ namespace YourScheduler.ConsoleApp
                     case 5:
                         break;
                     case 6:
+                        AddNewUser();
                         break;
 
                     default:
@@ -68,6 +63,15 @@ namespace YourScheduler.ConsoleApp
            
            
            
+        }
+
+        void AddNewUser()
+        {
+            var user = new User(_cliHelper.GetStringFromUser("Podaj imię:"), _cliHelper.GetStringFromUser("Podaj nazwisko:"),
+                _cliHelper.GetStringFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
+                _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
+
+            CSVManager.AddNewUser(user);
         }
 
         void ShowUserProfile()
