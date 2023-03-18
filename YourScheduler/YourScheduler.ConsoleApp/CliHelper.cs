@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YourScheduler.ConsoleApp
+﻿namespace YourScheduler.ConsoleApp
 {
     internal class CliHelper
     {
@@ -15,7 +9,29 @@ namespace YourScheduler.ConsoleApp
            
         }
 
-      
+        internal string GetSecureStringFromUser(string message)
+        {
+            Console.WriteLine($"{message}");
+            var password = string.Empty;
+            ConsoleKey key;
+            do
+            {
+                var keyInfo = Console.ReadKey(intercept: true);
+                key = keyInfo.Key;
+
+                if (key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    Console.Write("\b \b");
+                    password = password[0..^1];
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    Console.Write("*");
+                    password += keyInfo.KeyChar;
+                }
+            } while (key != ConsoleKey.Enter);
+            return password;
+        }
 
         internal int GetIntFromUser(string message)
         {
