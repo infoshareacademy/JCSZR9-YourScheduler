@@ -46,7 +46,7 @@ namespace YourScheduler.BusinessLogic
             }
             return users;
         }
-        public static void UpdateUsers(List <User> users)
+        public static void UpdateUsers(List<User> users)
         {
             string[] linesToCSV = new string[users.Count];
             for (int i = 0; i < users.Count; i++)
@@ -78,9 +78,8 @@ namespace YourScheduler.BusinessLogic
                 string[] splittedData = line.Split(',');
                 Guid newEventID = Guid.Parse(splittedData[0]);
                 DateTime newEventDate = DateTime.Parse(splittedData[3]);
-                List <Guid> newEventParticipants = new List<Guid>();
-
-                if(splittedData[4] != "")
+                List<Guid> newEventParticipants = new List<Guid>();
+                if (splittedData[4] != "")
                 {
                     string[] splittedEventParticipants = splittedData[4].Split('|');
                     foreach (var participantId in splittedEventParticipants)
@@ -106,7 +105,7 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] += events[i].Date.ToString() + ",";
                 for (int j = 0; j < events[i].Participants.Count; j++)
                 {
-                    if (j == events[i].Participants.Count-1)
+                    if (j == events[i].Participants.Count - 1)
                     {
                         linesToCSV[i] += events[i].Participants[j].ToString() + ",";
 
@@ -126,6 +125,68 @@ namespace YourScheduler.BusinessLogic
             {
                 Directory.CreateDirectory(GetDataDirectoryPath());
                 File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            }
+        }
+        public static List<Team> GetTeams()
+        {
+            List<Team> teams = new List<Team>();
+            if (!File.Exists(GetTeamsFilePath())) return teams;
+            string[] linesFromCSV = System.IO.File.ReadAllLines(GetTeamsFilePath());
+            foreach (var line in linesFromCSV)
+            {
+                string[] splittedData = line.Split(',');
+                Guid newTeamID = Guid.Parse(splittedData[0]);
+                List<Guid> newTeamMembers = new List<Guid>();
+                if (splittedData[2] != "")
+                {
+                    string[] splittedTeamMembers = splittedData[2].Split('|');
+                    foreach (var memberId in splittedTeamMembers)
+                    {
+                        newTeamMembers.Add(Guid.Parse(memberId));
+                    }
+                }
+                Team newTeam = new Team();
+                newTeam.Id = newTeamID;
+                newTeam.Name = splittedData[1];
+                newTeam.Members = newTeamMembers;
+                teams.Add(newTeam);
+            }
+            return teams;
+        }
+        public static void UpdateTeams(List<Team> teams)
+        {
+            string[] linesToCSV = new string[teams.Count];
+            for (int i = 0; i < teams.Count; i++)
+            {
+                linesToCSV[i] = teams[i].Id.ToString() + ",";
+                if (teams[i].Members.Count == 0)
+                {
+                    linesToCSV[i] += teams[i].Name;
+                }
+                else
+                {
+                    for (int j = 0; j < teams[i].Members.Count; j++)
+                    {
+                        if (j == teams[i].Members.Count - 1)
+                        {
+                            linesToCSV[i] += teams[i].Members[j].ToString();
+
+                        }
+                        else
+                        {
+                            linesToCSV[i] += teams[i].Members[j].ToString() + "|";
+                        }
+                    }
+                }
+            }
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
             }
         }
     }
