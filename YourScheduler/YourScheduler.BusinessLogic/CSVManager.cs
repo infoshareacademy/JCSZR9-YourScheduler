@@ -9,22 +9,28 @@ namespace YourScheduler.BusinessLogic
 {
     public class CSVManager
     {
-        static string projectDirectory = Directory.GetParent((Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString())).ToString();
         static string usersFileName = "users.csv";
         static string eventsFileName = "events.csv";
         public static string GetUsersFilePath()
         {
-            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", usersFileName);
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{usersFileName}";
             return filePath;
         }
         public static string GetEventsFilePath()
         {
-            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", eventsFileName);
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{eventsFileName}";
             return filePath;
         }
+        public static string GetDataDirectoryPath()
+        {
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data";
+            return filePath;
+        }
+
         public static List<User> GetUsers()
         {
             List<User> users = new List<User>();
+            if (!File.Exists(GetUsersFilePath())) return users;
             string[] linesFromCSV = System.IO.File.ReadAllLines(GetUsersFilePath());
             foreach (var line in linesFromCSV)
             {
@@ -47,11 +53,20 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] += users[i].Surname + ",";
                 linesToCSV[i] += users[i].DisplayName;
             }
-            File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            }
         }
         public static List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
+            if (!File.Exists(GetEventsFilePath())) return events;
             string[] linesFromCSV = System.IO.File.ReadAllLines(GetEventsFilePath());
             foreach (var line in linesFromCSV)
             {
@@ -98,7 +113,15 @@ namespace YourScheduler.BusinessLogic
                 }
                 linesToCSV[i] += events[i].IsOpen.ToString();
             }
-            File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            }
         }
     }
 }
