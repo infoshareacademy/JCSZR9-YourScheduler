@@ -11,6 +11,7 @@ namespace YourScheduler.BusinessLogic
     {
         static string usersFileName = "users.csv";
         static string eventsFileName = "events.csv";
+        static string teamsFileName = "teams.csv";
         public static string GetUsersFilePath()
         {
             string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{usersFileName}";
@@ -21,12 +22,16 @@ namespace YourScheduler.BusinessLogic
             string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{eventsFileName}";
             return filePath;
         }
+        public static string GetTeamsFilePath()
+        {
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{teamsFileName}";
+            return filePath;
+        }
         public static string GetDataDirectoryPath()
         {
             string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data";
             return filePath;
         }
-
         public static List<User> GetUsers()
         {
             List<User> users = new List<User>();
