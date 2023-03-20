@@ -33,6 +33,31 @@
             return password;
         }
 
+
+        internal string GetEmailFromUser(string message)
+        {
+            bool emailCorrectValue = true;
+            var email = string.Empty;
+
+            do
+            {
+                email = GetStringFromUser(message);
+
+                if (!email.Contains('@') || email.Length < 3)
+                {
+                    emailCorrectValue = false;
+                    Console.WriteLine("Niepoprawny email. Powinien składać się co najmniej z 3 znaków gdzie co najmniej jeden z nich to @.");
+                }
+                else
+                {
+                    emailCorrectValue = true;
+                }
+
+            } while (!emailCorrectValue);
+
+            return email;
+        }
+
         internal int GetIntFromUser(string message)
         {
             bool intCorrectValue = false;
