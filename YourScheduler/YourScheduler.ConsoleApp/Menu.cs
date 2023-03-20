@@ -77,6 +77,7 @@ namespace YourScheduler.ConsoleApp
                 _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
 
             CSVManager.AddNewUser(user);
+            Console.WriteLine($"\n\nDodano użytkownika: {user.Name} {user.Surname}");
         }
 
         void UpdateUserProfile()
