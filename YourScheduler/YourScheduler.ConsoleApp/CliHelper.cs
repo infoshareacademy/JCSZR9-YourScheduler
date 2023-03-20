@@ -4,10 +4,28 @@
     {
         internal string GetStringFromUser(string message)
         {
-            Console.WriteLine($"{message}");
-            return Console.ReadLine();
-           
-        }
+            var text = string.Empty;
+            bool textCorrectValue = true;
+
+            do
+            {
+                Console.WriteLine($"{message}");
+                text = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    textCorrectValue = false;
+                    Console.WriteLine("Nieprawidłowa wartość. Wartość nie może być pusta.");
+                }
+                else
+                {
+                    textCorrectValue = true;
+                }
+
+            } while(!textCorrectValue);
+
+            return text;
+        } 
 
         internal string GetSecureStringFromUser(string message)
         {
