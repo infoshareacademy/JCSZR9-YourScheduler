@@ -73,7 +73,7 @@ namespace YourScheduler.ConsoleApp
         void AddNewUser()
         {
             var user = new User(_cliHelper.GetStringFromUser("Podaj imię:"), _cliHelper.GetStringFromUser("Podaj nazwisko:"),
-                _cliHelper.GetStringFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
+                _cliHelper.GetEmailFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
                 _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
 
             CSVManager.AddNewUser(user);
