@@ -29,25 +29,42 @@
 
         internal string GetSecureStringFromUser(string message)
         {
-            Console.WriteLine($"{message}");
             var password = string.Empty;
-            ConsoleKey key;
+            bool passwordCorrectValue = true;
+
             do
             {
-                var keyInfo = Console.ReadKey(intercept: true);
-                key = keyInfo.Key;
+                Console.WriteLine($"{message}");
+                ConsoleKey key;
 
-                if (key == ConsoleKey.Backspace && password.Length > 0)
+                do
                 {
-                    Console.Write("\b \b");
-                    password = password[0..^1];
-                }
-                else if (!char.IsControl(keyInfo.KeyChar))
+                    var keyInfo = Console.ReadKey(intercept: true);
+                    key = keyInfo.Key;
+
+                    if (key == ConsoleKey.Backspace && password.Length > 0)
+                    {
+                        Console.Write("\b \b");
+                        password = password[0..^1];
+                    }
+                    else if (!char.IsControl(keyInfo.KeyChar))
+                    {
+                        Console.Write("*");
+                        password += keyInfo.KeyChar;
+                    }
+                } while (key != ConsoleKey.Enter);
+
+                if (password.Length >= 8 && password.Length <= 24 && !string.IsNullOrWhiteSpace(password))
                 {
-                    Console.Write("*");
-                    password += keyInfo.KeyChar;
+                    passwordCorrectValue = true;
                 }
-            } while (key != ConsoleKey.Enter);
+                else
+                {
+                    passwordCorrectValue = false;
+                    Console.WriteLine("\nNieprawidłowa wartość. Hasło powinno zawierać od 8 do 24 znaków.");
+                }
+            } while (!passwordCorrectValue);
+            
             return password;
         }
 
