@@ -106,6 +106,19 @@
             return result;
         }
 
+        internal DateTime GetDateFromUser(string message)
+        {
+            bool dateTimeCorrectValue = false;
+            DateTime result;
+            do
+            {
+                string date = GetStringFromUser(message);
+                dateTimeCorrectValue = DateTime.TryParse(date, out result);
+            } while (dateTimeCorrectValue != true);
+
+            return result;
+        }
+
     }
 }
 
