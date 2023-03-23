@@ -15,103 +15,106 @@ namespace YourScheduler
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler \n");
 
+            Program program = new Program();
+            program.run();
+
             //Test do sprawdzenia czy działa ładowanie pliku
- 
+
             //Tworzymy swoją listę userów:
-            List<User> users = new List<User>();
+            /*   List<User> users = new List<User>();
 
-            //Ładujemy do listy dane z pliku:
-            users = CSVManager.GetUsers();
+               //Ładujemy do listy dane z pliku:
+               users = CSVManager.GetUsers();
 
-            //Wyświetlamy aktualną listę userów:
-            Console.WriteLine("Lista userów załadowana z pliku: \n");
-            foreach (var user in users)
-            {
-                Console.WriteLine($"users ID: {user.Id}");
-                Console.WriteLine($"users Email: {user.Email}");
-                Console.WriteLine($"users Password: {user.Password}");
-                Console.WriteLine($"users Name: {user.Name}");
-                Console.WriteLine($"users Surname: {user.Surname}");
-                Console.WriteLine($"users DisplayName: {user.DisplayName}");
-                Console.WriteLine();
-            }
-            Console.ReadLine();
-            
-            //Teraz dodajemy swoich userów do listy:
-            users.Add(new User("Janusz", "Kowalski", "abc@mail.com", "janusz69", "haslohaslo123"));
-            users.Add(new User("Bogusław", "Łęcina", "def@mail.com", "fuszerka0", "pykpykpyk"));
+               //Wyświetlamy aktualną listę userów:
+               Console.WriteLine("Lista userów załadowana z pliku: \n");
+               foreach (var user in users)
+               {
+                   Console.WriteLine($"users ID: {user.Id}");
+                   Console.WriteLine($"users Email: {user.Email}");
+                   Console.WriteLine($"users Password: {user.Password}");
+                   Console.WriteLine($"users Name: {user.Name}");
+                   Console.WriteLine($"users Surname: {user.Surname}");
+                   Console.WriteLine($"users DisplayName: {user.DisplayName}");
+                   Console.WriteLine();
+               }
+               Console.ReadLine();
 
-            //Aktualizujemy plik z userami:
-            CSVManager.UpdateUsers(users);
+               //Teraz dodajemy swoich userów do listy:
+               users.Add(new User("Janusz", "Kowalski", "abc@mail.com", "janusz69", "haslohaslo123"));
+               users.Add(new User("Bogusław", "Łęcina", "def@mail.com", "fuszerka0", "pykpykpyk"));
 
-            //Możemy sprawdzić czy plik na dysku się zaktualizował lub ponownie go załadować i wyświetlić:
-            users = CSVManager.GetUsers();
-            Console.WriteLine("Lista userów załadowana z pliku po dodaniu nowych userów: \n");
+               //Aktualizujemy plik z userami:
+               CSVManager.UpdateUsers(users);
 
-            foreach (var user in users)
-            {
-                Console.WriteLine($"users ID: {user.Id}");
-                Console.WriteLine($"users Email: {user.Email}");
-                Console.WriteLine($"users Password: {user.Password}");
-                Console.WriteLine($"users Name: {user.Name}");
-                Console.WriteLine($"users Surname: {user.Surname}");
-                Console.WriteLine($"users DisplayName: {user.DisplayName}");
-                Console.WriteLine();
-            }
-            Console.ReadLine();
+               //Możemy sprawdzić czy plik na dysku się zaktualizował lub ponownie go załadować i wyświetlić:
+               users = CSVManager.GetUsers();
+               Console.WriteLine("Lista userów załadowana z pliku po dodaniu nowych userów: \n");
 
-            //Ten sam test dla eventów, tworzymy listę eventów i ładujemy do niej dane z pliku:
+               foreach (var user in users)
+               {
+                   Console.WriteLine($"users ID: {user.Id}");
+                   Console.WriteLine($"users Email: {user.Email}");
+                   Console.WriteLine($"users Password: {user.Password}");
+                   Console.WriteLine($"users Name: {user.Name}");
+                   Console.WriteLine($"users Surname: {user.Surname}");
+                   Console.WriteLine($"users DisplayName: {user.DisplayName}");
+                   Console.WriteLine();
+               }
+               Console.ReadLine();
 
-            List <Event> events = new List <Event> ();
-            events = CSVManager.GetEvents();
+               //Ten sam test dla eventów, tworzymy listę eventów i ładujemy do niej dane z pliku:
 
-            //Wyświetlamy aktualną listę eventów:
-            Console.WriteLine("Lista eventów załadowana z pliku: \n");
-            foreach (var ev in events)
-            {
-                Console.WriteLine($"event ID: {ev.Id}");
-                Console.WriteLine($"event name: {ev.Name}");
-                Console.WriteLine($"event description: {ev.Description}");
-                Console.WriteLine($"event date: {ev.Date}");
-                foreach (var participantInEventId in ev.Participants)
-                {
-                    Console.WriteLine($"participant Id: {participantInEventId}");
-                }
-                Console.WriteLine($"event access: {ev.IsOpen}");
-                Console.WriteLine();
-            }
-            Console.ReadLine();
+               List <Event> events = new List <Event> ();
+               events = CSVManager.GetEvents();
 
-            //Teraz dodajemy swoje eventy do listy:
+               //Wyświetlamy aktualną listę eventów:
+               Console.WriteLine("Lista eventów załadowana z pliku: \n");
+               foreach (var ev in events)
+               {
+                   Console.WriteLine($"event ID: {ev.Id}");
+                   Console.WriteLine($"event name: {ev.Name}");
+                   Console.WriteLine($"event description: {ev.Description}");
+                   Console.WriteLine($"event date: {ev.Date}");
+                   foreach (var participantInEventId in ev.Participants)
+                   {
+                       Console.WriteLine($"participant Id: {participantInEventId}");
+                   }
+                   Console.WriteLine($"event access: {ev.IsOpen}");
+                   Console.WriteLine();
+               }
+               Console.ReadLine();
 
-            //roboczo tworzę listę z Guidami fikcyjnych użytkowników będących zapisanych na wydarzenia:
-            List<Guid> eventParticipantsList = new List<Guid>();
-            eventParticipantsList.Add(Guid.NewGuid());
-            eventParticipantsList.Add(Guid.NewGuid());
+               //Teraz dodajemy swoje eventy do listy:
 
-            events.Add(new Event(name: "impreza urodzinowa Mariusza", description: "impreza z okazji urodzin", isopen: false, date: DateTime.Now, participants: eventParticipantsList));
-            events.Add(new Event(name: "wyjście do kina", description: "obejrzenie nowego filmu marvela w kinie w kinie helios", isopen: true, date: DateTime.Now.AddDays(2), participants: eventParticipantsList));
+               //roboczo tworzę listę z Guidami fikcyjnych użytkowników będących zapisanych na wydarzenia:
+               List<Guid> eventParticipantsList = new List<Guid>();
+               eventParticipantsList.Add(Guid.NewGuid());
+               eventParticipantsList.Add(Guid.NewGuid());
 
-            //Aktualizujemy plik z eventami:
-            CSVManager.UpdateEvents(events);
+               events.Add(new Event(name: "impreza urodzinowa Mariusza", description: "impreza z okazji urodzin", isopen: false, date: DateTime.Now, participants: eventParticipantsList));
+               events.Add(new Event(name: "wyjście do kina", description: "obejrzenie nowego filmu marvela w kinie w kinie helios", isopen: true, date: DateTime.Now.AddDays(2), participants: eventParticipantsList));
 
-            //Możemy sprawdzić czy plik na dysku się zaktualizował lub ponownie go załadować i wyświetlić:
-            events = CSVManager.GetEvents();
-            Console.WriteLine("Lista eventów załadowana z pliku po dodaniu nowych eventów: \n");
-            foreach (var ev in events)
-            {
-                Console.WriteLine($"event ID: {ev.Id}");
-                Console.WriteLine($"event name: {ev.Name}");
-                Console.WriteLine($"event description: {ev.Description}");
-                Console.WriteLine($"event date: {ev.Date}");
-                foreach (var participantInEventId in ev.Participants)
-                {
-                    Console.WriteLine($"participant Id: {participantInEventId}");
-                }
-                Console.WriteLine($"event access: {ev.IsOpen}");
-                Console.WriteLine();
-            }
-            Console.ReadLine();
+               //Aktualizujemy plik z eventami:
+               CSVManager.UpdateEvents(events);
+
+               //Możemy sprawdzić czy plik na dysku się zaktualizował lub ponownie go załadować i wyświetlić:
+               events = CSVManager.GetEvents();
+               Console.WriteLine("Lista eventów załadowana z pliku po dodaniu nowych eventów: \n");
+               foreach (var ev in events)
+               {
+                   Console.WriteLine($"event ID: {ev.Id}");
+                   Console.WriteLine($"event name: {ev.Name}");
+                   Console.WriteLine($"event description: {ev.Description}");
+                   Console.WriteLine($"event date: {ev.Date}");
+                   foreach (var participantInEventId in ev.Participants)
+                   {
+                       Console.WriteLine($"participant Id: {participantInEventId}");
+                   }
+                   Console.WriteLine($"event access: {ev.IsOpen}");
+                   Console.WriteLine();
+               }
+               Console.ReadLine();*/
 
 
 
@@ -123,12 +126,12 @@ namespace YourScheduler
             //program.run();
             */
         }
-        /*
-        private void run()
+        
+        public void run()
         {
             Menu menu = new Menu();
             menu.RunMenu();
         }
-        */
+        
     }
 }

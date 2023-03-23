@@ -9,22 +9,22 @@ namespace YourScheduler.ConsoleApp
 {
     public class Menu
     {
-       // private User _usersStore = new User();
+
         private CliHelper _cliHelper = new CliHelper();
         internal void RunMenu()
         {
             string loggedUser = "marpudlik@wp.pl";
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
-            ChooseOperation(); 
-          
+            ChooseOperation();
+
         }
 
         void ChooseOperation()
         {
-            bool exit=false;
+            bool exit = false;
             do
             {
-               
+
                 Console.WriteLine("Choose operation");
                 Console.WriteLine("1 - exit");
                 Console.WriteLine("2 - Show User Profile");
@@ -47,7 +47,7 @@ namespace YourScheduler.ConsoleApp
                         break;
                     case 2:
                         Console.WriteLine("hej");
-                        //ShowUserProfile(loggedUser);
+                        ShowUserProfile();
                         break;
                     case 3:
                         ShowTeams();
@@ -65,50 +65,81 @@ namespace YourScheduler.ConsoleApp
                         break;
                 }
             } while (!exit);
-           
-           
-           
+
+
         }
 
         void ShowUserProfile()
         {
-            //bool ifUserExist = false;
-            //foreach (var user in _usersStore.users)
-            //{
-            //    if (loggedUser == user.Email)
-            //    {
-            //        ifUserExist = true;
-            //        Console.WriteLine("It is profil logged user: ");
-            //        Console.Write($"{user.Name}");
-            //        Console.WriteLine($"{user.Surname}");
-            //        Console.WriteLine($"{user.Email}");
-            //        Console.WriteLine($"{user.Password}");
-            //        return;
-            //    }
+            
+            List<User> users = new List<User>();
 
-            //}
-            //if (ifUserExist == false)
-            //{
-            //    Console.WriteLine($"User {loggedUser} Doesn't exist");
-            //}
+           
+            users = CSVManager.GetUsers();
+
+           
+            Console.WriteLine("List of available of users \n");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"users ID: {user.Id}");
+                Console.WriteLine($"users Name: {user.Name}");
+                Console.WriteLine($"users Surname: {user.Surname}");
+                Console.WriteLine();
+            }
+
+            string chooseUserToDisplay;
+
+            do
+            {
+                chooseUserToDisplay = _cliHelper.GetStringFromUser("Get name of user to show profile");
+            } while (chooseUserToDisplay=="");
+          
+            Console.Clear();
+           
+            User userToDisplay = users.FirstOrDefault(x => x.Name == chooseUserToDisplay);
+            if (userToDisplay==null)
+            {
+                Console.WriteLine("User not found");
+                return;
+            }
+
+            Console.WriteLine($"Profile of user {userToDisplay.Name}");
+
+            Console.WriteLine($"user ID: {userToDisplay.Id}");
+            Console.WriteLine($"user Email: {userToDisplay.Email}");
+            Console.WriteLine($"user Password: {userToDisplay.Password}");
+            Console.WriteLine($"user Name: {userToDisplay.Name}");
+            Console.WriteLine($"user Surname: {userToDisplay.Surname}");
+            Console.WriteLine($"user DisplayName: {userToDisplay.DisplayName}");
+            Console.WriteLine();
 
         }
 
         void ShowTeams()
         {
-            //foreach (var item in collection)
-            //{
-
-            //}
+           
         }
 
         void ShowEvents()
         {
-            //foreach (var item in collection)
-            //{
+            List<Event> events = new List<Event>();
+            events = CSVManager.GetEvents();
 
-            //}
-
+            Console.WriteLine("List of available events: \n");
+            foreach (var ev in events)
+            {
+                Console.WriteLine($"event ID: {ev.Id}");
+                Console.WriteLine($"event name: {ev.Name}");
+                Console.WriteLine($"event description: {ev.Description}");
+                Console.WriteLine($"event date: {ev.Date}");
+                foreach (var participantInEventId in ev.Participants)
+                {
+                    Console.WriteLine($"participant Id: {participantInEventId}");
+                }
+                Console.WriteLine($"event access: {ev.IsOpen}");
+                Console.WriteLine();
+            }
+            Console.ReadLine();
         }
     }
 }
