@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using YourScheduler.BusinessLogic;
 
 namespace YourScheduler.ConsoleApp
@@ -13,7 +9,6 @@ namespace YourScheduler.ConsoleApp
         private CliHelper _cliHelper = new CliHelper();
         internal void RunMenu()
         {
-            string loggedUser = "marpudlik@wp.pl";
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
             ChooseOperation();
 
@@ -24,21 +19,22 @@ namespace YourScheduler.ConsoleApp
             bool exit = false;
             do
             {
-
-                Console.WriteLine("Choose operation");
-                Console.WriteLine("1 - exit");
-                Console.WriteLine("2 - Show User Profile");
-                Console.WriteLine("3 - Show Teams");
-                Console.WriteLine("4 - Show Events");
-                Console.WriteLine("5 - Add Event");
-                Console.WriteLine("6 - Add User");
+               
+                Console.WriteLine("\nWybór operacji:");
+                Console.WriteLine("1 - Wyjście");
+                Console.WriteLine("2 - Profil użytkownika");
+                Console.WriteLine("3 - Zespoły");
+                Console.WriteLine("4 - Wydarzenia");
+                Console.WriteLine("5 - Dodaj wydarzenie");
+                Console.WriteLine("6 - Dodaj użytkownika");
+                Console.WriteLine("7 - Edytuj profil użytkownika");
 
 
                 int operation;
                 do
                 {
-                    operation = _cliHelper.GetIntFromUser("Write number choosen operation 1-exit,2, 3, 4, 5, 6");
-                } while (operation < 0 || operation > 6);
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                } while (operation < 0 || operation > 7);
 
                 switch (operation)
                 {
@@ -58,15 +54,68 @@ namespace YourScheduler.ConsoleApp
                     case 5:
                         break;
                     case 6:
+                        AddNewUser();
+                        break;
+                    case 7:
+                        UpdateUserProfile();
                         break;
 
                     default:
-                        Console.WriteLine("You get wrong number operation");
+                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-7");
                         break;
                 }
             } while (!exit);
+           
+           
+           
+        }
 
+        void AddNewUser()
+        {
+            var user = new User(_cliHelper.GetStringFromUser("Podaj imię:"), _cliHelper.GetStringFromUser("Podaj nazwisko:"),
+                _cliHelper.GetEmailFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
+                _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
 
+            CSVManager.AddNewUser(user);
+            Console.WriteLine($"\n\nDodano użytkownika: {user.Name} {user.Surname}");
+        }
+
+        void UpdateUserProfile()
+        {
+            bool exit = false;
+            do
+            {
+                Console.WriteLine("\nEdycja profilu użytkownika:");
+                Console.WriteLine("1 - Wyjście");
+                Console.WriteLine("2 - Zmiana nazwy użytkownika");
+                Console.WriteLine("3 - Zmiana e-mail");
+                Console.WriteLine("4 - Zmiana hasła");
+
+                int operation;
+                do
+                {
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                } while (operation < 0 || operation > 4);
+
+                switch (operation)
+                {
+                    case 1: exit = true;
+                        break;
+
+                    case 2:
+                        break;
+
+                    case 3:
+                        break;
+
+                    case 4:
+                        break;
+
+                    default:
+                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-4");
+                        break;
+                }
+            }while(!exit);
         }
 
         void ShowUserProfile()
