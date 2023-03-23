@@ -76,6 +76,67 @@ namespace YourScheduler.BusinessLogic
                 File.WriteAllLines(GetUsersFilePath(), linesToCSV);
             }
         }
+
+        public static void UpdateUserEmail(Guid userId, string newEmail)
+        {
+            string[] allLines = File.ReadAllLines(GetUsersFilePath());
+
+            for (int i = 0; i < allLines.Length; i++)
+            {
+                var line = allLines[i];
+                var splitedLine = line.Split(',');
+
+                if (splitedLine[0] == userId.ToString())
+                {
+                    splitedLine[1] = newEmail;
+                    allLines[i] = string.Join(',', splitedLine);
+                    break;
+                }
+            }
+
+            File.WriteAllLines(GetUsersFilePath(), allLines);
+        }
+
+        public static void UpdateUserPassword(Guid userId, string newPassword)
+        {
+            string[] allLines = File.ReadAllLines(GetUsersFilePath());
+
+            for (int i = 0; i < allLines.Length; i++)
+            {
+                var line = allLines[i];
+                var splitedLine = line.Split(',');
+
+                if (splitedLine[0] == userId.ToString())
+                {
+                    splitedLine[2] = newPassword;
+                    allLines[i] = string.Join(',', splitedLine);
+                    break;
+                }
+            }
+
+            File.WriteAllLines(GetUsersFilePath(), allLines);
+        }
+
+        public static void UpdateUserDisplayName(Guid userId, string newDisplayName)
+        {
+            string[] allLines = File.ReadAllLines(GetUsersFilePath());
+
+            for (int i = 0; i < allLines.Length; i++)
+            {
+                var line = allLines[i];
+                var splitedLine = line.Split(',');
+
+                if (splitedLine[0] == userId.ToString())
+                {
+                    splitedLine[5] = newDisplayName;
+                    allLines[i] = string.Join(',', splitedLine);
+                    break;
+                }
+            }
+
+            File.WriteAllLines(GetUsersFilePath(), allLines);
+        }
+
         public static List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
@@ -169,6 +230,14 @@ namespace YourScheduler.BusinessLogic
             }
             return teams;
         }
+
+        public static void AddNewTeam(Team team)
+        {
+            var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join ("|", team.Members)}";
+
+            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV); 
+        }
+
         public static void UpdateTeams(List<Team> teams)
         {
             string[] linesToCSV = new string[teams.Count];
