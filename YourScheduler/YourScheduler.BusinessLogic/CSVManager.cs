@@ -9,22 +9,33 @@ namespace YourScheduler.BusinessLogic
 {
     public class CSVManager
     {
-        static string projectDirectory = Directory.GetParent((Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString())).ToString();
         static string usersFileName = "users.csv";
         static string eventsFileName = "events.csv";
+        static string teamsFileName = "teams.csv";
         public static string GetUsersFilePath()
         {
-            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", usersFileName);
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{usersFileName}";
             return filePath;
         }
         public static string GetEventsFilePath()
         {
-            string filePath = Path.Combine(projectDirectory, "YourScheduler.BusinessLogic", "Data", eventsFileName);
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{eventsFileName}";
+            return filePath;
+        }
+        public static string GetTeamsFilePath()
+        {
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data\\{teamsFileName}";
+            return filePath;
+        }
+        public static string GetDataDirectoryPath()
+        {
+            string filePath = $"..\\..\\..\\..\\YourScheduler.BusinessLogic\\Data";
             return filePath;
         }
         public static List<User> GetUsers()
         {
             List<User> users = new List<User>();
+            if (!File.Exists(GetUsersFilePath())) return users;
             string[] linesFromCSV = System.IO.File.ReadAllLines(GetUsersFilePath());
             foreach (var line in linesFromCSV)
             {
@@ -35,6 +46,14 @@ namespace YourScheduler.BusinessLogic
             }
             return users;
         }
+
+        public static void AddNewUser(User user)
+        {
+            var addNewUserToCSV = $"{user.Id},{user.Email},{user.Password},{user.Name},{user.Surname},{user.DisplayName}";
+
+            File.AppendAllText(GetUsersFilePath(), addNewUserToCSV);
+        }
+
         public static void UpdateUsers(List <User> users)
         {
             string[] linesToCSV = new string[users.Count];
@@ -47,20 +66,28 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] += users[i].Surname + ",";
                 linesToCSV[i] += users[i].DisplayName;
             }
-            File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetUsersFilePath(), linesToCSV);
+            }
         }
         public static List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
+            if (!File.Exists(GetEventsFilePath())) return events;
             string[] linesFromCSV = System.IO.File.ReadAllLines(GetEventsFilePath());
             foreach (var line in linesFromCSV)
             {
                 string[] splittedData = line.Split(',');
                 Guid newEventID = Guid.Parse(splittedData[0]);
                 DateTime newEventDate = DateTime.Parse(splittedData[3]);
-                List <Guid> newEventParticipants = new List<Guid>();
-
-                if(splittedData[4] != "")
+                List<Guid> newEventParticipants = new List<Guid>();
+                if (splittedData[4] != "")
                 {
                     string[] splittedEventParticipants = splittedData[4].Split('|');
                     foreach (var participantId in splittedEventParticipants)
@@ -75,6 +102,14 @@ namespace YourScheduler.BusinessLogic
             }
             return events;
         }
+
+        public static void AddNewEvent(Event newEvent)
+        {
+            var addNewEventToCSV = $"{newEvent.Id},{newEvent.Name},{newEvent.Description},{newEvent.Date},{string.Join("|", newEvent.Participants)},{newEvent.IsOpen}";
+
+            File.AppendAllText(GetEventsFilePath(), addNewEventToCSV);
+        }
+
         public static void UpdateEvents(List<Event> events)
         {
             string[] linesToCSV = new string[events.Count];
@@ -86,7 +121,7 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] += events[i].Date.ToString() + ",";
                 for (int j = 0; j < events[i].Participants.Count; j++)
                 {
-                    if (j == events[i].Participants.Count-1)
+                    if (j == events[i].Participants.Count - 1)
                     {
                         linesToCSV[i] += events[i].Participants[j].ToString() + ",";
 
@@ -98,7 +133,77 @@ namespace YourScheduler.BusinessLogic
                 }
                 linesToCSV[i] += events[i].IsOpen.ToString();
             }
-            File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetEventsFilePath(), linesToCSV);
+            }
+        }
+        public static List<Team> GetTeams()
+        {
+            List<Team> teams = new List<Team>();
+            if (!File.Exists(GetTeamsFilePath())) return teams;
+            string[] linesFromCSV = System.IO.File.ReadAllLines(GetTeamsFilePath());
+            foreach (var line in linesFromCSV)
+            {
+                string[] splittedData = line.Split(',');
+                Guid newTeamID = Guid.Parse(splittedData[0]);
+                List<Guid> newTeamMembers = new List<Guid>();
+                if (splittedData[2] != "")
+                {
+                    string[] splittedTeamMembers = splittedData[2].Split('|');
+                    foreach (var memberId in splittedTeamMembers)
+                    {
+                        newTeamMembers.Add(Guid.Parse(memberId));
+                    }
+                }
+                Team newTeam = new Team();
+                newTeam.Id = newTeamID;
+                newTeam.Name = splittedData[1];
+                newTeam.Members = newTeamMembers;
+                teams.Add(newTeam);
+            }
+            return teams;
+        }
+        public static void UpdateTeams(List<Team> teams)
+        {
+            string[] linesToCSV = new string[teams.Count];
+            for (int i = 0; i < teams.Count; i++)
+            {
+                linesToCSV[i] = teams[i].Id.ToString() + ",";
+                if (teams[i].Members.Count == 0)
+                {
+                    linesToCSV[i] += teams[i].Name;
+                }
+                else
+                {
+                    for (int j = 0; j < teams[i].Members.Count; j++)
+                    {
+                        if (j == teams[i].Members.Count - 1)
+                        {
+                            linesToCSV[i] += teams[i].Members[j].ToString();
+
+                        }
+                        else
+                        {
+                            linesToCSV[i] += teams[i].Members[j].ToString() + "|";
+                        }
+                    }
+                }
+            }
+            if (Directory.Exists(GetDataDirectoryPath()))
+            {
+                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+            }
+            else
+            {
+                Directory.CreateDirectory(GetDataDirectoryPath());
+                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+            }
         }
     }
 }
