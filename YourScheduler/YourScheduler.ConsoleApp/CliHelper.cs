@@ -16,7 +16,6 @@ namespace YourScheduler.ConsoleApp
         }
 
       
-
         internal int GetIntFromUser(string message)
         {
             bool intCorrectValue = false;
