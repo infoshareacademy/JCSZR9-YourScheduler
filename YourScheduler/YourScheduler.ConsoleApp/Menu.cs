@@ -3,18 +3,18 @@ using YourScheduler.BusinessLogic;
 
 namespace YourScheduler.ConsoleApp
 {
-    public class Menu
+    public static class Menu
     {
 
-        private CliHelper _cliHelper = new CliHelper();
-        internal void RunMenu()
+        //private static CliHelper _cliHelper=CliHelper;
+        internal static void RunMenu()
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
             ChooseOperation();
 
         }
 
-        void ChooseOperation()
+       static void ChooseOperation()
         {
             bool exit = false;
             do
@@ -33,7 +33,7 @@ namespace YourScheduler.ConsoleApp
                 int operation;
                 do
                 {
-                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                    operation = CliHelper.GetIntFromUser("\n Wybierz numer operacji");//_cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
                 } while (operation < 0 || operation > 7);
 
                 switch (operation)
@@ -70,17 +70,17 @@ namespace YourScheduler.ConsoleApp
            
         }
 
-        void AddNewUser()
+        static void AddNewUser()
         {
-            var user = new User(_cliHelper.GetStringFromUser("Podaj imię:"), _cliHelper.GetStringFromUser("Podaj nazwisko:"),
-                _cliHelper.GetEmailFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
-                _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
+            var user = new User(CliHelper.GetStringFromUser("Podaj imię:"), CliHelper.GetStringFromUser("Podaj nazwisko:"),
+               CliHelper.GetEmailFromUser("Podaj adres e-mail:"), CliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
+                CliHelper.GetSecureStringFromUser("Podaj hasło:"));
 
             CSVManager.AddNewUser(user);
             Console.WriteLine($"\n\nDodano użytkownika: {user.Name} {user.Surname}");
         }
 
-        void UpdateUserProfile()
+         static void UpdateUserProfile()
         {
             bool exit = false;
             do
@@ -94,7 +94,7 @@ namespace YourScheduler.ConsoleApp
                 int operation;
                 do
                 {
-                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                    operation =CliHelper.GetIntFromUser("\nWybierz numer operacji: ");
                 } while (operation < 0 || operation > 4);
 
                 switch (operation)
@@ -118,7 +118,7 @@ namespace YourScheduler.ConsoleApp
             }while(!exit);
         }
 
-        void ShowUserProfile()
+        static void ShowUserProfile()
         {
             
             List<User> users = new List<User>();
@@ -140,7 +140,7 @@ namespace YourScheduler.ConsoleApp
 
             do
             {
-                chooseUserToDisplay = _cliHelper.GetStringFromUser("Get name of user to show profile");
+                chooseUserToDisplay = CliHelper.GetStringFromUser("Get name of user to show profile");
             } while (chooseUserToDisplay=="");
           
             Console.Clear();
@@ -164,12 +164,26 @@ namespace YourScheduler.ConsoleApp
 
         }
 
-        void ShowTeams()
+        static  void  ShowTeams()
         {
-           
+           List<Team> teams = new List<Team>();
+           teams = CSVManager.GetTeams();
+          
+
+            foreach (var team in teams)
+            {
+                Console.WriteLine($"team ID: {team.Id}");
+                Console.WriteLine($"team Name: {team.Name}");
+                foreach (var memberID in team.Members)
+                {
+                    Console.WriteLine($"member Id: {memberID}");
+                }
+                Console.WriteLine();
+            }
+
         }
 
-        void ShowEvents()
+        static void ShowEvents()
         {
             List<Event> events = new List<Event>();
             events = CSVManager.GetEvents();
