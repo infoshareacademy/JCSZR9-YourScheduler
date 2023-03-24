@@ -13,7 +13,7 @@ namespace YourScheduler.BusinessLogic
             //Test do sprawdzenia czy działa praca z plikami
             
             Console.WriteLine("Witaj! Testowanie obsługi plików \n");
-
+            
             //Tworzymy swoją listę userów:
             List<User> users = new List<User>();
 
