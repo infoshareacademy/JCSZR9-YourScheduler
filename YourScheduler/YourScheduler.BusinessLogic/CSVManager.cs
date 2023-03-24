@@ -137,6 +137,7 @@ namespace YourScheduler.BusinessLogic
                 string[] splittedData = line.Split(',');
                 Guid newTeamID = Guid.Parse(splittedData[0]);
                 List<Guid> newTeamMembers = new List<Guid>();
+                //if ()
                 if (splittedData[2] != "")
                 {
                     string[] splittedTeamMembers = splittedData[2].Split('|');
@@ -161,10 +162,11 @@ namespace YourScheduler.BusinessLogic
                 linesToCSV[i] = teams[i].Id.ToString() + ",";
                 if (teams[i].Members.Count == 0)
                 {
-                    linesToCSV[i] += teams[i].Name;
+                    linesToCSV[i] += teams[i].Name + ",";
                 }
                 else
                 {
+                    linesToCSV[i] += teams[i].Name + ",";
                     for (int j = 0; j < teams[i].Members.Count; j++)
                     {
                         if (j == teams[i].Members.Count - 1)
