@@ -80,62 +80,65 @@ namespace YourScheduler.BusinessLogic
         public static void UpdateUserEmail(Guid userId, string newEmail)
         {
             string[] allLines = File.ReadAllLines(GetUsersFilePath());
+        //public static void UpdateUserEmail(Guid userId, string newEmail)
+        //{
+        //    string[] allLines = File.ReadAllLines(GetUsersFilePath());
 
-            for (int i = 0; i < allLines.Length; i++)
-            {
-                var line = allLines[i];
-                var splitedLine = line.Split(',');
+        //    for (int i = 0; i < allLines.Length; i++)
+        //    {
+        //        var line = allLines[i];
+        //        var splitedLine = line.Split(',');
 
-                if (splitedLine[0] == userId.ToString())
-                {
-                    splitedLine[1] = newEmail;
-                    allLines[i] = string.Join(',', splitedLine);
-                    break;
-                }
-            }
+        //        if (splitedLine[0] == userId.ToString())
+        //        {
+        //            splitedLine[1] = newEmail;
+        //            allLines[i] = string.Join(',', splitedLine);
+        //            break;
+        //        }
+        //    }
 
-            File.WriteAllLines(GetUsersFilePath(), allLines);
-        }
+        //    File.WriteAllLines(GetUsersFilePath(), allLines);
+        //}
 
-        public static void UpdateUserPassword(Guid userId, string newPassword)
-        {
-            string[] allLines = File.ReadAllLines(GetUsersFilePath());
+        //public static void UpdateUserPassword(Guid userId, string newPassword)
+        //{
+        //    string[] allLines = File.ReadAllLines(GetUsersFilePath());
 
-            for (int i = 0; i < allLines.Length; i++)
-            {
-                var line = allLines[i];
-                var splitedLine = line.Split(',');
+        //    for (int i = 0; i < allLines.Length; i++)
+        //    {
+        //        var line = allLines[i];
+        //        var splitedLine = line.Split(',');
 
-                if (splitedLine[0] == userId.ToString())
-                {
-                    splitedLine[2] = newPassword;
-                    allLines[i] = string.Join(',', splitedLine);
-                    break;
-                }
-            }
+        //        if (splitedLine[0] == userId.ToString())
+        //        {
+        //            splitedLine[2] = newPassword;
+        //            allLines[i] = string.Join(',', splitedLine);
+        //            break;
+        //        }
+        //    }
 
-            File.WriteAllLines(GetUsersFilePath(), allLines);
-        }
+        //    File.WriteAllLines(GetUsersFilePath(), allLines);
+        //}
 
-        public static void UpdateUserDisplayName(Guid userId, string newDisplayName)
-        {
-            string[] allLines = File.ReadAllLines(GetUsersFilePath());
+        //public static void UpdateUserDisplayName(Guid userId, string newDisplayName)
+        //{
+        //    string[] allLines = File.ReadAllLines(GetUsersFilePath());
 
-            for (int i = 0; i < allLines.Length; i++)
-            {
-                var line = allLines[i];
-                var splitedLine = line.Split(',');
+        //    for (int i = 0; i < allLines.Length; i++)
+        //    {
+        //        var line = allLines[i];
+        //        var splitedLine = line.Split(',');
 
-                if (splitedLine[0] == userId.ToString())
-                {
-                    splitedLine[5] = newDisplayName;
-                    allLines[i] = string.Join(',', splitedLine);
-                    break;
-                }
-            }
+        //        if (splitedLine[0] == userId.ToString())
+        //        {
+        //            splitedLine[5] = newDisplayName;
+        //            allLines[i] = string.Join(',', splitedLine);
+        //            break;
+        //        }
+        //    }
 
-            File.WriteAllLines(GetUsersFilePath(), allLines);
-        }
+        //    File.WriteAllLines(GetUsersFilePath(), allLines);
+        //}
 
         public static List<Event> GetEvents()
         {
@@ -164,12 +167,12 @@ namespace YourScheduler.BusinessLogic
             return events;
         }
 
-        public static void AddNewEvent(Event newEvent)
-        {
-            var addNewEventToCSV = $"{newEvent.Id},{newEvent.Name},{newEvent.Description},{newEvent.Date},{string.Join("|", newEvent.Participants)},{newEvent.IsOpen}";
+        //public static void AddNewEvent(Event newEvent)
+        //{
+        //    var addNewEventToCSV = $"{newEvent.Id},{newEvent.Name},{newEvent.Description},{newEvent.Date},{string.Join("|", newEvent.Participants)},{newEvent.IsOpen}";
 
-            File.AppendAllText(GetEventsFilePath(), addNewEventToCSV);
-        }
+        //    File.AppendAllText(GetEventsFilePath(), addNewEventToCSV);
+        //}
 
         public static void UpdateEvents(List<Event> events)
         {
@@ -235,7 +238,7 @@ namespace YourScheduler.BusinessLogic
         {
             var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join ("|", team.Members)}";
 
-            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV); 
+            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV);
         }
 
         public static void UpdateTeams(List<Team> teams)
