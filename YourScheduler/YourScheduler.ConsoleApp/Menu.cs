@@ -35,6 +35,7 @@ namespace YourScheduler.ConsoleApp
             {
                 case 1:
                     ChooseTestUser();
+                    exit = true;
                     break;
                 case 2:
                     AddNewUser();
@@ -164,8 +165,7 @@ namespace YourScheduler.ConsoleApp
                         break;
                 }
             
-
-            } while (!exit);
+            }while (!exit);
         }
         void UpdateUserProfile(User user)
         {
