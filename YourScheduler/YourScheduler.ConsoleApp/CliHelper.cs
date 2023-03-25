@@ -1,8 +1,8 @@
 ﻿namespace YourScheduler.ConsoleApp
 {
-    internal static class CliHelper
+    public class CliHelper
     {
-        internal static string GetStringFromUser(string message)
+        internal  string GetStringFromUser(string message)
         {
             var text = string.Empty;
             bool textCorrectValue = true;
@@ -27,7 +27,7 @@
             return text;
         } 
 
-        internal static string GetSecureStringFromUser(string message)
+        internal  string GetSecureStringFromUser(string message)
         {
             var password = string.Empty;
             bool passwordCorrectValue = true;
@@ -69,7 +69,7 @@
         }
 
 
-        internal static string GetEmailFromUser(string message)
+        internal  string GetEmailFromUser(string message)
         {
             bool emailCorrectValue = true;
             var email = string.Empty;
@@ -93,7 +93,7 @@
             return email;
         }
 
-        internal static int GetIntFromUser(string message)
+        internal int GetIntFromUser(string message)
         {
             bool intCorrectValue = false;
             int result = 0;
@@ -106,7 +106,7 @@
             return result;
         }
 
-        internal static DateTime GetDateFromUser(string message)
+        internal  DateTime GetDateFromUser(string message)
         {
             bool dateTimeCorrectValue = false;
             DateTime result;
