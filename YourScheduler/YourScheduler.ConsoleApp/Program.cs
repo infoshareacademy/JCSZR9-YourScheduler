@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.BusinessLogic;
@@ -19,7 +20,13 @@ namespace YourScheduler
             Program program = new Program();
             program.run();
         }
+            Menu program = new Menu();
+            program.RunMenu();
 
+
+
+        /*
+        /*
         private void run()
         {
             Menu menu = new Menu();
