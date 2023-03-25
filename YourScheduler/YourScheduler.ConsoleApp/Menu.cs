@@ -227,13 +227,15 @@ namespace YourScheduler.ConsoleApp
         {
             var teamName = _cliHelper.GetStringFromUser("Podaj nazwę zespołu: ");
             var allUsers = CSVManager.GetUsers();
+            string listOfUsersToDisplay = "";
             
             for (int i = 0; i < allUsers.Count; i++)
             {
-                Console.WriteLine($"{i+1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}");
+                listOfUsersToDisplay += $"{i + 1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}\n";
             }
+            
 
-            var teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
+            var teamQuantity = _cliHelper.GetIntFromUser("Podaj liczbę członków zespołu: ");
 
             bool correctTeamQuantity = true;
             do
@@ -246,14 +248,15 @@ namespace YourScheduler.ConsoleApp
                 {
                     correctTeamQuantity = false;
                     Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count+1}.");
-                    teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
+                    teamQuantity = _cliHelper.GetIntFromUser($"\nPodaj liczbę członków zespołu: ");
                 }
             } while (!correctTeamQuantity);
 
             List<Guid> teamMemberIds = new List<Guid>();
             for (int i = 1; i <= teamQuantity; i++)
             {
-                var userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+
+                var userId = _cliHelper.GetIntFromUser($"\n{listOfUsersToDisplay}\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
 
                 bool correctIdQuantity = true;
                 do
@@ -262,13 +265,13 @@ namespace YourScheduler.ConsoleApp
                     {
                         correctIdQuantity = false;
                         Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
-                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+                        userId = _cliHelper.GetIntFromUser($"\n{listOfUsersToDisplay}\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
                     }
                     else if (teamMemberIds.Contains(allUsers[userId-1].Id))
                     {
                         correctIdQuantity = false;
                         Console.WriteLine("Użytkownik z podaną liczbą porządkową już istnieje. Podaj inną wartość.");
-                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+                        userId = _cliHelper.GetIntFromUser($"\n{listOfUsersToDisplay}\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
                     }
                     else
                     {

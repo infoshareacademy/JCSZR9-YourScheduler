@@ -101,6 +101,10 @@
             {
                 string text = GetStringFromUser(message);    
                 intCorrectValue = int.TryParse(text, out result);
+                if (result == 0)
+                {
+                    Console.WriteLine("Wprowadzone dane nie są liczbami!");
+                }
             } while (intCorrectValue != true || result == 0);
 
             return result;
