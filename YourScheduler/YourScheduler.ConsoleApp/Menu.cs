@@ -60,6 +60,7 @@ namespace YourScheduler.ConsoleApp
                 _cliHelper.GetStringFromUser("Podaj login użytkownika"),
                 _cliHelper.GetSecureStringFromUser("Podaj hasło użytkownika"));
             _userService.AddNewUser(newUser);
+            CSVManager.UpdateUsers(_userService.userList);
         }
         void ChooseTestUser()
         {
@@ -97,16 +98,19 @@ namespace YourScheduler.ConsoleApp
         {
             _userService.UpdateUserDisplayName(user.Id, _cliHelper.GetStringFromUser("Podaj nową nazwę użytkownika: "));
             Console.WriteLine($"\nZmieniono nazwę użytkownika {user.Name} {user.Surname}");
+            CSVManager.UpdateUsers(_userService.userList);
         }
         void UpdateUserEmail(User user)
         {
             _userService.UpdateUserEmail(user.Id, _cliHelper.GetEmailFromUser("Podaj nowy email: "));
             Console.WriteLine($"\nZmieniono email użytkownika {user.Name} {user.Surname}");
+            CSVManager.UpdateUsers(_userService.userList);
         }
         void UpdateUserPassword(User user)
         {
             _userService.UpdateUserPassword(user.Id, _cliHelper.GetSecureStringFromUser("Podaj nowe hasło: "));
             Console.WriteLine($"\nZmieniono hasło użytkownika {user.Name} {user.Surname}");
+            CSVManager.UpdateUsers(_userService.userList);
         }
         void ShowUserProfile(User user)
         {
