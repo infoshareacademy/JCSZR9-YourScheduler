@@ -5,13 +5,18 @@ namespace YourScheduler.ConsoleApp
 {
     public  class Menu
     {
+        public Menu() 
+        {
+            _currentUser = new User("Marcin", "Dylowicz", "mar@test.com", "marcin77", "password321");
+            CSVManager.AddNewUser(_currentUser);
+        }
 
-        private static CliHelper _cliHelper = new CliHelper();
-        internal  void RunMenu()
+        private readonly User _currentUser;
+        private CliHelper _cliHelper = new CliHelper();
+        internal void RunMenu()
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
-            ChooseOperation();
-
+            ChooseOperation(); 
         }
 
         void ChooseOperation()
@@ -42,7 +47,6 @@ namespace YourScheduler.ConsoleApp
                         exit = true;
                         break;
                     case 2:
-                        Console.WriteLine("hej");
                         ShowUserProfile();
                         break;
                     case 3:
@@ -99,16 +103,20 @@ namespace YourScheduler.ConsoleApp
 
                 switch (operation)
                 {
-                    case 1: exit = true;
+                    case 1: 
+                        exit = true;
                         break;
 
                     case 2:
+                        UpdateUserDisplayName();
                         break;
 
                     case 3:
+                        UpdateUserEmail();
                         break;
 
                     case 4:
+                        UpdateUserPassword();
                         break;
 
                     default:
@@ -118,8 +126,24 @@ namespace YourScheduler.ConsoleApp
             }while(!exit);
         }
 
+
+        void UpdateUserDisplayName()
         static void ShowUserProfile()
         {
+            CSVManager.UpdateUserDisplayName(_currentUser.Id, _cliHelper.GetStringFromUser("Podaj nową nazwę użytkownika: "));
+            Console.WriteLine($"\nZmieniono nazwę użytkownika {_currentUser.Name} {_currentUser.Surname}");
+        }
+        void UpdateUserEmail()
+        {
+            CSVManager.UpdateUserEmail(_currentUser.Id, _cliHelper.GetEmailFromUser("Podaj nowy email: "));
+            Console.WriteLine($"\nZmieniono email użytkownika {_currentUser.Name} {_currentUser.Surname}");
+        }
+
+        void UpdateUserPassword()
+        {
+            CSVManager.UpdateUserPassword(_currentUser.Id, _cliHelper.GetSecureStringFromUser("Podaj nowe hasło: "));
+            Console.WriteLine($"\nZmieniono hasło użytkownika {_currentUser.Name} {_currentUser.Surname}");
+        }
             
             List<User> users = new List<User>();
 
