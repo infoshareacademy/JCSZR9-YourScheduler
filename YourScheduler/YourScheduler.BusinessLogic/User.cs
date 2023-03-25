@@ -121,26 +121,5 @@ namespace YourScheduler.BusinessLogic
             DisplayName = displayName;
             Password = password;
         }
-
-
-        public void ChangePassword(string newPassword)
-        {
-            Password = newPassword;
-        }
-        public void ChangeEmail(string newEmail)
-        {
-            Email = newEmail;
-        }
-        public void ChangeDisplayName(string newDisplayName)
-        {
-            DisplayName = newDisplayName;
-        }
-
-        public Event CreateEvent(string name, string description, DateTime date, List<Guid> participants, bool isOpen)
-        {
-            return new Event(name, description, date, participants, isOpen);
-        }
-
     }
-
 }
