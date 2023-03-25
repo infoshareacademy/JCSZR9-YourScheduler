@@ -5,13 +5,12 @@ namespace YourScheduler.ConsoleApp
 {
     public class Menu
     {
-        public Menu() 
+        static Menu() 
         {
-            _currentUser = new User("Marcin", "Dylowicz", "mar@test.com", "marcin77", "password321");
             CSVManager.AddNewUser(_currentUser);
         }
 
-        private readonly User _currentUser;
+        private readonly static User _currentUser = new User("Marcin", "Dylowicz", "mar@test.com", "marcin77", "password321");
         private CliHelper _cliHelper = new CliHelper();
         internal void RunMenu()
         {
@@ -33,13 +32,15 @@ namespace YourScheduler.ConsoleApp
                 Console.WriteLine("5 - Dodaj wydarzenie");
                 Console.WriteLine("6 - Dodaj użytkownika");
                 Console.WriteLine("7 - Edytuj profil użytkownika");
+                Console.WriteLine("8 - Dodaj zespół");
+                Console.WriteLine("9 - Edytuj zespół");
 
 
                 int operation;
                 do
                 {
                     operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
-                } while (operation < 0 || operation > 7);
+                } while (operation < 0 || operation > 9);
 
                 switch (operation)
                 {
@@ -56,6 +57,7 @@ namespace YourScheduler.ConsoleApp
                         ShowEvents();
                         break;
                     case 5:
+                        AddNewEvent();
                         break;
                     case 6:
                         AddNewUser();
@@ -63,15 +65,18 @@ namespace YourScheduler.ConsoleApp
                     case 7:
                         UpdateUserProfile();
                         break;
+                    case 8:
+                        AddNewTeam();
+                        break;
+                    case 9:
+                        UpdateTeam();
+                        break;
 
                     default:
-                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-7");
+                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-9");
                         break;
                 }
             } while (!exit);
-           
-           
-           
         }
 
         void AddNewUser()
@@ -160,6 +165,78 @@ namespace YourScheduler.ConsoleApp
             //}
         }
 
+        void AddNewTeam()
+        {
+            var teamName = _cliHelper.GetStringFromUser("Podaj nazwę zespołu: ");
+            var allUsers = CSVManager.GetUsers();
+            
+            for (int i = 0; i < allUsers.Count; i++)
+            {
+                Console.WriteLine($"{i+1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}");
+            }
+
+            var teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
+
+            bool correctTeamQuantity = true;
+            do
+            {
+                if (teamQuantity > 0 && teamQuantity <= allUsers.Count)
+                {
+                    correctTeamQuantity = true;
+                }
+                else
+                {
+                    correctTeamQuantity = false;
+                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count+1}.");
+                    teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
+                }
+            } while (!correctTeamQuantity);
+
+            List<Guid> teamMemberIds = new List<Guid>();
+            for (int i = 1; i <= teamQuantity; i++)
+            {
+                var userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+
+                bool correctIdQuantity = true;
+                do
+                {
+                    if (userId <= 0 && userId > allUsers.Count)
+                    {
+                        correctIdQuantity = false;
+                        Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
+                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+                    }
+                    else if (teamMemberIds.Contains(allUsers[userId-1].Id))
+                    {
+                        correctIdQuantity = false;
+                        Console.WriteLine("Użytkownik z podaną liczbą porządkową już istnieje. Podaj inną wartość.");
+                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
+                    }
+                    else
+                    {
+                        correctIdQuantity = true;
+                    }
+                } while (!correctIdQuantity);
+
+                teamMemberIds.Add(allUsers[userId-1].Id);
+            }
+
+            var newTeam = new Team(teamName,teamMemberIds);
+            
+            CSVManager.AddNewTeam(newTeam);
+
+            Console.WriteLine($"\nDodano nowy zespół o nazwie {teamName}.");
+        }
+
+        void UpdateTeam()
+        {
+
+        }
+
+        void AddNewEvent()
+        {
+
+        }
         void ShowEvents()
         {
             //foreach (var item in collection)
