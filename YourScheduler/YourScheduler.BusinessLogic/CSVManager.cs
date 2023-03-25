@@ -232,12 +232,12 @@ namespace YourScheduler.BusinessLogic
             return teams;
         }
 
-        //public static void AddNewTeam(Team team)
-        //{
-        //    var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join ("|", team.Members)}";
+        public static void AddNewTeam(Team team)
+        {
+            var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join("|", team.Members)}";
 
-        //    File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV); 
-        //}
+            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV);
+        }
 
         public static void UpdateTeams(List<Team> teams)
         {
