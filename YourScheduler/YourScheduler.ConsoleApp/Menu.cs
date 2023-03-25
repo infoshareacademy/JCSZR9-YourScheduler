@@ -90,51 +90,51 @@ namespace YourScheduler.ConsoleApp
             users.Add(user);
             CSVManager.UpdateUsers(users);
 
-           // CSVManager.AddNewUser(user);
+            // CSVManager.AddNewUser(user);
             Console.WriteLine($"\n\nDodano użytkownika: {user.Name} {user.Surname}");
         }
 
-        void UpdateUserProfile()
-        {
-            bool exit = false;
-            do
-            {
-                Console.WriteLine("\nEdycja profilu użytkownika:");
-                Console.WriteLine("1 - Wyjście");
-                Console.WriteLine("2 - Zmiana nazwy użytkownika");
-                Console.WriteLine("3 - Zmiana e-mail");
-                Console.WriteLine("4 - Zmiana hasła");
+        //void UpdateUserProfile()
+        //{
+        //    bool exit = false;
+        //    do
+        //    {
+        //        Console.WriteLine("\nEdycja profilu użytkownika:");
+        //        Console.WriteLine("1 - Wyjście");
+        //        Console.WriteLine("2 - Zmiana nazwy użytkownika");
+        //        Console.WriteLine("3 - Zmiana e-mail");
+        //        Console.WriteLine("4 - Zmiana hasła");
 
-                int operation;
-                do
-                {
-                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
-                } while (operation < 0 || operation > 4);
+        //        int operation;
+        //        do
+        //        {
+        //            operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+        //        } while (operation < 0 || operation > 4);
 
-                switch (operation)
-                {
-                    case 1:
-                        exit = true;
-                        break;
+        //        switch (operation)
+        //        {
+        //            case 1:
+        //                exit = true;
+        //                break;
 
-                    case 2:
-                        UpdateUserDisplayName();
-                        break;
+        //            case 2:
+        //                UpdateUserDisplayName();
+        //                break;
 
-                    case 3:
-                        UpdateUserEmail();
-                        break;
+        //            case 3:
+        //                UpdateUserEmail();
+        //                break;
 
-                    case 4:
-                        UpdateUserPassword();
-                        break;
+        //            case 4:
+        //                UpdateUserPassword();
+        //                break;
 
-                    default:
-                        Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-4");
-                        break;
-                }
-            } while (!exit);
-        }
+        //            default:
+        //                Console.WriteLine("Zły numer operacji! Wybierz poprawny numer operacji z zakresu 1-4");
+        //                break;
+        //        }
+        //    } while (!exit);
+        //}
 
 
         void UpdateUserDisplayName()
@@ -177,8 +177,8 @@ namespace YourScheduler.ConsoleApp
             do
             {
                 chooseUserToDisplay = _cliHelper.GetStringFromUser("Get Id of user to show profile");
-                chooseUserToDisplayGuid =Guid.Parse(chooseUserToDisplay);
-            } while (chooseUserToDisplay=="");
+                chooseUserToDisplayGuid = Guid.Parse(chooseUserToDisplay);
+            } while (chooseUserToDisplay == "");
 
             Console.Clear();
 
@@ -200,12 +200,12 @@ namespace YourScheduler.ConsoleApp
             Console.WriteLine();
 
         }
-    
-         void  ShowTeams()
+
+        void ShowTeams()
         {
-           List<Team> teams = new List<Team>();
-           teams = CSVManager.GetTeams();
-          
+            List<Team> teams = new List<Team>();
+            teams = CSVManager.GetTeams();
+
 
             foreach (var team in teams)
             {
@@ -241,6 +241,45 @@ namespace YourScheduler.ConsoleApp
             }
             Console.ReadLine();
         }
+
+        void UpdateUserProfile()
+        {
+            List<User> users = new List<User>();
+            users = CSVManager.GetUsers();
+
+            foreach (var user in users)
+            {
+                Console.WriteLine($"users ID: {user.Id}");
+                Console.WriteLine($"users Name: {user.Name}");
+                Console.WriteLine($"users Surname: {user.Surname}");
+                Console.WriteLine();
+            }
+                string chooseUserToDisplay;
+                Guid chooseUserToDisplayGuid;
+                do
+                {
+                    chooseUserToDisplay = _cliHelper.GetStringFromUser("Get Id of user to show profile");
+                    chooseUserToDisplayGuid = Guid.Parse(chooseUserToDisplay);
+                } while (chooseUserToDisplay == "");
+
+                var userToEditing=users.FirstOrDefault(u=>u.Id == chooseUserToDisplayGuid);  
+
+                userToEditing.Id= chooseUserToDisplayGuid;
+                userToEditing.Name = _cliHelper.GetStringFromUser("Get new name");
+                userToEditing.Surname = _cliHelper.GetStringFromUser("Get new surname");
+                userToEditing.Email = _cliHelper.GetEmailFromUser("Get new email");
+                userToEditing.Password=_cliHelper.GetSecureStringFromUser("Get new Password");
+                userToEditing.DisplayName = _cliHelper.GetStringFromUser("Get new Display name");
+               
+                
+                var index=users.IndexOf(userToEditing); 
+                users.RemoveAt(index);
+                users.Add(userToEditing);
+
+            CSVManager.UpdateUsers(users);
+        }
+
+
     }
 }
 
