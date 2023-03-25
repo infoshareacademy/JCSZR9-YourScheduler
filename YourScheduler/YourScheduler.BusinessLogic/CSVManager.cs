@@ -77,17 +77,17 @@ namespace YourScheduler.BusinessLogic
             }
         }
 
-        public static void UpdateUserEmail(Guid userId, string newEmail)
-        {
-            string[] allLines = File.ReadAllLines(GetUsersFilePath());
         //public static void UpdateUserEmail(Guid userId, string newEmail)
         //{
         //    string[] allLines = File.ReadAllLines(GetUsersFilePath());
+        ////public static void UpdateUserEmail(Guid userId, string newEmail)
+        ////{
+        ////    string[] allLines = File.ReadAllLines(GetUsersFilePath());
 
-        //    for (int i = 0; i < allLines.Length; i++)
-        //    {
-        //        var line = allLines[i];
-        //        var splitedLine = line.Split(',');
+        ////    for (int i = 0; i < allLines.Length; i++)
+        ////    {
+        ////        var line = allLines[i];
+        ////        var splitedLine = line.Split(',');
 
         //        if (splitedLine[0] == userId.ToString())
         //        {

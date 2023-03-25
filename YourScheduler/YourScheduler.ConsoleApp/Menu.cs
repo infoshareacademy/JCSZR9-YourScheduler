@@ -157,7 +157,7 @@ namespace YourScheduler.ConsoleApp
                         break;
                     case 5:
                         exit = true;
-                        Console.WriteLine("Done");
+                        WelcomeScreen();
                         break;
                     default:
                         Console.WriteLine($"Nie znaleziono opcji pod numerem {operation}");
