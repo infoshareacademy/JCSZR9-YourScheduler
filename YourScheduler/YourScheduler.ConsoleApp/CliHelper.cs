@@ -23,7 +23,7 @@
                 }
 
             } while(!textCorrectValue);
-
+            Console.Clear();
             return text;
         } 
 
