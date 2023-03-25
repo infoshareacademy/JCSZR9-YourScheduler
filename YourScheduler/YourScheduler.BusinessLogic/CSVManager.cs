@@ -175,12 +175,9 @@ namespace YourScheduler.BusinessLogic
             for (int i = 0; i < teams.Count; i++)
             {
                 linesToCSV[i] = teams[i].Id.ToString() + ",";
-                if (teams[i].Members.Count == 0)
-                {
-                    linesToCSV[i] += teams[i].Name;
-                }
-                else
-                {
+                linesToCSV[i] += teams[i].Name + ",";
+               
+               
                     for (int j = 0; j < teams[i].Members.Count; j++)
                     {
                         if (j == teams[i].Members.Count - 1)
@@ -193,7 +190,7 @@ namespace YourScheduler.BusinessLogic
                             linesToCSV[i] += teams[i].Members[j].ToString() + "|";
                         }
                     }
-                }
+                
             }
             if (Directory.Exists(GetDataDirectoryPath()))
             {

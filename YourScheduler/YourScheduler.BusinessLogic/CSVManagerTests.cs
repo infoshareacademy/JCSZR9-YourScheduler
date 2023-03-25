@@ -141,12 +141,23 @@ namespace YourScheduler.BusinessLogic
             Console.ReadLine();
 
             //Teraz dodajemy swoje teamy do listy:
-            teams.Add(new Team());
-            teams.Last().Name = "grupa uderzeniowa";
-            teams.Add(new Team());
-            teams.Last().Name = "szkoła taneczna";
-            teams.Last().Members.Add(Guid.NewGuid());
-            teams.Last().Members.Add(Guid.NewGuid());
+            Team team1 = new Team();
+            team1.Name = "grupa uderzeniowa";
+            team1.Members.Add(Guid.NewGuid());
+            Team team2 = new Team();
+            team2.Name = "Grupa nygusów";
+            team2.Members.Add(Guid.NewGuid());
+            team2.Members.Add(Guid.NewGuid());
+            teams.Add(team1);
+            teams.Add(team2);
+            //teams.Add(new Team());
+            //teams.Last().Name = "grupa uderzeniowa";
+            //teams.Last().Members.Add(Guid.NewGuid());
+            //teams.Last().Members.Add(Guid.NewGuid());
+            //teams.Add(new Team());
+            //teams.Last().Name = "szkoła taneczna";
+            //teams.Last().Members.Add(Guid.NewGuid());
+            //teams.Last().Members.Add(Guid.NewGuid());
 
             //Aktualizujemy plik z eventami:
             CSVManager.UpdateTeams(teams);

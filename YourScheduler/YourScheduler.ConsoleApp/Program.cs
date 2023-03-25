@@ -17,23 +17,23 @@ namespace YourScheduler
 
             CSVManagerTests.Run();
 
-            //Menu.RunMenu();
+
 
             /*
             //User Kamil = new User(0, "Kamil", "Majewski", "SomeMail@Mail.com", "Milva", "HiddenPW213");
             //Kamil.ChangeEmail("   nnnn ");
             //Console.WriteLine(Kamil.Email);
             */
-            //Program program = new Program();
-            //program.run();
-            
+            Program program = new Program();
+            program.run();
+
         }
 
-        //public void run()
-        //{
-        //    Menu menu = new Menu();
-        //    menu.RunMenu();
-        //}
+        public void run()
+        {
+            Menu menu = new Menu();
+            menu.RunMenu();
+        }
 
     }
 }

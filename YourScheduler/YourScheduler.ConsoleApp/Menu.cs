@@ -3,18 +3,18 @@ using YourScheduler.BusinessLogic;
 
 namespace YourScheduler.ConsoleApp
 {
-    public static class Menu
+    public  class Menu
     {
 
-        //private static CliHelper _cliHelper=CliHelper;
-        internal static void RunMenu()
+        private static CliHelper _cliHelper = new CliHelper();
+        internal  void RunMenu()
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler");
             ChooseOperation();
 
         }
 
-       static void ChooseOperation()
+        void ChooseOperation()
         {
             bool exit = false;
             do
@@ -33,7 +33,7 @@ namespace YourScheduler.ConsoleApp
                 int operation;
                 do
                 {
-                    operation = CliHelper.GetIntFromUser("\n Wybierz numer operacji");//_cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
                 } while (operation < 0 || operation > 7);
 
                 switch (operation)
@@ -70,17 +70,17 @@ namespace YourScheduler.ConsoleApp
            
         }
 
-        static void AddNewUser()
+         void AddNewUser()
         {
-            var user = new User(CliHelper.GetStringFromUser("Podaj imię:"), CliHelper.GetStringFromUser("Podaj nazwisko:"),
-               CliHelper.GetEmailFromUser("Podaj adres e-mail:"), CliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
-                CliHelper.GetSecureStringFromUser("Podaj hasło:"));
+            var user = new User(_cliHelper.GetStringFromUser("Podaj imię:"), _cliHelper.GetStringFromUser("Podaj nazwisko:"),
+               _cliHelper.GetEmailFromUser("Podaj adres e-mail:"), _cliHelper.GetStringFromUser("Podaj nazwę użytkownika:"),
+                _cliHelper.GetSecureStringFromUser("Podaj hasło:"));
 
             CSVManager.AddNewUser(user);
             Console.WriteLine($"\n\nDodano użytkownika: {user.Name} {user.Surname}");
         }
 
-         static void UpdateUserProfile()
+         void UpdateUserProfile()
         {
             bool exit = false;
             do
@@ -94,7 +94,7 @@ namespace YourScheduler.ConsoleApp
                 int operation;
                 do
                 {
-                    operation =CliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                    operation =_cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
                 } while (operation < 0 || operation > 4);
 
                 switch (operation)
@@ -140,7 +140,7 @@ namespace YourScheduler.ConsoleApp
 
             do
             {
-                chooseUserToDisplay = CliHelper.GetStringFromUser("Get name of user to show profile");
+              chooseUserToDisplay = _cliHelper.GetStringFromUser("Get name of user to show profile");
             } while (chooseUserToDisplay=="");
           
             Console.Clear();
