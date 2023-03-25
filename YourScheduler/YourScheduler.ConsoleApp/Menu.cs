@@ -132,9 +132,10 @@ namespace YourScheduler.ConsoleApp
 
                 Console.WriteLine("1. Wyświetl profil użytkownika");
                 Console.WriteLine("2. Pokaż zespoły");
-                Console.WriteLine("3. Pokaż wydarzenia");
-                Console.WriteLine("4. Stwórz wydarzenie");
-                Console.WriteLine("5. Wyloguj się");
+                Console.WriteLine("3. Stwórz zespół");
+                Console.WriteLine("4. Pokaż wydarzenia");
+                Console.WriteLine("5. Stwórz wydarzenie");
+                Console.WriteLine("6. Wyloguj się");
 
                 int operation;
                 operation = _cliHelper.GetIntFromUser("Podaj numer operacji");
@@ -149,14 +150,16 @@ namespace YourScheduler.ConsoleApp
                         //ShowTeams(user);
                         break;
                     case 3:
-                        Console.WriteLine("Zaimplementować!");
-                        //ShowEvents(user);
+                        AddNewTeam();
                         break;
                     case 4:
                         Console.WriteLine("Zaimplementować!");
-                        //CreateEvent(sum data);
+                        //ShowEvents(user);
                         break;
                     case 5:
+                        AddNewEvent();
+                        break;
+                    case 6:
                         exit = true;
                         WelcomeScreen();
                         break;
@@ -290,80 +293,7 @@ namespace YourScheduler.ConsoleApp
 
         void AddNewEvent()
         {
-
-        }
-
-        void AddNewTeam()
-        {
-            var teamName = _cliHelper.GetStringFromUser("Podaj nazwę zespołu: ");
-            var allUsers = CSVManager.GetUsers();
             
-            for (int i = 0; i < allUsers.Count; i++)
-            {
-                Console.WriteLine($"{i+1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}");
-            }
-
-            var teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
-
-            bool correctTeamQuantity = true;
-            do
-            {
-                if (teamQuantity > 0 && teamQuantity <= allUsers.Count)
-                {
-                    correctTeamQuantity = true;
-                }
-                else
-                {
-                    correctTeamQuantity = false;
-                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count+1}.");
-                    teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
-                }
-            } while (!correctTeamQuantity);
-
-            List<Guid> teamMemberIds = new List<Guid>();
-            for (int i = 1; i <= teamQuantity; i++)
-            {
-                var userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
-
-                bool correctIdQuantity = true;
-                do
-                {
-                    if (userId <= 0 && userId > allUsers.Count)
-                    {
-                        correctIdQuantity = false;
-                        Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
-                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
-                    }
-                    else if (teamMemberIds.Contains(allUsers[userId-1].Id))
-                    {
-                        correctIdQuantity = false;
-                        Console.WriteLine("Użytkownik z podaną liczbą porządkową już istnieje. Podaj inną wartość.");
-                        userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
-                    }
-                    else
-                    {
-                        correctIdQuantity = true;
-                    }
-                } while (!correctIdQuantity);
-
-                teamMemberIds.Add(allUsers[userId-1].Id);
-            }
-
-            var newTeam = new Team(teamName,teamMemberIds);
-            
-            CSVManager.AddNewTeam(newTeam);
-
-            Console.WriteLine($"\nDodano nowy zespół o nazwie {teamName}.");
-        }
-
-        void UpdateTeam()
-        {
-
-        }
-
-        void AddNewEvent()
-        {
-
         }
         void ShowEvents()
         {
