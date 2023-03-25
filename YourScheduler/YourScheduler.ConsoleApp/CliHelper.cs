@@ -2,7 +2,7 @@
 {
     public class CliHelper
     {
-        internal  string GetStringFromUser(string message)
+        public  string GetStringFromUser(string message)
         {
             var text = string.Empty;
             bool textCorrectValue = true;

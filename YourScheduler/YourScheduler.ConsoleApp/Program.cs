@@ -15,15 +15,6 @@ namespace YourScheduler
         {
             Console.WriteLine("Witaj! Aplikacja YourScheduler \n");
 
-            CSVManagerTests.Run();
-
-
-
-            /*
-            //User Kamil = new User(0, "Kamil", "Majewski", "SomeMail@Mail.com", "Milva", "HiddenPW213");
-            //Kamil.ChangeEmail("   nnnn ");
-            //Console.WriteLine(Kamil.Email);
-            */
             Program program = new Program();
             program.run();
 
