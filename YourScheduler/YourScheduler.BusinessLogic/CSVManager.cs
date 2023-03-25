@@ -54,7 +54,7 @@ namespace YourScheduler.BusinessLogic
             File.AppendAllText(GetUsersFilePath(), addNewUserToCSV);
         }
 
-        public static void UpdateUsers(List <User> users)
+        public static void UpdateUsers(List<User> users)
         {
             string[] linesToCSV = new string[users.Count];
             for (int i = 0; i < users.Count; i++)
@@ -233,9 +233,9 @@ namespace YourScheduler.BusinessLogic
 
         public static void AddNewTeam(Team team)
         {
-            var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join ("|", team.Members)}";
+            var addNewTeamToCSV = $"{team.Id},{team.Name},{string.Join("|", team.Members)}";
 
-            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV); 
+            File.AppendAllText(GetTeamsFilePath(), addNewTeamToCSV);
         }
 
         public static void UpdateTeams(List<Team> teams)
@@ -263,16 +263,17 @@ namespace YourScheduler.BusinessLogic
                             linesToCSV[i] += teams[i].Members[j].ToString() + "|";
                         }
                     }
-                
-            }
-            if (Directory.Exists(GetDataDirectoryPath()))
-            {
-                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
-            }
-            else
-            {
-                Directory.CreateDirectory(GetDataDirectoryPath());
-                File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+
+                }
+                if (Directory.Exists(GetDataDirectoryPath()))
+                {
+                    File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+                }
+                else
+                {
+                    Directory.CreateDirectory(GetDataDirectoryPath());
+                    File.WriteAllLines(GetTeamsFilePath(), linesToCSV);
+                }
             }
         }
     }
