@@ -138,7 +138,7 @@ namespace YourScheduler.ConsoleApp
                 Console.WriteLine("2. Pokaż zespoły");
                 Console.WriteLine("3. Stwórz zespół");
                 Console.WriteLine("4. Pokaż wydarzenia");
-                Console.WriteLine("5. Stwórz wydarzenie");
+                Console.WriteLine("5. Wyświetl wszystkie teamy");
                 Console.WriteLine("6. Wyloguj się");
 
                 int operation;

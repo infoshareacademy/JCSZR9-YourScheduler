@@ -155,7 +155,8 @@ namespace YourScheduler.BusinessLogic
                 {
                     string[] splittedEventParticipants = splittedData[4].Split('|');
                     foreach (var participantId in splittedEventParticipants)
-                    {
+                    {FormatException: 'String '21.09.2022 19:54:11' was not recognized as a valid DateTime.'
+
                         newEventParticipants.Add(Guid.Parse(participantId));
                     }
                 }
