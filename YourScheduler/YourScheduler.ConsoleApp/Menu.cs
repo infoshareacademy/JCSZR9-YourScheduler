@@ -14,6 +14,7 @@ namespace YourScheduler.ConsoleApp
     {
         private CliHelper _cliHelper = new CliHelper();
         private UserService _userService = new UserService();
+        private TeamService _teamService = new TeamService();
 
         internal void RunMenu()
         {
@@ -308,7 +309,8 @@ namespace YourScheduler.ConsoleApp
 
             var newTeam = new Team(teamName, teamMemberIds);
 
-            CSVManager.AddNewTeam(newTeam);
+            _teamService.AddNewTeam(newTeam);
+            CSVManager.UpdateTeams(_teamService.teamList);
 
             Console.WriteLine($"\nDodano nowy zespół o nazwie {teamName}.");
         }
