@@ -150,13 +150,7 @@ namespace YourScheduler.BusinessLogic
             team2.Members.Add(Guid.NewGuid());
             teams.Add(team1);
             teams.Add(team2);
-            //teams.Add(new Team());
-            //teams.Last().Name = "grupa uderzeniowa";
-            //teams.Last().Members.Add(Guid.NewGuid());
-            //teams.Last().Members.Add(Guid.NewGuid());
-            //teams.Add(new Team());
-            //teams.Last().Name = "szkoła taneczna";
-            //teams.Last().Members.Add(Guid.NewGuid());
+           
             //teams.Last().Members.Add(Guid.NewGuid());
 
             //Aktualizujemy plik z eventami:

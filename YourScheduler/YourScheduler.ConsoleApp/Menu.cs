@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics.Tracing;
 using System.Linq.Expressions;
+using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using YourScheduler.BusinessLogic;
 
@@ -92,7 +94,7 @@ namespace YourScheduler.ConsoleApp
                 }
             }
 
-            
+
 
         }
         void UpdateUserDisplayName(User user)
@@ -120,6 +122,7 @@ namespace YourScheduler.ConsoleApp
             Console.WriteLine($"Nazwa użytkownika: {user.DisplayName}");
             Console.WriteLine($"Email: {user.Email}");
 
+
             UpdateUserProfile(user);
             ChooseOperation(user);
         }
@@ -146,15 +149,13 @@ namespace YourScheduler.ConsoleApp
                         ShowUserProfile(user);
                         break;
                     case 2:
-                        Console.WriteLine("Zaimplementować!");
-                        //ShowTeams(user);
+                        ShowTeams(user);
                         break;
                     case 3:
                         AddNewTeam();
                         break;
                     case 4:
-                        Console.WriteLine("Zaimplementować!");
-                        //ShowEvents(user);
+                        ShowEvents(user);
                         break;
                     case 5:
                         AddNewEvent();
@@ -167,8 +168,8 @@ namespace YourScheduler.ConsoleApp
                         Console.WriteLine($"Nie znaleziono opcji pod numerem {operation}");
                         break;
                 }
-            
-            }while (!exit);
+
+            } while (!exit);
         }
         void UpdateUserProfile(User user)
         {
@@ -181,11 +182,11 @@ namespace YourScheduler.ConsoleApp
                 Console.WriteLine("3 - Zmiana e-mail");
                 Console.WriteLine("4 - Zmiana hasła");
 
-        //        int operation;
-        //        do
-        //        {
-        //            operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
-        //        } while (operation < 0 || operation > 4);
+                int operation;
+                do
+                {
+                    operation = _cliHelper.GetIntFromUser("\nWybierz numer operacji: ");
+                } while (operation < 0 || operation > 4);
 
                 switch (operation)
                 {
@@ -215,22 +216,45 @@ namespace YourScheduler.ConsoleApp
                 }
             } while (!exit);
         }
-        void ShowTeams()
-        {
-            //foreach (var item in collection)
-            //{
 
-            //}
+        void ShowTeams(User user)
+        {
+            var allTeams = CSVManager.GetTeams();
+
+            List<Team> teamsWithUser = new List<Team>();
+            //var teamsWithUser = allTeams.Where(t =>);
+            foreach (var team in allTeams)
+            {
+                foreach (var member in team.Members)
+                {
+                    if (member == user.Id)
+                    {
+                        teamsWithUser.Add(team);
+                    }
+                }
+            }
+            if (teamsWithUser.Count > 0)
+            {
+                Console.WriteLine($"Zespoły do których zapisany jest {user.Name} to:");
+                foreach (var team in teamsWithUser)
+                {
+                    Console.WriteLine(team.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{user.Name} nie jest przypisany do żadnego zespołu");
+            }
         }
 
         void AddNewTeam()
         {
             var teamName = _cliHelper.GetStringFromUser("Podaj nazwę zespołu: ");
             var allUsers = CSVManager.GetUsers();
-            
+
             for (int i = 0; i < allUsers.Count; i++)
             {
-                Console.WriteLine($"{i+1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}");
+                Console.WriteLine($"{i + 1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}");
             }
 
             var teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
@@ -245,7 +269,7 @@ namespace YourScheduler.ConsoleApp
                 else
                 {
                     correctTeamQuantity = false;
-                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count+1}.");
+                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
                     teamQuantity = _cliHelper.GetIntFromUser("\nPodaj liczbę członków zespołu: ");
                 }
             } while (!correctTeamQuantity);
@@ -264,7 +288,7 @@ namespace YourScheduler.ConsoleApp
                         Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
                         userId = _cliHelper.GetIntFromUser($"\nPodaj liczbę porządkową użytkownika {i}, którego chcesz dodać do zespołu: ");
                     }
-                    else if (teamMemberIds.Contains(allUsers[userId-1].Id))
+                    else if (teamMemberIds.Contains(allUsers[userId - 1].Id))
                     {
                         correctIdQuantity = false;
                         Console.WriteLine("Użytkownik z podaną liczbą porządkową już istnieje. Podaj inną wartość.");
@@ -276,11 +300,11 @@ namespace YourScheduler.ConsoleApp
                     }
                 } while (!correctIdQuantity);
 
-                teamMemberIds.Add(allUsers[userId-1].Id);
+                teamMemberIds.Add(allUsers[userId - 1].Id);
             }
 
-            var newTeam = new Team(teamName,teamMemberIds);
-            
+            var newTeam = new Team(teamName, teamMemberIds);
+
             CSVManager.AddNewTeam(newTeam);
 
             Console.WriteLine($"\nDodano nowy zespół o nazwie {teamName}.");
@@ -350,26 +374,33 @@ namespace YourScheduler.ConsoleApp
             }
 
         }
-        void ShowEvents()
+        void ShowEvents(User user)
         {
-            List<Event> events = new List<Event>();
-            events = CSVManager.GetEvents();
+            var allEvents = CSVManager.GetEvents();
 
-            Console.WriteLine("List of available events: \n");
-            foreach (var ev in events)
+            List<Event> eventsWithUser = new List<Event>();
+            foreach (var party in allEvents)
             {
-                Console.WriteLine($"event ID: {ev.Id}");
-                Console.WriteLine($"event name: {ev.Name}");
-                Console.WriteLine($"event description: {ev.Description}");
-                Console.WriteLine($"event date: {ev.Date}");
-                foreach (var participantInEventId in ev.Participants)
+                foreach (var member in party.Participants)
                 {
-                    Console.WriteLine($"participant Id: {participantInEventId}");
+                    if (member == user.Id)
+                    {
+                        eventsWithUser.Add(party);
+                    }
                 }
-                Console.WriteLine($"event access: {ev.IsOpen}");
-                Console.WriteLine();
             }
-            Console.ReadLine();
+            if (eventsWithUser.Count > 0)
+            {
+                Console.WriteLine($"Eventy na które zapisany jest {user.Name} to:");
+                foreach (var party in eventsWithUser)
+                {
+                    Console.WriteLine(party.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{user.Name} Nie jest zapisany na żadne wydarzenie");
+            }
         }
 
         void UpdateUserProfile()
@@ -384,45 +415,45 @@ namespace YourScheduler.ConsoleApp
                 Console.WriteLine($"users Surname: {user.Surname}");
                 Console.WriteLine();
             }
-                string chooseUserToDisplay;
-                Guid chooseUserToDisplayGuid;
-                do
-                {
-                    chooseUserToDisplay = _cliHelper.GetStringFromUser("Get Id of user to show profile");
-                    chooseUserToDisplayGuid = Guid.Parse(chooseUserToDisplay);
-                } while (chooseUserToDisplay == "");
+            string chooseUserToDisplay;
+            Guid chooseUserToDisplayGuid;
+            do
+            {
+                chooseUserToDisplay = _cliHelper.GetStringFromUser("Get Id of user to show profile");
+                chooseUserToDisplayGuid = Guid.Parse(chooseUserToDisplay);
+            } while (chooseUserToDisplay == "");
 
-                var userToEditing=users.FirstOrDefault(u=>u.Id == chooseUserToDisplayGuid);  
+            var userToEditing = users.FirstOrDefault(u => u.Id == chooseUserToDisplayGuid);
 
-                userToEditing.Id= chooseUserToDisplayGuid;
-                userToEditing.Name = _cliHelper.GetStringFromUser("Get new name");
-                userToEditing.Surname = _cliHelper.GetStringFromUser("Get new surname");
-                userToEditing.Email = _cliHelper.GetEmailFromUser("Get new email");
-                userToEditing.Password=_cliHelper.GetSecureStringFromUser("Get new Password");
-                userToEditing.DisplayName = _cliHelper.GetStringFromUser("Get new Display name");
-               
-                
-                var index=users.IndexOf(userToEditing); 
-                users.RemoveAt(index);
-                users.Add(userToEditing);
+            userToEditing.Id = chooseUserToDisplayGuid;
+            userToEditing.Name = _cliHelper.GetStringFromUser("Get new name");
+            userToEditing.Surname = _cliHelper.GetStringFromUser("Get new surname");
+            userToEditing.Email = _cliHelper.GetEmailFromUser("Get new email");
+            userToEditing.Password = _cliHelper.GetSecureStringFromUser("Get new Password");
+            userToEditing.DisplayName = _cliHelper.GetStringFromUser("Get new Display name");
+
+
+            var index = users.IndexOf(userToEditing);
+            users.RemoveAt(index);
+            users.Add(userToEditing);
 
             CSVManager.UpdateUsers(users);
         }
 
 
     }
-}        
-        
-        
-
-        
-
-
-        
-        
+}
 
 
 
-       
+
+
+
+
+
+
+
+
+
 
 
