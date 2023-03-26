@@ -15,7 +15,6 @@ namespace YourScheduler
         static void Main(string[] args)
         {
 
-
             Menu program = new Menu();
             program.RunMenu();
         }
