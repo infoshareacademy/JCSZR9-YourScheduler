@@ -220,7 +220,7 @@ namespace YourScheduler.ConsoleApp
         void ShowTeams(User user)
         {
             var allTeams = CSVManager.GetTeams();
-
+       
             List<Team> teamsWithUser = new List<Team>();
             //var teamsWithUser = allTeams.Where(t =>);
             foreach (var team in allTeams)
