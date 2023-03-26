@@ -236,15 +236,20 @@ namespace YourScheduler.ConsoleApp
             }
             if (teamsWithUser.Count > 0)
             {
-                Console.WriteLine($"Zespoły do których zapisany jest {user.Name} to:");
+
+                Console.WriteLine($"Zespoły do których zapisany jest {user.Name} to:\n"
+                    );
                 foreach (var team in teamsWithUser)
                 {
-                    Console.WriteLine(team.Name);
+                    Console.WriteLine($"{team.Name}\n");
                 }
+                Console.ReadLine();
+                Console.Clear();
+
             }
             else
             {
-                Console.WriteLine($"{user.Name} nie jest przypisany do żadnego zespołu");
+                Console.WriteLine($"{user.Name} nie jest przypisany do żadnego zespołu\n");
             }
         }
 
