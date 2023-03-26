@@ -86,7 +86,7 @@ namespace YourScheduler.ConsoleApp
                     ChooseOperation(_userService.userList[operation - 1]);
                     break;
                 }
-                catch (Exception)
+                catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Podany numer jest nieprawidłowy!");
                     Console.Clear();
