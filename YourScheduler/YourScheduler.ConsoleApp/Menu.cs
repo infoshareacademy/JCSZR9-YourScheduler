@@ -135,7 +135,7 @@ namespace YourScheduler.ConsoleApp
                 Console.WriteLine($"Zalogowano jako: {user.Name} {user.Surname}\n");
 
                 Console.WriteLine("1. Wyświetl profil użytkownika");
-                Console.WriteLine("2. Pokaż zespoły");
+                Console.WriteLine("2. Pokaż twoje zespoły");
                 Console.WriteLine("3. Stwórz zespół");
                 Console.WriteLine("4. Pokaż wydarzenia");
                 Console.WriteLine("5. Wyświetl wszystkie teamy");
