@@ -71,6 +71,18 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
+            [Display(Name = "Firstname")]
+            public string FirstName { get; set; }
+
+            [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters")]
+            [Display(Name = "Lastname")]
+            public string LastName { get; set; }
+
+            [StringLength(255, ErrorMessage = "The display name field should have a maximum of 255 characters")]
+            [Display(Name = "Display Name")]
+            public string DisplayName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -115,7 +127,11 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.DisplayName = Input.DisplayName;
+
+                await _userStore.SetUserNameAsync(user, Input.DisplayName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
