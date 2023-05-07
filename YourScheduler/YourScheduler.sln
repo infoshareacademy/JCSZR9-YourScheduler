@@ -7,7 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.BusinessLogic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.ConsoleApp", "YourScheduler.ConsoleApp\YourScheduler.ConsoleApp.csproj", "{37BB3534-4481-45BC-9C5B-5E81568B91D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourScheduler.WebApplication", "YourScheduler.WebApplication\YourScheduler.WebApplication.csproj", "{B8C1AA5A-E6F1-417E-ABF0-2338F6627E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.WebApplication", "YourScheduler.WebApplication\YourScheduler.WebApplication.csproj", "{B8C1AA5A-E6F1-417E-ABF0-2338F6627E0F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69894288-7556-4BAE-B0D7-1853D765CB14} = {69894288-7556-4BAE-B0D7-1853D765CB14}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
