@@ -14,10 +14,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\YourScheduler.BusinessLogic\YourScheduler.BusinessLogic.csproj" />
+    <ProjectReference Include="..\YourScheduler.Infrastructure\YourScheduler.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 
 </Project>

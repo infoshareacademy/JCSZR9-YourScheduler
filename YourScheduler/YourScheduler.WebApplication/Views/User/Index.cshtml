@@ -1,4 +1,4 @@
-﻿@model IEnumerable<YourScheduler.WebApplication.Models.UserModel>
+﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.UserDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,7 +37,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Id).ToString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                    @item.PasswordHash
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

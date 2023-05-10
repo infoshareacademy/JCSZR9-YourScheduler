@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YourScheduler.BusinessLogic\YourScheduler.BusinessLogic.csproj" />
+    <ProjectReference Include="..\YourScheduler.ConsoleBusinessLogic\YourScheduler.ConsoleBusinessLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

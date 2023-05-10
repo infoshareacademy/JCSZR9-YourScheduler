@@ -1,29 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic;
 using YourScheduler.BusinessLogic.Models;
-using YourScheduler.WebApplication.Models;
-using YourScheduler.WebApplication.Services;
+using YourScheduler.BusinessLogic.Services;
 
 namespace YourScheduler.WebApplication.Controllers
 {
     [Route("user")]
     public class UserController : Controller
     {
-       // YourSchedulerContext yourSchedulerContext=new YourSchedulerContext();
-        private readonly UsersServiceForView _userService;
-       
-        public UserController()
+        // YourSchedulerContext yourSchedulerContext=new YourSchedulerContext();
+        // private readonly UsersServiceForView _userService;
+
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
         {
-            _userService = new UsersServiceForView();
+            _userService = userService;
         }
         // GET: UserController
-        [Route("")]
+        [Authorize]
         public ActionResult Index()
         {
-          //UserServiceForView userService = new UserServiceForView();
-            var model= _userService.MapToMvc();
-            
+            //UserServiceForView userService = new UserServiceForView();
+            //  var model= _userService.MapToMvc();
+            var model=_userService.GetAllUsers();
             return View(model);
         }
 
@@ -32,8 +33,8 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("details/{id:int}")]
         public ActionResult Details(int id)
         {
-            var model=_userService.GetUserById(id);
-            return View(model);
+            //var model=_userService.GetUserById(id);
+            return View();
         }
 
         // GET: UserController/Create
@@ -48,9 +49,10 @@ namespace YourScheduler.WebApplication.Controllers
         [HttpPost]
         [Route("create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserModel user)
+        public ActionResult Create(UserDto user)
         {
-            UsersServiceForView userService = new UsersServiceForView();
+
+            //UsersServiceForView userService = new UsersServiceForView();
             try
             {
                 _userService.AddUser(user);   
