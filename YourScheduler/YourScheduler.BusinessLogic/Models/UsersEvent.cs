@@ -13,5 +13,5 @@ public partial class UsersEvent
 
     public virtual Event Event { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserDto User { get; set; } = null!;
 }

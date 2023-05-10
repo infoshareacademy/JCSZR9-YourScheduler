@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using YourScheduler.WebApplication.Areas.Identity.Data;
+using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
 {
@@ -28,14 +28,14 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<ApplicationUser> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<ApplicationUser> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -74,11 +74,11 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
             [Display(Name = "Firstname")]
-            public string FirstName { get; set; }
+            public string Name { get; set; }
 
             [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters")]
             [Display(Name = "Lastname")]
-            public string LastName { get; set; }
+            public string Surname { get; set; }
 
             [StringLength(255, ErrorMessage = "The display name field should have a maximum of 255 characters")]
             [Display(Name = "Display Name")]
@@ -125,13 +125,15 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                ApplicationUser user = CreateUser();
 
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-                user.DisplayName = Input.DisplayName;
+                user.Name = Input.Name;
+                user.Surname = Input.Surname;
+                user.Displayname = Input.DisplayName;
+                user.Email = Input.Email;
+               // user.Password = Input.Password;
 
-                await _userStore.SetUserNameAsync(user, Input.DisplayName, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -179,8 +181,8 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

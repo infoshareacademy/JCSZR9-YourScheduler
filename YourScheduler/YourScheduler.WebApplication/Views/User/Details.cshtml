@@ -1,11 +1,11 @@
-﻿@model YourScheduler.WebApplication.Models.UserModel
+﻿@model YourScheduler.BusinessLogic.Models.UserDto
 
 @{
     ViewData["Title"] = "Details";
 }
 
 @functions{
-    string FormatName(UserModel user)
+    string FormatName(UserDto user)
     {
         return $"Meeting: {user.Name}";
     }

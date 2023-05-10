@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using YourScheduler.WebApplication.Models;
+using YourScheduler.BusinessLogic.Models;
 
 namespace YourScheduler.WebApplication.Controllers
 {

@@ -13,5 +13,5 @@ public partial class UsersTeam
 
     public virtual Team Team { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserDto User { get; set; } = null!;
 }
