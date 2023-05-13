@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace YourScheduler.Infrastructure.Entities;
 
-public partial class Event
+public  class Event
 {
-    public int Id { get; set; }
+    public int  Id { get; set; }
 
     public string Name { get; set; } = null!;
 

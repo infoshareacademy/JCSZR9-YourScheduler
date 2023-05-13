@@ -4,59 +4,51 @@
     ViewData["Title"] = "Details";
 }
 
-@functions{
-    string FormatName(UserDto user)
-    {
-        return $"Meeting: {user.Name}";
-    }
-}
-
 <h1>Details</h1>
 
 <div>
-    <h4>UserModel</h4>
+    <h4>UserDto</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+            <label asp-for="Id"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+            @Model.Id
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            <label asp-for="Name"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Model.Name
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Surname)
+            <label asp-for="Surname"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Surname)
+            @Model.Surname
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Displayname)
+           <label asp-for="Displayname"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Displayname)
+           @Model.Displayname
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            <label asp-for="Email"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+            @Model.Email
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+            <label asp-for="Password"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+            @Model.Password
         </dd>
     </dl>
 </div>
 <div>
-   <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>    
 </div>
-

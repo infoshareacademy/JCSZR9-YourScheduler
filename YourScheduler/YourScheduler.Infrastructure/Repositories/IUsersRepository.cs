@@ -10,7 +10,9 @@ namespace YourScheduler.Infrastructure.Repositories
     public interface IUsersRepository
     {
         List<ApplicationUser> GetUsersFromDataBase();
-        ApplicationUser GetUserById(Guid id);
+        ApplicationUser GetUserById(string id);
+
+        ApplicationUser GetUserByEmail(string email);
 
         public void AddUser(ApplicationUser user);
         public void UpdateUser(ApplicationUser updatedUser);

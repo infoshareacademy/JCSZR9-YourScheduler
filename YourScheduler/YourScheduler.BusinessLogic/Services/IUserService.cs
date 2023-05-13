@@ -11,8 +11,10 @@ namespace YourScheduler.BusinessLogic.Services
     {
         public List<UserDto> GetAllUsers();
 
+        public UserDto GetUserByEmail(String email);
+
         public void AddUser(UserDto user);
-        public UserDto GetUserById(Guid id);
+        public UserDto GetUserById(string id);
         public void UpdateUser(UserDto userDtoUpdated);
     }
 }

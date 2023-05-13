@@ -9,7 +9,7 @@ namespace YourScheduler.Infrastructure.Entities;
 public  class ApplicationUser:IdentityUser
 {
     
-    public Guid Id { get; set; }
+    public string Id { get; set; }= Guid.NewGuid().ToString();
 
     public string Name { get; set; } = null!;
 

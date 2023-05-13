@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.BusinessLogic.Mappers;
 using YourScheduler.BusinessLogic.Models;
+using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -35,7 +36,7 @@ namespace YourScheduler.BusinessLogic.Services
             return users;
         }
 
-        public UserDto GetUserById(Guid id)
+        public UserDto GetUserById(string id)
         {
             var user=_usersRepository.GetUserById(id);
             UserDto userDto = new UserDto();
@@ -54,6 +55,16 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var user = _mapper.UserDtoToUserMap(newUser);
             _usersRepository.AddUser(user);
+        }
+
+        public UserDto GetUserByEmail(String email)
+        {
+            ApplicationUser application=new ApplicationUser();
+            application.Email = email;
+            var user = _usersRepository.GetUserByEmail(application.Email);
+            UserDto userDto = new UserDto();
+            userDto = _mapper.UserToUserDtoMapp(user);
+            return userDto;
         }
     }
 }

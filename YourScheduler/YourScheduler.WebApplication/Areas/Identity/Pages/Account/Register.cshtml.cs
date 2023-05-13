@@ -71,6 +71,8 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            public string Id { get; set; }
+
             [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
             [Display(Name = "Firstname")]
@@ -126,7 +128,7 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 ApplicationUser user = CreateUser();
-
+                user.Id = Guid.NewGuid().ToString();
                 user.Name = Input.Name;
                 user.Surname = Input.Surname;
                 user.Displayname = Input.DisplayName;

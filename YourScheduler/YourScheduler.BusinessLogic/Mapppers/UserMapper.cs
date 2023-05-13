@@ -28,7 +28,7 @@ namespace YourScheduler.BusinessLogic.Mappers
         {
             ApplicationUser user = new ApplicationUser()
             {
-                
+                Id=userDto.Id,
                 Name = userDto.Name,
                 Surname=userDto.Surname,
                 Displayname = userDto.Displayname,
