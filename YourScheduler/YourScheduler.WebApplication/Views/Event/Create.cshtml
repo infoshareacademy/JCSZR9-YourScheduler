@@ -1,0 +1,37 @@
+﻿@model YourScheduler.BusinessLogic.Models.EventDto
+
+@{
+    ViewBag.Title = "Create Event";
+    Layout = "_Layout";
+}
+
+<h2>Create ne event</h2>
+<form asp-antiforgery="true" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" type="text" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div>
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" type="date" />
+        <span asp-validation-for="Date"></span>
+    </div>
+
+    <div>
+        <label asp-for="Isopen">Isopen</label>
+        <input asp-for="Isopen" type="checkbox" />
+        <span asp-validation-for="Isopen"></span>
+    </div>
+
+    <button type="submit">Create</button>
+</form>
+
+<a asp-action="Index">Back</a>

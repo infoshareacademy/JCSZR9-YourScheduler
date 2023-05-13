@@ -13,7 +13,8 @@ namespace YourScheduler.BusinessLogic.Initialization
         public static void AddBusinessLogicDependencies(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IUserService, UserService>();
-                   
+            serviceCollection.AddScoped<IEventService, EventService>();
+
         }
     }
 }

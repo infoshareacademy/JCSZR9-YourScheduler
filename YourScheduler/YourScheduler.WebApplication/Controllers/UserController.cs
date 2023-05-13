@@ -1,61 +1,60 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using YourScheduler.BusinessLogic;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using YourScheduler.BusinessLogic.Models;
 using YourScheduler.BusinessLogic.Services;
+using YourScheduler.Infrastructure.Entities;
 
-namespace YourScheduler.WebApplication.Controllers
+namespace YourScheduler.UI.Controllers
 {
-    [Route("user")]
     public class UserController : Controller
     {
-        // YourSchedulerContext yourSchedulerContext=new YourSchedulerContext();
-        // private readonly UsersServiceForView _userService;
-
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+
+        private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _signInManager;
+        public UserController(IUserService userService, Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> signInManager)
         {
             _userService = userService;
+            _signInManager = signInManager;
+          
         }
         // GET: UserController
+
         [Authorize]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            //UserServiceForView userService = new UserServiceForView();
-            //  var model= _userService.MapToMvc();
-            var model=_userService.GetAllUsers();
+            var userName = HttpContext.User.Identity.GetUserName();
+           
+            
+            var model = _userService.GetUserByEmail(userName);
             return View(model);
         }
 
-       // GET: UserController/Details/5
-       
-        [Route("details/{id:int}")]
-        public ActionResult Details(int id)
+        // GET: UserController/Details/5
+      //  [Route("details/{id:int}")]
+        public ActionResult Details()
         {
-            //var model=_userService.GetUserById(id);
-            return View();
+            return RedirectToAction("Create","Event");
         }
 
         // GET: UserController/Create
-        [Route("create")]
         public ActionResult Create()
         {
             return View();
         }
 
-
         // POST: UserController/Create
         [HttpPost]
-        [Route("create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserDto user)
+        public ActionResult Create(IFormCollection collection)
         {
-
-            //UsersServiceForView userService = new UsersServiceForView();
             try
             {
-                _userService.AddUser(user);   
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -66,29 +65,31 @@ namespace YourScheduler.WebApplication.Controllers
 
         // GET: UserController/Edit/5
         [Route("edit/{id:int}")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var model = _userService.GetUserById(id);
+            return View(model);
         }
 
         // POST: UserController/Edit/5
         [HttpPost]
-        [Route("edit/{id:int}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+
+        [Route("edit/{id:int}")]
+        public ActionResult Edit(int id, UserDto userDto)
         {
             try
             {
+                _userService.UpdateUser(userDto);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View("Error of editing user");
             }
         }
 
         // GET: UserController/Delete/5
-        [Route("delete/{id:int}")]
         public ActionResult Delete(int id)
         {
             return View();
@@ -96,7 +97,6 @@ namespace YourScheduler.WebApplication.Controllers
 
         // POST: UserController/Delete/5
         [HttpPost]
-        [Route("delete/{id:int}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {

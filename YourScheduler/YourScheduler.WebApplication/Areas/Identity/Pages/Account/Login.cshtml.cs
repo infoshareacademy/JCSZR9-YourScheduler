@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using YourScheduler.Infrastructure.Entities;
 
+
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel

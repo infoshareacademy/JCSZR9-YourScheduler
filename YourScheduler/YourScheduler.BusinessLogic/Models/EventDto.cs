@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace YourScheduler.BusinessLogic.Models;
 
-public partial class Event
+public class EventDto
 {
-    public int Id { get; set; }
+    public int  Id { get; set; }
 
     public string Name { get; set; } = null!;
 

@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace YourScheduler.BusinessLogic.Models;
 
-public  class UserDto : IdentityUser
+public  class UserDto:IdentityUser
 {
 
-    public Guid Id { get; set; }
+    public  string Id { get; set; }
 
     public string Name { get; set; } = null!;
 

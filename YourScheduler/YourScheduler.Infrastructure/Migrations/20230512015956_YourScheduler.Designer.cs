@@ -12,7 +12,7 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230510143529_YourScheduler")]
+    [Migration("20230512015956_YourScheduler")]
     partial class YourScheduler
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

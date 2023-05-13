@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace YourScheduler.Infrastructure.Entities;
-public partial class Team
+public  class Team
 {
     public int Id { get; set; }
 

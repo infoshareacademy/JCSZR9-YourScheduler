@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using YourScheduler.BusinessLogic.Models;
 
@@ -14,9 +15,10 @@ namespace YourScheduler.WebApplication.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index","User");
         }
 
         public IActionResult Privacy()
