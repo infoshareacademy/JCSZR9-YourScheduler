@@ -18,7 +18,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 //builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
 //options.UseSqlServer(connectionString));
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
 // .AddEntityFrameworkStores<YourSchedulerDbContext>();
 //var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
@@ -39,7 +39,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddBusinessLogicDependencies();
 
 
-//builder.Services.AddDefaultIdentity<UserDto>(options => options.SignIn.RequireConfirmedAccount = false) //PAMI�TA� O TEJ ZMIANIE (NIE TRZEBA POTWIERDZA� MAILA TERAZ)
+//builder.Services.AddDefaultIdentity<UserDto>(options => options.SignIn.RequireConfirmedAccount = false);//PAMI�TA� O TEJ ZMIANIE (NIE TRZEBA POTWIERDZA� MAILA TERAZ)
 //.AddEntityFrameworkStores<YourSchedulerDbContext>();
 
 // Add services to the container.
