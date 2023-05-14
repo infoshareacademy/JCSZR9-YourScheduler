@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.Infrastructure
 {
-    public class YourSchedulerDbContext:IdentityDbContext<ApplicationUser>
+    public class YourSchedulerDbContext:IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
     {
         public virtual DbSet<Event> Events { get; set; }
 
@@ -43,7 +44,7 @@ namespace YourScheduler.Infrastructure
 
         //    builder.Entity<UserEvent>().HasOne<ApplicationUser>(us => us.ApplicationUser).WithMany(ut => ut.UsersEvents).HasForeignKey(us => us.UserId);
 
-        //    builder.Entity<UserEvent>().HasOne<Event>(e => e.Event).WithMany(ut => ut.UsersEvents).HasForeignKey(e => e.EventId);
+            builder.Entity<UserEvent>().HasOne<Event>(e => e.Event).WithMany(ut => ut.UsersEvents).HasForeignKey(e => e.EventId);
 
 
 

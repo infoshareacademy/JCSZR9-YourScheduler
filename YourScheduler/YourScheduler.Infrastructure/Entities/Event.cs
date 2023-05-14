@@ -5,7 +5,7 @@ namespace YourScheduler.Infrastructure.Entities;
 
 public  class Event
 {
-    public int  Id { get; set; }
+    public int  EventId { get; set; }
 
     public string Name { get; set; } = null!;
 
@@ -13,7 +13,6 @@ public  class Event
 
     public DateTime Date { get; set; }
 
-    public bool Isopen { get; set; }
+    public bool IsOpen { get; set; }
 
-    public virtual ICollection<UserEvent> UsersEvents { get; } = new List<UserEvent>();
 }

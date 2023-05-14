@@ -24,11 +24,11 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public ApplicationUser GetUserById(string id)
-        {
-            var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
-            return user;
-        }
+        //public ApplicationUser GetUserById(string id)
+        //{
+        //    var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
+        //    return user;
+        //}
 
         public List<ApplicationUser> GetUsersFromDataBase()
         {
@@ -47,6 +47,11 @@ namespace YourScheduler.Infrastructure.Repositories
             
               return _dbContext.ApplicationUsers.FirstOrDefault(x => x.Email == email);
 
+        }
+
+        public ApplicationUser GetUserById(string id)
+        {
+            throw new NotImplementedException();
         }
 
         //public List<Event> GetEventsFromDataBase() 

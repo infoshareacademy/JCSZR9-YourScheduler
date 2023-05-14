@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace YourScheduler.BusinessLogic.Models;
 
-public partial class UsersTeam
+public class UsersTeam
 {
     public int Id { get; set; }
 
-    public Guid UserId { get; set; }
+    public int UserId { get; set; }
 
     public int TeamId { get; set; }
 
