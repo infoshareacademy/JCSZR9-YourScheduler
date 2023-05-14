@@ -25,7 +25,7 @@ namespace YourScheduler.UI.Controllers
         }
         // GET: UserController
 
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> Index()
         {
             var userName = HttpContext.User.Identity.GetUserName();
