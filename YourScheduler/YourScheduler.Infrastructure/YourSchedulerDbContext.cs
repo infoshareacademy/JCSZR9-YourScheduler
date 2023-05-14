@@ -44,7 +44,7 @@ namespace YourScheduler.Infrastructure
 
         //    builder.Entity<UserEvent>().HasOne<ApplicationUser>(us => us.ApplicationUser).WithMany(ut => ut.UsersEvents).HasForeignKey(us => us.UserId);
 
-            builder.Entity<UserEvent>().HasOne<Event>(e => e.Event).WithMany(ut => ut.UsersEvents).HasForeignKey(e => e.EventId);
+         //   builder.Entity<UserEvent>().HasOne<Event>(e => e.Event).WithMany(ut => ut.UsersEvents).HasForeignKey(e => e.EventId);
 
 
 
