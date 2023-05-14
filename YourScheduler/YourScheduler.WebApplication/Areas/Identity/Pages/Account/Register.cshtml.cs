@@ -84,7 +84,7 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
 
             [StringLength(255, ErrorMessage = "The display name field should have a maximum of 255 characters")]
             [Display(Name = "Display Name")]
-            public string DisplayName { get; set; }
+            public string? DisplayName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -128,12 +128,11 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 ApplicationUser user = CreateUser();
-                user.Id = Guid.NewGuid().ToString();
                 user.Name = Input.Name;
                 user.Surname = Input.Surname;
                 user.Displayname = Input.DisplayName;
                 user.Email = Input.Email;
-               // user.Password = Input.Password;
+                user.PasswordHash = Input.Password;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
