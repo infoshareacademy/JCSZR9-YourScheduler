@@ -6,11 +6,10 @@ using System.ComponentModel;
 
 namespace YourScheduler.Infrastructure.Entities;
 
-public  class ApplicationUser:IdentityUser
+public  class ApplicationUser:IdentityUser<int>
 {
     
-    //public string Id { get; set; }= Guid.NewGuid().ToString();
-
+    
     public string Name { get; set; } = null!;
 
     public string Surname { get; set; } = null!;

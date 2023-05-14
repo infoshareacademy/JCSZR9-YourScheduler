@@ -18,6 +18,11 @@ namespace YourScheduler.Infrastructure.Repositories
         public void AddEvent(Event eventTobase)
         {
             _dbContext.Events.Add(eventTobase);
+           
+        }
+        
+        public void SaveData()
+        {
             _dbContext.SaveChanges();
         }
     }

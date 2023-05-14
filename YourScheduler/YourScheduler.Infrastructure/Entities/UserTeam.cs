@@ -8,7 +8,7 @@ public partial class UserTeam
 {
     public int Id { get; set; }
 
-    public string UserId { get; set; }
+    public  ApplicationUserId { get; set; }
 
     public int TeamId { get; set; }
 

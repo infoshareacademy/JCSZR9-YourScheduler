@@ -23,7 +23,7 @@ namespace YourScheduler.Infrastructure.Initialization
     {      
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IEventsRepository, EventsRepository>();
 
             //var connectionString = configuration.GetConnectionString("ApplicationDbContextConnection");
