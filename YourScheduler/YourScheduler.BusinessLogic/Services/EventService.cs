@@ -25,6 +25,7 @@ namespace YourScheduler.BusinessLogic.Services
         {
            var eventToBase= _mapper.EventDtoToEventMap(eventDto);   
             _eventsRepository.AddEvent(eventToBase);
+            _eventsRepository.SaveData();
         }
     }
     

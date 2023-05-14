@@ -9,12 +9,12 @@ namespace YourScheduler.BusinessLogic.Services
 {
     public interface IUserService
     {
-        public List<UserDto> GetAllUsers();
+         List<UserDto> GetAllUsers();
 
-        public UserDto GetUserByEmail(String email);
+         UserDto TasGetUserByEmail(String email);
 
-        public void AddUser(UserDto user);
-        public UserDto GetUserById(string id);
-        public void UpdateUser(UserDto userDtoUpdated);
+         void AddUser(UserDto user);
+         UserDto GetUserById(string id);
+         void UpdateUser(UserDto userDtoUpdated);
     }
 }

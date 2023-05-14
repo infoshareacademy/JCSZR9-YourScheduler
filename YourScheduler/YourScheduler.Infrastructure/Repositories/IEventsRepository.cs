@@ -10,5 +10,7 @@ namespace YourScheduler.Infrastructure.Repositories
     public interface IEventsRepository
     {
         public void AddEvent(Event eventTobase);
+
+        public void SaveData();
     }
 }

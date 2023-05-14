@@ -31,7 +31,7 @@ namespace YourScheduler.UI.Controllers
             var userName = HttpContext.User.Identity.GetUserName();
            
             
-            var model = _userService.GetUserByEmail(userName);
+            var model = await _userService.GetUserByEmail(userName);
             return View(model);
         }
 
