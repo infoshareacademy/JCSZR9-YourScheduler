@@ -9,6 +9,7 @@ using System.Security.Claims;
 using YourScheduler.BusinessLogic.Models;
 using YourScheduler.BusinessLogic.Services;
 using YourScheduler.Infrastructure.Entities;
+using YourScheduler.WebApplication.Controllers;
 
 namespace YourScheduler.UI.Controllers
 {
@@ -16,22 +17,22 @@ namespace YourScheduler.UI.Controllers
     {
         private readonly IUserService _userService;
 
-        private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _signInManager;
-        public UserController(IUserService userService, Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> signInManager)
+       // private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _signInManager;
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _signInManager = signInManager;
+           // _signInManager = signInManager;
           
         }
         // GET: UserController
 
-        //[Authorize]
-        public async Task<ActionResult> Index()
+        [Authorize]
+        public  ActionResult Index()
         {
             var userName = HttpContext.User.Identity.GetUserName();
            
             
-            var model = await _userService.GetUserByEmail(userName);
+            var model =  _userService.GetUserByEmail(userName);
             return View(model);
         }
 
@@ -90,24 +91,12 @@ namespace YourScheduler.UI.Controllers
         }
 
         // GET: UserController/Delete/5
-        public ActionResult Delete(int id)
+       // [Route("Delete")]
+        public ActionResult Redirect()
         {
-            return View();
+            return RedirectToAction("MyEvents","ApplicationUserEvent");
         }
-
-        // POST: UserController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+          
+        
     }
 }

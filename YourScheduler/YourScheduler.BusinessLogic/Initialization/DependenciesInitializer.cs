@@ -14,6 +14,7 @@ namespace YourScheduler.BusinessLogic.Initialization
         {
             serviceCollection.AddScoped<IUserService, UserService>();
             serviceCollection.AddScoped<IEventService, EventService>();
+            serviceCollection.AddScoped<IApplicationUserEventService, ApplicationUserEventService>();
 
         }
     }

@@ -15,4 +15,6 @@ public  class Event
 
     public bool IsOpen { get; set; }
 
+    ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; } 
+
 }

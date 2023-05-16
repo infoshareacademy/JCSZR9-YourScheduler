@@ -1,13 +1,13 @@
 ﻿@model YourScheduler.BusinessLogic.Models.UserDto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "info about user";
 }
 
-<h1>Details</h1>
+<h1>General info about me</h1>
 
 <div>
-    <h4>UserDto</h4>
+    
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -50,5 +50,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Details">Back to List</a>
+    <a asp-action="Redirect" class="btn btn-dark">MyEvents</a> |
+    <a asp-action="Details">Create new Event</a>
 </div>

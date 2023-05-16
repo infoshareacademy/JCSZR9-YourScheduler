@@ -42,7 +42,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 _eventService.AddEvent(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","User");
             }
             catch
             {

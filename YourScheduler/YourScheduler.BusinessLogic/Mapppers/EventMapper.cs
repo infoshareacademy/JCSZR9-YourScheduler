@@ -14,6 +14,7 @@ namespace YourScheduler.BusinessLogic.Mapppers
         {
             EventDto eventDto = new EventDto()
             {
+               Id = eventToBase.EventId,
                Name=eventToBase.Name,
                Description=eventToBase.Description,
                Date=eventToBase.Date,

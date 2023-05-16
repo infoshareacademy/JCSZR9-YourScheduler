@@ -36,9 +36,9 @@ namespace YourScheduler.BusinessLogic.Services
             return users;
         }
 
-        public UserDto GetUserById(string id)
+        public async Task<UserDto> GetUserById(string id)
         {
-            var user=_usersRepository.GetUserById(id);
+            var user=await _usersRepository.GetUserById(id);
             UserDto userDto = new UserDto();
             userDto=_mapper.UserToUserDtoMapp(user);
             return userDto;
@@ -57,14 +57,18 @@ namespace YourScheduler.BusinessLogic.Services
             _usersRepository.AddUser(user);
         }
 
-        public UserDto GetUserByEmail(String email)
+        public  UserDto GetUserByEmail(String email)
         {
-            ApplicationUser application=new ApplicationUser();
-            application.Email = email;
-            var user = _usersRepository.GetUserByEmail(application.Email);
-            UserDto userDto = new UserDto();
-            userDto = _mapper.UserToUserDtoMapp(user);
+            ApplicationUser application = new ApplicationUser();
+           // application.Email = _mapper.UserDtoToUserMap(email);
+            var user =  _usersRepository.GetUserByEmail(email);
+           // UserDto userDto = new UserDto();
+            var userDto = _mapper.UserToUserDtoMapp(user);
             return userDto;
         }
+
+
+    
+
     }
 }

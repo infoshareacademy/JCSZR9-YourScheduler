@@ -11,10 +11,10 @@ namespace YourScheduler.BusinessLogic.Services
     {
          List<UserDto> GetAllUsers();
 
-         UserDto TasGetUserByEmail(String email);
+         UserDto GetUserByEmail(String email);
 
          void AddUser(UserDto user);
-         UserDto GetUserById(string id);
+         Task<UserDto> GetUserById(string id);
          void UpdateUser(UserDto userDtoUpdated);
     }
 }
