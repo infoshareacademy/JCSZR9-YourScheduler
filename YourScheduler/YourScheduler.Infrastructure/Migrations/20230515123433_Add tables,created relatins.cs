@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YourScheduler.Infrastructure.Migrations
 {
-    public partial class Created_YourScheduler2_DB : Migration
+    /// <inheritdoc />
+    public partial class Addtablescreatedrelatins : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -189,25 +191,23 @@ namespace YourScheduler.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UsersEvents",
+                name: "ApplicationUsersEvents",
                 columns: table => new
                 {
-                    UserEventId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsersEvents", x => x.UserEventId);
+                    table.PrimaryKey("PK_ApplicationUsersEvents", x => new { x.ApplicationUserId, x.EventId });
                     table.ForeignKey(
-                        name: "FK_UsersEvents_AspNetUsers_ApplicationUserId",
+                        name: "FK_ApplicationUsersEvents_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsersEvents_Events_EventId",
+                        name: "FK_ApplicationUsersEvents_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "EventId",
@@ -215,30 +215,38 @@ namespace YourScheduler.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UsersTeams",
+                name: "ApplicatonUsersTeams",
                 columns: table => new
                 {
-                    UserTeamId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
+                    TeamId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsersTeams", x => x.UserTeamId);
+                    table.PrimaryKey("PK_ApplicatonUsersTeams", x => new { x.ApplicationUserId, x.TeamId });
                     table.ForeignKey(
-                        name: "FK_UsersTeams_AspNetUsers_ApplicationUserId",
+                        name: "FK_ApplicatonUsersTeams_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsersTeams_Teams_TeamId",
+                        name: "FK_ApplicatonUsersTeams_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationUsersEvents_EventId",
+                table: "ApplicationUsersEvents",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicatonUsersTeams_TeamId",
+                table: "ApplicatonUsersTeams",
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -278,30 +286,17 @@ namespace YourScheduler.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersEvents_ApplicationUserId",
-                table: "UsersEvents",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersEvents_EventId",
-                table: "UsersEvents",
-                column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersTeams_ApplicationUserId",
-                table: "UsersTeams",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersTeams_TeamId",
-                table: "UsersTeams",
-                column: "TeamId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ApplicationUsersEvents");
+
+            migrationBuilder.DropTable(
+                name: "ApplicatonUsersTeams");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -318,22 +313,16 @@ namespace YourScheduler.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "UsersEvents");
+                name: "Events");
 
             migrationBuilder.DropTable(
-                name: "UsersTeams");
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Events");
-
-            migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Teams");
         }
     }
 }

@@ -8,4 +8,6 @@ public  class Team
 
     public string Name { get; set; } = null!;
 
+    ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
+
 }

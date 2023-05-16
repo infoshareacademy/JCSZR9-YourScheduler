@@ -11,14 +11,19 @@ public  class ApplicationUser:IdentityUser<int>
     
     //public string Id { get; set; }= Guid.NewGuid().ToString();
 
-    public string Name { get; set; } = null!;
+  //  public string ApplicationUserId { get; set; }
 
-    public string Surname { get; set; } = null!;
+    public string Name { get; set; } 
 
-    public string Displayname { get; set; } = null!;
+    public string Surname { get; set; } 
 
-    public string Email { get; set; } = null!;
+    public string Displayname { get; set; }
 
+    public string Email { get; set; } 
+
+    public ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
+
+    public ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }   
     
    // public string Password { get; set; } = null!;
 }

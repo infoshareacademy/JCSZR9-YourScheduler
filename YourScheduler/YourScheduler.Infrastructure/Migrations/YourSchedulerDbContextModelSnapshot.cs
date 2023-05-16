@@ -20,7 +20,7 @@ namespace YourScheduler.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
@@ -28,7 +28,7 @@ namespace YourScheduler.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -58,7 +58,7 @@ namespace YourScheduler.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -82,7 +82,7 @@ namespace YourScheduler.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -165,7 +165,7 @@ namespace YourScheduler.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -240,13 +240,43 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserEvent", b =>
+                {
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUserId", "EventId");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("ApplicationUsersEvents");
+                });
+
+            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserTeam", b =>
+                {
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUserId", "TeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("ApplicatonUsersTeams");
+                });
+
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.Event", b =>
                 {
                     b.Property<int>("EventId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -273,7 +303,7 @@ namespace YourScheduler.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -282,52 +312,6 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
-                });
-
-            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.UserEvent", b =>
-                {
-                    b.Property<int>("UserEventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserEventId"), 1L, 1);
-
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserEventId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("UsersEvents");
-                });
-
-            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.UserTeam", b =>
-                {
-                    b.Property<int>("UserTeamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserTeamId"), 1L, 1);
-
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserTeamId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("UsersTeams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -381,10 +365,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.UserEvent", b =>
+            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserEvent", b =>
                 {
                     b.HasOne("YourScheduler.Infrastructure.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("UsersEvents")
+                        .WithMany("ApplicationUsersEvents")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -400,10 +384,10 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.UserTeam", b =>
+            modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserTeam", b =>
                 {
                     b.HasOne("YourScheduler.Infrastructure.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("UsersTeams")
+                        .WithMany("ApplicationUsersTeams")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -421,9 +405,9 @@ namespace YourScheduler.Infrastructure.Migrations
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("UsersEvents");
+                    b.Navigation("ApplicationUsersEvents");
 
-                    b.Navigation("UsersTeams");
+                    b.Navigation("ApplicationUsersTeams");
                 });
 #pragma warning restore 612, 618
         }

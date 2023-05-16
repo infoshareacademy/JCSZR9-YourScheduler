@@ -25,6 +25,7 @@ namespace YourScheduler.Infrastructure.Initialization
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IEventsRepository, EventsRepository>();
+            services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
 
             //var connectionString = configuration.GetConnectionString("ApplicationDbContextConnection");
             //services.AddDbContext<YourSchedulerDbContext>(options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());

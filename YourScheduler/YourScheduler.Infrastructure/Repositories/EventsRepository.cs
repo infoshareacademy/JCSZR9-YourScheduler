@@ -18,12 +18,24 @@ namespace YourScheduler.Infrastructure.Repositories
         public void AddEvent(Event eventTobase)
         {
             _dbContext.Events.Add(eventTobase);
-           
+
         }
-        
+
         public void SaveData()
         {
             _dbContext.SaveChanges();
+        }
+
+        public List<Event> GetAvailableEvents()
+        {
+            List<Event> events = new List<Event>();
+
+            return events = _dbContext.Events.ToList();
+        }
+
+        public Event GetEventById(int id)
+        {
+            return _dbContext.Events.SingleOrDefault(x => x.EventId == id);
         }
     }
 }

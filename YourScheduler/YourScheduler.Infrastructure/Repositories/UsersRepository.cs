@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,8 @@ namespace YourScheduler.Infrastructure.Repositories
         public List<ApplicationUser> GetUsersFromDataBase()
         {
             var users = new List<ApplicationUser>();   
-            users=_dbContext.Users.ToList(); 
+            users=_dbContext.Users.ToList();
+
             return users;
         }
 
@@ -42,14 +44,14 @@ namespace YourScheduler.Infrastructure.Repositories
             throw new NotImplementedException();
         }  
         
-        public ApplicationUser GetUserByEmail(string email)
+        public  ApplicationUser GetUserByEmail(string email)
         {
-            
-              return _dbContext.ApplicationUsers.FirstOrDefault(x => x.Email == email);
+         
+              return  _dbContext.ApplicationUsers.FirstOrDefault(x => x.Email == email);
 
         }
 
-        public ApplicationUser GetUserById(string id)
+        public async  Task<ApplicationUser> GetUserById(string id)
         {
             throw new NotImplementedException();
         }

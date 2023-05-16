@@ -12,5 +12,9 @@ namespace YourScheduler.Infrastructure.Repositories
         public void AddEvent(Event eventTobase);
 
         public void SaveData();
+
+        public List<Event> GetAvailableEvents();
+
+        public Event GetEventById(int id);
     }
 }
