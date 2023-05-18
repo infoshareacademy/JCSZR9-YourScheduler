@@ -14,16 +14,16 @@ namespace YourScheduler.BusinessLogic.Services
     {
         private readonly IEventsRepository _eventsRepository;
 
-        private readonly EventMapper _mapper;
-        public EventService(IEventsRepository eventsRepository)
+        private readonly IEventMapper _eventMapper;
+        public EventService(IEventsRepository eventsRepository,IEventMapper eventMapper)
         {
-            _mapper = new EventMapper();
+            _eventMapper = eventMapper;
             _eventsRepository = eventsRepository;
         }
 
         public void AddEvent(EventDto eventDto)
         {
-            var eventToBase = _mapper.EventDtoToEventMap(eventDto);
+            var eventToBase = _eventMapper.EventDtoToEventMap(eventDto);
             _eventsRepository.AddEvent(eventToBase);
             _eventsRepository.SaveData();
         }
@@ -40,7 +40,7 @@ namespace YourScheduler.BusinessLogic.Services
             foreach (var eventFromDatabase in _eventsRepository.GetAvailableEvents())
             {
                 EventDto eventDto = new EventDto();
-                eventDto = _mapper.EventToEventDtoMapp(eventFromDatabase);
+                eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
                 eventsDto.Add(eventDto);
             }
             return eventsDto;
@@ -49,7 +49,7 @@ namespace YourScheduler.BusinessLogic.Services
         public EventDto GetEventById(int id)
         {
             var eventFromDataBase= _eventsRepository.GetEventById(id);
-            return _mapper.EventToEventDtoMapp(eventFromDataBase);
+            return _eventMapper.EventToEventDtoMapp(eventFromDataBase);
         }
     }
 

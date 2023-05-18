@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace YourScheduler.BusinessLogic.Models;
 
-public partial class Team
+public  class TeamDto
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } 
+
+    public string Description { get; set; }
 
     public virtual ICollection<UsersTeam> UsersTeams { get; } = new List<UsersTeam>();
 }

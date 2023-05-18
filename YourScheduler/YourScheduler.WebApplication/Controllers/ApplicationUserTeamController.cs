@@ -4,48 +4,43 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models;
 using YourScheduler.BusinessLogic.Services;
-using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Controllers
 {
-    public class ApplicationUserEventController : Controller
+    public class ApplicationUserTeamController : Controller
     {
-        private readonly IEventService _eventService;
-        private readonly IApplicationUserEventService _applicationUserEventService;
         private readonly IUserService _userService;
-        // private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _signInManager;
-        public ApplicationUserEventController(IEventService eventService, IApplicationUserEventService applicationUserEventService, IUserService userService)
+        private readonly IApplicationUserTeamService _applicationUserTeamService;
+        private readonly ITeamService _teamService;
+        public ApplicationUserTeamController(IApplicationUserTeamService applicationUserTeamService,ITeamService teamService, IUserService userService)
         {
 
-            _eventService = eventService;
-            _applicationUserEventService = applicationUserEventService;
-            _userService = userService;
-
-            // _signInManager = signInManager;
+            _applicationUserTeamService = applicationUserTeamService;
+            _teamService = teamService;
+            _userService = userService; 
 
         }
-        // GET: ApplicationUserEventController
+        // GET: ApplicationUserTeamController1
         [Authorize]
         public ActionResult Index()
         {
-            var model = _eventService.GetAvailableEvents();
+            var model=_teamService.GetAvailableTeams();
             return View(model);
-
         }
 
-        // GET: ApplicationUserEventController/Details/5
+        // GET: ApplicationUserTeamController1/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ApplicationUserEventController/Create
+        // GET: ApplicationUserTeamController1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ApplicationUserEventController/Create
+        // POST: ApplicationUserTeamController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -60,13 +55,13 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        // GET: ApplicationUserEventController/Edit/5
+        // GET: ApplicationUserTeamController1/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ApplicationUserEventController/Edit/5
+        // POST: ApplicationUserTeamController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -81,12 +76,32 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        // GET: ApplicationUserEventController/Delete/5
-        [Route("addthisevent/{id:int}")]
-        public ActionResult AddThisEvent(int id)
+        // GET: ApplicationUserTeamController1/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: ApplicationUserTeamController1/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [Route("addthisteam/{id:int}")]
+        public ActionResult AddThisTeam(int id)
         {
 
-            var model = _eventService.GetEventById(id);
+            var model = _teamService.GetTeamById(id);
             return View(model);
 
         }
@@ -94,8 +109,8 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: ApplicationUserEventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("addthisevent/{id:int}")]
-        public ActionResult AddThisEvent(EventDto model)
+        [Route("addthisteam/{id:int}")]
+        public ActionResult AddThisTeam(TeamDto model)
         {
             try
             {
@@ -103,7 +118,7 @@ namespace YourScheduler.WebApplication.Controllers
 
 
                 var user = _userService.GetUserByEmail(userName);
-                _applicationUserEventService.AddEventForUser(user.Id, model.Id);
+                _applicationUserTeamService.AddTeamForUser(user.Id, model.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -124,19 +139,13 @@ namespace YourScheduler.WebApplication.Controllers
 
         }
 
-        //[HttpPost]
-        // [ValidateAntiForgeryToken]
-        //[Route("applicationuserevent/myevents")]
-        // [Authorize]
-        public ActionResult MyEvents()
+
+        public ActionResult MyTeams()
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserEventService.GetMyEvents(user.Id);
-            return View(model);
-            //var model = _eventService.GetAvailableEvents();
-            //return View(model);
+            var model = _applicationUserTeamService.GetMyTeams(user.Id);
+            return View(model);          
         }
-
     }
 }

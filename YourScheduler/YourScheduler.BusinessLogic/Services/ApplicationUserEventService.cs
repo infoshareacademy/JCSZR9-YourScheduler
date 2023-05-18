@@ -15,12 +15,13 @@ namespace YourScheduler.BusinessLogic.Services
     {
         private readonly IApplicationUsersEventsRepository _applicationUsersEventsRepository;
 
-        private readonly EventMapper _eventMapper;
-        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository)
+        private readonly IEventMapper _eventMapper;
+        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper)
         {
             _applicationUsersEventsRepository = applicationUsersEventsRepository;
-            _eventMapper = new EventMapper();   
+            _eventMapper = eventMapper; 
         }
+
         public void AddEventForUser(int applicationUserId, int eventId)
         {
             _applicationUsersEventsRepository.AddEventForUser(applicationUserId, eventId);

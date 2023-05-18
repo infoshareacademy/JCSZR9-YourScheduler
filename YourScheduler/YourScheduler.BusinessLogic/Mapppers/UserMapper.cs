@@ -8,7 +8,7 @@ using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.BusinessLogic.Mappers
 {
-    public class UserMapper
+    public class UserMapper : IUserMapper
     {
         public UserDto UserToUserDtoMapp(ApplicationUser user)
         {
@@ -17,9 +17,9 @@ namespace YourScheduler.BusinessLogic.Mappers
                 Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
-                Displayname=user.Displayname, 
-                Email=user.Email,
-               // Password=user.Password,               
+                Displayname = user.Displayname,
+                Email = user.Email,
+                // Password=user.Password,               
             };
             return userDto;
         }
@@ -28,11 +28,11 @@ namespace YourScheduler.BusinessLogic.Mappers
         {
             ApplicationUser user = new ApplicationUser()
             {
-                Id=userDto.Id,
+                Id = userDto.Id,
                 Name = userDto.Name,
-                Surname=userDto.Surname,
+                Surname = userDto.Surname,
                 Displayname = userDto.Displayname,
-                Email=userDto.Email,
+                Email = userDto.Email,
                 //Password=userDto.Password,
             };
             return user;

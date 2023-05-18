@@ -267,7 +267,7 @@ namespace YourScheduler.Infrastructure.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("ApplicatonUsersTeams");
+                    b.ToTable("ApplicationUsersTeams");
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.Event", b =>
@@ -304,6 +304,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
