@@ -14,10 +14,10 @@ namespace YourScheduler.BusinessLogic.Services
     {
         private readonly IUsersRepository _usersRepository;
 
-        private readonly UserMapper _mapper;
-        public UserService(IUsersRepository usersRepository)
+        private readonly IUserMapper _userMapper;
+        public UserService(IUsersRepository usersRepository,IUserMapper userMapper)
         {
-            _mapper = new UserMapper();
+            _userMapper = userMapper;
             _usersRepository = usersRepository;
         }
         public List<UserDto> GetAllUsers()
@@ -27,7 +27,7 @@ namespace YourScheduler.BusinessLogic.Services
             {
                 UserDto user = new UserDto();
 
-                user = _mapper.UserToUserDtoMapp(item);
+                user = _userMapper.UserToUserDtoMapp(item);
                 
                 users.Add(user);    
                
@@ -40,20 +40,20 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var user=await _usersRepository.GetUserById(id);
             UserDto userDto = new UserDto();
-            userDto=_mapper.UserToUserDtoMapp(user);
+            userDto=_userMapper.UserToUserDtoMapp(user);
             return userDto;
         }
 
         public void UpdateUser(UserDto userDtoUpdated)
         {
-            var user = _mapper.UserDtoToUserMap(userDtoUpdated);
+            var user = _userMapper.UserDtoToUserMap(userDtoUpdated);
 
             _usersRepository.UpdateUser(user);
         }
 
         public void AddUser(UserDto newUser)
         {
-            var user = _mapper.UserDtoToUserMap(newUser);
+            var user = _userMapper.UserDtoToUserMap(newUser);
             _usersRepository.AddUser(user);
         }
 
@@ -63,7 +63,7 @@ namespace YourScheduler.BusinessLogic.Services
            // application.Email = _mapper.UserDtoToUserMap(email);
             var user =  _usersRepository.GetUserByEmail(email);
            // UserDto userDto = new UserDto();
-            var userDto = _mapper.UserToUserDtoMapp(user);
+            var userDto = _userMapper.UserToUserDtoMapp(user);
             return userDto;
         }
 

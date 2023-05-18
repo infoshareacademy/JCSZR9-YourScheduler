@@ -1,0 +1,27 @@
+﻿@model YourScheduler.BusinessLogic.Models.TeamDto
+
+@{
+    ViewBag.Title = "Create Team";
+    Layout = "_Layout";
+}
+
+<h2>Create new team</h2>
+<form asp-antiforgery="true" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" type="text" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+   
+
+    <button type="submit">Create</button>
+</form>
+
+<a asp-action="Index">Back</a>

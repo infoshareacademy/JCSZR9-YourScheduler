@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YourScheduler.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Addtablescreatedrelatins : Migration
+    public partial class Createtabel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,7 +77,8 @@ namespace YourScheduler.Infrastructure.Migrations
                 {
                     TeamId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,7 +216,7 @@ namespace YourScheduler.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ApplicatonUsersTeams",
+                name: "ApplicationUsersTeams",
                 columns: table => new
                 {
                     ApplicationUserId = table.Column<int>(type: "int", nullable: false),
@@ -223,15 +224,15 @@ namespace YourScheduler.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicatonUsersTeams", x => new { x.ApplicationUserId, x.TeamId });
+                    table.PrimaryKey("PK_ApplicationUsersTeams", x => new { x.ApplicationUserId, x.TeamId });
                     table.ForeignKey(
-                        name: "FK_ApplicatonUsersTeams_AspNetUsers_ApplicationUserId",
+                        name: "FK_ApplicationUsersTeams_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ApplicatonUsersTeams_Teams_TeamId",
+                        name: "FK_ApplicationUsersTeams_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "TeamId",
@@ -244,8 +245,8 @@ namespace YourScheduler.Infrastructure.Migrations
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicatonUsersTeams_TeamId",
-                table: "ApplicatonUsersTeams",
+                name: "IX_ApplicationUsersTeams_TeamId",
+                table: "ApplicationUsersTeams",
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
@@ -295,7 +296,7 @@ namespace YourScheduler.Infrastructure.Migrations
                 name: "ApplicationUsersEvents");
 
             migrationBuilder.DropTable(
-                name: "ApplicatonUsersTeams");
+                name: "ApplicationUsersTeams");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");

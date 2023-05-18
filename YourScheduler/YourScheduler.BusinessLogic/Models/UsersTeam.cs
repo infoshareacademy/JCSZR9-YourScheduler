@@ -11,7 +11,7 @@ public class UsersTeam
 
     public int TeamId { get; set; }
 
-    public virtual Team Team { get; set; } = null!;
+    public virtual TeamDto Team { get; set; } = null!;
 
     public virtual UserDto User { get; set; } = null!;
 }

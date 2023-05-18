@@ -1,0 +1,39 @@
+﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.TeamDto>
+
+@{
+    ViewData["Title"] = "MyTeams";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().Name"></label>
+            </th>
+            <th>
+                <label asp-for="First().Description"></label>
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>              
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisTeam</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

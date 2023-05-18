@@ -46,7 +46,7 @@ namespace YourScheduler.UI.Controllers
         // GET: UserController/Create
         public ActionResult Create()
         {
-            return View();
+            return RedirectToAction("Create", "Team");
         }
 
         // POST: UserController/Create
@@ -96,7 +96,13 @@ namespace YourScheduler.UI.Controllers
         {
             return RedirectToAction("MyEvents","ApplicationUserEvent");
         }
-          
-        
+
+        public ActionResult RedirectToAppliactionUserTeam()
+        {
+            return RedirectToAction("MyTeams", "ApplicationUserTeam");
+        }
+
+
+
     }
 }

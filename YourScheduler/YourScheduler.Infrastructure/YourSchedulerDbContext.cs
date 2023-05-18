@@ -22,7 +22,7 @@ namespace YourScheduler.Infrastructure
 
         public virtual DbSet<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
 
-        public virtual DbSet<ApplicationUserTeam> ApplicatonUsersTeams { get; set; }
+        public virtual DbSet<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
         public YourSchedulerDbContext(DbContextOptions options):base(options)
         {
             

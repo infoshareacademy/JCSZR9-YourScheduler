@@ -12,8 +12,8 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230515123433_Add tables,created relatins")]
-    partial class Addtablescreatedrelatins
+    [Migration("20230518122902_Create tabel")]
+    partial class Createtabel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -270,7 +270,7 @@ namespace YourScheduler.Infrastructure.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("ApplicatonUsersTeams");
+                    b.ToTable("ApplicationUsersTeams");
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.Event", b =>
@@ -307,6 +307,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

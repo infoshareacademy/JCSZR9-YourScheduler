@@ -8,7 +8,7 @@ using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.BusinessLogic.Mapppers
 {
-    public class EventMapper
+    public class EventMapper:IEventMapper
     {
         public EventDto EventToEventDtoMapp(Event eventToBase)
         {

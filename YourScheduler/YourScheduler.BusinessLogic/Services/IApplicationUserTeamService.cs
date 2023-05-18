@@ -7,11 +7,10 @@ using YourScheduler.BusinessLogic.Models;
 
 namespace YourScheduler.BusinessLogic.Services
 {
-    public interface IApplicationUserEventService
+    public interface IApplicationUserTeamService
     {
-        public void AddEventForUser(int applicationUserId, int eventId);
+        public void AddTeamForUser(int applicationUserId, int teamId);
 
-        public List<EventDto> GetMyEvents(int applicationUserId);
-
+        public List<TeamDto> GetMyTeams(int applicationUserId);
     }
 }
