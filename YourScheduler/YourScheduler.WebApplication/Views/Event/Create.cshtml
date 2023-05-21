@@ -1,4 +1,5 @@
-﻿@model EventDto
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+@model EventDto
 
 @{
     ViewBag.Title = "Create Event";
@@ -26,7 +27,7 @@
     </div>
 
     <div>
-        <label asp-for="Isopen">Isopen</label>
+        <label asp-for="Isopen">Private</label>
         <input asp-for="Isopen" type="checkbox" />
         <span asp-validation-for="Isopen"></span>
     </div>

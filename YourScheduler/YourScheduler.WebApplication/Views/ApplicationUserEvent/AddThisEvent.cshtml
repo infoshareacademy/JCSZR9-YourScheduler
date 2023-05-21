@@ -1,4 +1,6 @@
-﻿@model EventDto
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+
+@model EventDto
 
 @{
     ViewData["Title"] = "AddThisEvent";
@@ -29,7 +31,6 @@
         <dd class="col-sm-10">
             @Model.Date
         </dd>
-
         <dt class="col-sm-2">
             <label asp-for="Isopen"></label>
         </dt>

@@ -28,27 +28,7 @@ namespace YourScheduler.Infrastructure.Initialization
             services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, AllTeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
-           
-
-            //var connectionString = configuration.GetConnectionString("ApplicationDbContextConnection");
-            //services.AddDbContext<YourSchedulerDbContext>(options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
-            ////services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            ////{
-            ////    options.SignIn.RequireConfirmedAccount = false;
-            ////    options.Password = new Microsoft.AspNetCore.Identity.PasswordOptions
-            ////    {
-            ////        RequireDigit = true,
-            ////        RequiredLength = 8,
-            ////        RequireLowercase = true,
-            ////        RequireUppercase = true,
-            ////        RequireNonAlphanumeric = true,
-
-
-            ////    };
-            ////}).AddErrorDescriber<LocalizedIdentityErrorDescriber>().AddEntityFrameworkStores<YourSchedulerDbContext>();
-            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false); //PAMI�TA� O TEJ ZMIANIE (NIE TRZEBA POTWIERDZA� MAILA TERAZ)
-
-            //services.AddMvc();
+          
         }
     }
 }

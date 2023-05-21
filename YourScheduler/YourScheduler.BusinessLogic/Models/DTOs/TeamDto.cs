@@ -10,6 +10,4 @@ public class TeamDto
     public string Name { get; set; }
 
     public string Description { get; set; }
-
-    public virtual ICollection<UsersTeam> UsersTeams { get; } = new List<UsersTeam>();
 }
