@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using YourScheduler.BusinessLogic.Models;
 using YourScheduler.Infrastructure.Entities;
 
-namespace YourScheduler.BusinessLogic.Mapppers
+namespace YourScheduler.BusinessLogic.Mapppers.Interfaces
 {
     public interface IEventMapper
     {
-         EventDto EventToEventDtoMapp(Event eventToBase);
-         Event EventDtoToEventMap(EventDto eventDto);
+        EventDto EventToEventDtoMapp(Event eventToBase);
+        Event EventDtoToEventMap(EventDto eventDto);
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.Infrastructure.Entities;
 
-namespace YourScheduler.Infrastructure.Repositories
+namespace YourScheduler.Infrastructure.Repositories.Interfaces
 {
     public interface ITeamsRepository
     {

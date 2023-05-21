@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.BusinessLogic.Models;
 
-namespace YourScheduler.BusinessLogic.Services
+namespace YourScheduler.BusinessLogic.Services.Interfaces
 {
     public interface ITeamService
     {

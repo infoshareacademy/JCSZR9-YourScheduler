@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using YourScheduler.BusinessLogic.Models;
+using YourScheduler.BusinessLogic.Mapppers.Interfaces;
+using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.BusinessLogic.Mapppers

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using YourScheduler.BusinessLogic.Models;
-using YourScheduler.BusinessLogic.Services;
+using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.WebApplication.Controllers
 {

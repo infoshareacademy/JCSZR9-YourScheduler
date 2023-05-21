@@ -1,6 +1,6 @@
 ﻿using YourScheduler.Infrastructure.Entities;
 
-namespace YourScheduler.Infrastructure.Repositories
+namespace YourScheduler.Infrastructure.Repositories.Interfaces
 {
     public interface IApplicationUsersEventsRepository
     {

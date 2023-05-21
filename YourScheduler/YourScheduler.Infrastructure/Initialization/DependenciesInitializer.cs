@@ -15,7 +15,7 @@ using YourScheduler.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using YourScheduler.Infrastructure.Entities;
-using YourScheduler.Infrastructure.Identity;
+using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.Infrastructure.Initialization
 {
@@ -24,9 +24,9 @@ namespace YourScheduler.Infrastructure.Initialization
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<IEventsRepository, EventsRepository>();
+            services.AddScoped<IEventsRepository, AllEventsRepository>();
             services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
-            services.AddScoped<ITeamsRepository, TeamsRepository>();
+            services.AddScoped<ITeamsRepository, AllTeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
            
 

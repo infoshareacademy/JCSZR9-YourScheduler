@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YourScheduler.BusinessLogic.Models;
+using YourScheduler.BusinessLogic.Models.DTOs;
 
-namespace YourScheduler.BusinessLogic.Services
+namespace YourScheduler.BusinessLogic.Services.Interfaces
 {
     public interface IEventService
     {
