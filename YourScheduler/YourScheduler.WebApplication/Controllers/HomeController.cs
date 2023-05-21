@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using YourScheduler.WebApplication.Models;
+using YourScheduler.BusinessLogic.Models;
 
 namespace YourScheduler.WebApplication.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,9 +15,10 @@ namespace YourScheduler.WebApplication.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index","User");
         }
 
         public IActionResult Privacy()

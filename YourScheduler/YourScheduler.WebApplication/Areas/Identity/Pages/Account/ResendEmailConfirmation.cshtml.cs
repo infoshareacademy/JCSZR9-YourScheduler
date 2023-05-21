@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using YourScheduler.WebApplication.Areas.Identity.Data;
+using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
 {

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.EventDto>
+
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().Name"></label>
+            </th>
+            <th>
+                <label asp-for="First().Description"></label>
+            </th>
+            <th>
+                <label asp-for="First().Date"></label>
+            </th>
+            <th>
+                <label asp-for="First().Isopen"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Isopen
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

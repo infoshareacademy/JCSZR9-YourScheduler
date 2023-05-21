@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using YourScheduler.WebApplication.Areas.Identity.Data;
+using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
 {
