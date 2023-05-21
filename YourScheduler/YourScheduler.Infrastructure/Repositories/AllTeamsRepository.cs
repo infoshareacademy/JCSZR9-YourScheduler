@@ -8,11 +8,11 @@ using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.Infrastructure.Repositories
 {
-    public class TeamsRepository : ITeamsRepository
+    public class AllTeamsRepository : ITeamsRepository
     {
         private readonly YourSchedulerDbContext _dbContext;
 
-        public TeamsRepository(YourSchedulerDbContext dbContext)
+        public AllTeamsRepository(YourSchedulerDbContext dbContext)
         {
             _dbContext = dbContext;
         }

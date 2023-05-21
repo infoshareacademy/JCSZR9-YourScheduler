@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourScheduler.Infrastructure.Entities;
+using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.Infrastructure.Repositories
 {
-    public class EventsRepository : IEventsRepository
+    public class AllEventsRepository : IEventsRepository
     {
         private readonly YourSchedulerDbContext _dbContext;
 
-        public EventsRepository(YourSchedulerDbContext dbContext)
+        public AllEventsRepository(YourSchedulerDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -20,7 +21,6 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.Events.Add(eventTobase);
 
         }
-
         public void SaveData()
         {
             _dbContext.SaveChanges();
