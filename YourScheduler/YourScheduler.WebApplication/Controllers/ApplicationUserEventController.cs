@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using YourScheduler.BusinessLogic.Models;
-using YourScheduler.BusinessLogic.Services;
+using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Controllers

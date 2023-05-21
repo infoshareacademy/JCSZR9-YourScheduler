@@ -1,7 +1,7 @@
-﻿using YourScheduler.BusinessLogic.Models;
+﻿using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.Infrastructure.Entities;
 
-namespace YourScheduler.BusinessLogic.Mappers
+namespace YourScheduler.BusinessLogic.Mapppers.Interfaces
 {
     public interface IUserMapper
     {

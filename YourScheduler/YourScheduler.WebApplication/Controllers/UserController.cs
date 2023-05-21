@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using YourScheduler.BusinessLogic.Models;
-using YourScheduler.BusinessLogic.Services;
+using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.WebApplication.Controllers;
 

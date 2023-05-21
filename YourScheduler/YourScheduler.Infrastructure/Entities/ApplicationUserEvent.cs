@@ -9,10 +9,8 @@ namespace YourScheduler.Infrastructure.Entities;
 public  class ApplicationUserEvent
 {
     public int ApplicationUserId { get; set; }
-
     public ApplicationUser ApplicationUser { get; set; }
     public int EventId { get; set; }
-
     public Event Event { get; set; }
 
     

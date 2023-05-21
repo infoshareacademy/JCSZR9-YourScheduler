@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourScheduler.BusinessLogic.Models;
+namespace YourScheduler.BusinessLogic.Models.DTOs;
 
-public  class UserDto:IdentityUser
+public class UserDto : IdentityUser
 {
 
     public int Id { get; set; }

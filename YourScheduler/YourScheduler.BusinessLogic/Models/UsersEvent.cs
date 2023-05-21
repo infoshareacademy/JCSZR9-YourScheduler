@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using YourScheduler.BusinessLogic.Models.DTOs;
 
 namespace YourScheduler.BusinessLogic.Models;
 
