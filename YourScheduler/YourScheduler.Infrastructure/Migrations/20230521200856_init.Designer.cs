@@ -12,8 +12,8 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230518122902_Create tabel")]
-    partial class Createtabel
+    [Migration("20230521200856_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,7 +182,6 @@ namespace YourScheduler.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -241,6 +240,128 @@ namespace YourScheduler.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "admin",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "admin",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AABL8tgoxdEScXoy1miYUMFIo87A/49kDCV6rNijOqfB6/CjgLA5/wWJyEPxvtxwIg==",
+                            PhoneNumber = "111 222 333",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "HB22IUN4ALIEU6KEBDNUSYURRHCH54ZW",
+                            Surname = "admin",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "kjarzyna",
+                            Email = "jarzyna@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "Krzysztof",
+                            NormalizedEmail = "JARZYNA@GMAIL.COM",
+                            NormalizedUserName = "JARZYNA@GMAIL.COM",
+                            PasswordHash = "AFkq6WCyiWWmsop5LAmMgyhHyi6Fk3NbqrR5oYnImebMd/wCn3MUMF1U/bvjzo/WuQ==",
+                            PhoneNumber = "666 598 456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "RBG3Y3V7MB2HKEXBQRT7YLOKUCMIDAWL",
+                            Surname = "Jarzyna",
+                            TwoFactorEnabled = false,
+                            UserName = "jarzyna@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "Jane",
+                            Email = "jane_johnson@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "Jane",
+                            NormalizedEmail = "JANE_JOHNSON@GMAIL.COM",
+                            NormalizedUserName = "JANE_JOHNSON@GMAIL.COM",
+                            PasswordHash = "AKaAqldHfDIqlAnlErlM7C8ZMvDh0/z0jOrdsAr7TLSzK/+MwmGK4FHzla+FiB1aIg==",
+                            PhoneNumber = "666 598 456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "FQW276RVIH244FDDUQRV5NZHIFONK6Q5",
+                            Surname = "Johnson",
+                            TwoFactorEnabled = false,
+                            UserName = "jane_johnson@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "willmich",
+                            Email = "michaelww@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "Michael",
+                            NormalizedEmail = "MICHAELWW@GMAIL.COM",
+                            NormalizedUserName = "MICHAELWW@GMAIL.COM",
+                            PasswordHash = "AFqkPSTTo3jeXe8gMwAOZNogcC/a+WEHj+I/mGloaaUBLq+sIAh4OpLs38I4u9sDjg==",
+                            PhoneNumber = "987 654 321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "I2DYO7JPMPCFOJT36QVWUNS4C3LBV6GT",
+                            Surname = "Williams",
+                            TwoFactorEnabled = false,
+                            UserName = "michaelww@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "william",
+                            Email = "joneswilliam@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "William",
+                            NormalizedEmail = "JONESWILLIAM@GMAIL.COM",
+                            NormalizedUserName = "JONESWILLIAM@GMAIL.COM",
+                            PasswordHash = "AOI6UEQLsqVEE3a3pWLyongEr/unqKsdMKcRAiAbT749ZiwWTGU7LMv3PCDlBw2ohA==",
+                            PhoneNumber = "123 456 789",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "UK63FTL6NLDSE2OYH4OAPTM3GO564O4A",
+                            Surname = "Jones",
+                            TwoFactorEnabled = false,
+                            UserName = "joneswilliam@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "",
+                            Displayname = "brownie",
+                            Email = "oliviab@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            Name = "Olivia",
+                            NormalizedEmail = "OLIVIAB@GMAIL.COM",
+                            NormalizedUserName = "OLIVIAB@GMAIL.COM",
+                            PasswordHash = "AF8WttLPc/VrI/JEh83jg/rso/FfimQC4jbiq3zCgOQM5pK62uWYYSZepzRgPp5/Fw==",
+                            PhoneNumber = "666 598 456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "YBIR5FCNR5UIGYIMNABYR76VG653AKNL",
+                            Surname = "Brown",
+                            TwoFactorEnabled = false,
+                            UserName = "oliviab@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserEvent", b =>
@@ -256,6 +377,48 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("ApplicationUsersEvents");
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationUserId = 1,
+                            EventId = 1
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            EventId = 2
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            EventId = 3
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            EventId = 4
+                        },
+                        new
+                        {
+                            ApplicationUserId = 3,
+                            EventId = 4
+                        },
+                        new
+                        {
+                            ApplicationUserId = 4,
+                            EventId = 5
+                        },
+                        new
+                        {
+                            ApplicationUserId = 5,
+                            EventId = 5
+                        },
+                        new
+                        {
+                            ApplicationUserId = 6,
+                            EventId = 6
+                        });
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.ApplicationUserTeam", b =>
@@ -271,6 +434,58 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("ApplicationUsersTeams");
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationUserId = 1,
+                            TeamId = 1
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            TeamId = 2
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            TeamId = 3
+                        },
+                        new
+                        {
+                            ApplicationUserId = 2,
+                            TeamId = 4
+                        },
+                        new
+                        {
+                            ApplicationUserId = 3,
+                            TeamId = 4
+                        },
+                        new
+                        {
+                            ApplicationUserId = 4,
+                            TeamId = 4
+                        },
+                        new
+                        {
+                            ApplicationUserId = 5,
+                            TeamId = 5
+                        },
+                        new
+                        {
+                            ApplicationUserId = 5,
+                            TeamId = 6
+                        },
+                        new
+                        {
+                            ApplicationUserId = 6,
+                            TeamId = 5
+                        },
+                        new
+                        {
+                            ApplicationUserId = 6,
+                            TeamId = 6
+                        });
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.Event", b =>
@@ -298,6 +513,64 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.HasKey("EventId");
 
                     b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            EventId = 1,
+                            Date = new DateTime(2023, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Koncert z okazji urodzin TVP",
+                            IsOpen = true,
+                            Name = "Koncert Zenka Martyniuka"
+                        },
+                        new
+                        {
+                            EventId = 2,
+                            Date = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
+                            IsOpen = true,
+                            Name = "Spotkanie Literackie: Autorzy Bestsellerów"
+                        },
+                        new
+                        {
+                            EventId = 3,
+                            Date = new DateTime(2023, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Spektakl muzyczny pełen magii i emocji",
+                            IsOpen = true,
+                            Name = "Występ Teatru Muzycznego: Magiczna Melodia"
+                        },
+                        new
+                        {
+                            EventId = 4,
+                            Date = new DateTime(2023, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
+                            IsOpen = true,
+                            Name = "Konferencja Technologiczna: Przyszłość Innowacji"
+                        },
+                        new
+                        {
+                            EventId = 5,
+                            Date = new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
+                            IsOpen = false,
+                            Name = "Sesja Filmowa: Kino bez Granic"
+                        },
+                        new
+                        {
+                            EventId = 6,
+                            Date = new DateTime(2023, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
+                            IsOpen = false,
+                            Name = "Pokaz Kulinarny: Świat Smaków"
+                        },
+                        new
+                        {
+                            EventId = 7,
+                            Date = new DateTime(2023, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
+                            IsOpen = true,
+                            Name = "Sztuka na Scenie: Wieczór Teatru"
+                        });
                 });
 
             modelBuilder.Entity("YourScheduler.Infrastructure.Entities.Team", b =>
@@ -319,6 +592,44 @@ namespace YourScheduler.Infrastructure.Migrations
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1,
+                            Description = "Grupa szkółki pływackiej Argonaut",
+                            Name = "Grupa początkująca basen Chełm"
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku",
+                            Name = "Mieszkańcy osiedla Lawendowe Wzgórze"
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.",
+                            Name = "Kreatywny Warsztat Artystyczny"
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.",
+                            Name = "Klub Fitness i Wellness"
+                        },
+                        new
+                        {
+                            TeamId = 5,
+                            Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.",
+                            Name = "Klub Fotograficzny Obiektyw"
+                        },
+                        new
+                        {
+                            TeamId = 6,
+                            Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.",
+                            Name = "Studio Tańca Ritmo"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
