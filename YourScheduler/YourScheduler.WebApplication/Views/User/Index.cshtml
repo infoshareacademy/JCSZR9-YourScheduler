@@ -1,0 +1,57 @@
+﻿@model YourScheduler.BusinessLogic.Models.UserDto
+
+@{
+    ViewData["Title"] = "info about user";
+}
+
+<h1>General info about me</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="Id"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Id
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Surname"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Surname
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Displayname"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Displayname
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Email"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Password"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PasswordHash
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Redirect" class="btn btn-dark">MyEvents</a> |
+    <a asp-action="RedirectToAppliactionUserTeam" class="btn btn-dark">MyTeams</a> |
+    <a asp-action="Details">Create new Event</a>
+    <a asp-action="Create">Create new Team</a>
+</div>

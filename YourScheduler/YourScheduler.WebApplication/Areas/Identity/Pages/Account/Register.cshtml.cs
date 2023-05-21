@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using YourScheduler.WebApplication.Areas.Identity.Data;
+using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
 {
@@ -28,14 +28,14 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<ApplicationUser> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<ApplicationUser> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -71,18 +71,20 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            public string Id { get; set; }
+
             [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
             [Display(Name = "Firstname")]
-            public string FirstName { get; set; }
+            public string Name { get; set; }
 
             [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters")]
             [Display(Name = "Lastname")]
-            public string LastName { get; set; }
+            public string Surname { get; set; }
 
             [StringLength(255, ErrorMessage = "The display name field should have a maximum of 255 characters")]
             [Display(Name = "Display Name")]
-            public string DisplayName { get; set; }
+            public string? DisplayName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -125,11 +127,12 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-                user.DisplayName = Input.DisplayName;
+                ApplicationUser user = CreateUser();
+                user.Name = Input.Name;
+                user.Surname = Input.Surname;
+                user.Displayname = Input.DisplayName;
+                user.Email = Input.Email;
+                user.PasswordHash = Input.Password;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

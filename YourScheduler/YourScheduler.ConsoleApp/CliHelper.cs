@@ -2,7 +2,7 @@
 {
     public class CliHelper
     {
-        public  string GetStringFromUser(string message)
+        public string GetStringFromUser(string message)
         {
             var text = string.Empty;
             bool textCorrectValue = true;
@@ -22,12 +22,12 @@
                     textCorrectValue = true;
                 }
 
-            } while(!textCorrectValue);
+            } while (!textCorrectValue);
             Console.Clear();
             return text;
-        } 
+        }
 
-        internal  string GetSecureStringFromUser(string message)
+        internal string GetSecureStringFromUser(string message)
         {
             var password = string.Empty;
             bool passwordCorrectValue = true;
@@ -64,12 +64,12 @@
                     Console.WriteLine("\nNieprawidłowa wartość. Hasło powinno zawierać od 8 do 24 znaków.");
                 }
             } while (!passwordCorrectValue);
-            
+
             return password;
         }
 
 
-        internal  string GetEmailFromUser(string message)
+        internal string GetEmailFromUser(string message)
         {
             bool emailCorrectValue = true;
             var email = string.Empty;
@@ -99,7 +99,7 @@
             int result = 0;
             do
             {
-                string text = GetStringFromUser(message);    
+                string text = GetStringFromUser(message);
                 intCorrectValue = int.TryParse(text, out result);
                 if (result == 0)
                 {
@@ -110,7 +110,7 @@
             return result;
         }
 
-        internal  DateTime GetDateFromUser(string message)
+        internal DateTime GetDateFromUser(string message)
         {
             bool dateTimeCorrectValue = false;
             DateTime result;
@@ -125,4 +125,3 @@
 
     }
 }
-

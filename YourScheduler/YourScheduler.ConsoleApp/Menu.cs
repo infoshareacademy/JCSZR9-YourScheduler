@@ -6,7 +6,8 @@ using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
-using YourScheduler.BusinessLogic;
+
+using YourScheduler.ConsoleBusinessLogic;
 
 namespace YourScheduler.ConsoleApp
 {
@@ -221,7 +222,7 @@ namespace YourScheduler.ConsoleApp
         void ShowTeams(User user)
         {
             var allTeams = CSVManager.GetTeams();
-       
+
             List<Team> teamsWithUser = new List<Team>();
             //var teamsWithUser = allTeams.Where(t =>);
             foreach (var team in allTeams)
@@ -258,12 +259,12 @@ namespace YourScheduler.ConsoleApp
             var teamName = _cliHelper.GetStringFromUser("Podaj nazwę zespołu: ");
             var allUsers = CSVManager.GetUsers();
             string listOfUsersToDisplay = "";
-            
+
             for (int i = 0; i < allUsers.Count; i++)
             {
                 listOfUsersToDisplay += $"{i + 1} - {allUsers[i].Name} {allUsers[i].Surname}, {allUsers[i].DisplayName}, {allUsers[i].Email}\n";
             }
-            
+
 
             var teamQuantity = _cliHelper.GetIntFromUser("Podaj liczbę członków zespołu: ");
 
@@ -277,7 +278,7 @@ namespace YourScheduler.ConsoleApp
                 else
                 {
                     correctTeamQuantity = false;
-                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count+1}.");
+                    Console.WriteLine($"Wybrana zła liczba porządkowa. Proszę wybrać poprawną wartość większą od 0 i mniejszą niż {allUsers.Count + 1}.");
                     teamQuantity = _cliHelper.GetIntFromUser($"\nPodaj liczbę członków zespołu: ");
                 }
             } while (!correctTeamQuantity);
@@ -453,17 +454,6 @@ namespace YourScheduler.ConsoleApp
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

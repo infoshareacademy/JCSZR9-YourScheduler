@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using YourScheduler.WebApplication.Areas.Identity.Data;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
 {
