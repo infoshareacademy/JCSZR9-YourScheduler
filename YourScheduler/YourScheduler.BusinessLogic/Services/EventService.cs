@@ -29,11 +29,6 @@ namespace YourScheduler.BusinessLogic.Services
             _eventsRepository.SaveData();
         }
 
-        //public List<EventDto> GetAvailableEvents()
-        //{
-        //   
-        //}
-
         public List<EventDto> GetAvailableEvents()
         {
             List<EventDto> eventsDto = new List<EventDto>();
