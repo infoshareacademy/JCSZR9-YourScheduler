@@ -30,7 +30,6 @@ namespace YourScheduler.WebApplication.Controllers
         {
             var model = _eventService.GetAvailableEvents();
             return View(model);
-
         }
 
         // GET: ApplicationUserEventController/Details/5
@@ -100,8 +99,6 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 var userName = HttpContext.User.Identity.GetUserName();
-
-
                 var user = _userService.GetUserByEmail(userName);
                 _applicationUserEventService.AddEventForUser(user.Id, model.Id);
                 return RedirectToAction(nameof(Index));
