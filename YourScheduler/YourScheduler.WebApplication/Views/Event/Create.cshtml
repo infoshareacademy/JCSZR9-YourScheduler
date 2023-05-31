@@ -1,38 +1,76 @@
-﻿@using YourScheduler.BusinessLogic.Models.DTOs;
-@model EventDto
+﻿@model YourScheduler.BusinessLogic.Models.DTOs.EventDto
 
 @{
     ViewBag.Title = "Create Event";
     Layout = "_Layout";
 }
 
-<h2>Create new event</h2>
+@*<h2>Stwórz nowe wydarzenie</h2>
 <form asp-antiforgery="true" asp-action="Create" method="post">
     <div>
-        <label asp-for="Name">Name</label>
+        <label asp-for="Name">Nazwa wydarzenia</label>
         <input asp-for="Name" type="text" />
         <span asp-validation-for="Name"></span>
     </div>
 
     <div>
-        <label asp-for="Description">Description</label>
+        <label asp-for="Description">Opis wydarzenia</label>
         <input asp-for="Description" type="text" />
         <span asp-validation-for="Description"></span>
     </div>
 
     <div>
-        <label asp-for="Date">Date</label>
+        <label asp-for="Date">Data</label>
         <input asp-for="Date" type="date" />
         <span asp-validation-for="Date"></span>
     </div>
 
     <div>
-        <label asp-for="Isopen">Private</label>
+        <label asp-for="Isopen">Wydarzenie publiczne</label>
         <input asp-for="Isopen" type="checkbox" />
         <span asp-validation-for="Isopen"></span>
     </div>
 
-    <button type="submit">Create</button>
+    <button type="submit" class="input-group-text btn-info">Stwórz wydarzenie</button>
 </form>
 
-<a asp-action="Index">Back</a>
+<a asp-action="Index">Back</a>*@
+
+
+<h2>Stwórz nowe wydarzenie</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nazwa wydarzenia</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Opis wydarzenia</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label">Data</label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Isopen" class="control-label">Wydarzenie publiczne</label>
+                <input asp-for="Isopen" type="checkbox" />
+                <span asp-validation-for="Isopen"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Stwórz wydarzenie" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<a asp-controller="user" asp-action="Index" class="btn btn-primary">Powrót</a>
