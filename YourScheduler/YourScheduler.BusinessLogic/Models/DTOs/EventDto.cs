@@ -18,4 +18,6 @@ public class EventDto
     public DateTime Date { get; set; }
 
     public bool Isopen { get; set; }
+
+    public int administratorId { get; set; }
 }

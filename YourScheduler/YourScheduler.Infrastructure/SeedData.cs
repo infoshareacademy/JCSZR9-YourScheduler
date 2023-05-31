@@ -143,7 +143,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Koncert Zenka Martyniuka",
                 Description = "Koncert z okazji urodzin TVP",
                 Date = new DateTime(2023,6,22),
-                IsOpen = true
+                IsOpen = true,
+                administratorId = 1
             },
             new Event
             {
@@ -151,7 +152,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Spotkanie Literackie: Autorzy Bestsellerów",
                 Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
                 Date = new DateTime(2023,12,1),
-                IsOpen = true
+                IsOpen = true,
+                administratorId = 1
             },
             new Event
             {
@@ -159,7 +161,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Występ Teatru Muzycznego: Magiczna Melodia",
                 Description = "Spektakl muzyczny pełen magii i emocji",
                 Date = new DateTime(2023,10,02),
-                IsOpen = true
+                IsOpen = true,
+                administratorId = 2
             },
             new Event
             {
@@ -167,7 +170,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Konferencja Technologiczna: Przyszłość Innowacji",
                 Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
                 Date = new DateTime(2023,9,11),
-                IsOpen = true
+                IsOpen = true,
+                administratorId = 3
             },
             new Event
             {
@@ -175,7 +179,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Sesja Filmowa: Kino bez Granic",
                 Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
                 Date = new DateTime(2024,1,8),
-                IsOpen = false
+                IsOpen = false,
+                administratorId = 4
             },
             new Event
             {
@@ -183,7 +188,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Pokaz Kulinarny: Świat Smaków",
                 Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
                 Date = new DateTime(2023,7,15),
-                IsOpen = false
+                IsOpen = false,
+                administratorId = 5
             },
             new Event
             {
@@ -191,7 +197,8 @@ namespace YourScheduler.Infrastructure
                 Name = "Sztuka na Scenie: Wieczór Teatru",
                 Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
                 Date = new DateTime(2023,8,10),
-                IsOpen = true
+                IsOpen = true,
+                administratorId = 6
             },
         };
         public static Team[] teamSeed = new Team[]
