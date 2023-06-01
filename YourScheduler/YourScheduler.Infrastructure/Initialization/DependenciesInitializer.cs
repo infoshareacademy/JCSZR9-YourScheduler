@@ -22,7 +22,7 @@ namespace YourScheduler.Infrastructure.Initialization
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<IEventsRepository, AllEventsRepository>();
+            services.AddScoped<IEventsRepository, EventsRepository>();
             services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, AllTeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();

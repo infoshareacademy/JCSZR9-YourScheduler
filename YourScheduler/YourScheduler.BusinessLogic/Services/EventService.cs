@@ -47,6 +47,16 @@ namespace YourScheduler.BusinessLogic.Services
             var eventFromDataBase= _eventsRepository.GetEventById(id);
             return _eventMapper.EventToEventDtoMapp(eventFromDataBase);
         }
+
+        public void DeleteEvent(int id)
+        {
+            _eventsRepository.DeleteEventById(id);
+        }
+
+        public void DeleteEventFromCalendar(int id, int userId)
+        {
+            _eventsRepository.DeleteEventFromCalendarById(id, userId);
+        }
     }
 
 }
