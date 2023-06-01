@@ -24,61 +24,14 @@ namespace YourScheduler.WebApplication.Controllers
             // _signInManager = signInManager;
 
         }
-        // GET: ApplicationUserEventController
-        [Authorize]
-        public ActionResult Index()
-        {
-            var model = _eventService.GetAvailableEvents();
-            return View(model);
-        }
 
-        // GET: ApplicationUserEventController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ApplicationUserEventController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ApplicationUserEventController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ApplicationUserEventController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ApplicationUserEventController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// GET: ApplicationUserEventController
+        //[Authorize]
+        //public ActionResult Index()
+        //{
+        //    var model = _eventService.GetAvailableEvents();
+        //    return View(model);
+        //}
 
         // GET: ApplicationUserEventController/Delete/5
         [Route("addthisevent/{id:int}")]
@@ -87,7 +40,6 @@ namespace YourScheduler.WebApplication.Controllers
 
             var model = _eventService.GetEventById(id);
             return View(model);
-
         }
 
         // POST: ApplicationUserEventController/Delete/5
@@ -101,24 +53,12 @@ namespace YourScheduler.WebApplication.Controllers
                 var userName = HttpContext.User.Identity.GetUserName();
                 var user = _userService.GetUserByEmail(userName);
                 _applicationUserEventService.AddEventForUser(user.Id, model.Id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Event");
             }
             catch (Exception ex)
             {
-                // return View("Error", new HandleErrorInfo(ex, "EmployeeInfo", "Create"));
-                // return View"dupa";
-                //return View("Error");
-                // throw ex;
-                // return View("Error");
-                // ex.ToString();
-                return RedirectToAction(nameof(Index));
-                //return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Event");
             }
-            finally
-            {
-
-            }
-
         }
 
         //[HttpPost]
@@ -131,9 +71,54 @@ namespace YourScheduler.WebApplication.Controllers
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserEventService.GetMyEvents(user.Id);
             return View(model);
-            //var model = _eventService.GetAvailableEvents();
-            //return View(model);
         }
 
+        //// GET: ApplicationUserEventController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
+
+        //// GET: ApplicationUserEventController/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: ApplicationUserEventController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //// GET: ApplicationUserEventController/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: ApplicationUserEventController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

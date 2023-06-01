@@ -101,8 +101,5 @@ namespace YourScheduler.UI.Controllers
         {
             return RedirectToAction("MyTeams", "ApplicationUserTeam");
         }
-
-
-
     }
 }
