@@ -73,6 +73,31 @@ namespace YourScheduler.WebApplication.Controllers
             return View(model);
         }
 
+        // GET: EventController/Delete/5
+        public ActionResult DeleteFromCalendar(int id)
+        {
+            var model = _eventService.GetEventById(id);
+            return View(model);
+        }
+
+        // POST: EventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromCalendar(int id, EventDto model)
+        {
+            try
+            {
+                var userName = HttpContext.User.Identity.GetUserName();
+                var user = _userService.GetUserByEmail(userName);
+                _eventService.DeleteEventFromCalendar(id, user.Id);
+                return RedirectToAction("MyEvents");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         //// GET: ApplicationUserEventController/Details/5
         //public ActionResult Details(int id)
         //{

@@ -88,17 +88,19 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = _eventService.GetEventById(id);
+            return View(model);
         }
 
         // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, EventDto model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _eventService.DeleteEvent(id);
+                return RedirectToAction("Index");
             }
             catch
             {
