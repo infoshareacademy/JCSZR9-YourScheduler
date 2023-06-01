@@ -62,6 +62,9 @@
                     </td>
                 }
                 <td>
+                    <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
+                </td>
+                <td>
                     <a asp-controller="ApplicationUserEvent" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-primary">Dodaj wydarzenie</a>
                 </td>
             </tr>

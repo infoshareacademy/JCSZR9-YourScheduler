@@ -18,6 +18,7 @@ namespace YourScheduler.WebApplication.Controllers
             _eventService = eventService;
             _userService = userService;
         }
+
         // GET: EventController
         [Authorize]
         public ActionResult Index()
@@ -29,7 +30,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = _eventService.GetEventById(id);
+            return View(model);
         }
 
         // GET: EventController/Create
