@@ -75,6 +75,9 @@
                 <td>
                     <a asp-controller="ApplicationUserEvent" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
                 </td>
+                <td>
+                    <a asp-action="EventMembers" asp-route-id="@item.Id">InfoAboutEvent</a>
+                </td>
             </tr>
         }
     </tbody>

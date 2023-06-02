@@ -33,6 +33,9 @@
                 <td>
                     <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisTeam</a>
                 </td>
+                <td>
+                    <a asp-action="TeamMembers" asp-route-id="@item.Id">InfoAboutTeam</a>
+                </td>
             </tr>
         }
     </tbody>

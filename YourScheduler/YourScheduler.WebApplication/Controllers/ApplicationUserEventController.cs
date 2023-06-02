@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
 using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
 
@@ -145,5 +147,14 @@ namespace YourScheduler.WebApplication.Controllers
         //        return View();
         //    }
         //}
+        [Route("eventmembers/{id:int}")]
+        public ActionResult EventMembers(int id)
+        {
+            dynamic myModel = new ExpandoObject();
+            myModel.happening = _eventService.GetEventById(id);
+            myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
+            return View(myModel);         
+        }
+
     }
 }
