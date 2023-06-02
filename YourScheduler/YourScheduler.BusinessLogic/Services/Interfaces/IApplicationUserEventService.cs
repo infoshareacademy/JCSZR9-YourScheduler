@@ -13,5 +13,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public List<EventDto> GetMyEvents(int applicationUserId);
 
+        public List<UserDto> GetUsersForEvent(int eventId);
+
     }
 }

@@ -12,5 +12,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
         public void AddTeamForUser(int applicationUserId, int teamId);
 
         public List<TeamDto> GetMyTeams(int applicationUserId);
+
+        public List<UserDto> GetUsersForTeam(int teamid);
     }
 }

@@ -47,6 +47,9 @@
                 <td>
                     <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
                 </td>
+                <td>
+                    <a asp-action="EventMembers" asp-route-id="@item.Id">InfoAboutEvent</a>
+                </td>
             </tr>
         }
     </tbody>
