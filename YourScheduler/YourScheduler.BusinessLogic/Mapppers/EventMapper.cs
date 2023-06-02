@@ -37,5 +37,19 @@ namespace YourScheduler.BusinessLogic.Mapppers
             };
             return eventToBase;
         }
+
+        public Event EventDtoWithIdToEventMap(EventDto eventDto)
+        {
+            Event eventToBase = new Event
+            {
+                EventId = eventDto.Id,
+                Name = eventDto.Name,
+                Description = eventDto.Description,
+                Date = eventDto.Date,
+                IsOpen = eventDto.Isopen,
+                administratorId = eventDto.administratorId
+            };
+            return eventToBase;
+        }
     }
 }

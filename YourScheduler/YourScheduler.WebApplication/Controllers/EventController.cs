@@ -67,16 +67,18 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = _eventService.GetEventById(id);
+            return View(model);
         }
 
         // POST: EventController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EventDto model)
         {
             try
             {
+                _eventService.UpdateEvent(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
