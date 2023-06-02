@@ -4,7 +4,7 @@ using YourScheduler.BusinessLogic.Models.DTOs;
 
 namespace YourScheduler.BusinessLogic.Models;
 
-public partial class UsersEvent
+public  class UsersEvent
 {
     public int Id { get; set; }
 

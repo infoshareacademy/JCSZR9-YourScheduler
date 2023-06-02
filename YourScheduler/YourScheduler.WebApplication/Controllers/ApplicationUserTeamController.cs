@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 
@@ -146,6 +147,15 @@ namespace YourScheduler.WebApplication.Controllers
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserTeamService.GetMyTeams(user.Id);
             return View(model);          
+        }
+
+        [Route("teammembers/{id:int}")]
+        public ActionResult TeamMembers(int id)
+        {
+            dynamic myModel = new ExpandoObject();
+            myModel.team = _teamService.GetTeamById(id);
+            myModel.users = _applicationUserTeamService.GetUsersForTeam(id);
+            return View(myModel);        
         }
     }
 }
