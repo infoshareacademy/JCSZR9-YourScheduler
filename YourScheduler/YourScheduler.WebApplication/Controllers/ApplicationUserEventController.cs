@@ -15,25 +15,12 @@ namespace YourScheduler.WebApplication.Controllers
         private readonly IEventService _eventService;
         private readonly IApplicationUserEventService _applicationUserEventService;
         private readonly IUserService _userService;
-        // private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _signInManager;
         public ApplicationUserEventController(IEventService eventService, IApplicationUserEventService applicationUserEventService, IUserService userService)
         {
-
             _eventService = eventService;
             _applicationUserEventService = applicationUserEventService;
             _userService = userService;
-
-            // _signInManager = signInManager;
-
         }
-
-        //// GET: ApplicationUserEventController
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    var model = _eventService.GetAvailableEvents();
-        //    return View(model);
-        //}
 
         // GET: ApplicationUserEventController/Delete/5
         [Route("addthisevent/{id:int}")]
@@ -63,10 +50,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        //[HttpPost]
-        // [ValidateAntiForgeryToken]
-        //[Route("applicationuserevent/myevents")]
-        // [Authorize]
         public ActionResult MyEvents()
         {
             var userName = HttpContext.User.Identity.GetUserName();
@@ -100,53 +83,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        //// GET: ApplicationUserEventController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        //// GET: ApplicationUserEventController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: ApplicationUserEventController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: ApplicationUserEventController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: ApplicationUserEventController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
@@ -155,6 +91,5 @@ namespace YourScheduler.WebApplication.Controllers
             myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
             return View(myModel);         
         }
-
     }
 }

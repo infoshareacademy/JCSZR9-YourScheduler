@@ -5,9 +5,7 @@
     ViewData["Title"] = "MyEvents";
 }
 
-<h1>Info about event</h1>
-
-
+<h2>Szczegóły wydarzenia</h2>
 <table class="table">
     <thead>
         <tr>
@@ -23,11 +21,9 @@
             <th>
                 Isopen
             </th>
-
         </tr>
     </thead>
     <tbody>
-
         <tr>
             <td>
                 @Model.happening.Name
@@ -42,29 +38,25 @@
                 @Model.happening.Isopen
             </td>          
         </tr>
-
     </tbody>
 </table>
 
-<h1>Members</h1>
-
+<h2>Uczestnicy</h2>
 <table class="table">
     <thead>
         <tr>
-
             <th>
-                Name
+                Imię
             </th>
             <th>
-                Surname
+                Nazwisko
             </th>
             <th>
-                Displayname
+                Pseudonim
             </th>
             <th>
-                Email
+                Adres e-mail
             </th>
-
         </tr>
     </thead>
     <tbody>
@@ -83,9 +75,10 @@
                 <td>
                     @item.Email
                 </td>
-           
-
             </tr>
         }
     </tbody>
 </table>
+
+<hr />
+<a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Powrót</a>
