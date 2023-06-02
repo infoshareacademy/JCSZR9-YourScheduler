@@ -61,5 +61,19 @@ namespace YourScheduler.Infrastructure.Repositories
                 _dbContext.SaveChanges();
             }
         }
+
+        public void UpdateEvent(Event eventToBase)
+        {
+            var eventToUpdate = _dbContext.Events.SingleOrDefault(e => e.EventId == eventToBase.EventId);
+            if (eventToUpdate != null)
+            {
+                eventToUpdate.Name = eventToBase.Name;
+                eventToUpdate.Description = eventToBase.Description;
+                eventToUpdate.Date = eventToBase.Date;
+                eventToUpdate.IsOpen = eventToBase.IsOpen;
+                eventToUpdate.administratorId = eventToBase.administratorId;
+                _dbContext.SaveChanges();
+            }
+        }
     }
 }
