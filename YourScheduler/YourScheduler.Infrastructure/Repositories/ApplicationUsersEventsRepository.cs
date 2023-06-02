@@ -31,30 +31,20 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public List<Event> GetEventsForUser(int applicationUserId)
         {
-            List<int> ids=new List<int>();
+            List<int> ids = new List<int>();
             List<Event> events = new List<Event>();
 
-             ids = _dbContext.ApplicationUsersEvents.Where(x=>x.ApplicationUserId==applicationUserId).Select(x=>x.EventId).ToList();
-
-            //foreach (var item in _dbContext.ApplicationUsersEvents)
-            //{
-            //    if (item.ApplicationUserId == applicationUserId)
-            //    {
-            //        ids.Add(item.EventId);
-            //    }
-
-            //}
-
-            // events=_dbContext.Events.Where(x=>x.EventId==x.EventId).ToList();
-
-            foreach (var eventId in ids)
-            {
-                var eventFromDatabase = _dbContext.Events.FirstOrDefault(e => e.EventId == eventId);
-                events.Add(eventFromDatabase);
-            }
+            events = _dbContext.ApplicationUsersEvents.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Event).ToList();
 
 
-            return events;        
+            return events;
+        }
+
+        public List<ApplicationUser> GetApplicationUsersForEvent(int eventId)
+        {
+            List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
+            applicationUsers = _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToList();
+            return applicationUsers;
         }
     }
 }

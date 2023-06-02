@@ -14,5 +14,8 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
         public void SaveData();
 
         List<Team> GetTeamsForUser(int applicationUserId);
+
+        public List<ApplicationUser> GetApplicationUsersForTeam(int teamId);
+
     }
 }
