@@ -1,0 +1,90 @@
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+
+
+@model dynamic;
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+<h1>Info about team</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Model.team.Name
+            </td>
+            <td>
+                @Model.team.Description
+            </td>
+
+
+            @* <td>
+            <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
+            </td>*@
+
+        </tr>
+
+    </tbody>
+</table>
+
+<h1>Members</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Displayname
+            </th>
+            <th>
+                Email
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserDto item in Model.users)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Surname
+                </td>
+                <td>
+                    @item.Displayname
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                @* <td>
+            <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
+            </td>*@
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

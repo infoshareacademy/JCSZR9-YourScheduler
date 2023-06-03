@@ -1,0 +1,58 @@
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+@model UserDto
+
+@{
+    ViewData["Title"] = "info about user";
+}
+
+<h1>General info about me</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="Id"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Id
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Surname"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Surname
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Displayname"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Displayname
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Email"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Password"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PasswordHash
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-danger">Edytuj - TODO</a> |
+    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Moje wydarzenia</a> |
+    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a> |
+    <a asp-action="RedirectToAppliactionUserTeam" class="btn btn-danger">Moje zespoły - TODO</a> |
+    <a asp-action="Create" class="btn btn-danger">Stwórz nowy zespół - TODO</a>
+</div>
