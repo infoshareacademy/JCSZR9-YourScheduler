@@ -1,0 +1,84 @@
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+@model dynamic;
+
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+<h2>Szczegóły wydarzenia</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+               Date
+            </th>
+            <th>
+                Isopen
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.happening.Name
+            </td>
+            <td>
+                @Model.happening.Description
+            </td>
+            <td>
+                @Model.happening.Date
+            </td>
+            <td>
+                @Model.happening.Isopen
+            </td>          
+        </tr>
+    </tbody>
+</table>
+
+<h2>Uczestnicy</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imię
+            </th>
+            <th>
+                Nazwisko
+            </th>
+            <th>
+                Pseudonim
+            </th>
+            <th>
+                Adres e-mail
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserDto item in Model.users)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Surname
+                </td>
+                <td>
+                    @item.Displayname
+                </td>
+                <td>
+                    @item.Email
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+<a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Powrót</a>
