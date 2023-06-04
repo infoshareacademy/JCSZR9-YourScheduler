@@ -16,5 +16,8 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
         public List<Event> GetAvailableEvents();
 
         public Event GetEventById(int id);
+        public void DeleteEventById(int id);
+        public void DeleteEventFromCalendarById(int id, int userId);
+        public void UpdateEvent(Event eventToBase);
     }
 }

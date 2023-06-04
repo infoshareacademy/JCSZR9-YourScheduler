@@ -1,12 +1,10 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +22,10 @@ namespace YourScheduler.Infrastructure.Initialization
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<IEventsRepository, AllEventsRepository>();
+            services.AddScoped<IEventsRepository, EventsRepository>();
             services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, AllTeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
-          
         }
     }
 }

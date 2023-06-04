@@ -44,8 +44,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Redirect" class="btn btn-dark">MyEvents</a> |
-    <a asp-action="RedirectToAppliactionUserTeam" class="btn btn-dark">MyTeams</a> |
-    <a asp-action="Details">Create new Event</a>
-    <a asp-action="Create">Create new Team</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-danger">Edytuj - TODO</a> |
+    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Moje wydarzenia</a> |
+    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a> |
+    <a asp-action="RedirectToAppliactionUserTeam" class="btn btn-danger">Moje zespoły - TODO</a> |
+    <a asp-action="Create" class="btn btn-danger">Stwórz nowy zespół - TODO</a>
 </div>

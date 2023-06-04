@@ -14,5 +14,10 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
         public List<EventDto> GetAvailableEvents();
 
         public EventDto GetEventById(int id);
+
+        public void DeleteEvent(int id);
+
+        public void DeleteEventFromCalendar(int id, int userId);
+        public void UpdateEvent(EventDto model);
     }
 }
