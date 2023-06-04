@@ -13,5 +13,4 @@ public  class ApplicationUserTeam
 
     public int TeamId { get; set; }
     public Team Team { get; set; }
-    
 }

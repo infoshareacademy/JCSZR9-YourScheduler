@@ -12,5 +12,6 @@ namespace YourScheduler.BusinessLogic.Mapppers.Interfaces
     {
         EventDto EventToEventDtoMapp(Event eventToBase);
         Event EventDtoToEventMap(EventDto eventDto);
+        Event EventDtoWithIdToEventMap(EventDto eventDto);
     }
 }

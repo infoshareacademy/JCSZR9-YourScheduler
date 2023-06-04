@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,28 +30,17 @@ namespace YourScheduler.Infrastructure.Repositories
             List<int> ids = new List<int>();
             List<Team> teams = new List<Team>();
 
-            ids = _dbContext.ApplicationUsersTeams.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.TeamId).ToList();
-
-            //foreach (var item in _dbContext.ApplicationUsersEvents)
-            //{
-            //    if (item.ApplicationUserId == applicationUserId)
-            //    {
-            //        ids.Add(item.EventId);
-            //    }
-
-            //}
-
-            // events=_dbContext.Events.Where(x=>x.EventId==x.EventId).ToList();
-
-            foreach (var teamId in ids)
-            {
-                var teamFromDataBase = _dbContext.Teams.FirstOrDefault(e => e.TeamId == teamId);
-                teams.Add(teamFromDataBase);
-            }
-
-
+            teams = _dbContext.ApplicationUsersTeams.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Team).ToList();
+            
             return teams;
 
+        }
+
+        public List<ApplicationUser> GetApplicationUsersForTeam(int teamId)
+        {
+            List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
+            applicationUsers = _dbContext.ApplicationUsersTeams.Where(x => x.TeamId == teamId).Select(x => x.ApplicationUser).ToList();
+            return applicationUsers;
         }
     }
 }

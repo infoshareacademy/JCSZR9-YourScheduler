@@ -15,6 +15,7 @@ public  class Event
 
     public bool IsOpen { get; set; }
 
-    ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; } 
+    public int administratorId { get; set; }
 
+    ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
 }

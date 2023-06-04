@@ -17,10 +17,13 @@ namespace YourScheduler.BusinessLogic.Services
         private readonly IApplicationUsersEventsRepository _applicationUsersEventsRepository;
 
         private readonly IEventMapper _eventMapper;
-        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper)
+
+        private readonly IUserMapper _userMapper;
+        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper, IUserMapper userMapper)
         {
             _applicationUsersEventsRepository = applicationUsersEventsRepository;
-            _eventMapper = eventMapper; 
+            _eventMapper = eventMapper;
+            _userMapper = userMapper;
         }
 
         public void AddEventForUser(int applicationUserId, int eventId)
@@ -42,6 +45,19 @@ namespace YourScheduler.BusinessLogic.Services
             }       
           
             return myEvents;
+        }
+
+        public List<UserDto> GetUsersForEvent(int eventId)
+        {
+            List<UserDto> usersDtos = new List<UserDto>();
+            var usersForEvents=_applicationUsersEventsRepository.GetApplicationUsersForEvent(eventId);
+
+            foreach (var user in usersForEvents)
+            {
+                var userDto=_userMapper.UserToUserDtoMapp(user);
+                usersDtos.Add(userDto);
+            }
+            return usersDtos;
         }
     }
 }

@@ -29,11 +29,6 @@ namespace YourScheduler.BusinessLogic.Services
             _eventsRepository.SaveData();
         }
 
-        //public List<EventDto> GetAvailableEvents()
-        //{
-        //   
-        //}
-
         public List<EventDto> GetAvailableEvents()
         {
             List<EventDto> eventsDto = new List<EventDto>();
@@ -51,6 +46,22 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var eventFromDataBase= _eventsRepository.GetEventById(id);
             return _eventMapper.EventToEventDtoMapp(eventFromDataBase);
+        }
+
+        public void DeleteEvent(int id)
+        {
+            _eventsRepository.DeleteEventById(id);
+        }
+
+        public void DeleteEventFromCalendar(int id, int userId)
+        {
+            _eventsRepository.DeleteEventFromCalendarById(id, userId);
+        }
+
+        public void UpdateEvent(EventDto eventDto)
+        {
+            var eventToBase = _eventMapper.EventDtoWithIdToEventMap(eventDto);
+            _eventsRepository.UpdateEvent(eventToBase);
         }
     }
 
