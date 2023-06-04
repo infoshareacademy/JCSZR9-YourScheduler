@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
@@ -59,18 +60,22 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Display name")]
+            public string DisplayName { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var displayName = user.Displayname;
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                DisplayName = displayName
             };
         }
 
@@ -110,6 +115,18 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            if (Input.DisplayName != user.Displayname && !Input.DisplayName.IsNullOrEmpty())
+            {
+                user.Displayname = Input.DisplayName;
+                await _userManager.UpdateAsync(user);
+            }
+            else if (Input.DisplayName.IsNullOrEmpty())
+            {
+                StatusMessage = "Display Name cannot be set to null.";
+                return RedirectToPage();
+            }
+                
+            
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
