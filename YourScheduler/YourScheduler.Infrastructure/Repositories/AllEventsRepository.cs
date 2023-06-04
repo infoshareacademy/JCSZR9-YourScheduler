@@ -28,9 +28,9 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public List<Event> GetAvailableEvents()
         {
-            List<Event> events = new List<Event>();
+            //List<Event> events = new List<Event>();
 
-            return events = _dbContext.Events.ToList();
+            return _dbContext.Events.ToList();
         }
 
         public Event GetEventById(int id)

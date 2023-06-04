@@ -35,7 +35,7 @@ namespace YourScheduler.Infrastructure.Repositories
         public List<ApplicationUser> GetUsersFromDataBase()
         {
             var users = new List<ApplicationUser>();   
-            users=_dbContext.Users.ToList();
+            users = _dbContext.Users.ToList();
 
             return users;
         }
