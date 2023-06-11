@@ -50,12 +50,20 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        public ActionResult MyEvents()
+        public ActionResult MyEvents(string searchString)
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserEventService.GetMyEvents(user.Id);
-            return View(model);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
         }
 
         // GET: EventController/Delete/5
