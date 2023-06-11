@@ -13,12 +13,17 @@
     <a asp-controller="Event" asp-action="" class="btn btn-danger">Pokaż nadchodzące wydarzenia - TODO</a>
 </p>
 <hr />
-<div class="input-group mb-3">
-    <input type="text"
-           class="form-control form-control-lg"
-           placeholder="Wpisz nazwę wyszukiwanego wydarzenia" />
-    <button type="button" class="input-group-text btn-danger">Szukaj - TODO</button>
-</div>
+
+<form asp-controller="ApplicationUserEvent" asp-action="MyEvents">
+    <div class="input-group mb-3">
+        <input type="text"
+               class="form-control form-control-lg"
+               placeholder="Wpisz nazwę wyszukiwanego wydarzenia"
+               name="searchString"/>
+        <input type="submit" value="Szukaj" class="btn btn-primary" />
+    </div>
+</form>
+
 <hr />
 <table class="table">
     <thead>
