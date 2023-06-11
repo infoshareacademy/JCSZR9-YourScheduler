@@ -99,5 +99,36 @@ namespace YourScheduler.WebApplication.Controllers
             myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
             return View(myModel);         
         }
+
+        public ActionResult MyEventsFinished(string searchString)
+        {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model.Where(e => e.Date < DateTime.Now));
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date < DateTime.Now).ToList();
+                return View(model);
+            }
+        }
+        public ActionResult MyEventsIncoming(string searchString)
+        {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model.Where(e => e.Date >= DateTime.Now));
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date >= DateTime.Now).ToList();
+                return View(model);
+            }
+        }
     }
 }

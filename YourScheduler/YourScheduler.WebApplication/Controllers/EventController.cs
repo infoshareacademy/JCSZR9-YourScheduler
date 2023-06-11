@@ -23,7 +23,9 @@ namespace YourScheduler.WebApplication.Controllers
         [Authorize]
         public ActionResult Index(string searchString)
         {
-            var model = _eventService.GetAvailableEvents();
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _eventService.GetAvailableEvents(user.Id);
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
