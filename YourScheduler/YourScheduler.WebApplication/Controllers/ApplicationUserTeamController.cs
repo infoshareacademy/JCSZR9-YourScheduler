@@ -120,14 +120,7 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch (Exception ex)
             {
-                // return View("Error", new HandleErrorInfo(ex, "EmployeeInfo", "Create"));
-                // return View"dupa";
-                return View("Error");
-                // throw ex;
-                // return View("Error");
-                // ex.ToString();
-               
-                //return RedirectToAction("Error", "Home");
+                return View("Error");             
             }
             finally
             {
@@ -148,9 +141,6 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("teammembers/{id:int}")]
         public ActionResult TeamMembers(int id)
         {
-            //dynamic myModel = new ExpandoObject();
-            //myModel.team = _teamService.GetTeamById(id);
-            //myModel.users = _applicationUserTeamService.GetUsersForTeam(id);
             TeamMembersDto teamMembersDto = new TeamMembersDto();
             var modelTeam = _teamService.GetTeamById(id);
             teamMembersDto.Name = modelTeam.Name;
