@@ -86,10 +86,21 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
-            dynamic myModel = new ExpandoObject();
-            myModel.happening = _eventService.GetEventById(id);
-            myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
-            return View(myModel);         
+            //dynamic myModel = new ExpandoObject();
+            //myModel.happening = _eventService.GetEventById(id);
+            //myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
+            //return View(myModel);
+
+            EventMembersDto eventMembersDto = new EventMembersDto();
+            var modelEvent = _eventService.GetEventById(id);
+            eventMembersDto.Name = modelEvent.Name;
+            eventMembersDto.Description = modelEvent.Description;
+            eventMembersDto.Date=modelEvent.Date;
+            eventMembersDto.Isopen = modelEvent.Isopen; 
+
+            eventMembersDto.EventUsers = _applicationUserEventService.GetUsersForEvent(id);
+
+            return View(eventMembersDto);
         }
     }
 }
