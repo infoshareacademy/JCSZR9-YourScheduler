@@ -1,4 +1,4 @@
-namespace YourScheduler.BusinessLogic.Models
+namespace YourScheduler.BusinessLogic.Models.DTOs
 {
     public class ErrorViewModel
     {

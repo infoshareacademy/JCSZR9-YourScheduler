@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using YourScheduler.BusinessLogic.Models;
+using YourScheduler.BusinessLogic.Models.DTOs;
 
 namespace YourScheduler.WebApplication.Controllers
 {
