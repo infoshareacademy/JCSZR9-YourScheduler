@@ -66,7 +66,8 @@ namespace YourScheduler.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsOpen = table.Column<bool>(type: "bit", nullable: false)
+                    IsOpen = table.Column<bool>(type: "bit", nullable: false),
+                    administratorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,26 +247,26 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Displayname", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AABL8tgoxdEScXoy1miYUMFIo87A/49kDCV6rNijOqfB6/CjgLA5/wWJyEPxvtxwIg==", "111 222 333", false, "HB22IUN4ALIEU6KEBDNUSYURRHCH54ZW", "admin", false, "admin@gmail.com" },
-                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "AFkq6WCyiWWmsop5LAmMgyhHyi6Fk3NbqrR5oYnImebMd/wCn3MUMF1U/bvjzo/WuQ==", "666 598 456", false, "RBG3Y3V7MB2HKEXBQRT7YLOKUCMIDAWL", "Jarzyna", false, "jarzyna@gmail.com" },
-                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AKaAqldHfDIqlAnlErlM7C8ZMvDh0/z0jOrdsAr7TLSzK/+MwmGK4FHzla+FiB1aIg==", "666 598 456", false, "FQW276RVIH244FDDUQRV5NZHIFONK6Q5", "Johnson", false, "jane_johnson@gmail.com" },
-                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AFqkPSTTo3jeXe8gMwAOZNogcC/a+WEHj+I/mGloaaUBLq+sIAh4OpLs38I4u9sDjg==", "987 654 321", false, "I2DYO7JPMPCFOJT36QVWUNS4C3LBV6GT", "Williams", false, "michaelww@gmail.com" },
-                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "AOI6UEQLsqVEE3a3pWLyongEr/unqKsdMKcRAiAbT749ZiwWTGU7LMv3PCDlBw2ohA==", "123 456 789", false, "UK63FTL6NLDSE2OYH4OAPTM3GO564O4A", "Jones", false, "joneswilliam@gmail.com" },
-                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AF8WttLPc/VrI/JEh83jg/rso/FfimQC4jbiq3zCgOQM5pK62uWYYSZepzRgPp5/Fw==", "666 598 456", false, "YBIR5FCNR5UIGYIMNABYR76VG653AKNL", "Brown", false, "oliviab@gmail.com" }
+                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AAmKiATW1ZAIzsXtA9NQOhogpEAVDcvjUA+rZIllwQcS7TG5oqM/j4qexlYd3bnv+g==", "111 222 333", false, "UVNNWT2BVTAY2LYXTIEICE6HCLW3COAO", "admin", false, "admin@gmail.com" },
+                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "ACtH3haBlFkllsZfmRvlIiVHwI3jj1DXq4bCNu6mi8Q+fpu77udW40lhjmZrVGPvNg==", "666 598 456", false, "35UX6XYDOWFQFGEINWZKV5XB5Z3PKBZV", "Jarzyna", false, "jarzyna@gmail.com" },
+                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AB2Akj1iIF9MlQ6TTnBG15s0FchVtPJdePfnRrTak2MCGqc1bI05vRkOELRtHU/jRw==", "666 598 456", false, "HO2PTVQQR736D3Y7Q5X4DDXMG4SEASER", "Johnson", false, "jane_johnson@gmail.com" },
+                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AP8Caw5YynP8ea4LDmXIrhSBQfyRsvc65BEf4OtLx/q/+wA0Jj9i3llJLqUYAR3/Ng==", "987 654 321", false, "FXDQTOWIUERQI6NJQDPQKYTGE2QOHXB7", "Williams", false, "michaelww@gmail.com" },
+                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "AG0iuRdk+jLIb1yFBp6IVdFKZ24DqIGF+NbwfwWRIGgwsyUhySxTTA30Dnjle6TCfg==", "123 456 789", false, "SDS2ZEOUSTBBJDAWJ33PYIQB4OPSIUJS", "Jones", false, "joneswilliam@gmail.com" },
+                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AJm3W5C5S2Ezf6TVBmOmVY2Pp4O1+Bm25XFacJ4iIMITtU/m1AmGbeqf+/67fpd4eg==", "666 598 456", false, "RTYSSU24HXVMULFYLJSFAISK3FUJEM22", "Brown", false, "oliviab@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "EventId", "Date", "Description", "IsOpen", "Name" },
+                columns: new[] { "EventId", "Date", "Description", "IsOpen", "Name", "administratorId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Koncert z okazji urodzin TVP", true, "Koncert Zenka Martyniuka" },
-                    { 2, new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wyjątkowe spotkanie z autorami bestsellerowych książek", true, "Spotkanie Literackie: Autorzy Bestsellerów" },
-                    { 3, new DateTime(2023, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Spektakl muzyczny pełen magii i emocji", true, "Występ Teatru Muzycznego: Magiczna Melodia" },
-                    { 4, new DateTime(2023, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Najnowsze trendy i innowacje technologiczne na światowym poziomie", true, "Konferencja Technologiczna: Przyszłość Innowacji" },
-                    { 5, new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata", false, "Sesja Filmowa: Kino bez Granic" },
-                    { 6, new DateTime(2023, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata", false, "Pokaz Kulinarny: Świat Smaków" },
-                    { 7, new DateTime(2023, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń", true, "Sztuka na Scenie: Wieczór Teatru" }
+                    { 1, new DateTime(2023, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Koncert z okazji urodzin TVP", true, "Koncert Zenka Martyniuka", 1 },
+                    { 2, new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wyjątkowe spotkanie z autorami bestsellerowych książek", true, "Spotkanie Literackie: Autorzy Bestsellerów", 1 },
+                    { 3, new DateTime(2023, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Spektakl muzyczny pełen magii i emocji", true, "Występ Teatru Muzycznego: Magiczna Melodia", 2 },
+                    { 4, new DateTime(2023, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Najnowsze trendy i innowacje technologiczne na światowym poziomie", true, "Konferencja Technologiczna: Przyszłość Innowacji", 3 },
+                    { 5, new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata", false, "Sesja Filmowa: Kino bez Granic", 4 },
+                    { 6, new DateTime(2023, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata", false, "Pokaz Kulinarny: Świat Smaków", 5 },
+                    { 7, new DateTime(2023, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń", true, "Sztuka na Scenie: Wieczór Teatru", 6 }
                 });
 
             migrationBuilder.InsertData(
