@@ -21,10 +21,20 @@ namespace YourScheduler.WebApplication.Controllers
 
         // GET: EventController
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var model = _eventService.GetAvailableEvents();
-            return View(model);
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _eventService.GetAvailableEvents(user.Id);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
         }
 
         // GET: EventController/Details/5
