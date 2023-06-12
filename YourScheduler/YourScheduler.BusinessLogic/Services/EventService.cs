@@ -29,11 +29,11 @@ namespace YourScheduler.BusinessLogic.Services
             _eventsRepository.SaveData();
         }
 
-        public List<EventDto> GetAvailableEvents()
+        public List<EventDto> GetAvailableEvents(int loggedUserId)
         {
             List<EventDto> eventsDto = new List<EventDto>();
 
-            foreach (var eventFromDatabase in _eventsRepository.GetAvailableEvents())
+            foreach (var eventFromDatabase in _eventsRepository.GetAvailableEvents(loggedUserId))
             {
                 EventDto eventDto = new EventDto();
                 eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
