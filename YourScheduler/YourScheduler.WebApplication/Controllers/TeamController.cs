@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.WebApplication.Controllers
@@ -15,7 +16,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController
         public ActionResult Index()
         {
-            return View();
+            var model = _teamService.GetAvailableTeams();
+            return View(model);
         }
 
         // GET: TeamController/Details/5
@@ -70,17 +72,20 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = _teamService.GetTeamById(id);
+            return View(model);
+           
         }
 
         // POST: TeamController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, TeamDto model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _teamService.DeleteEvent(id);
+                return RedirectToAction("Index");
             }
             catch
             {
