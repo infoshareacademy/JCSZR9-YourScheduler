@@ -26,11 +26,7 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        //public ApplicationUser GetUserById(string id)
-        //{
-        //    var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
-        //    return user;
-        //}
+      
 
         public List<ApplicationUser> GetUsersFromDataBase()
         {
@@ -57,13 +53,6 @@ namespace YourScheduler.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        //public List<Event> GetEventsFromDataBase() 
-        //{ 
-        //  var events = new List<Event>();
-        //  events = _dbContext.Events
-        // .Where(e => e.UsersEvents.Any(ue => ue.UserId == 4a0b840d - 813a - 41ca - 8c03 - dddbc5bfbe3e))
-        // .ToList();
-        //   return events;
-        //}
+      
     }
 }
