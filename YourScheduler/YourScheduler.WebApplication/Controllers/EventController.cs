@@ -86,6 +86,9 @@ namespace YourScheduler.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EventDto model)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            model.administratorId = user.Id;
             try
             {
                 _eventService.UpdateEvent(model);
