@@ -10,16 +10,16 @@
     <thead>
         <tr>
             <th>
-                Name
+                Nazwa wydarzenia
             </th>
             <th>
-                Description
+                Opis wydarzenia
             </th>
             <th>
-               Date
+                Data
             </th>
             <th>
-                Isopen
+                Wydarzenie publiczne
             </th>
         </tr>
     </thead>
@@ -32,11 +32,20 @@
                 @Model.Description
             </td>
             <td>
-                @Model.Date
+                @Model.Date.ToString("yyyy-MM-dd HH:mm")
             </td>
-            <td>
-                @Model.Isopen
-            </td>          
+            @if (@Model.Isopen == true)
+            {
+                <td>
+                    Tak
+                </td>
+            }
+            @if (@Model.Isopen == false)
+            {
+                <td>
+                    Nie
+                </td>
+            }        
         </tr>
     </tbody>
 </table>
