@@ -18,10 +18,20 @@ namespace YourScheduler.WebApplication.Controllers
           
         }
         // GET: TeamController
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var model = _teamService.GetAvailableTeams();
-            return View(model);
+
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
+           
         }
 
         // GET: TeamController/Details/5
