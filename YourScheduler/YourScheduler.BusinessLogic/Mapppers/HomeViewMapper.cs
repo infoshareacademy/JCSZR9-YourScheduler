@@ -16,7 +16,7 @@ namespace YourScheduler.BusinessLogic.Mapppers
             HomeViewDto homeViewDto = new HomeViewDto()
             {
                Id =homeView.HomeViewId,
-               GeneralInfo=homeView.GeneralInfo,
+               GeneralInfo = homeView.GeneralInfo,
                ImgPath=homeView.ImgPath,
             };
 
