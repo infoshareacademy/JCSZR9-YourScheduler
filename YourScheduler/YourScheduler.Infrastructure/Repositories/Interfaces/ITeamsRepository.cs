@@ -21,5 +21,7 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 
         public void DeleteTeamFromCalendarById(int id, int userId);
 
+        public void UpdateTeam(Team teamToBase);
+
     }
 }

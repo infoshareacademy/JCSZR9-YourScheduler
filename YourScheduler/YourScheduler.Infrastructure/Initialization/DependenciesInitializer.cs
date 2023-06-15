@@ -18,7 +18,7 @@ using YourScheduler.Infrastructure.Repositories.Interfaces;
 namespace YourScheduler.Infrastructure.Initialization
 {
     public static class DependenciesInitializer
-    {      
+    {
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
@@ -26,6 +26,7 @@ namespace YourScheduler.Infrastructure.Initialization
             services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, TeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
+            services.AddScoped<IHomeViewRepository, HomeViewRepository>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services;
@@ -9,21 +10,35 @@ namespace YourScheduler.WebApplication.Controllers
     public class TeamController : Controller
     {
         private readonly ITeamService _teamService;
-        public TeamController(ITeamService teamService)
+        private readonly IUserService _userService;
+        public TeamController(ITeamService teamService, IUserService userService)
         {
             _teamService = teamService;
+            _userService = userService;
+          
         }
         // GET: TeamController
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var model = _teamService.GetAvailableTeams();
-            return View(model);
+
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
+           
         }
 
         // GET: TeamController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = _teamService.GetTeamById(id);
+            return View(model);
         }
 
         // GET: TeamController/Create
@@ -39,7 +54,13 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                _teamService.AddTeam(model);
+                var userName = HttpContext.User.Identity.GetUserName();
+                var user = _userService.GetUserByEmail(userName);
+                if (model != null)
+                {
+                    model.AdministratorId = user.Id;
+                    _teamService.AddTeam(model);
+                }
                 return RedirectToAction("Index", "User");
             }
             catch
@@ -51,16 +72,31 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model= _teamService.GetTeamById(id);
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            if (model.AdministratorId==user.Id)
+            {
+                return View(model);
+            }
+            else
+            {
+                return View("EditError");
+            }
+            
         }
 
         // POST: TeamController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, TeamDto model)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            model.AdministratorId = user.Id;
             try
             {
+                _teamService.UpdateTeam(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
