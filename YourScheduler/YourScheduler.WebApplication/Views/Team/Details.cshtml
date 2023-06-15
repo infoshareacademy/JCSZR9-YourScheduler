@@ -1,11 +1,10 @@
 ﻿@model YourScheduler.BusinessLogic.Models.DTOs.TeamDto
 
 @{
-    ViewData["Title"] = "DeleteFromCalendar";
+    ViewData["Title"] = "Details";
 }
 
-
-<h3>Czy na pewno chcesz usunąć ten zespół ze swojego kalendarza?</h3>
+<h1>Szczegóły zespołu</h1>
 
 <div>
     <hr />
@@ -26,7 +25,8 @@
     </dl>
 </div>
 <div>
-    <form asp-action="DeleteFromCalendar">
-        <input type="submit" value="Usuń wydarzenie z kalendarza" class="btn btn-danger" />
-    </form>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a> 
+    <a asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a> 
 </div>
+
+

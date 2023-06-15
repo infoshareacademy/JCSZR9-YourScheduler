@@ -12,6 +12,7 @@ using YourScheduler.Infrastructure.Entities;
 using System.Buffers.Text;
 using YourScheduler.Infrastructure;
 
+
 namespace YourScheduler.Infrastructure
 {
     public class YourSchedulerDbContext:IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
@@ -21,6 +22,8 @@ namespace YourScheduler.Infrastructure
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
         public virtual DbSet<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
+
+        public virtual DbSet<HomeView> HomeViews { get; set; }
 
         public YourSchedulerDbContext(DbContextOptions options):base(options)
         {
@@ -54,6 +57,7 @@ namespace YourScheduler.Infrastructure
                 .HasData(SeedData.GetApplicationUserEventSeed());
             builder.Entity<ApplicationUserTeam>()
                 .HasData(SeedData.GetApplicationUserTeamSeed());
+            builder.Entity<HomeView>().HasData(SeedData.GetHomeViewSeed());
         }
     }
 }

@@ -10,4 +10,6 @@ public class TeamDto
     public string Name { get; set; }
 
     public string Description { get; set; }
+
+    public int AdministratorId { get; set; }
 }

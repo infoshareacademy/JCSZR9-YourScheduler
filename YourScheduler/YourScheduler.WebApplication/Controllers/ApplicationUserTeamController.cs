@@ -130,12 +130,20 @@ namespace YourScheduler.WebApplication.Controllers
         }
 
 
-        public ActionResult MyTeams()
+        public ActionResult MyTeams(string searchString)
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserTeamService.GetMyTeams(user.Id);
-            return View(model);          
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
         }
 
         [Route("teammembers/{id:int}")]
