@@ -1,0 +1,11 @@
+﻿@model YourScheduler.BusinessLogic.Models.DTOs.TeamDto
+
+@{
+    ViewBag.Title = "Błąd edycji zespołu";
+}
+
+<h1>Nie możesz edytować zespołu, nie jesteś twórcą zespołu</h1>
+
+<div>
+    <a asp-controller="ApplicationUserTeam" asp-action="MyTeams" class="btn btn-primary">Powrót</a>
+</div>

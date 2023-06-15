@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using YourScheduler.Infrastructure.Entities;
 using System.Buffers.Text;
 using YourScheduler.Infrastructure;
+using YourScheduler.BusinessLogic.Models.DTOs;
 
 namespace YourScheduler.Infrastructure
 {
@@ -21,6 +22,8 @@ namespace YourScheduler.Infrastructure
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
         public virtual DbSet<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
+
+        public virtual DbSet<HomeView> HomeViews { get; set; }
 
         public YourSchedulerDbContext(DbContextOptions options):base(options)
         {

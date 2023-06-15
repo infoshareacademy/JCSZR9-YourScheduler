@@ -61,5 +61,19 @@ namespace YourScheduler.Infrastructure.Repositories
                 _dbContext.SaveChanges();
             }
         }
+
+        public void UpdateTeam(Team teamToBase)
+        {
+            var teamToUpdate = _dbContext.Teams.SingleOrDefault(e => e.TeamId == teamToBase.TeamId);
+            if (teamToUpdate != null)
+            {
+                teamToUpdate.Name = teamToBase.Name;
+                teamToUpdate.Description = teamToBase.Description;
+                
+                _dbContext.SaveChanges();
+            }
+        }
     }
+
+
 }
