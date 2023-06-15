@@ -12,7 +12,7 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230613151014_init")]
+    [Migration("20230614100009_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -254,10 +254,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "admin",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AIc3ykdcPSkLLcsKV63f5bINgChZi8htdErNbvjpWXxFgGnftKLrSD/IszgwjyrmPw==",
+                            PasswordHash = "ABV/Z2g5+CV+uA6xwoB7EOzI/c2FsLk0ndjBXzJch1RLAqHiZ5W9+LNN4TMRzZsMSQ==",
                             PhoneNumber = "111 222 333",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3IYPEOY2AIGTOZRJVY76ASEKBP75TKPC",
+                            SecurityStamp = "2EIMTWGFNDZCQU6MVTPCXYUSFCSR4PX2",
                             Surname = "admin",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
@@ -274,10 +274,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Krzysztof",
                             NormalizedEmail = "JARZYNA@GMAIL.COM",
                             NormalizedUserName = "JARZYNA@GMAIL.COM",
-                            PasswordHash = "AL6kk4MYDY0UZune/HuADnvoSl3S2AicZSGbq/autMAyT0kcTqZJdfwrGRii9txc5Q==",
+                            PasswordHash = "AKXh7oO5uAGQM10wALHYS5KpJZq6f657rjEgLeXGieuE6n7T68FNQ295g8k1lchH+g==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "HR4B4UBYS3NQLKBMNFRAJMTHJSXULGLA",
+                            SecurityStamp = "P532F3ZIWBJCBMRSYLP6XM6DD3C3TY5H",
                             Surname = "Jarzyna",
                             TwoFactorEnabled = false,
                             UserName = "jarzyna@gmail.com"
@@ -294,10 +294,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Jane",
                             NormalizedEmail = "JANE_JOHNSON@GMAIL.COM",
                             NormalizedUserName = "JANE_JOHNSON@GMAIL.COM",
-                            PasswordHash = "AIyCSSFtR4hiMygw98kxbN9ipglNsKop3V90IdrI5GkQJoASotvp/tik5yZiDZzrGA==",
+                            PasswordHash = "ACMxCk4DETTXuyuiJk9P351x5d9Z7KsTdTCIs+es/OSbjjBXZdfmmtvz+E7DPN8SBA==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "J2WX6JKTEUDRILNR63GECKKOWDXA3OP7",
+                            SecurityStamp = "XXO2GJJQTEG6TTEAD57IPNEESYHUNOXN",
                             Surname = "Johnson",
                             TwoFactorEnabled = false,
                             UserName = "jane_johnson@gmail.com"
@@ -314,10 +314,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Michael",
                             NormalizedEmail = "MICHAELWW@GMAIL.COM",
                             NormalizedUserName = "MICHAELWW@GMAIL.COM",
-                            PasswordHash = "ADh2YBXL4ZSESFqlgQQHR7NF+h9kf9R7+malufVkpccMTMHN4bLQgRxA41lqWH9cUg==",
+                            PasswordHash = "AFgWaRPjKiNzgTdfAbWv/a9osCssplEGO3bjQt0K4jJYpfwzyUXE9jdmHIIWAqdEYw==",
                             PhoneNumber = "987 654 321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "RWIFGY7OJWLXD7OUNCB7FN2ZBF3T36IC",
+                            SecurityStamp = "VSTRKZJBIQRRXYQDQFNT2D5RKYJAA7N2",
                             Surname = "Williams",
                             TwoFactorEnabled = false,
                             UserName = "michaelww@gmail.com"
@@ -334,10 +334,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "William",
                             NormalizedEmail = "JONESWILLIAM@GMAIL.COM",
                             NormalizedUserName = "JONESWILLIAM@GMAIL.COM",
-                            PasswordHash = "ABZM1DMzQiIw4pB5r32pOfbZFf0xZOHNiLJ+7fRv5qJleLcC1f2XCrs2l2j4rQ73sA==",
+                            PasswordHash = "ACaV33CU4xLlOMwI/FNH5WwNklWRKN++9Y7fLhIpyaGYbtI2/WlLK1R6xTsO6YK3sQ==",
                             PhoneNumber = "123 456 789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "JXYJRBSOSE26D5ZCMPCTWS3L5T3MPFY4",
+                            SecurityStamp = "2PGYURWCLATSQWCF5L7XJHN3EXVQGLHN",
                             Surname = "Jones",
                             TwoFactorEnabled = false,
                             UserName = "joneswilliam@gmail.com"
@@ -354,10 +354,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Olivia",
                             NormalizedEmail = "OLIVIAB@GMAIL.COM",
                             NormalizedUserName = "OLIVIAB@GMAIL.COM",
-                            PasswordHash = "ABzbPi+sg18CWiimqNpsegZpuPcXsOgq/rk4ys0KAnxNbdFPo66tP89zjHdhAB1vgw==",
+                            PasswordHash = "AF/qCHJyEBLyZei7JL0liNvLxpKxan3O2kevOulnd3jbzt8UbIRdPCeWHMJGQp6Z7Q==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "GS7J6G2EJG7EGGVYW5D7AGEYUR3M4GW3",
+                            SecurityStamp = "CLVVBRKA7BI2GNKTFJFP5MCRRAJP3LHI",
                             Surname = "Brown",
                             TwoFactorEnabled = false,
                             UserName = "oliviab@gmail.com"
@@ -591,6 +591,9 @@ namespace YourScheduler.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
 
+                    b.Property<int>("AdministratorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -607,36 +610,42 @@ namespace YourScheduler.Infrastructure.Migrations
                         new
                         {
                             TeamId = 1,
+                            AdministratorId = 0,
                             Description = "Grupa szkółki pływackiej Argonaut",
                             Name = "Grupa początkująca basen Chełm"
                         },
                         new
                         {
                             TeamId = 2,
+                            AdministratorId = 0,
                             Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku",
                             Name = "Mieszkańcy osiedla Lawendowe Wzgórze"
                         },
                         new
                         {
                             TeamId = 3,
+                            AdministratorId = 0,
                             Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.",
                             Name = "Kreatywny Warsztat Artystyczny"
                         },
                         new
                         {
                             TeamId = 4,
+                            AdministratorId = 0,
                             Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.",
                             Name = "Klub Fitness i Wellness"
                         },
                         new
                         {
                             TeamId = 5,
+                            AdministratorId = 0,
                             Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.",
                             Name = "Klub Fotograficzny Obiektyw"
                         },
                         new
                         {
                             TeamId = 6,
+                            AdministratorId = 0,
                             Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.",
                             Name = "Studio Tańca Ritmo"
                         });

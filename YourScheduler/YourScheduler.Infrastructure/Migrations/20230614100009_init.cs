@@ -81,7 +81,8 @@ namespace YourScheduler.Infrastructure.Migrations
                     TeamId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdministratorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -247,12 +248,12 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Displayname", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AIc3ykdcPSkLLcsKV63f5bINgChZi8htdErNbvjpWXxFgGnftKLrSD/IszgwjyrmPw==", "111 222 333", false, "3IYPEOY2AIGTOZRJVY76ASEKBP75TKPC", "admin", false, "admin@gmail.com" },
-                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "AL6kk4MYDY0UZune/HuADnvoSl3S2AicZSGbq/autMAyT0kcTqZJdfwrGRii9txc5Q==", "666 598 456", false, "HR4B4UBYS3NQLKBMNFRAJMTHJSXULGLA", "Jarzyna", false, "jarzyna@gmail.com" },
-                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AIyCSSFtR4hiMygw98kxbN9ipglNsKop3V90IdrI5GkQJoASotvp/tik5yZiDZzrGA==", "666 598 456", false, "J2WX6JKTEUDRILNR63GECKKOWDXA3OP7", "Johnson", false, "jane_johnson@gmail.com" },
-                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "ADh2YBXL4ZSESFqlgQQHR7NF+h9kf9R7+malufVkpccMTMHN4bLQgRxA41lqWH9cUg==", "987 654 321", false, "RWIFGY7OJWLXD7OUNCB7FN2ZBF3T36IC", "Williams", false, "michaelww@gmail.com" },
-                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "ABZM1DMzQiIw4pB5r32pOfbZFf0xZOHNiLJ+7fRv5qJleLcC1f2XCrs2l2j4rQ73sA==", "123 456 789", false, "JXYJRBSOSE26D5ZCMPCTWS3L5T3MPFY4", "Jones", false, "joneswilliam@gmail.com" },
-                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "ABzbPi+sg18CWiimqNpsegZpuPcXsOgq/rk4ys0KAnxNbdFPo66tP89zjHdhAB1vgw==", "666 598 456", false, "GS7J6G2EJG7EGGVYW5D7AGEYUR3M4GW3", "Brown", false, "oliviab@gmail.com" }
+                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "ABV/Z2g5+CV+uA6xwoB7EOzI/c2FsLk0ndjBXzJch1RLAqHiZ5W9+LNN4TMRzZsMSQ==", "111 222 333", false, "2EIMTWGFNDZCQU6MVTPCXYUSFCSR4PX2", "admin", false, "admin@gmail.com" },
+                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "AKXh7oO5uAGQM10wALHYS5KpJZq6f657rjEgLeXGieuE6n7T68FNQ295g8k1lchH+g==", "666 598 456", false, "P532F3ZIWBJCBMRSYLP6XM6DD3C3TY5H", "Jarzyna", false, "jarzyna@gmail.com" },
+                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "ACMxCk4DETTXuyuiJk9P351x5d9Z7KsTdTCIs+es/OSbjjBXZdfmmtvz+E7DPN8SBA==", "666 598 456", false, "XXO2GJJQTEG6TTEAD57IPNEESYHUNOXN", "Johnson", false, "jane_johnson@gmail.com" },
+                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AFgWaRPjKiNzgTdfAbWv/a9osCssplEGO3bjQt0K4jJYpfwzyUXE9jdmHIIWAqdEYw==", "987 654 321", false, "VSTRKZJBIQRRXYQDQFNT2D5RKYJAA7N2", "Williams", false, "michaelww@gmail.com" },
+                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "ACaV33CU4xLlOMwI/FNH5WwNklWRKN++9Y7fLhIpyaGYbtI2/WlLK1R6xTsO6YK3sQ==", "123 456 789", false, "2PGYURWCLATSQWCF5L7XJHN3EXVQGLHN", "Jones", false, "joneswilliam@gmail.com" },
+                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AF/qCHJyEBLyZei7JL0liNvLxpKxan3O2kevOulnd3jbzt8UbIRdPCeWHMJGQp6Z7Q==", "666 598 456", false, "CLVVBRKA7BI2GNKTFJFP5MCRRAJP3LHI", "Brown", false, "oliviab@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -271,15 +272,15 @@ namespace YourScheduler.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teams",
-                columns: new[] { "TeamId", "Description", "Name" },
+                columns: new[] { "TeamId", "AdministratorId", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Grupa szkółki pływackiej Argonaut", "Grupa początkująca basen Chełm" },
-                    { 2, "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku", "Mieszkańcy osiedla Lawendowe Wzgórze" },
-                    { 3, "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.", "Kreatywny Warsztat Artystyczny" },
-                    { 4, "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.", "Klub Fitness i Wellness" },
-                    { 5, "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.", "Klub Fotograficzny Obiektyw" },
-                    { 6, "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.", "Studio Tańca Ritmo" }
+                    { 1, 0, "Grupa szkółki pływackiej Argonaut", "Grupa początkująca basen Chełm" },
+                    { 2, 0, "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku", "Mieszkańcy osiedla Lawendowe Wzgórze" },
+                    { 3, 0, "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.", "Kreatywny Warsztat Artystyczny" },
+                    { 4, 0, "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.", "Klub Fitness i Wellness" },
+                    { 5, 0, "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.", "Klub Fotograficzny Obiektyw" },
+                    { 6, 0, "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.", "Studio Tańca Ritmo" }
                 });
 
             migrationBuilder.InsertData(

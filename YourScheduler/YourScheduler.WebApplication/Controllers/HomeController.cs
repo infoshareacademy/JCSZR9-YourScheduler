@@ -19,7 +19,8 @@ namespace YourScheduler.WebApplication.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return RedirectToAction("Index","User");
+
+            return View();
         }
 
         public IActionResult Privacy()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourScheduler.BusinessLogic.Mapppers;
 using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
@@ -57,6 +58,12 @@ namespace YourScheduler.BusinessLogic.Services
         public void DeleteTeamFromCalendar(int id, int userId)
         {
             _teamsRepository.DeleteTeamFromCalendarById(id, userId);
+        }
+
+        public void UpdateTeam(TeamDto teamDto)
+        {
+            var teamToBase = _teamMapper.TeamDtoToTeamMap(teamDto);
+            _teamsRepository.UpdateTeam(teamToBase);
         }
     }
 }
