@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using YourScheduler.BusinessLogic.Models;
 using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.WebApplication.Controllers
 {
@@ -10,17 +11,19 @@ namespace YourScheduler.WebApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeViewService _homeViewService; 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHomeViewService homeViewService)
         {
             _logger = logger;
+            _homeViewService = homeViewService; 
         }
 
         [Authorize]
         public IActionResult Index()
         {
-
-            return View();
+            var model = _homeViewService.GetHomeView(1);
+            return View(model);
         }
 
         public IActionResult Privacy()

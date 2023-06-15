@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YourScheduler.BusinessLogic.Models.DTOs
+namespace YourScheduler.Infrastructure.Entities
 {
     public class HomeView
     {
+        public int HomeViewId { get; set; } 
         public string GeneralInfo { get; set; }
 
-        public string ImgPath { get; set; } = "/ Pictures / harmonogram_870x450_a.jpg";
+        public string ImgPath { get; set; } = "/Pictures/harmonogram_870x450_a.jpg";
     }
 }

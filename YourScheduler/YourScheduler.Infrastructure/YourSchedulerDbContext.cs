@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity;
 using YourScheduler.Infrastructure.Entities;
 using System.Buffers.Text;
 using YourScheduler.Infrastructure;
-using YourScheduler.BusinessLogic.Models.DTOs;
+
 
 namespace YourScheduler.Infrastructure
 {
@@ -57,6 +57,7 @@ namespace YourScheduler.Infrastructure
                 .HasData(SeedData.GetApplicationUserEventSeed());
             builder.Entity<ApplicationUserTeam>()
                 .HasData(SeedData.GetApplicationUserTeamSeed());
+            builder.Entity<HomeView>().HasData(SeedData.GetHomeViewSeed());
         }
     }
 }

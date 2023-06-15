@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YourScheduler.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,6 +72,20 @@ namespace YourScheduler.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.EventId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HomeViews",
+                columns: table => new
+                {
+                    HomeViewId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GeneralInfo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgPath = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HomeViews", x => x.HomeViewId);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,12 +262,12 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Displayname", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "ABV/Z2g5+CV+uA6xwoB7EOzI/c2FsLk0ndjBXzJch1RLAqHiZ5W9+LNN4TMRzZsMSQ==", "111 222 333", false, "2EIMTWGFNDZCQU6MVTPCXYUSFCSR4PX2", "admin", false, "admin@gmail.com" },
-                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "AKXh7oO5uAGQM10wALHYS5KpJZq6f657rjEgLeXGieuE6n7T68FNQ295g8k1lchH+g==", "666 598 456", false, "P532F3ZIWBJCBMRSYLP6XM6DD3C3TY5H", "Jarzyna", false, "jarzyna@gmail.com" },
-                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "ACMxCk4DETTXuyuiJk9P351x5d9Z7KsTdTCIs+es/OSbjjBXZdfmmtvz+E7DPN8SBA==", "666 598 456", false, "XXO2GJJQTEG6TTEAD57IPNEESYHUNOXN", "Johnson", false, "jane_johnson@gmail.com" },
-                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AFgWaRPjKiNzgTdfAbWv/a9osCssplEGO3bjQt0K4jJYpfwzyUXE9jdmHIIWAqdEYw==", "987 654 321", false, "VSTRKZJBIQRRXYQDQFNT2D5RKYJAA7N2", "Williams", false, "michaelww@gmail.com" },
-                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "ACaV33CU4xLlOMwI/FNH5WwNklWRKN++9Y7fLhIpyaGYbtI2/WlLK1R6xTsO6YK3sQ==", "123 456 789", false, "2PGYURWCLATSQWCF5L7XJHN3EXVQGLHN", "Jones", false, "joneswilliam@gmail.com" },
-                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AF/qCHJyEBLyZei7JL0liNvLxpKxan3O2kevOulnd3jbzt8UbIRdPCeWHMJGQp6Z7Q==", "666 598 456", false, "CLVVBRKA7BI2GNKTFJFP5MCRRAJP3LHI", "Brown", false, "oliviab@gmail.com" }
+                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AKnpa6TnMktaeCic5LjmcEBf1Vf2u3eOT1JzbjPt22EkkfQOZF1OT2VvJgqap+1YVw==", "111 222 333", false, "P6VBD3CZKRM552J3PW33AOJ5JUNZO5BC", "admin", false, "admin@gmail.com" },
+                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "ADP/fEZQSOx5OjKXTtbwhKXCf4gLeSSKomWBsLcR5qls/crj1Nnx9GGVWwNhPyCaHQ==", "666 598 456", false, "S5REOEVI3XWGO23HFR4CYFMAHGX6JZNS", "Jarzyna", false, "jarzyna@gmail.com" },
+                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AMvmJB2jYaY0rEYbaelEyM6i/oST1MkPzHotf/t18e8ql/I5miIH0rz68O7PpLjQqg==", "666 598 456", false, "HG2ZDP3XT7YENQYADSY6VT3VA4YGPX5M", "Johnson", false, "jane_johnson@gmail.com" },
+                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "ACj/kFpAP7cC0/sJlA+06IuE+D+hZQbkVBMKdT0OfeujDSmetXl/9PtTtMdq9N7UbQ==", "987 654 321", false, "3TER3XC5A73PHR7UXHUT22UG3G6UWVVM", "Williams", false, "michaelww@gmail.com" },
+                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "AF8xannEzQ6es4YxsjMimTAdojYWhtEilRvO+AlNPf+M/j1v65Qd4M9AB283UXR1Sg==", "123 456 789", false, "SK6734J6OYOL73HADTNEPET5KTADLC7G", "Jones", false, "joneswilliam@gmail.com" },
+                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "ACnEMAFjUGqCCNBTe69uG6qoo0/QfrSM4Slqfyl6pxuita1Vt76E4/IPceXwQLfyZg==", "666 598 456", false, "XE4LIZ4RV4V7ZE6XECRZ6G6Y7VJVCG7R", "Brown", false, "oliviab@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -269,6 +283,11 @@ namespace YourScheduler.Infrastructure.Migrations
                     { 6, new DateTime(2023, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata", false, "Pokaz Kulinarny: Świat Smaków", 5 },
                     { 7, new DateTime(2023, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń", true, "Sztuka na Scenie: Wieczór Teatru", 6 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "HomeViews",
+                columns: new[] { "HomeViewId", "GeneralInfo", "ImgPath" },
+                values: new object[] { 1, "Sciezka do jpg", "/Pictures/harmonogram_870x450_a.jpg" });
 
             migrationBuilder.InsertData(
                 table: "Teams",
@@ -388,6 +407,9 @@ namespace YourScheduler.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "HomeViews");
 
             migrationBuilder.DropTable(
                 name: "Events");

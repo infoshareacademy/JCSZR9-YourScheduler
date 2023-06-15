@@ -351,5 +351,20 @@ namespace YourScheduler.Infrastructure
 
             return retVal;
         }
+
+        public static HomeView[] homeViewSeed = new HomeView[]
+        {
+            new HomeView
+            {
+                HomeViewId = 1,
+                GeneralInfo="Sciezka do jpg",
+                ImgPath="/Pictures/harmonogram_870x450_a.jpg"
+             }
+        };
+
+        public static HomeView[] GetHomeViewSeed()
+        {
+            return homeViewSeed;
+        }
     }
 }
