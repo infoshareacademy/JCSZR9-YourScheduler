@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services;
@@ -9,24 +11,39 @@ namespace YourScheduler.WebApplication.Controllers
     public class TeamController : Controller
     {
         private readonly ITeamService _teamService;
-        public TeamController(ITeamService teamService)
+        private readonly IUserService _userService;
+        public TeamController(ITeamService teamService , IUserService userService)
         {
             _teamService = teamService;
+            _userService = userService;
         }
         // GET: TeamController
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Index(string searchString)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
             var model = _teamService.GetAvailableTeams();
-            return View(model);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
         }
 
         // GET: TeamController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = _teamService.GetTeamById(id);
+            return View(model);
         }
 
         // GET: TeamController/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -35,11 +52,18 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: TeamController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(TeamDto model)
         {
             try
             {
-                _teamService.AddTeam(model);
+                var userName = HttpContext.User.Identity.GetUserName();
+                var user = _userService.GetUserByEmail(userName);
+                if (model != null)
+                {
+                    model.AdministratorId = user.Id;
+                    _teamService.AddTeam(model);
+                }
                 return RedirectToAction("Index", "User");
             }
             catch
