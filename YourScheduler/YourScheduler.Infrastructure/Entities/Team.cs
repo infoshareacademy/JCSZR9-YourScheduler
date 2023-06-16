@@ -10,6 +10,8 @@ public  class Team
 
     public string Description { get; set; }
 
+    public int AdministratorId { get; set; }
+
     ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
 
 }
