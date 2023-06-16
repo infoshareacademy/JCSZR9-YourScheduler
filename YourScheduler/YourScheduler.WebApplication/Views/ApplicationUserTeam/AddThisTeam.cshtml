@@ -24,14 +24,11 @@
         <dd class="col-sm-10">
             @Model.Description
         </dd>
-       
-
-        
-        
+                   
     </dl>
 
     <form asp-action="AddThisTeam">
-        <input type="submit" value="AddThisTeam" class="btn btn-danger" /> |
-        <a asp-action="MyEvents" class="btn btn-danger">Back to List </a>
+        <input type="submit" value="Dodaj Team" class="btn btn-primary" /> |
+        <a asp-controller="Team" asp-action="Index" class="btn btn-primary">Powrót do listy zespołow</a>
     </form>
 </div>

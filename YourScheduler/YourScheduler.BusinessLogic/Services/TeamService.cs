@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -46,6 +47,16 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var teamFromDataBase = _teamsRepository.GetTeamById(id);
             return _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
+        }
+
+        public void DeleteEvent(int id)
+        {
+            _teamsRepository.DeleteTeamById(id);
+        }
+
+        public void DeleteTeamFromCalendar(int id, int userId)
+        {
+            _teamsRepository.DeleteTeamFromCalendarById(id, userId);
         }
     }
 }

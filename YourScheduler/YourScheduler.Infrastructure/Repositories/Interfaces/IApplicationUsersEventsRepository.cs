@@ -11,6 +11,5 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 
         public List<ApplicationUser> GetApplicationUsersForEvent(int eventId);
 
-
     }
 }

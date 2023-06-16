@@ -1,7 +1,7 @@
-﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+﻿@using YourScheduler.BusinessLogic.Models.DTOs
 
 
-@model dynamic;
+@model TeamMembersDto;
 @{
     ViewData["Title"] = "MyEvents";
 }
@@ -25,10 +25,10 @@
 
         <tr>
             <td>
-                @Model.team.Name
+                @Model.Name
             </td>
             <td>
-                @Model.team.Description
+                @Model.Description
             </td>
 
 
@@ -63,7 +63,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (UserDto item in Model.users)
+        @foreach (UserDto item in Model.TeamUsers)
         {
             <tr>
                 <td>
