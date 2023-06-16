@@ -11,7 +11,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
     {
         public void AddEvent(EventDto eventDto);
 
-        public List<EventDto> GetAvailableEvents();
+        public List<EventDto> GetAvailableEvents(int loggedUserId);
 
         public EventDto GetEventById(int id);
 

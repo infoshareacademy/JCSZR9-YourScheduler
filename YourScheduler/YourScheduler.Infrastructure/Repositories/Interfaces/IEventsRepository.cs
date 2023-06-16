@@ -13,7 +13,7 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 
         public void SaveData();
 
-        public List<Event> GetAvailableEvents();
+        public List<Event> GetAvailableEvents(int loggedUserId);
 
         public Event GetEventById(int id);
         public void DeleteEventById(int id);

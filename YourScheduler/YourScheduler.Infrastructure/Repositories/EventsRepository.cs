@@ -27,11 +27,11 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public List<Event> GetAvailableEvents()
+        public List<Event> GetAvailableEvents(int loggedUserId)
         {
             List<Event> events = new List<Event>();
-
-            return events = _dbContext.Events.ToList();
+            events = _dbContext.Events.Where(i => i.IsOpen == true || i.administratorId == loggedUserId).ToList();
+            return events;
         }
 
         public Event GetEventById(int id)

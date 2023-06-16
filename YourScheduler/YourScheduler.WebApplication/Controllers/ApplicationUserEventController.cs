@@ -50,12 +50,20 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        public ActionResult MyEvents()
+        public ActionResult MyEvents(string searchString)
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserEventService.GetMyEvents(user.Id);
-            return View(model);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model);
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(model);
+            }
         }
 
         // GET: EventController/Delete/5
@@ -86,10 +94,47 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
-            dynamic myModel = new ExpandoObject();
-            myModel.happening = _eventService.GetEventById(id);
-            myModel.users = _applicationUserEventService.GetUsersForEvent(id);          
-            return View(myModel);         
+            EventMembersDto eventMembersDto = new EventMembersDto();
+            var modelEvent = _eventService.GetEventById(id);
+            eventMembersDto.Name = modelEvent.Name;
+            eventMembersDto.Description = modelEvent.Description;
+            eventMembersDto.Date = modelEvent.Date;
+            eventMembersDto.Isopen = modelEvent.Isopen;
+
+            eventMembersDto.EventUsers = _applicationUserEventService.GetUsersForEvent(id);
+
+            return View(eventMembersDto);
+        }
+
+        public ActionResult MyEventsFinished(string searchString)
+        {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model.Where(e => e.Date < DateTime.Now));
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date < DateTime.Now).ToList();
+                return View(model);
+            }
+        }
+        public ActionResult MyEventsIncoming(string searchString)
+        {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(model.Where(e => e.Date >= DateTime.Now));
+            }
+            else
+            {
+                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date >= DateTime.Now).ToList();
+                return View(model);
+            }
         }
     }
 }

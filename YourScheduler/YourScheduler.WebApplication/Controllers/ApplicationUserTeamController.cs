@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
 using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.WebApplication.Controllers
@@ -22,12 +23,7 @@ namespace YourScheduler.WebApplication.Controllers
 
         }
         // GET: ApplicationUserTeamController1
-        [Authorize]
-        public ActionResult Index()
-        {
-            var model=_teamService.GetAvailableTeams();
-            return View(model);
-        }
+       
 
         // GET: ApplicationUserTeamController1/Details/5
         public ActionResult Details(int id)
@@ -120,18 +116,11 @@ namespace YourScheduler.WebApplication.Controllers
 
                 var user = _userService.GetUserByEmail(userName);
                 _applicationUserTeamService.AddTeamForUser(user.Id, model.Id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Team");
             }
             catch (Exception ex)
             {
-                // return View("Error", new HandleErrorInfo(ex, "EmployeeInfo", "Create"));
-                // return View"dupa";
-                //return View("Error");
-                // throw ex;
-                // return View("Error");
-                // ex.ToString();
-                return RedirectToAction(nameof(Index));
-                //return RedirectToAction("Error", "Home");
+                return View("Error");             
             }
             finally
             {
@@ -152,10 +141,38 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("teammembers/{id:int}")]
         public ActionResult TeamMembers(int id)
         {
-            dynamic myModel = new ExpandoObject();
-            myModel.team = _teamService.GetTeamById(id);
-            myModel.users = _applicationUserTeamService.GetUsersForTeam(id);
-            return View(myModel);        
+            TeamMembersDto teamMembersDto = new TeamMembersDto();
+            var modelTeam = _teamService.GetTeamById(id);
+            teamMembersDto.Name = modelTeam.Name;
+            teamMembersDto.Description = modelTeam.Description;
+            
+            teamMembersDto.TeamUsers = _applicationUserTeamService.GetUsersForTeam(id);
+           
+            return View(teamMembersDto);        
+        }
+
+        public ActionResult DeleteFromCalendar(int id)
+        {
+            var model = _teamService.GetTeamById(id);
+            return View(model);
+        }
+
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromCalendar(int id, TeamDto model)
+        {
+            try
+            {
+                var userName = HttpContext.User.Identity.GetUserName();
+                var user = _userService.GetUserByEmail(userName);
+                _teamService.DeleteTeamFromCalendar(id, user.Id);
+                return RedirectToAction("MyTeams");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

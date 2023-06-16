@@ -21,8 +21,7 @@ namespace YourScheduler.UI.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
-           // _signInManager = signInManager;
-          
+                   
         }
         // GET: UserController
 
