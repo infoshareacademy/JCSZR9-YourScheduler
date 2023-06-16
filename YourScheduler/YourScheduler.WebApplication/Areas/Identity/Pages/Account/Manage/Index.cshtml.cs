@@ -111,13 +111,13 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             {
                 if(!Regex.IsMatch(Input.PhoneNumber, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$"))
                 {
-                    StatusMessage = "Podany numer telefonu nie jest prawidłowy";
+                    StatusMessage = "Error: Podany numer telefonu nie jest prawidłowy";
                     return RedirectToPage();
                 }
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Niespodziewany błąd podczas ustawiania numeru telefonu.";
+                    StatusMessage = "Error: Niespodziewany błąd podczas ustawiania numeru telefonu.";
                     return RedirectToPage();
                 }
             }
@@ -128,7 +128,7 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             }
             else if (Input.DisplayName.IsNullOrEmpty())
             {
-                StatusMessage = "Nickname nie może być pusty";
+                StatusMessage = "Error: Nickname nie może być pusty";
                 return RedirectToPage();
             }
                 
