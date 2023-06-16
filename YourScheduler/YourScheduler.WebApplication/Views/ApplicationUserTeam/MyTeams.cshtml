@@ -8,8 +8,7 @@
 <hr />
 <p>
     <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a> |
-    <a asp-controller="Event" asp-action="" class="btn btn-danger">Pokaż wszystkie zespoły - TODO</a> 
-   
+    <a asp-controller="Team" asp-action="" class="btn btn-danger">Pokaż wszystkie zespoły</a> |
 </p>
 <hr />
 <form asp-controller="ApplicationUserTeam" asp-action="MyTeams">
@@ -56,10 +55,10 @@
                     <a asp-controller="Team" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
                 </td>
                 <td>
-                    <a asp-controller="ApplicationUserTeam" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń Team z kalendarza</a>
+                    <a asp-controller="ApplicationUserTeam" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń zespół z kalendarza</a>
                 </td>
                 <td>
-                    <a asp-action="TeamMembers" asp-route-id="@item.Id" class="btn btn-warning">Uczestnicy zespołu</a>
+                    <a asp-action="TeamMembers" asp-route-id="@item.Id" class="btn btn-warning">Członkowie zespołu</a>
                 </td>
             </tr>
         }

@@ -5,10 +5,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using YourScheduler.Infrastructure.Entities;
 
 namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
@@ -59,18 +61,22 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Display name")]
+            public string DisplayName { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var displayName = user.Displayname;
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                DisplayName = displayName
             };
         }
 
@@ -103,16 +109,33 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
+                if(!Regex.IsMatch(Input.PhoneNumber, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$"))
+                {
+                    StatusMessage = "Podany numer telefonu nie jest prawidłowy";
+                    return RedirectToPage();
+                }
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Niespodziewany błąd podczas ustawiania numeru telefonu.";
                     return RedirectToPage();
                 }
             }
+            if (Input.DisplayName != user.Displayname && !Input.DisplayName.IsNullOrEmpty())
+            {
+                user.Displayname = Input.DisplayName;
+                await _userManager.UpdateAsync(user);
+            }
+            else if (Input.DisplayName.IsNullOrEmpty())
+            {
+                StatusMessage = "Nickname nie może być pusty";
+                return RedirectToPage();
+            }
+                
+            
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Twój profil został zaktualizowany";
             return RedirectToPage();
         }
     }
