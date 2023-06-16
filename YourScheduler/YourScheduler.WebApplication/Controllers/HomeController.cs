@@ -16,10 +16,9 @@ namespace YourScheduler.WebApplication.Controllers
             _logger = logger;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
-            return RedirectToAction("Index","User");
+            return View();
         }
 
         public IActionResult Privacy()
