@@ -4,27 +4,27 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Rejestracja</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
+            <h2>Stwórz nowe konto</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
                 <input asp-for="Input.Name" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Name"></label>
+                <label asp-for="Input.Name">Imię</label>
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <input asp-for="Input.Surname" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Surname"></label>
+                <label asp-for="Input.Surname">Nazwisko</label>
                 <span asp-validation-for="Input.Surname" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <input asp-for="Input.DisplayName" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.DisplayName"></label>
+                <label asp-for="Input.DisplayName">Nickname</label>
                 <span asp-validation-for="Input.DisplayName" class="text-danger"></span>
             </div>
             <div class="form-floating">
@@ -34,20 +34,20 @@
             </div>
             <div class="form-floating">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" type="password" />
-                <label asp-for="Input.Password"></label>
+                <label asp-for="Input.Password">Hasło</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
+                <label asp-for="Input.ConfirmPassword">Potwierdź hasło</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Zarejestruj</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h3>Use another service to register.</h3>
+            <h3>Wykorzystaj inne serwisy do zalogowania.</h3>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
