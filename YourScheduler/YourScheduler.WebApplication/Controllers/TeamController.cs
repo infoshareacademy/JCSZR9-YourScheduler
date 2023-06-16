@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
@@ -20,7 +21,7 @@ namespace YourScheduler.WebApplication.Controllers
         }
         // GET: TeamController
         [Authorize]
-        public ActionResult Index(string searchString)
+        
         public ActionResult Index(string searchString)
         {
             var userName = HttpContext.User.Identity.GetUserName();
