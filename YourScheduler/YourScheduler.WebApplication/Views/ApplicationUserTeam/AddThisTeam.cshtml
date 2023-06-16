@@ -9,17 +9,16 @@
 
 <h3>Czy jesteś pewien/pewna czy chcesz być członkiem tego zespołu?</h3>
 <div>
-    <h4>Event</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            <label asp-for="Name"></label>
+            <label asp-for="Name">Nazwa zespołu</label>
         </dt>
         <dd class="col-sm-10">
             @Model.Name
         </dd>
         <dt class="col-sm-2">
-            <label asp-for="Description"></label>
+            <label asp-for="Description">Opis zespołu</label>
         </dt>
         <dd class="col-sm-10">
             @Model.Description

@@ -15,13 +15,17 @@ namespace YourScheduler.WebApplication.Controllers
         {
             _teamService = teamService;
             _userService = userService;
+            _userService = userService;
           
         }
         // GET: TeamController
+        [Authorize]
+        public ActionResult Index(string searchString)
         public ActionResult Index(string searchString)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
             var model = _teamService.GetAvailableTeams();
-
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
@@ -31,7 +35,6 @@ namespace YourScheduler.WebApplication.Controllers
                 model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
                 return View(model);
             }
-           
         }
 
         // GET: TeamController/Details/5
@@ -42,6 +45,7 @@ namespace YourScheduler.WebApplication.Controllers
         }
 
         // GET: TeamController/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +54,7 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: TeamController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(TeamDto model)
         {
             try

@@ -5,26 +5,32 @@
     ViewData["Title"] = "info about user";
 }
 
-<h1>Ogólne informacje o mnie</h1>
+<h1>Dane Użytkownika</h1>
 
 <div>
     
     <hr />
     <dl class="row">       
         <dt class="col-sm-2">
-            <label asp-for="Name"></label>
+            <label asp-for="Id"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Id
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Name">Imię</label>
         </dt>
         <dd class="col-sm-10">
             @Model.Name
         </dd>
         <dt class="col-sm-2">
-            <label asp-for="Surname"></label>
+            <label asp-for="Surname">Nazwisko</label>
         </dt>
         <dd class="col-sm-10">
             @Model.Surname
         </dd>
         <dt class="col-sm-2">
-            <label asp-for="Displayname"></label>
+            <label asp-for="Displayname">Nazwa Użytkownika</label>
         </dt>
         <dd class="col-sm-10">
             @Model.Displayname
@@ -35,7 +41,6 @@
         <dd class="col-sm-10">
             @Model.Email
         </dd>
-              
     </dl>
 </div>
 <div>

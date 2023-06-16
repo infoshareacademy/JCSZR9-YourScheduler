@@ -15,7 +15,7 @@ using YourScheduler.Infrastructure;
 
 namespace YourScheduler.Infrastructure
 {
-    public class YourSchedulerDbContext:IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
+    public class YourSchedulerDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
     {
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public virtual DbSet<Event> Events { get; set; }
