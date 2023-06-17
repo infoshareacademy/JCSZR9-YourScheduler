@@ -109,15 +109,18 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
-                if(!Regex.IsMatch(Input.PhoneNumber, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$"))
+                if(Input.PhoneNumber != null)
                 {
-                    StatusMessage = "Error: Podany numer telefonu nie jest prawidłowy";
-                    return RedirectToPage();
+                    if (!Regex.IsMatch(Input.PhoneNumber, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$"))
+                    {
+                        StatusMessage = "Błąd: Podany numer telefonu nie jest prawidłowy";
+                        return RedirectToPage();
+                    }
                 }
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Error: Niespodziewany błąd podczas ustawiania numeru telefonu.";
+                    StatusMessage = "Błąd: Niespodziewany błąd podczas ustawiania numeru telefonu.";
                     return RedirectToPage();
                 }
             }
@@ -128,7 +131,7 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account.Manage
             }
             else if (Input.DisplayName.IsNullOrEmpty())
             {
-                StatusMessage = "Error: Nickname nie może być pusty";
+                StatusMessage = "Błąd: Nickname nie może być pusty";
                 return RedirectToPage();
             }
                 

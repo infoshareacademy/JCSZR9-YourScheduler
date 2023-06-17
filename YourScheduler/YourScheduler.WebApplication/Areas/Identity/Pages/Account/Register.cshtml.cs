@@ -73,23 +73,24 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
         {
             public string Id { get; set; }
 
-            [Required]
-            [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
+            [Required(ErrorMessage = "Pole imię nie może być puste")]
+            [StringLength(255, ErrorMessage = "Pole imię powinno mieć maksymalnie 255 znaków")]
             [Display(Name = "Firstname")]
             public string Name { get; set; }
 
-            [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters")]
+            [StringLength(255, ErrorMessage = "Pole nazwisko powinno mieć maksymalnie 255 znaków")]
             [Display(Name = "Lastname")]
             public string Surname { get; set; }
 
-            [StringLength(255, ErrorMessage = "The display name field should have a maximum of 255 characters")]
+            [Required(ErrorMessage = "Pole nickname nie może być puste")]
+            [StringLength(255, ErrorMessage = "Pole nickname powinno mieć maksymalnie 255 znaków")]
             [Display(Name = "Display Name")]
             public string? DisplayName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Pole email nie może być puste")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -98,10 +99,10 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Pole hasło nie może być puste")]
+            [StringLength(100, ErrorMessage = "{0} musi mieć co najmniej {2} i maksymalnie {1} znaków.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Hasło")]
             public string Password { get; set; }
 
             /// <summary>
@@ -110,7 +111,7 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Hasło i potwierdź hasło nie są takie same.")]
             public string ConfirmPassword { get; set; }
         }
 
