@@ -120,7 +120,7 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error");             
+                return View("AddThisTeamError");
             }
             finally
             {

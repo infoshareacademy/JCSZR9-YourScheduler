@@ -111,9 +111,18 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Delete/5
         public ActionResult Delete(int id)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
             var model = _teamService.GetTeamById(id);
-            return View(model);
-           
+            if (model.AdministratorId == user.Id)
+            {
+                return View(model);
+            }
+            else
+            {
+                return View("DeleteError");
+            }
+
         }
 
         // POST: TeamController/Delete/5
