@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
@@ -11,17 +12,18 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        public TeamController(ITeamService teamService, IUserService userService)
+        public TeamController(ITeamService teamService , IUserService userService)
         {
             _teamService = teamService;
             _userService = userService;
-          
         }
         // GET: TeamController
+        [Authorize]
         public ActionResult Index(string searchString)
         {
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
             var model = _teamService.GetAvailableTeams();
-
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
@@ -31,7 +33,6 @@ namespace YourScheduler.WebApplication.Controllers
                 model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
                 return View(model);
             }
-           
         }
 
         // GET: TeamController/Details/5
@@ -42,6 +43,7 @@ namespace YourScheduler.WebApplication.Controllers
         }
 
         // GET: TeamController/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +52,7 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: TeamController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(TeamDto model)
         {
             try
