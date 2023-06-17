@@ -12,16 +12,13 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        public TeamController(ITeamService teamService, IUserService userService)
+        public TeamController(ITeamService teamService , IUserService userService)
         {
             _teamService = teamService;
             _userService = userService;
-            _userService = userService;
-          
         }
         // GET: TeamController
         [Authorize]
-        
         public ActionResult Index(string searchString)
         {
             var userName = HttpContext.User.Identity.GetUserName();
