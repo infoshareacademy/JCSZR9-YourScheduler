@@ -14,6 +14,7 @@ public  class ApplicationUser : IdentityUser<int>
 
     public string Displayname { get; set; }
 
+
     public ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
 
     public ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }   
