@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <None Include="Views\User\Details.cshtml" />
-    <None Include="Views\User\Edit.cshtml" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
 
