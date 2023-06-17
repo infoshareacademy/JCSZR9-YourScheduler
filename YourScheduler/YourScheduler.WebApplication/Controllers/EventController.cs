@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.Design;
 using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.WebApplication.Controllers
@@ -78,7 +79,16 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             var model = _eventService.GetEventById(id);
-            return View(model);
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            if (model.administratorId == user.Id)
+            {
+                return View(model);
+            }
+            else
+            {
+                return View("EditError");
+            }
         }
 
         // POST: EventController/Edit/5
@@ -104,7 +114,16 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Delete(int id)
         {
             var model = _eventService.GetEventById(id);
-            return View(model);
+            var userName = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userName);
+            if (model.administratorId == user.Id)
+            {
+                return View(model);
+            }
+            else
+            {
+                return View("DeleteError");
+            }
         }
 
         // POST: EventController/Delete/5
