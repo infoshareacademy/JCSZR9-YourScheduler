@@ -20,7 +20,7 @@ namespace YourScheduler.BusinessLogic.Mappers
                 Surname = user.Surname,
                 Displayname = user.Displayname,
                 Email = user.Email,
-                Password=user.Password,               
+                              
             };
             return userDto;
         }
@@ -34,7 +34,7 @@ namespace YourScheduler.BusinessLogic.Mappers
                 Surname = userDto.Surname,
                 Displayname = userDto.Displayname,
                 Email = userDto.Email,
-                Password=userDto.Password,
+                
             };
             return user;
         }
