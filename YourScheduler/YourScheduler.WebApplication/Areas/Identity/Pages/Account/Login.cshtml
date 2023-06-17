@@ -5,10 +5,14 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>Zaloguj się</h1>
+<h1>
+    <img src="/Pictures/login1.jpg" />
+    <span>@ViewData["Title"]</span>
+    
+</h1>
 <div class="row">
     <div class="col-md-4">
-        <section>
+        <section class="login">
             <form id="account" method="post">
                 <h2>Wykorzystaj konto lokalne do zalogowania</h2>
                 <hr />
@@ -48,7 +52,36 @@
             </form>
         </section>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    <div class="vertical-line col-md-offset-2 col-md-6">
+        <div class="row">
+            <div class="col-md-4 login-image-container">
+                <img src="~/Pictures/pierog.jpg" >
+                <div class="image-overlay">
+                <div class="image-text">Kocham Pierogi!</div>
+        </div>
+            </div>
+            <div class="col-md-4">
+                <img src="~/Pictures/pierog.jpg" >
+            </div>
+            <div class="col-md-4">
+                <img src="~/Pictures/pierog.jpg" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="~/Pictures/pierog.jpg" >
+            </div>
+            <div class="col-md-4">
+                <img src="~/Pictures/pierog.jpg" >
+            </div>
+            <div class="col-md-4">
+                <img src="~/Pictures/pierog.jpg" >
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-2">
         <section>
             <h3>Wykorzystaj inne serwisy do zalogowania.</h3>
             <hr />
