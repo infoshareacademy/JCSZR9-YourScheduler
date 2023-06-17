@@ -16,3 +16,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.login h2 {
+    font-size: 18px;
+}
+
+.login .checkbox {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
