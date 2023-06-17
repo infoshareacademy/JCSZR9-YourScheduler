@@ -19,7 +19,6 @@ namespace YourScheduler.WebApplication.Controllers
             _homeViewService = homeViewService; 
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             var model = _homeViewService.GetHomeView(1);
