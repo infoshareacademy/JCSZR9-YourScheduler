@@ -12,8 +12,8 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230615013613_Init")]
-    partial class Init
+    [Migration("20230617060710_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -254,10 +254,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "admin",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AKnpa6TnMktaeCic5LjmcEBf1Vf2u3eOT1JzbjPt22EkkfQOZF1OT2VvJgqap+1YVw==",
+                            PasswordHash = "ALzurJfZJRNMREmpubJcTKY6NxFFQf8hIrvPeTaTG+xXh/k3U+OWXqb/hqLbP5I2sw==",
                             PhoneNumber = "111 222 333",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "P6VBD3CZKRM552J3PW33AOJ5JUNZO5BC",
+                            SecurityStamp = "TREOQL7OQFWBAUOTZK6CVIEE3GHS7D2B",
                             Surname = "admin",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
@@ -274,10 +274,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Krzysztof",
                             NormalizedEmail = "JARZYNA@GMAIL.COM",
                             NormalizedUserName = "JARZYNA@GMAIL.COM",
-                            PasswordHash = "ADP/fEZQSOx5OjKXTtbwhKXCf4gLeSSKomWBsLcR5qls/crj1Nnx9GGVWwNhPyCaHQ==",
+                            PasswordHash = "AOsmXw7A5jrmZZ73/1u6lvylnlxPRtGh+dmU2dsQYqTpy1cK5WuVUt1JiGkftANLmQ==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "S5REOEVI3XWGO23HFR4CYFMAHGX6JZNS",
+                            SecurityStamp = "2Y6NU6K2G7XXTOXACZPKQG6JYJOQA5TW",
                             Surname = "Jarzyna",
                             TwoFactorEnabled = false,
                             UserName = "jarzyna@gmail.com"
@@ -294,10 +294,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Jane",
                             NormalizedEmail = "JANE_JOHNSON@GMAIL.COM",
                             NormalizedUserName = "JANE_JOHNSON@GMAIL.COM",
-                            PasswordHash = "AMvmJB2jYaY0rEYbaelEyM6i/oST1MkPzHotf/t18e8ql/I5miIH0rz68O7PpLjQqg==",
+                            PasswordHash = "APlCfn9ubEbHMSNPnvYNtLTeHpwLwJM7zEQtO8r0Lp92IjAQjau7+F9DGqG03VsHXQ==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "HG2ZDP3XT7YENQYADSY6VT3VA4YGPX5M",
+                            SecurityStamp = "HOC6CYTSOD4FFWTUWQ5VMMY5KEK6REZ2",
                             Surname = "Johnson",
                             TwoFactorEnabled = false,
                             UserName = "jane_johnson@gmail.com"
@@ -314,10 +314,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Michael",
                             NormalizedEmail = "MICHAELWW@GMAIL.COM",
                             NormalizedUserName = "MICHAELWW@GMAIL.COM",
-                            PasswordHash = "ACj/kFpAP7cC0/sJlA+06IuE+D+hZQbkVBMKdT0OfeujDSmetXl/9PtTtMdq9N7UbQ==",
+                            PasswordHash = "AN+PbKeQx6a4h0qgVRiAWrP8ABVo/TSTZcL35OHCh7UgFyy82WQEDSR3wesbmunGEw==",
                             PhoneNumber = "987 654 321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3TER3XC5A73PHR7UXHUT22UG3G6UWVVM",
+                            SecurityStamp = "OUFXQ2SL4YYP3XYL4UVSQ6VHSHWIDY3Z",
                             Surname = "Williams",
                             TwoFactorEnabled = false,
                             UserName = "michaelww@gmail.com"
@@ -334,10 +334,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "William",
                             NormalizedEmail = "JONESWILLIAM@GMAIL.COM",
                             NormalizedUserName = "JONESWILLIAM@GMAIL.COM",
-                            PasswordHash = "AF8xannEzQ6es4YxsjMimTAdojYWhtEilRvO+AlNPf+M/j1v65Qd4M9AB283UXR1Sg==",
+                            PasswordHash = "AIh36y7zCyygSyLA5vahJqyyAG6R15Csk+KQJ7SggAqlMBU0ioh0coeKvW70lrmbqw==",
                             PhoneNumber = "123 456 789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "SK6734J6OYOL73HADTNEPET5KTADLC7G",
+                            SecurityStamp = "GOZFI2UTT47EED7IZRWK23NBG36SPAS6",
                             Surname = "Jones",
                             TwoFactorEnabled = false,
                             UserName = "joneswilliam@gmail.com"
@@ -354,10 +354,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Olivia",
                             NormalizedEmail = "OLIVIAB@GMAIL.COM",
                             NormalizedUserName = "OLIVIAB@GMAIL.COM",
-                            PasswordHash = "ACnEMAFjUGqCCNBTe69uG6qoo0/QfrSM4Slqfyl6pxuita1Vt76E4/IPceXwQLfyZg==",
+                            PasswordHash = "AEmAIJhUV2jPv/3DVGfyemUrBsaqpVJDfscKHKfw3XlzkMb8Y7S61iGWjnIHeQ3CAg==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "XE4LIZ4RV4V7ZE6XECRZ6G6Y7VJVCG7R",
+                            SecurityStamp = "ABM3OULBPHPN6RHROGFZ4742JJY5ELOW",
                             Surname = "Brown",
                             TwoFactorEnabled = false,
                             UserName = "oliviab@gmail.com"
