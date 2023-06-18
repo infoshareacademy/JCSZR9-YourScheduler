@@ -97,3 +97,27 @@ h1 img {
     width: auto;
     margin-right: 50px;
 }
+
+.list2 ul {
+    display: none;
+}
+
+.list2:hover > ul {
+    display: block;
+/*    position: absolute;*/
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+.list2 button {
+    font-size: 20px;
+}
+
+.admin {
+    font-size: 20px;
+    
+}

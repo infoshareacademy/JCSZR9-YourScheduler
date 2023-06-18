@@ -7,9 +7,34 @@
 <ul class="navbar-nav flex-grow-1">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Index">Użytkownik</a>
+    <li class="nav-item list2">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Użytkownik</button>
+            <ul>
+               @* <li>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Index">Dane użytkownika</a>
+                </li>*@
 
+@*                <li>
+                    <a class="nav-link text-dark" asp-action="Edit" asp-route-id="@Model.Id" >Edytuj - TODO</a>
+                </li>*@
+                 
+                <li>
+                    <a class="nav-link text-dark" asp-controller="ApplicationUserEvent" asp-action="MyEvents">Moje wydarzenia</a>
+                </li>
+                 
+                <li>
+                    <a class="nav-link text-dark" asp-controller="Event" asp-action="Create" >Stwórz nowe wydarzenie</a>
+                </li>
+                 
+                <li>
+                    <a class="nav-link text-dark" asp-action="RedirectToAppliactionUserTeam" >Moje zespoły</a> 
+                </li>
+                
+                <li>
+                    <a class="nav-link text-dark" asp-action="Create" >Stwórz nowy zespół</a>
+                </li>
+             
+            </ul>      
     </li>
     <li class="nav-item">
         <a class="nav-link active text-dark" asp-area="" asp-controller="Event" asp-action="Index">Dostępne wydarzenia</a>
