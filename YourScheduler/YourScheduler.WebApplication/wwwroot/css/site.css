@@ -27,17 +27,18 @@ body {
 }
 
 .logo img {
-    width: 120px;
+    width: 80px;
     height: auto;
 }
 
 h1 img {
-    width: 120px;
+    width: 100px;
     height: auto;
 }
 
 .main-header{
-    font-size: 21px;
+    font-size: 20px;
+    background-image: linear-gradient(to right, white, rgb(13,110,253));
 }
 
 .login-image-container {
@@ -70,18 +71,8 @@ h1 img {
     text-align: center;
     padding: 10px;
 }
-
-.vertical-line {
-    position: relative;
+.main-site-image {
+    margin-bottom: 10px;
+    height: 250px;
+    width: auto;
 }
-
-    .vertical-line::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 1px;
-        height: 100%;
-        background-color: rgb(13, 110, 253, 1);
-        
-    }
