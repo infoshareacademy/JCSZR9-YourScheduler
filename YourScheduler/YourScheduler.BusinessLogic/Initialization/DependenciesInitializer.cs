@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using YourScheduler.BusinessLogic.Mapppers;
 using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using YourScheduler.BusinessLogic.Services.Settings;
 
 namespace YourScheduler.BusinessLogic.Initialization
 {
@@ -26,7 +28,7 @@ namespace YourScheduler.BusinessLogic.Initialization
             serviceCollection.AddScoped<ITeamMapper, TeamMapper>();
             serviceCollection.AddScoped<IHomeViewService, HomeViewService>();
             serviceCollection.AddScoped<IHomeViewMapper, HomeViewMapper>();
-;
+            serviceCollection.AddTransient<IEmailSender, EmailService>();         
         }
     }
 }
