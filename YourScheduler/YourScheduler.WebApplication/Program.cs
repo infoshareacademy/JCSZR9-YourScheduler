@@ -5,11 +5,16 @@ using YourScheduler.BusinessLogic.Models;
 using YourScheduler.Infrastructure;
 using YourScheduler.Infrastructure.Initialization;
 using YourScheduler.Infrastructure.Entities;
+using YourScheduler.BusinessLogic.Services.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("YourSchedulerDbContextConnection") ?? throw new InvalidOperationException("Connection string 'YourSchedulerDbContextConnection' not found.");
 
 builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
  options.UseSqlServer(connectionString));
+
+var emailConfig = builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddSingleton(emailConfig);
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
  .AddEntityFrameworkStores<YourSchedulerDbContext>();
@@ -21,7 +26,6 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
 // .AddEntityFrameworkStores<YourSchedulerDbContext>();
 //var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
-
 
 
 
