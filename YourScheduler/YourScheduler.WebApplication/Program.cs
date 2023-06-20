@@ -13,10 +13,10 @@ var connectionString = builder.Configuration.GetConnectionString("YourSchedulerD
 builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
  options.UseSqlServer(connectionString));
 
-var emailConfig = builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
 builder.Services.AddSingleton(emailConfig);
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
  .AddEntityFrameworkStores<YourSchedulerDbContext>();
 //var connectionString = builder.Configuration.GetConnectionString("YourSchedulerDbContextConnection") ?? throw new InvalidOperationException("Connection string 'YourSchedulerDbContextConnection' not found.");
 
