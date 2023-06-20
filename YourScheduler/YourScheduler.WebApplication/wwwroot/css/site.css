@@ -27,8 +27,8 @@ body {
 }
 
 .logo img {
-    width: 80px;
-    height: auto;
+    height: 60px;
+    width: auto;
 }
 
 h1 img {
@@ -77,11 +77,11 @@ h1 img {
     width: auto;
 }
 
-.list1 ul {
+.user-panel-list ul {
     display: none;
 }
 
-.list1:hover > ul {
+.user-panel-list:hover > ul {
     display: block;
     position: absolute;
     list-style-type: none;
@@ -92,32 +92,39 @@ h1 img {
     font-size: 20px;
 }
 
-.list1 img {
+.user-panel-list img {
     height: 80px;
     width: auto;
     margin-right: 50px;
 }
 
-.list2 ul {
+.team-event-list ul {
     display: none;
 }
 
-.list2:hover > ul {
+.team-event-list:hover > ul {
     display: block;
-/*    position: absolute;*/
+    position: absolute;
     list-style-type: none;
     padding: 0;
     margin: 0;
     text-align: left;
     white-space: nowrap;
     font-size: 20px;
+    background-image: linear-gradient(to right, white 10px, rgb(13,110,253));
 }
 
-.list2 button {
+.team-event-list button {
     font-size: 20px;
 }
 
 .admin {
     font-size: 20px;
     
+}
+
+.start-page-img-container img {
+    width:300px;
+    height: auto;
+
 }
