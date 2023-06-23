@@ -12,33 +12,50 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        public TeamController(ITeamService teamService , IUserService userService)
+        public readonly IApplicationUserTeamService _applicationUserTeamService;
+        public readonly IAvailableTeamsViewService _availableTeamsViewService;
+
+        public TeamController(ITeamService teamService, IUserService userService, IApplicationUserTeamService applicationUserTeamService, IAvailableTeamsViewService allTeamsViewService)
         {
             _teamService = teamService;
             _userService = userService;
+            _applicationUserTeamService = applicationUserTeamService;
+            _availableTeamsViewService = allTeamsViewService;
+
         }
         // GET: TeamController
         [Authorize]
         public ActionResult Index(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _teamService.GetAvailableTeams();
+            var userNameLogged = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userNameLogged);
+
+
+
+            var viewModel = _availableTeamsViewService.GetAvailableTeams(user.Id);
+            foreach (var item in viewModel)
+            {
+                item.LoggedUserId = user.Id;
+            }
             if (String.IsNullOrEmpty(searchString))
             {
-                return View(model);
+                return View(viewModel);
             }
             else
             {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
+
+                var allTeams2 = viewModel.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(allTeams2);
             }
         }
 
         // GET: TeamController/Details/5
         public ActionResult Details(int id)
         {
+            var userNameLogged = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userNameLogged);
             var model = _teamService.GetTeamById(id);
+            model.LoggedUserId = user.Id;
             return View(model);
         }
 
