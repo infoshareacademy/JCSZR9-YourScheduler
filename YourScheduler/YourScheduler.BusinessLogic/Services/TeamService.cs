@@ -34,7 +34,7 @@ namespace YourScheduler.BusinessLogic.Services
         public List<TeamDto> GetAvailableTeams()
         {
             List<TeamDto> teamDtos = new List<TeamDto>();
-            var teamsFromDataBase = _teamsRepository.GetAvailableTeams();
+            var teamsFromDataBase = _teamsRepository.GetAllExistedTeams();
 
             foreach (var teamFromBase in teamsFromDataBase)
             {

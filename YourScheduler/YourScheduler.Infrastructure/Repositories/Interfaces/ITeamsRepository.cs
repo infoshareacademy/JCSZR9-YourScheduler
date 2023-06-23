@@ -9,7 +9,7 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 {
     public interface ITeamsRepository
     {
-        List<Team> GetAvailableTeams();
+        List<Team> GetAllExistedTeams();
 
         public void AddTeam(Team team);
 
