@@ -26,7 +26,8 @@ namespace YourScheduler.BusinessLogic.Initialization
             serviceCollection.AddScoped<ITeamMapper, TeamMapper>();
             serviceCollection.AddScoped<IHomeViewService, HomeViewService>();
             serviceCollection.AddScoped<IHomeViewMapper, HomeViewMapper>();
-;
+            serviceCollection.AddScoped<IAvailableTeamsViewService, AvailableTeamsViewService>();
+            
         }
     }
 }

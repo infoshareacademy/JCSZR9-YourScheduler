@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourScheduler.BusinessLogic.Models.DTOs;
+using YourScheduler.BusinessLogic.Services.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
 {
-    internal class AvailableTeamsViewService
+    public class AvailableTeamsViewService : IAvailableTeamsViewService
     {
+        public List<TeamDto> GetAvailableTeams(int id)
+        {
+            
+        }
     }
 }
