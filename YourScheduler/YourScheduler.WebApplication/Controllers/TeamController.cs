@@ -75,10 +75,10 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model= _teamService.GetTeamById(id);
+            var model = _teamService.GetTeamById(id);
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
-            if (model.AdministratorId==user.Id)
+            if (model.AdministratorId == user.Id)
             {
                 return View(model);
             }
@@ -86,7 +86,7 @@ namespace YourScheduler.WebApplication.Controllers
             {
                 return View("EditError");
             }
-            
+
         }
 
         // POST: TeamController/Edit/5
