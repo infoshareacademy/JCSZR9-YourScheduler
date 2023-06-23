@@ -50,7 +50,7 @@ namespace YourScheduler.BusinessLogic.Services
             return _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
         }
 
-        public void DeleteEvent(int id)
+        public void DeleteTeam(int id)
         {
             _teamsRepository.DeleteTeamById(id);
         }
