@@ -132,7 +132,7 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                _teamService.DeleteEvent(id);
+                _teamService.DeleteTeam(id);
                 return RedirectToAction("Index");
             }
             catch

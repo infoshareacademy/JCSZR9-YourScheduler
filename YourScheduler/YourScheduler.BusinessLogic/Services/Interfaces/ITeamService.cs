@@ -15,7 +15,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public TeamDto GetTeamById(int id);
 
-        public void DeleteEvent(int id);
+        public void DeleteTeam(int id);
 
         public void DeleteTeamFromCalendar(int id, int userId);
 
