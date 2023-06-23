@@ -27,10 +27,10 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public List<Team> GetAvailableTeams()
+        public List<Team> GetAllExistedTeams()
         {
             List<Team> teams = new List<Team>();
-            teams=_dbContext.Teams.ToList();
+            teams = _dbContext.Teams.ToList();
             return teams;
         }
 

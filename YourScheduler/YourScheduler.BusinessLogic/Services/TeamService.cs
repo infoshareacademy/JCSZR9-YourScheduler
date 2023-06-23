@@ -36,7 +36,7 @@ namespace YourScheduler.BusinessLogic.Services
             List<TeamDto> teamDtos = new List<TeamDto>();
             var teamsFromDataBase = _teamsRepository.GetAvailableTeams();
 
-            foreach (var teamFromBase in teamsFromDataBase) 
+            foreach (var teamFromBase in teamsFromDataBase)
             {
                 var team = _teamMapper.TeamToTeamDtoMap(teamFromBase);
                 teamDtos.Add(team);
