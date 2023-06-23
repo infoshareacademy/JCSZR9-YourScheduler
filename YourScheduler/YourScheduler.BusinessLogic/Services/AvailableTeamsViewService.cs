@@ -27,7 +27,7 @@ namespace YourScheduler.BusinessLogic.Services
 
             List<TeamDto> availableTeams = new List<TeamDto>();
             var teams1 = _applicationUserTeamService.GetMyTeams(id);
-            var teams2 = _teamService.GetAllExistedTeams();
+            var teams2 = _teamService.GetAvailableTeams();
             var teams3 = teams2;
             for (int i = 0; i < teams2.Count; i++)
             {
