@@ -26,8 +26,6 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-      
-
         public List<ApplicationUser> GetUsersFromDataBase()
         {
             var users = new List<ApplicationUser>();   
