@@ -15,4 +15,6 @@ public class TeamDto
     public string Description { get; set; } = null!;
 
     public int AdministratorId { get; set; }
+
+    public int LoggedUserId { get; set; }
 }
