@@ -135,6 +135,10 @@ namespace YourScheduler.WebApplication.Controllers
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
             var model = _applicationUserTeamService.GetMyTeams(user.Id);
+            foreach (var item in model)
+            {
+                item.LoggedUserId = user.Id;
+            }
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
