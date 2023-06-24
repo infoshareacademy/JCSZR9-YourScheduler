@@ -117,7 +117,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 _teamService.UpdateTeam(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MyTeams","ApplicationUserTeam");
             }
             catch
             {

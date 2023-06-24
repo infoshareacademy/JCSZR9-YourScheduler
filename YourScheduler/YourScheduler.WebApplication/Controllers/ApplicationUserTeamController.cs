@@ -129,15 +129,15 @@ namespace YourScheduler.WebApplication.Controllers
 
         }
 
-
+        [Route("MyTeams")]
         public ActionResult MyTeams(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserTeamService.GetMyTeams(user.Id);
+            var userId =int.Parse(HttpContext.User.Identity.GetUserId());
+           // var user = _userService.GetUserByEmail(userName);
+            var model = _applicationUserTeamService.GetMyTeams(userId);
             foreach (var item in model)
             {
-                item.LoggedUserId = user.Id;
+                item.LoggedUserId = userId;
             }
             if (String.IsNullOrEmpty(searchString))
             {
