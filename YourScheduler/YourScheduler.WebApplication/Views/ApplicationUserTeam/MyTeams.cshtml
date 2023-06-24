@@ -32,35 +32,13 @@
             </th>
            
             <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                
-                <td>
-                    <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
-                </td>
-                <td>
-                    <a asp-controller="Team" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
-                </td>
-                <td>
-                    <a asp-controller="ApplicationUserTeam" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń zespół z kalendarza</a>
-                </td>
-                <td>
-                    <a asp-action="TeamMembers" asp-route-id="@item.Id" class="btn btn-warning">Członkowie zespołu</a>
-                </td>
-            </tr>
+            <partial name="_MyTeamsRow" model="item" />
         }
     </tbody>
 </table>
