@@ -36,6 +36,7 @@ namespace YourScheduler.BusinessLogic.Services
             {
                 EventDto eventDto = new EventDto();
                 eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
+                eventDto.LoggedUserId = loggedUserId;
                 eventsDto.Add(eventDto);
             }
             if (String.IsNullOrEmpty(searchString))
