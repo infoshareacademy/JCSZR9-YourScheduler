@@ -74,9 +74,18 @@
                 <td>
                     <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
                 </td>
-                <td>
-                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
-                </td>
+                @if (item.AdministratorId == item.LoggedUserId)
+                {
+                    <td>
+                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Edytuj</button>
+                    </td>
+                }
                 <td>
                     <a asp-controller="ApplicationUserEvent" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
                 </td>

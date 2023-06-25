@@ -13,7 +13,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public List<EventDto> GetAvailableEvents(int loggedUserId, string searchString);
 
-        public EventDto GetEventById(int id);
+        public EventDto GetEventById(int id, int loggedUserId);
 
         public void DeleteEvent(int id);
 

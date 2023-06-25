@@ -25,7 +25,8 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("addthisevent/{id:int}")]
         public ActionResult AddThisEvent(int id)
         {
-            var model = _eventService.GetEventById(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
             return View(model);
         }
 
@@ -58,7 +59,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Delete/5
         public ActionResult DeleteFromCalendar(int id)
         {
-            var model = _eventService.GetEventById(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
             return View(model);
         }
 
@@ -82,7 +84,8 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
-            var eventMembersDto = _applicationUserEventService.GetEventMembersDto(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var eventMembersDto = _applicationUserEventService.GetEventMembersDto(id, loggedUserId);
             return View(eventMembersDto);
         }
 
