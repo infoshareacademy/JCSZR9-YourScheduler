@@ -35,6 +35,7 @@
   <ItemGroup>
     <None Include="Views\User\Details.cshtml" />
     <None Include="Views\User\Index.cshtml" />
+    <None Include="wwwroot\js\index.js" />
   </ItemGroup>
 
 </Project>
