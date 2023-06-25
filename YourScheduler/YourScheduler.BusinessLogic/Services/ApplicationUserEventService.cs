@@ -36,7 +36,7 @@ namespace YourScheduler.BusinessLogic.Services
             _applicationUsersEventsRepository.SaveData();
         }
 
-        public List<EventDto> GetMyEvents(int applicationUserId)
+        public List<EventDto> GetMyEvents(int applicationUserId, string searchString)
         {
             List<EventDto> myEvents = new List<EventDto>();
             var eventsForUser = _applicationUsersEventsRepository.GetEventsForUser(applicationUserId);
@@ -46,7 +46,14 @@ namespace YourScheduler.BusinessLogic.Services
                 eventDto = _eventMapper.EventToEventDtoMapp(eventEntity);
                 myEvents.Add(eventDto);
             }
-            return myEvents;
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return myEvents;
+            }
+            else
+            {
+                return myEvents.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
         }
 
         public List<UserDto> GetUsersForEvent(int eventId)
