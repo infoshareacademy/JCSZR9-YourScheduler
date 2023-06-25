@@ -23,10 +23,10 @@ namespace YourScheduler.WebApplication.Controllers
 
         // GET: ApplicationUserEventController/Delete/5
         [Route("addthisevent/{id:int}")]
-        public ActionResult AddThisEvent(int eventId)
+        public ActionResult AddThisEvent(int id)
         {
 
-            var model = _eventService.GetEventById(eventId);
+            var model = _eventService.GetEventById(id);
             return View(model);
         }
 
@@ -74,12 +74,12 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteFromCalendar(int eventToDeleteId, EventDto model)
+        public ActionResult DeleteFromCalendar(int id, EventDto model)
         {
             try
             {
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
-                _eventService.DeleteEventFromCalendar(eventToDeleteId, loggedUserId);
+                _eventService.DeleteEventFromCalendar(id, loggedUserId);
                 return RedirectToAction("MyEvents");
             }
             catch
@@ -88,19 +88,10 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        //TODO - 
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
-            EventMembersDto eventMembersDto = new EventMembersDto();
-            var modelEvent = _eventService.GetEventById(id);
-            eventMembersDto.Name = modelEvent.Name;
-            eventMembersDto.Description = modelEvent.Description;
-            eventMembersDto.Date = modelEvent.Date;
-            eventMembersDto.Isopen = modelEvent.Isopen;
-
-            eventMembersDto.EventUsers = _applicationUserEventService.GetUsersForEvent(id);
-
+            var eventMembersDto = _applicationUserEventService.GetEventMembersDto(id);
             return View(eventMembersDto);
         }
 
