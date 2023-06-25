@@ -19,11 +19,15 @@ namespace YourScheduler.BusinessLogic.Services
         private readonly IEventMapper _eventMapper;
 
         private readonly IUserMapper _userMapper;
-        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper, IUserMapper userMapper)
+
+        private readonly IEventService _eventService;
+
+        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper, IUserMapper userMapper, IEventService eventService)
         {
             _applicationUsersEventsRepository = applicationUsersEventsRepository;
             _eventMapper = eventMapper;
             _userMapper = userMapper;
+            _eventService = eventService;
         }
 
         public void AddEventForUser(int applicationUserId, int eventId)
@@ -35,15 +39,13 @@ namespace YourScheduler.BusinessLogic.Services
         public List<EventDto> GetMyEvents(int applicationUserId)
         {
             List<EventDto> myEvents = new List<EventDto>();
-
             var eventsForUser = _applicationUsersEventsRepository.GetEventsForUser(applicationUserId);
             foreach (var eventEntity in eventsForUser)
             {
                 EventDto eventDto = new EventDto();
-                eventDto=_eventMapper.EventToEventDtoMapp(eventEntity);
+                eventDto = _eventMapper.EventToEventDtoMapp(eventEntity);
                 myEvents.Add(eventDto);
-            }       
-          
+            }
             return myEvents;
         }
 
@@ -59,5 +61,18 @@ namespace YourScheduler.BusinessLogic.Services
             }
             return usersDtos;
         }
+
+        public EventMembersDto GetEventMembersDto(int eventId)
+        {
+            var modelEvent = _eventService.GetEventById(eventId);
+            EventMembersDto eventMembersDto = new EventMembersDto();
+            eventMembersDto.Name = modelEvent.Name;
+            eventMembersDto.Description = modelEvent.Description;
+            eventMembersDto.Date = modelEvent.Date;
+            eventMembersDto.Isopen = modelEvent.Isopen;
+            eventMembersDto.EventUsers = GetUsersForEvent(eventId);
+            return eventMembersDto;
+        }
+
     }
 }
