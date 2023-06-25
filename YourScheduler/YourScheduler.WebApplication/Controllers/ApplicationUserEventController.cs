@@ -25,7 +25,6 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("addthisevent/{id:int}")]
         public ActionResult AddThisEvent(int id)
         {
-
             var model = _eventService.GetEventById(id);
             return View(model);
         }
@@ -52,16 +51,8 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult MyEvents(string searchString)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
-            if (String.IsNullOrEmpty(searchString))
-            {
-                return View(model);
-            }
-            else
-            {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
-            }
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId, searchString);
+            return View(model);
         }
 
         // GET: EventController/Delete/5
@@ -98,30 +89,15 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult MyEventsFinished(string searchString)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
-            if (String.IsNullOrEmpty(searchString))
-            {
-                return View(model.Where(e => e.Date < DateTime.Now));
-            }
-            else
-            {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date < DateTime.Now).ToList();
-                return View(model);
-            }
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId, searchString);
+            return View(model);
         }
+
         public ActionResult MyEventsIncoming(string searchString)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
-            if (String.IsNullOrEmpty(searchString))
-            {
-                return View(model.Where(e => e.Date >= DateTime.Now));
-            }
-            else
-            {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase) && e.Date >= DateTime.Now).ToList();
-                return View(model);
-            }
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId, searchString);
+            return View(model);
         }
     }
 }
