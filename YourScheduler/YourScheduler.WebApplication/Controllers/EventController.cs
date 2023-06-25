@@ -12,7 +12,7 @@ namespace YourScheduler.WebApplication.Controllers
     public class EventController : Controller
     {
         private readonly IEventService _eventService;
-        private readonly IUserService _userService;
+        //private readonly IUserService _userService;
 
         public EventController(IEventService eventService)
         {
@@ -24,16 +24,8 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Index(string searchString)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            var model = _eventService.GetAvailableEvents(loggedUserId);
-            if (String.IsNullOrEmpty(searchString))
-            {
-                return View(model);
-            }
-            else
-            {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
-            }
+            var model = _eventService.GetAvailableEvents(loggedUserId, searchString);
+            return View(model);
         }
 
         // GET: EventController/Details/5

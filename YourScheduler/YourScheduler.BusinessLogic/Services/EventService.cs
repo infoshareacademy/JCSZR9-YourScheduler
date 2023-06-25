@@ -29,17 +29,23 @@ namespace YourScheduler.BusinessLogic.Services
             _eventsRepository.SaveData();
         }
 
-        public List<EventDto> GetAvailableEvents(int loggedUserId)
+        public List<EventDto> GetAvailableEvents(int loggedUserId, string searchString)
         {
             List<EventDto> eventsDto = new List<EventDto>();
-
             foreach (var eventFromDatabase in _eventsRepository.GetAvailableEvents(loggedUserId))
             {
                 EventDto eventDto = new EventDto();
                 eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
                 eventsDto.Add(eventDto);
             }
-            return eventsDto;
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return eventsDto;
+            }
+            else
+            {
+                return eventsDto.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
         }
 
         public EventDto GetEventById(int id)
