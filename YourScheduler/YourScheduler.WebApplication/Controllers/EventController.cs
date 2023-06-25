@@ -31,7 +31,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Details/5
         public ActionResult Details(int id)
         {
-            var model = _eventService.GetEventById(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
             return View(model);
         }
 
@@ -67,8 +68,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _eventService.GetEventById(id);
             var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
             if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
@@ -100,8 +101,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _eventService.GetEventById(id);
             var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
             if (model.AdministratorId == loggedUserId)
             {
                 return View(model);

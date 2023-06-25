@@ -49,10 +49,12 @@ namespace YourScheduler.BusinessLogic.Services
             }
         }
 
-        public EventDto GetEventById(int id)
+        public EventDto GetEventById(int id, int loggedUserId)
         {
             var eventFromDataBase= _eventsRepository.GetEventById(id);
-            return _eventMapper.EventToEventDtoMapp(eventFromDataBase);
+            var eventDto = _eventMapper.EventToEventDtoMapp(eventFromDataBase);
+            eventDto.LoggedUserId = loggedUserId;
+            return eventDto;
         }
 
         public void DeleteEvent(int id)

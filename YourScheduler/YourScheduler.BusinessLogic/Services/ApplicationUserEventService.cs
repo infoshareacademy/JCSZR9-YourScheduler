@@ -70,9 +70,9 @@ namespace YourScheduler.BusinessLogic.Services
             return usersDtos;
         }
 
-        public EventMembersDto GetEventMembersDto(int eventId)
+        public EventMembersDto GetEventMembersDto(int eventId, int loggedUserId)
         {
-            var modelEvent = _eventService.GetEventById(eventId);
+            var modelEvent = _eventService.GetEventById(eventId, loggedUserId);
             EventMembersDto eventMembersDto = new EventMembersDto();
             eventMembersDto.Name = modelEvent.Name;
             eventMembersDto.Description = modelEvent.Description;
