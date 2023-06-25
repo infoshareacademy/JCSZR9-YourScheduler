@@ -14,19 +14,17 @@ namespace YourScheduler.WebApplication.Controllers
         private readonly IEventService _eventService;
         private readonly IUserService _userService;
 
-        public EventController(IEventService eventService, IUserService userService)
+        public EventController(IEventService eventService)
         {
             _eventService = eventService;
-            _userService = userService;
         }
 
         // GET: EventController
         [Authorize]
         public ActionResult Index(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _eventService.GetAvailableEvents(user.Id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetAvailableEvents(loggedUserId);
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
@@ -60,11 +58,10 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    model.administratorId = user.Id;
+                    model.administratorId = loggedUserId;
                     _eventService.AddEvent(model);
                 }
                 return RedirectToAction("Index","User");
@@ -79,9 +76,8 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            if (model.administratorId == loggedUserId)
             {
                 return View(model);
             }
@@ -96,9 +92,8 @@ namespace YourScheduler.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EventDto model)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            model.administratorId = user.Id;
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            model.administratorId = loggedUserId;
             try
             {
                 _eventService.UpdateEvent(model);
@@ -114,9 +109,8 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Delete(int id)
         {
             var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            if (model.administratorId == loggedUserId)
             {
                 return View(model);
             }

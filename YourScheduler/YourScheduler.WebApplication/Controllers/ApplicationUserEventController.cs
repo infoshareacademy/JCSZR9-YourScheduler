@@ -14,20 +14,19 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly IEventService _eventService;
         private readonly IApplicationUserEventService _applicationUserEventService;
-        private readonly IUserService _userService;
-        public ApplicationUserEventController(IEventService eventService, IApplicationUserEventService applicationUserEventService, IUserService userService)
+
+        public ApplicationUserEventController(IEventService eventService, IApplicationUserEventService applicationUserEventService)
         {
             _eventService = eventService;
             _applicationUserEventService = applicationUserEventService;
-            _userService = userService;
         }
 
         // GET: ApplicationUserEventController/Delete/5
         [Route("addthisevent/{id:int}")]
-        public ActionResult AddThisEvent(int id)
+        public ActionResult AddThisEvent(int eventId)
         {
 
-            var model = _eventService.GetEventById(id);
+            var model = _eventService.GetEventById(eventId);
             return View(model);
         }
 
@@ -39,9 +38,9 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
-                _applicationUserEventService.AddEventForUser(user.Id, model.Id);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var eventToAddId = model.Id;
+                _applicationUserEventService.AddEventForUser(loggedUserId, eventToAddId);
                 return RedirectToAction("Index", "Event");
             }
             catch (Exception ex)
@@ -52,9 +51,8 @@ namespace YourScheduler.WebApplication.Controllers
 
         public ActionResult MyEvents(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model);
@@ -76,13 +74,12 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteFromCalendar(int id, EventDto model)
+        public ActionResult DeleteFromCalendar(int eventToDeleteId, EventDto model)
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
-                _eventService.DeleteEventFromCalendar(id, user.Id);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                _eventService.DeleteEventFromCalendar(eventToDeleteId, loggedUserId);
                 return RedirectToAction("MyEvents");
             }
             catch
@@ -91,6 +88,7 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
+        //TODO - 
         [Route("eventmembers/{id:int}")]
         public ActionResult EventMembers(int id)
         {
@@ -108,9 +106,8 @@ namespace YourScheduler.WebApplication.Controllers
 
         public ActionResult MyEventsFinished(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model.Where(e => e.Date < DateTime.Now));
@@ -123,9 +120,8 @@ namespace YourScheduler.WebApplication.Controllers
         }
         public ActionResult MyEventsIncoming(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserEventService.GetMyEvents(user.Id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _applicationUserEventService.GetMyEvents(loggedUserId);
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(model.Where(e => e.Date >= DateTime.Now));
