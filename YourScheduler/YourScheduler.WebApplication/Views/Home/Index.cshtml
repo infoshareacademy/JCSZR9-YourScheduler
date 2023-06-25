@@ -13,41 +13,80 @@
 		<img src="~/Pictures/yourscheduler.png" >
 	</div>
 
-<div class="row start-page-img-container">
-	<div class="col-md-2"></div>
-	<div class="col-md-3 text-center login-image-container">
-		<img src="~/Pictures/team-A.jpg" class="main-site-image">
-		<div class="image-overlay">
-			<div class="image-text">Ułóż sobie życie!</div>
+	@*	<div class="row start-page-img-container">
+		<div class="col-md-2"></div>
+		<div class="col-md-3 text-center login-image-container">
+			<img  src="~/Pictures/team-A.jpg" class="main-site-image">
+			<div class="image-overlay">
+				<div class="image-text">Ułóż sobie życie!</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-md-2"></div>
-	<div class="col-md-3 text-center login-image-container">
-		<img src="~/Pictures/team-A.jpg" class="main-site-image">
-		<div class="image-overlay">
-			<div class="image-text">Dodawaj znajomych</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-3 text-center login-image-container">
+			<img src="~/Pictures/team-A.jpg" class="main-site-image">
+			<div class="image-overlay">
+				<div class="image-text">Dodawaj znajomych</div>
+			</div>
 		</div>
+		<div class="col-md-2"></div>
 	</div>
-	<div class="col-md-2"></div>
+
+	<div class="row start-page-img-container">
+		<div class="col-md-2"></div>
+		<div class="col-md-3 text-center login-image-container">
+			<img src="~/Pictures/team-A.jpg" class="main-site-image">
+			<div class="image-overlay">
+				<div class="image-text">Twórz zespoły</div>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-3 text-center login-image-container">
+			<img src="~/Pictures/team-A.jpg" class="main-site-image">
+			<div class="image-overlay">
+				<div class="image-text">Organizuj wydarzenia</div>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>*@
+
+<div class="card card-start-page" style="width: 18rem;">
+	<img src="~/Pictures/team-A.jpg" class="card-img-top" alt="TEAM LOGO">
+	<div class="card-body">
+		<h5 class="card-title">Twórz zespoły</h5>
+		<p class="card-text">Znajdź sowich współpracowników lub znajomych i utwórz zespół, w którym dzielić będziecie wydarzenia.</p>
+		@*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+		<a class="btn btn-primary" asp-controller="User" asp-action="Create" >Stwórz nowy zespół</a>
+	</div>
+</div>
+<div class="card card-start-page" style="width: 18rem;">
+	<img src="~/Pictures/team-A.jpg" class="card-img-top" alt="TEAM LOGO">
+	<div class="card-body">
+		<h5 class="card-title">Sprawdzaj zespoły</h5>
+		<p class="card-text">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			@*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+		<a class="btn btn-primary" asp-area="" asp-controller="Team" asp-action="Index">Dostępne zespoły</a>
+	</div>
 </div>
 
-<div class="row start-page-img-container">
-	<div class="col-md-2"></div>
-	<div class="col-md-3 text-center login-image-container">
-		<img src="~/Pictures/team-A.jpg" class="main-site-image">
-		<div class="image-overlay">
-			<div class="image-text">Twórz zespoły</div>
-		</div>
+<div class="card card-start-page" style="width: 18rem;">
+	<img src="~/Pictures/team-A.jpg" class="card-img-top" alt="TEAM LOGO">
+	<div class="card-body">
+		<h5 class="card-title">Sprawdzaj wydarzenia</h5>
+		<p class="card-text">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			@*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+		<a class="btn btn-primary" asp-area="" asp-controller="Event" asp-action="Index">Dostępne wydarzenia</a>
 	</div>
-	<div class="col-md-2"></div>
-	<div class="col-md-3 text-center login-image-container">
-		<img src="~/Pictures/team-A.jpg" class="main-site-image">
-		<div class="image-overlay">
-			<div class="image-text">Organizuj wydarzenia</div>
-		</div>
-	</div>
-	<div class="col-md-2"></div>
 </div>
-	
 
+<div class="card card-start-page" style="width: 18rem;">
+	<img src="~/Pictures/team-A.jpg" class="card-img-top" alt="TEAM LOGO">
+	<div class="card-body">
+		<h5 class="card-title">Twórz wydarzenia</h5>
+		<p class="card-text">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			@*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+		<a class="btn btn-primary" asp-controller="Event" asp-action="Create" >Stwórz nowe wydarzenie</a>
+	</div>
+</div>
+
+	<script src="./js/index.js"></script>
 </div>
