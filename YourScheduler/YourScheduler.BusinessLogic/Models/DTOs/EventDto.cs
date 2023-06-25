@@ -19,5 +19,7 @@ public class EventDto
 
     public bool Isopen { get; set; }
 
-    public int administratorId { get; set; }
+    public int AdministratorId { get; set; }
+    
+    public int LoggedUserId { get; set; }
 }

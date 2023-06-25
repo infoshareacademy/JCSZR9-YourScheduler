@@ -53,7 +53,7 @@ namespace YourScheduler.WebApplication.Controllers
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    model.administratorId = loggedUserId;
+                    model.AdministratorId = loggedUserId;
                     _eventService.AddEvent(model);
                 }
                 return RedirectToAction("Index","User");
@@ -69,7 +69,7 @@ namespace YourScheduler.WebApplication.Controllers
         {
             var model = _eventService.GetEventById(id);
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            if (model.administratorId == loggedUserId)
+            if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
             }
@@ -85,7 +85,7 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult Edit(int id, EventDto model)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            model.administratorId = loggedUserId;
+            model.AdministratorId = loggedUserId;
             try
             {
                 _eventService.UpdateEvent(model);
@@ -102,7 +102,7 @@ namespace YourScheduler.WebApplication.Controllers
         {
             var model = _eventService.GetEventById(id);
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            if (model.administratorId == loggedUserId)
+            if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
             }
