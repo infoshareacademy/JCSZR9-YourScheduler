@@ -22,12 +22,16 @@ namespace YourScheduler.BusinessLogic.Services
 
         private readonly IEventService _eventService;
 
-        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper, IUserMapper userMapper, IEventService eventService)
+        private readonly IEventsRepository _eventsRepository;
+        
+
+        public ApplicationUserEventService(IApplicationUsersEventsRepository applicationUsersEventsRepository,IEventMapper eventMapper, IUserMapper userMapper, IEventService eventService, IEventsRepository eventsRepository)
         {
             _applicationUsersEventsRepository = applicationUsersEventsRepository;
             _eventMapper = eventMapper;
             _userMapper = userMapper;
             _eventService = eventService;
+            _eventsRepository = eventsRepository;
         }
 
         public void AddEventForUser(int applicationUserId, int eventId)
@@ -44,7 +48,12 @@ namespace YourScheduler.BusinessLogic.Services
             {
                 EventDto eventDto = new EventDto();
                 eventDto = _eventMapper.EventToEventDtoMapp(eventEntity);
-                eventDto.LoggedUserId = applicationUserId;
+                if(applicationUserId == eventEntity.administratorId)
+                {
+                    eventDto.CanLoggedUserDelete = true;
+                    eventDto.CanLoggedUserEdit = true;
+                }
+                eventDto.IsLoggedUserParticipant = _eventsRepository.CheckIfLoggedUserIsParticipant(applicationUserId, eventDto.Id);
                 myEvents.Add(eventDto);
             }
             if (String.IsNullOrEmpty(searchString))

@@ -19,5 +19,6 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
         public void DeleteEventById(int id);
         public void DeleteEventFromCalendarById(int id, int userId);
         public void UpdateEvent(Event eventToBase);
+        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int eventId);
     }
 }
