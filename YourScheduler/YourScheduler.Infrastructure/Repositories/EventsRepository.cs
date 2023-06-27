@@ -75,5 +75,11 @@ namespace YourScheduler.Infrastructure.Repositories
                 _dbContext.SaveChanges();
             }
         }
+
+        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int eventId)
+        {
+            var isLoggedUserParticipant = _dbContext.ApplicationUsersEvents.Any(e => e.ApplicationUserId == loggedUserId && e.EventId == eventId);
+            return isLoggedUserParticipant;
+        }
     }
 }

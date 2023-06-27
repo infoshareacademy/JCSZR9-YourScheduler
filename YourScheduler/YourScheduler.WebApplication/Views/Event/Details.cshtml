@@ -45,7 +45,7 @@
     </dl>
 </div>
 <div>
-    @if(Model.AdministratorId == Model.LoggedUserId)
+    @if(Model.CanLoggedUserEdit)
     {
         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
     }

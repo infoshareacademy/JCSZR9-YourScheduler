@@ -46,5 +46,11 @@ namespace YourScheduler.Infrastructure.Repositories
             applicationUsers = _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToList();
             return applicationUsers;
         }
+
+        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int eventId)
+        {
+            var isLoggedUserParticipant = _dbContext.ApplicationUsersEvents.Any(e => e.ApplicationUserId == loggedUserId && e.EventId == eventId);
+            return isLoggedUserParticipant;
+        }
     }
 }

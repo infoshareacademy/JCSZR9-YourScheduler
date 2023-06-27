@@ -44,7 +44,56 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <partial name="_IndexEventsRow" model="item" />
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.Date.ToString("yyyy-MM-dd HH:mm")
+                </td>
+                @if (@item.Isopen == true)
+                {
+                    <td>
+                        Tak
+                    </td>
+                }
+                @if (@item.Isopen == false)
+                {
+                    <td>
+                        Nie
+                    </td>
+                }
+                <td>
+                    <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
+                </td>
+                @if (item.IsLoggedUserParticipant)
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Dodaj wydarzenie</button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-controller="ApplicationUserEvent" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-primary">Dodaj wydarzenie</a>
+                    </td>
+                }
+                @if (item.CanLoggedUserDelete)
+                {
+                    <td>
+                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Usuń wydarzenie</button>
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 </table>

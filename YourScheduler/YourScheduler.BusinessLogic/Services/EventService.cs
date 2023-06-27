@@ -7,6 +7,8 @@ using YourScheduler.BusinessLogic.Mappers;
 using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using YourScheduler.Infrastructure.Entities;
+using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -36,7 +38,12 @@ namespace YourScheduler.BusinessLogic.Services
             {
                 EventDto eventDto = new EventDto();
                 eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
-                eventDto.LoggedUserId = loggedUserId;
+                if (loggedUserId == eventDto.AdministratorId)
+                {
+                    eventDto.CanLoggedUserDelete = true;
+                    eventDto.CanLoggedUserEdit = true;
+                }
+                eventDto.IsLoggedUserParticipant = _eventsRepository.CheckIfLoggedUserIsParticipant(loggedUserId, eventDto.Id);
                 eventsDto.Add(eventDto);
             }
             if (String.IsNullOrEmpty(searchString))
@@ -53,7 +60,12 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var eventFromDataBase= _eventsRepository.GetEventById(id);
             var eventDto = _eventMapper.EventToEventDtoMapp(eventFromDataBase);
-            eventDto.LoggedUserId = loggedUserId;
+            if (loggedUserId == eventDto.AdministratorId)
+            {
+                eventDto.CanLoggedUserDelete = true;
+                eventDto.CanLoggedUserEdit = true;
+            }
+            eventDto.IsLoggedUserParticipant = _eventsRepository.CheckIfLoggedUserIsParticipant(loggedUserId, eventDto.Id);
             return eventDto;
         }
 
@@ -73,5 +85,4 @@ namespace YourScheduler.BusinessLogic.Services
             _eventsRepository.UpdateEvent(eventToBase);
         }
     }
-
 }
