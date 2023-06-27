@@ -20,5 +20,13 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
         public void DeleteEventFromCalendar(int id, int userId);
 
         public void UpdateEvent(EventDto model);
+
+        public void AddEventForUser(int applicationUserId, int eventId);
+
+        public List<EventDto> GetMyEvents(int applicationUserId, string searchString);
+
+        public List<UserDto> GetUsersForEvent(int eventId);
+
+        public EventMembersDto GetEventMembersDto(int eventId, int loggedUserId);
     }
 }

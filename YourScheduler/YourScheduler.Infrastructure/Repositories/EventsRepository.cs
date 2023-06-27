@@ -20,7 +20,6 @@ namespace YourScheduler.Infrastructure.Repositories
         public void AddEvent(Event eventTobase)
         {
             _dbContext.Events.Add(eventTobase);
-
         }
         public void SaveData()
         {
@@ -80,6 +79,26 @@ namespace YourScheduler.Infrastructure.Repositories
         {
             var isLoggedUserParticipant = _dbContext.ApplicationUsersEvents.Any(e => e.ApplicationUserId == loggedUserId && e.EventId == eventId);
             return isLoggedUserParticipant;
+        }
+
+        public void AddEventForUser(int applicationUserId, int eventId)
+        {
+            _dbContext.ApplicationUsersEvents.Add(new ApplicationUserEvent { ApplicationUserId = applicationUserId, EventId = eventId });
+        }
+
+        public List<Event> GetEventsForUser(int applicationUserId)
+        {
+            List<int> ids = new List<int>();
+            List<Event> events = new List<Event>();
+            events = _dbContext.ApplicationUsersEvents.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Event).ToList();
+            return events;
+        }
+
+        public List<ApplicationUser> GetApplicationUsersForEvent(int eventId)
+        {
+            List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
+            applicationUsers = _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToList();
+            return applicationUsers;
         }
     }
 }
