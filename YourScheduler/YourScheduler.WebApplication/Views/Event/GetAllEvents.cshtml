@@ -1,30 +1,26 @@
 ﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.DTOs.EventDto>
 
 @{
-    ViewData["Title"] = "MyEvents";
+    ViewData["Title"] = "GetAllEvents";
 }
 
-<h1>Moje wydarzenia</h1>
+<h1>Dostępne wydarzenia</h1>
 <hr />
 <p>
-    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Pokaż wszystkie wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsFinished" class="btn btn-primary">Pokaż zakończone wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsIncoming" class="btn btn-primary">Pokaż nadchodzące wydarzenia</a>
+    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a>
 </p>
 <hr />
 
-<form asp-controller="ApplicationUserEvent" asp-action="MyEvents">
+<form asp-controller="Event" asp-action="GetAllEvents">
     <div class="input-group mb-3">
         <input type="text"
                class="form-control form-control-lg"
                placeholder="Wpisz nazwę wyszukiwanego wydarzenia"
-               name="searchString"/>
+               name="searchString" />
         <input type="submit" value="Szukaj" class="btn btn-primary" />
     </div>
 </form>
 
-<hr />
 <table class="table">
     <thead>
         <tr>
@@ -40,7 +36,6 @@
             <th>
                 <label asp-for="First().Isopen">Wydarzenie publiczne</label>
             </th>
-            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -74,26 +69,31 @@
                 <td>
                     <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
                 </td>
-                @if (item.CanLoggedUserEdit)
+                @if (item.IsLoggedUserParticipant)
                 {
                     <td>
-                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                        <button type="button" class="btn btn-primary" disabled>Dodaj wydarzenie</button>
                     </td>
                 }
                 else
                 {
                     <td>
-                        <button type="button" class="btn btn-primary" disabled>Edytuj</button>
+                        <a asp-controller="Event" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-primary">Dodaj wydarzenie</a>
                     </td>
                 }
-                <td>
-                    <a asp-controller="ApplicationUserEvent" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
-                </td>
-                <td>
-                    <a asp-action="EventMembers" asp-route-id="@item.Id" class="btn btn-primary">Uczestnicy wydarzenia</a>
-                </td>
+                @if (item.CanLoggedUserDelete)
+                {
+                    <td>
+                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Usuń wydarzenie</button>
+                    </td>
+                }
             </tr>
         }
     </tbody>
 </table>
-

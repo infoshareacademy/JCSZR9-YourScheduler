@@ -47,13 +47,13 @@
 <div>
     @if(Model.CanLoggedUserEdit)
     {
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
+        <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
     }
     else
     {
         <button type="button" class="btn btn-primary" disabled>Edytuj</button>
     }
-    <a asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a>
+    <a asp-controller="Event" asp-action="GetAllEvents" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a>
 </div>
 
 

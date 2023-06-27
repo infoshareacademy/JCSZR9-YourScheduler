@@ -18,10 +18,14 @@ namespace YourScheduler.BusinessLogic.Services
         private readonly IEventsRepository _eventsRepository;
 
         private readonly IEventMapper _eventMapper;
-        public EventService(IEventsRepository eventsRepository,IEventMapper eventMapper)
+
+        private readonly IUserMapper _userMapper;
+
+        public EventService(IEventsRepository eventsRepository,IEventMapper eventMapper, IUserMapper userMapper)
         {
             _eventMapper = eventMapper;
             _eventsRepository = eventsRepository;
+            _userMapper = userMapper;
         }
 
         public void AddEvent(EventDto eventDto)
@@ -83,6 +87,63 @@ namespace YourScheduler.BusinessLogic.Services
         {
             var eventToBase = _eventMapper.EventDtoWithIdToEventMap(eventDto);
             _eventsRepository.UpdateEvent(eventToBase);
+        }
+
+        public void AddEventForUser(int applicationUserId, int eventId)
+        {
+            _eventsRepository.AddEventForUser(applicationUserId, eventId);
+            _eventsRepository.SaveData();
+        }
+
+        public List<EventDto> GetMyEvents(int applicationUserId, string searchString)
+        {
+            List<EventDto> myEvents = new List<EventDto>();
+            var eventsForUser = _eventsRepository.GetEventsForUser(applicationUserId);
+            foreach (var eventEntity in eventsForUser)
+            {
+                EventDto eventDto = new EventDto();
+                eventDto = _eventMapper.EventToEventDtoMapp(eventEntity);
+                if (applicationUserId == eventEntity.administratorId)
+                {
+                    eventDto.CanLoggedUserDelete = true;
+                    eventDto.CanLoggedUserEdit = true;
+                }
+                eventDto.IsLoggedUserParticipant = _eventsRepository.CheckIfLoggedUserIsParticipant(applicationUserId, eventDto.Id);
+                myEvents.Add(eventDto);
+            }
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return myEvents;
+            }
+            else
+            {
+                return myEvents.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+        }
+
+        public List<UserDto> GetUsersForEvent(int eventId)
+        {
+            List<UserDto> usersDtos = new List<UserDto>();
+            var usersForEvents = _eventsRepository.GetApplicationUsersForEvent(eventId);
+
+            foreach (var user in usersForEvents)
+            {
+                var userDto = _userMapper.UserToUserDtoMapp(user);
+                usersDtos.Add(userDto);
+            }
+            return usersDtos;
+        }
+
+        public EventMembersDto GetEventMembersDto(int eventId, int loggedUserId)
+        {
+            var modelEvent = GetEventById(eventId, loggedUserId);
+            EventMembersDto eventMembersDto = new EventMembersDto();
+            eventMembersDto.Name = modelEvent.Name;
+            eventMembersDto.Description = modelEvent.Description;
+            eventMembersDto.Date = modelEvent.Date;
+            eventMembersDto.Isopen = modelEvent.Isopen;
+            eventMembersDto.EventUsers = GetUsersForEvent(eventId);
+            return eventMembersDto;
         }
     }
 }
