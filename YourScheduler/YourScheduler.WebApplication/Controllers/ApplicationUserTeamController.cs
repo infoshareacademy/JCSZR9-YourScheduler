@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +6,8 @@ using System.Dynamic;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using YourScheduler.Infrastructure.Entities;
+using Microsoft.AspNet.Identity;
 
 namespace YourScheduler.WebApplication.Controllers
 {
@@ -14,12 +16,13 @@ namespace YourScheduler.WebApplication.Controllers
         private readonly IUserService _userService;
         private readonly IApplicationUserTeamService _applicationUserTeamService;
         private readonly ITeamService _teamService;
+       
         public ApplicationUserTeamController(IApplicationUserTeamService applicationUserTeamService,ITeamService teamService, IUserService userService)
         {
 
             _applicationUserTeamService = applicationUserTeamService;
             _teamService = teamService;
-            _userService = userService; 
+         
 
         }
         // GET: ApplicationUserTeamController1
@@ -111,11 +114,11 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
+               // var userName = HttpContext.User.Identity.GetUserName();
+                var userId = int.Parse(User.Identity.GetUserId());
 
-
-                var user = _userService.GetUserByEmail(userName);
-                _applicationUserTeamService.AddTeamForUser(user.Id, model.Id);
+              //  var user = _userService.GetUserByEmail(userName);
+                _applicationUserTeamService.AddTeamForUser(userId, model.Id);
                 return RedirectToAction("Index", "Team");
             }
             catch (Exception ex)
@@ -132,9 +135,9 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("MyTeams")]
         public ActionResult MyTeams(string searchString)
         {
-            var userId =int.Parse(HttpContext.User.Identity.GetUserId());
-           // var user = _userService.GetUserByEmail(userName);
-            var model = _applicationUserTeamService.GetMyTeams(userId);
+           var userId =int.Parse(HttpContext.User.Identity.GetUserId());
+          
+           var model = _applicationUserTeamService.GetMyTeams(userId);
             foreach (var item in model)
             {
                 item.LoggedUserId = userId;
@@ -176,9 +179,10 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
-                _teamService.DeleteTeamFromCalendar(id, user.Id);
+              //  var userName = HttpContext.User.Identity.GetUserName();
+               // var user = _userService.GetUserByEmail(userName);
+                var userId=int.Parse(User.Identity.GetUserId());
+                _teamService.DeleteTeamFromCalendar(id, userId);
                 return RedirectToAction("MyTeams");
             }
             catch
