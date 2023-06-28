@@ -12,37 +12,78 @@ namespace YourScheduler.WebApplication.Controllers
     public class EventController : Controller
     {
         private readonly IEventService _eventService;
-        private readonly IUserService _userService;
 
-        public EventController(IEventService eventService, IUserService userService)
+        public EventController(IEventService eventService)
         {
             _eventService = eventService;
-            _userService = userService;
         }
 
         // GET: EventController
         [Authorize]
-        public ActionResult Index(string searchString)
+        public ActionResult GetAllEvents(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _eventService.GetAvailableEvents(user.Id);
-            if (String.IsNullOrEmpty(searchString))
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = _eventService.GetAvailableEvents(loggedUserId, searchString);
                 return View(model);
             }
-            else
+            catch
             {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
+                //log - TODO
+                return View();
+            }
+        }
+
+        public ActionResult GetUserEvents(string searchString)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetMyEvents(loggedUserId, searchString);
+            return View(model);
+        }
+
+        // GET: ApplicationUserEventController/Delete/5
+        [Route("addthisevent/{id:int}")]
+        public ActionResult AddThisEvent(int id)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _eventService.GetEventById(id, loggedUserId);
+            return View(model);
+        }
+
+        // POST: ApplicationUserEventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("addthisevent/{id:int}")]
+        public ActionResult AddThisEvent(EventDto model)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var eventToAddId = model.Id;
+                _eventService.AddEventForUser(loggedUserId, eventToAddId);
+                return RedirectToAction(nameof(GetAllEvents));
+            }
+            catch
+            {
+                return View();
             }
         }
 
         // GET: EventController/Details/5
         public ActionResult Details(int id)
         {
-            var model = _eventService.GetEventById(id);
-            return View(model);
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = _eventService.GetEventById(id, loggedUserId);
+                return View(model);
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
         }
 
         // GET: EventController/Create
@@ -60,17 +101,17 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    model.administratorId = user.Id;
+                    model.AdministratorId = loggedUserId;
                     _eventService.AddEvent(model);
                 }
-                return RedirectToAction("Index","User");
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
                 return View();
             }
         }
@@ -78,16 +119,16 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = _eventService.GetEventById(id, loggedUserId);
                 return View(model);
             }
-            else
+            catch
             {
-                return View("EditError");
+                //log - TODO
+                return View();
             }
         }
 
@@ -96,16 +137,16 @@ namespace YourScheduler.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EventDto model)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            model.administratorId = user.Id;
             try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                model.AdministratorId = loggedUserId;
                 _eventService.UpdateEvent(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
                 return View();
             }
         }
@@ -113,16 +154,16 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: EventController/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = _eventService.GetEventById(id, loggedUserId);
                 return View(model);
             }
-            else
+            catch
             {
-                return View("DeleteError");
+                //log - TODO
+                return View();
             }
         }
 
@@ -134,10 +175,61 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 _eventService.DeleteEvent(id);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
+                return View();
+            }
+        }
+
+        // GET: EventController/Delete/5
+        public ActionResult DeleteFromCalendar(int id)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = _eventService.GetEventById(id, loggedUserId);
+                return View(model);
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
+        }
+
+        // POST: EventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromCalendar(int id, EventDto model)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                _eventService.DeleteEventFromCalendar(id, loggedUserId);
+                return RedirectToAction(nameof(GetUserEvents));
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
+        }
+
+        [Route("eventmembers/{id:int}")]
+        public ActionResult EventMembers(int id)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var eventMembersDto = _eventService.GetEventMembersDto(id, loggedUserId);
+                return View(eventMembersDto);
+            }
+            catch
+            {
+                //log - TODO
                 return View();
             }
         }
