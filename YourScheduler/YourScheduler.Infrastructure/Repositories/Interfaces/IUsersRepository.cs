@@ -10,7 +10,7 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
     public interface IUsersRepository
     {
         List<ApplicationUser> GetUsersFromDataBase();
-        Task<ApplicationUser> GetUserById(string id);
+        ApplicationUser GetUserById(int id);
 
         ApplicationUser GetUserByEmail(string email);
 
