@@ -14,7 +14,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
         UserDto GetUserByEmail(string email);
 
         void AddUser(UserDto user);
-        Task<UserDto> GetUserById(string id);
+        UserDto GetUserById(int id);
         void UpdateUser(UserDto userDtoUpdated);
     }
 }

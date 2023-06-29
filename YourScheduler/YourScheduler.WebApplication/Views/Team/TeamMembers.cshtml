@@ -1,7 +1,7 @@
 ﻿@using YourScheduler.BusinessLogic.Models.DTOs
-
-
 @model TeamMembersDto;
+
+
 @{
     ViewData["Title"] = "MyTeams";
 }
@@ -86,5 +86,8 @@
         }
     </tbody>
 </table>
+
+<hr />
+<a asp-controller="Team" asp-action="GetUserTeams" class="btn btn-primary">Powrót</a>
 
 

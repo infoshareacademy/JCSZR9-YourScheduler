@@ -28,10 +28,10 @@ namespace YourScheduler.UI.Controllers
         [Authorize]
         public  ActionResult Index()
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-           
-            
-            var model =  _userService.GetUserByEmail(userName);
+            var userId =int.Parse( HttpContext.User.Identity.GetUserId());
+
+
+            var model = _userService.GetUserById(userId);
             return View(model);
         }
 
@@ -65,7 +65,7 @@ namespace YourScheduler.UI.Controllers
 
         // GET: UserController/Edit/5
         [Route("edit/{id:int}")]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             var model = _userService.GetUserById(id);
             return View(model);
@@ -89,16 +89,5 @@ namespace YourScheduler.UI.Controllers
             }
         }
 
-        // GET: UserController/Delete/5
-       // [Route("Delete")]
-        public ActionResult Redirect()
-        {
-            return RedirectToAction("MyEvents","ApplicationUserEvent");
-        }
-
-        public ActionResult RedirectToAppliactionUserTeam()
-        {
-            return RedirectToAction("MyTeams", "ApplicationUserTeam");
-        }
     }
 }

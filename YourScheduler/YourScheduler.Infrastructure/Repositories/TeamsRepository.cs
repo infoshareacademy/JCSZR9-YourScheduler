@@ -27,10 +27,10 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public List<Team> GetAvailableTeams()
+        public List<Team> GetAllExistedTeams()
         {
             List<Team> teams = new List<Team>();
-            teams=_dbContext.Teams.ToList();
+            teams = _dbContext.Teams.ToList();
             return teams;
         }
 
@@ -72,6 +72,36 @@ namespace YourScheduler.Infrastructure.Repositories
                 
                 _dbContext.SaveChanges();
             }
+        }
+
+        public void AddTeamForUser(int applicationUserId, int teamId)
+        {
+            _dbContext.ApplicationUsersTeams.Add(new ApplicationUserTeam { ApplicationUserId = applicationUserId, TeamId = teamId });
+        }
+       
+
+        public List<Team> GetTeamsForUser(int applicationUserId)
+        {
+            List<int> ids = new List<int>();
+            List<Team> teams = new List<Team>();
+
+            teams = _dbContext.ApplicationUsersTeams.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Team).ToList();
+
+            return teams;
+
+        }
+
+        public List<ApplicationUser> GetApplicationUsersForTeam(int teamId)
+        {
+            List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
+            applicationUsers = _dbContext.ApplicationUsersTeams.Where(x => x.TeamId == teamId).Select(x => x.ApplicationUser).ToList();
+            return applicationUsers;
+        }
+
+        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int teamId)
+        {
+            var isLoggedUserParticipant = _dbContext.ApplicationUsersTeams.Any(e => e.ApplicationUserId == loggedUserId && e.TeamId == teamId);
+            return isLoggedUserParticipant;
         }
     }
 

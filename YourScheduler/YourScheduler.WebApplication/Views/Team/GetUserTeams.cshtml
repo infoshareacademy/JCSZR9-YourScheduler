@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.DTOs.TeamDto>
 
 @{
-    ViewData["Title"] = "MyTeams";
+    ViewData["Title"] = "GetUserTeams";
 }
 
 <h1>Moje zespoły</h1>
 <hr />
 <p>
-    <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a> |
-    <a asp-controller="Team" asp-action="" class="btn btn-danger">Pokaż wszystkie zespoły</a> |
+    <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a> 
+   
 </p>
 <hr />
 <form asp-controller="ApplicationUserTeam" asp-action="MyTeams">
@@ -25,10 +25,10 @@
     <thead>
         <tr>
             <th>
-                <label asp-for="First().Name">Nazwa zespołu</label>
+                <label asp-for="First().Name">Nazwa wydarzenia</label>
             </th>
             <th>
-                <label asp-for="First().Description">Opis zespołu</label>
+                <label asp-for="First().Description">Opis wydarzenia</label>
             </th>
            
             <th></th>
@@ -51,18 +51,28 @@
                 <td>
                     <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
                 </td>
+                @if (item.CanLoggedUserEdit)
+                {
+                    <td>
+                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Edytuj</button>
+                    </td>
+                }
                 <td>
-                    <a asp-controller="Team" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                    <a asp-controller="Team" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Wypisz się z zespołu</a>
                 </td>
                 <td>
-                    <a asp-controller="ApplicationUserTeam" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń zespół z kalendarza</a>
-                </td>
-                <td>
-                    <a asp-action="TeamMembers" asp-route-id="@item.Id" class="btn btn-warning">Członkowie zespołu</a>
+                    <a asp-controller="Team" asp-action="TeamMembers" asp-route-id="@item.Id" class="btn btn-primary">Uczestnicy zespołu</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
 
 
