@@ -23,5 +23,15 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 
         public void UpdateTeam(Team teamToBase);
 
+        void AddTeamForUser(int applicationUserId, int teamId);
+
+
+
+        List<Team> GetTeamsForUser(int applicationUserId);
+
+        public List<ApplicationUser> GetApplicationUsersForTeam(int teamId);
+
+        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int teamId);
+
     }
 }

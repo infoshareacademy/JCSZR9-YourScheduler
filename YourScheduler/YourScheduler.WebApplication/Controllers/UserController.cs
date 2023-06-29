@@ -91,14 +91,14 @@ namespace YourScheduler.UI.Controllers
 
         // GET: UserController/Delete/5
        // [Route("Delete")]
-        public ActionResult Redirect()
-        {
-            return RedirectToAction("MyEvents","ApplicationUserEvent");
-        }
+        //public ActionResult Redirect()
+        //{
+        //    return RedirectToAction("MyEvents","ApplicationUserEvent");
+        //}
 
-        public ActionResult RedirectToAppliactionUserTeam()
-        {
-            return RedirectToAction("MyTeams", "ApplicationUserTeam");
-        }
+        //public ActionResult RedirectToAppliactionUserTeam()
+        //{
+        //    return RedirectToAction("MyTeams", "ApplicationUserTeam");
+        //}
     }
 }

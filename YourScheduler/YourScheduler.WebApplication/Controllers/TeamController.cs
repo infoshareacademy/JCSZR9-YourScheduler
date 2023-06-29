@@ -12,31 +12,26 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        public readonly IApplicationUserTeamService _applicationUserTeamService;
-        public readonly IAvailableTeamsViewService _availableTeamsViewService;
+   
 
-        public TeamController(ITeamService teamService, IUserService userService, IApplicationUserTeamService applicationUserTeamService, IAvailableTeamsViewService allTeamsViewService)
+        public TeamController(ITeamService teamService, IUserService userService)
         {
             _teamService = teamService;
             _userService = userService;
-            _applicationUserTeamService = applicationUserTeamService;
-            _availableTeamsViewService = allTeamsViewService;
+           
 
         }
         // GET: TeamController
         [Authorize]
-        public ActionResult Index(string searchString)
+        public ActionResult GetAllTeams(string searchString)
         {
-            var userNameLogged = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userNameLogged);
+            var loggedUserId =int.Parse(User.Identity.GetUserId());
+           
 
 
 
-            var viewModel = _availableTeamsViewService.GetAvailableTeams(user.Id);
-            foreach (var item in viewModel)
-            {
-                item.LoggedUserId = user.Id;
-            }
+            var viewModel = _teamService.GetAvailableTeams(loggedUserId, searchString);
+           
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(viewModel);
@@ -55,7 +50,7 @@ namespace YourScheduler.WebApplication.Controllers
             var userNameLogged = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userNameLogged);
             var model = _teamService.GetTeamById(id);
-            model.LoggedUserId = user.Id;
+         
             return View(model);
         }
 
@@ -156,6 +151,88 @@ namespace YourScheduler.WebApplication.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult DeleteFromCalendar(int id)
+        {
+            var model = _teamService.GetTeamById(id);
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromCalendar(int id, TeamDto model)
+        {
+            try
+            {
+                //  var userName = HttpContext.User.Identity.GetUserName();
+                // var user = _userService.GetUserByEmail(userName);
+                var userId = int.Parse(User.Identity.GetUserId());
+                _teamService.DeleteTeamFromCalendar(id, userId);
+                return RedirectToAction("GetUserTeams");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult GetUserTeams(string searchString)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = _teamService.GetMyTeams(loggedUserId, searchString);
+            return View(model);
+        }
+
+        [Route("addthisteam/{id:int}")]
+        public ActionResult AddThisTeam(int id)
+        {
+
+            var model = _teamService.GetTeamById(id);
+            return View(model);
+
+        }
+
+        // POST: ApplicationUserEventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("addthisteam/{id:int}")]
+        public ActionResult AddThisTeam(TeamDto model)
+        {
+            try
+            {
+                // var userName = HttpContext.User.Identity.GetUserName();
+                var userId = int.Parse(User.Identity.GetUserId());
+
+                //  var user = _userService.GetUserByEmail(userName);
+                _teamService.AddTeamForUser(userId, model.Id);
+                return RedirectToAction(nameof(GetAllTeams));
+            }
+            catch (Exception ex)
+            {
+                return View("AddThisTeamError");
+            }
+            finally
+            {
+
+            }
+
+        }
+
+        
+
+        [Route("teammembers/{id:int}")]
+        public ActionResult TeamMembers(int id)
+        {
+            TeamMembersDto teamMembersDto = new TeamMembersDto();
+            var modelTeam = _teamService.GetTeamById(id);
+            teamMembersDto.Name = modelTeam.Name;
+            teamMembersDto.Description = modelTeam.Description;
+
+            teamMembersDto.TeamUsers = _teamService.GetUsersForTeam(id);
+
+            return View(teamMembersDto);
         }
     }
 }
