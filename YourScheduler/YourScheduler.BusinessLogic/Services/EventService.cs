@@ -85,8 +85,9 @@ namespace YourScheduler.BusinessLogic.Services
             await _eventsRepository.DeleteEventFromCalendarByIdAsync(id, userId);
         }
 
-        public async Task UpdateEventAsync(EventDto eventDto)
+        public async Task UpdateEventAsync(EventDto eventDto, int loggedUserId)
         {
+            eventDto.AdministratorId = loggedUserId;
             var eventToBase = _eventMapper.EventDtoWithIdToEventMap(eventDto);
             await _eventsRepository.UpdateEventAsync(eventToBase);
         }
