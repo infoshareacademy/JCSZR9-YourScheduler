@@ -1,0 +1,82 @@
+﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.DTOs.TeamDto>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewData["Title"] = "GetAllTeams";
+}
+
+<h1>Dostępne zespoły</h1>
+<hr />
+<p>
+    <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a>
+</p>
+<hr />
+
+<form asp-controller="Team" asp-action="Index">
+    <div class="input-group mb-3">
+        <input type="text"
+               class="form-control form-control-lg"
+               placeholder="Wpisz nazwę wyszukiwanego zespołu"
+               name="searchString" />
+        <input type="submit" value="Szukaj" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().Name">Nazwa wydarzenia</label>
+            </th>
+            <th>
+                <label asp-for="First().Description">Opis wydarzenia</label>
+            </th>
+            
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                
+               
+                <td>
+                    <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
+                </td>
+                @if (item.IsLoggedUserParticipant)
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Dodaj zespół</button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-controller="Team" asp-action="AddThisTeam" asp-route-id="@item.Id" class="btn btn-primary">Dodaj zespół</a>
+                    </td>
+                }
+                @if (item.CanLoggedUserDelete)
+                {
+                    <td>
+                        <a asp-controller="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń zespół</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Usuń zespół</button>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
