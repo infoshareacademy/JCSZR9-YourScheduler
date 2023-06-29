@@ -23,7 +23,6 @@ namespace YourScheduler.Infrastructure.Initialization
         {
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IEventsRepository, EventsRepository>();
-            services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, TeamsRepository>();
             services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
             services.AddScoped<IHomeViewRepository, HomeViewRepository>();
