@@ -145,7 +145,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 _teamService.DeleteTeam(id);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAllTeams");
             }
             catch
             {
