@@ -145,7 +145,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 _teamService.DeleteTeam(id);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAllTeams");
             }
             catch
             {
@@ -165,9 +165,7 @@ namespace YourScheduler.WebApplication.Controllers
         public ActionResult DeleteFromCalendar(int id, TeamDto model)
         {
             try
-            {
-                //  var userName = HttpContext.User.Identity.GetUserName();
-                // var user = _userService.GetUserByEmail(userName);
+            {             
                 var userId = int.Parse(User.Identity.GetUserId());
                 _teamService.DeleteTeamFromCalendar(id, userId);
                 return RedirectToAction("GetUserTeams");
