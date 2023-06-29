@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,53 +18,53 @@ namespace YourScheduler.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public void AddEvent(Event eventTobase)
+        public async Task AddEventAsync(Event eventTobase)
         {
-            _dbContext.Events.Add(eventTobase);
+            await _dbContext.Events.AddAsync(eventTobase);
         }
-        public void SaveData()
+        public async Task SaveDataAsync()
         {
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public List<Event> GetAvailableEvents(int loggedUserId)
+        public async Task<List<Event>> GetAvailableEventsAsync(int loggedUserId)
         {
             List<Event> events = new List<Event>();
-            events = _dbContext.Events.Where(i => i.IsOpen == true || i.administratorId == loggedUserId).ToList();
+            events = await _dbContext.Events.Where(i => i.IsOpen == true || i.administratorId == loggedUserId).ToListAsync();
             return events;
         }
 
-        public Event GetEventById(int id)
+        public async Task<Event> GetEventByIdAsync(int id)
         {
-            return _dbContext.Events.SingleOrDefault(x => x.EventId == id);
+            return await _dbContext.Events.SingleOrDefaultAsync(x => x.EventId == id);
         }
 
-        public void DeleteEventById(int id)
+        public async Task DeleteEventByIdAsync(int id)
         {
-            var eventToDelete = GetEventById(id);
+            var eventToDelete = await GetEventByIdAsync(id);
             if (eventToDelete != null)
             {
                 _dbContext.Events.Remove(eventToDelete);
                 var applicationUserEventsToDelete = _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventToDelete.EventId);
                 _dbContext.ApplicationUsersEvents.RemoveRange(applicationUserEventsToDelete);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
 
-        public void DeleteEventFromCalendarById(int id, int userId)
+        public async Task DeleteEventFromCalendarByIdAsync(int id, int userId)
         {
-            var eventToDelete = GetEventById(id);
+            var eventToDelete = await GetEventByIdAsync(id);
             if (eventToDelete != null)
             {
-                var applicationUsersEventToDelete = _dbContext.ApplicationUsersEvents.SingleOrDefault(x=>x.EventId == eventToDelete.EventId && x.ApplicationUserId == userId);
+                var applicationUsersEventToDelete = await _dbContext.ApplicationUsersEvents.SingleOrDefaultAsync(x=>x.EventId == eventToDelete.EventId && x.ApplicationUserId == userId);
                 _dbContext.ApplicationUsersEvents.Remove(applicationUsersEventToDelete);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
 
-        public void UpdateEvent(Event eventToBase)
+        public async Task UpdateEventAsync(Event eventToBase)
         {
-            var eventToUpdate = _dbContext.Events.SingleOrDefault(e => e.EventId == eventToBase.EventId);
+            var eventToUpdate = await _dbContext.Events.SingleOrDefaultAsync(e => e.EventId == eventToBase.EventId);
             if (eventToUpdate != null)
             {
                 eventToUpdate.Name = eventToBase.Name;
@@ -71,33 +72,33 @@ namespace YourScheduler.Infrastructure.Repositories
                 eventToUpdate.Date = eventToBase.Date;
                 eventToUpdate.IsOpen = eventToBase.IsOpen;
                 eventToUpdate.administratorId = eventToBase.administratorId;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
 
-        public bool CheckIfLoggedUserIsParticipant(int loggedUserId, int eventId)
+        public async Task<bool> CheckIfLoggedUserIsParticipantAsync(int loggedUserId, int eventId)
         {
-            var isLoggedUserParticipant = _dbContext.ApplicationUsersEvents.Any(e => e.ApplicationUserId == loggedUserId && e.EventId == eventId);
+            var isLoggedUserParticipant = await _dbContext.ApplicationUsersEvents.AnyAsync(e => e.ApplicationUserId == loggedUserId && e.EventId == eventId);
             return isLoggedUserParticipant;
         }
 
-        public void AddEventForUser(int applicationUserId, int eventId)
+        public async Task AddEventForUserAsync(int applicationUserId, int eventId)
         {
-            _dbContext.ApplicationUsersEvents.Add(new ApplicationUserEvent { ApplicationUserId = applicationUserId, EventId = eventId });
+            await _dbContext.ApplicationUsersEvents.AddAsync(new ApplicationUserEvent { ApplicationUserId = applicationUserId, EventId = eventId });
         }
 
-        public List<Event> GetEventsForUser(int applicationUserId)
+        public async Task<List<Event>> GetEventsForUserAsync(int applicationUserId)
         {
             List<int> ids = new List<int>();
             List<Event> events = new List<Event>();
-            events = _dbContext.ApplicationUsersEvents.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Event).ToList();
+            events = await _dbContext.ApplicationUsersEvents.Where(x => x.ApplicationUserId == applicationUserId).Select(x => x.Event).ToListAsync();
             return events;
         }
 
-        public List<ApplicationUser> GetApplicationUsersForEvent(int eventId)
+        public async Task<List<ApplicationUser>> GetApplicationUsersForEventAsync(int eventId)
         {
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
-            applicationUsers = _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToList();
+            applicationUsers = await _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToListAsync();
             return applicationUsers;
         }
     }

@@ -9,24 +9,24 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 {
     public interface IEventService
     {
-        public void AddEvent(EventDto eventDto);
+        public Task AddEventAsync(EventDto eventDto, int loggedUserId);
 
-        public List<EventDto> GetAvailableEvents(int loggedUserId, string searchString);
+        public Task<List<EventDto>> GetAvailableEventsAsync(int loggedUserId, string searchString);
 
-        public EventDto GetEventById(int id, int loggedUserId);
+        public Task<EventDto> GetEventByIdAsync(int id, int loggedUserId);
 
-        public void DeleteEvent(int id);
+        public Task DeleteEventAsync(int id);
 
-        public void DeleteEventFromCalendar(int id, int userId);
+        public Task DeleteEventFromCalendarAsync(int id, int userId);
 
-        public void UpdateEvent(EventDto model);
+        public Task UpdateEventAsync(EventDto model, int loggedUserId);
 
-        public void AddEventForUser(int applicationUserId, int eventId);
+        public Task AddEventForUserAsync(int applicationUserId, int eventId);
 
-        public List<EventDto> GetMyEvents(int applicationUserId, string searchString);
+        public Task<List<EventDto>> GetMyEventsAsync(int applicationUserId, string searchString);
 
-        public List<UserDto> GetUsersForEvent(int eventId);
+        public Task<List<UserDto>> GetUsersForEventAsync(int eventId);
 
-        public EventMembersDto GetEventMembersDto(int eventId, int loggedUserId);
+        public Task<EventMembersDto> GetEventMembersDtoAsync(int eventId, int loggedUserId);
     }
 }
