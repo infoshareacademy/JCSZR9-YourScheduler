@@ -19,7 +19,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public Task DeleteEventFromCalendarAsync(int id, int userId);
 
-        public Task UpdateEventAsync(EventDto model);
+        public Task UpdateEventAsync(EventDto model, int loggedUserId);
 
         public Task AddEventForUserAsync(int applicationUserId, int eventId);
 

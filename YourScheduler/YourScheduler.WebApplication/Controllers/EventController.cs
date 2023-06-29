@@ -139,8 +139,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
-                model.AdministratorId = loggedUserId;
-                await _eventService.UpdateEventAsync(model);
+                await _eventService.UpdateEventAsync(model, loggedUserId);
                 return RedirectToAction(nameof(GetAllEvents));
             }
             catch
