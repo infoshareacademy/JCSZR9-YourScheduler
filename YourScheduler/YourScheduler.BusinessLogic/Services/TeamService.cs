@@ -1,15 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YourScheduler.BusinessLogic.Mappers;
-using YourScheduler.BusinessLogic.Mapppers;
-using YourScheduler.BusinessLogic.Mapppers.Interfaces;
+﻿using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
-using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -21,24 +12,23 @@ namespace YourScheduler.BusinessLogic.Services
         private readonly ITeamMapper _teamMapper;
 
         private readonly IUserMapper _userMapper;
-        public TeamService(ITeamsRepository teamserepository,ITeamMapper teamMapper,IUserMapper userMapper)
+        public TeamService(ITeamsRepository teamsRepository,ITeamMapper teamMapper,IUserMapper userMapper)
         {
-            _teamsRepository = teamserepository;
+            _teamsRepository = teamsRepository;
             _teamMapper = teamMapper;
             _userMapper = userMapper;
         }
 
-        public void AddTeam(TeamDto teamDto)
+        public async Task AddTeamAsync(TeamDto teamDto)
         {
             var teamToDatabase=_teamMapper.TeamDtoToTeamMap(teamDto);
-            _teamsRepository.AddTeam(teamToDatabase);
-            _teamsRepository.SaveData();
+            await _teamsRepository.AddTeamAsync(teamToDatabase);
         }
 
-        public List<TeamDto> GetAvailableTeams(int loggedUserId, string searchString)
+        public async Task<List<TeamDto>> GetAvailableTeamsAsync(int loggedUserId, string searchString)
         {
             List<TeamDto> teamsDto = new List<TeamDto>();
-            var teamsFromDataBase = _teamsRepository.GetAllExistedTeams();
+            var teamsFromDataBase = await _teamsRepository.GetAllExistedTeamsAsync();
 
             foreach (var teamFromBase in teamsFromDataBase)
             {
@@ -48,7 +38,7 @@ namespace YourScheduler.BusinessLogic.Services
                     team.CanLoggedUserDelete = true;
                     team.CanLoggedUserEdit = true;
                 }
-                team.IsLoggedUserParticipant = _teamsRepository.CheckIfLoggedUserIsParticipant(loggedUserId, team.Id);
+                team.IsLoggedUserParticipant = await _teamsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, team.Id);
                 teamsDto.Add(team);
             }
             if (String.IsNullOrEmpty(searchString))
@@ -62,38 +52,37 @@ namespace YourScheduler.BusinessLogic.Services
             
         }
 
-        public TeamDto GetTeamById(int id)
+        public async Task<TeamDto> GetTeamByIdAsync(int id)
         {
-            var teamFromDataBase = _teamsRepository.GetTeamById(id);
+            var teamFromDataBase = await _teamsRepository.GetTeamByIdAsync(id);
             return _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
         }
 
-        public void DeleteTeam(int id)
+        public async Task DeleteTeamAsync(int id)
         {
-            _teamsRepository.DeleteTeamById(id);
+            await _teamsRepository.DeleteTeamByIdAsync(id);
         }
 
-        public void DeleteTeamFromCalendar(int id, int userId)
+        public async Task DeleteTeamFromCalendarAsync(int id, int userId)
         {
-            _teamsRepository.DeleteTeamFromCalendarById(id, userId);
+            await _teamsRepository.DeleteTeamFromCalendarByIdAsync(id, userId);
         }
 
-        public void UpdateTeam(TeamDto teamDto)
+        public async Task UpdateTeamAsync(TeamDto teamDto)
         {
             var teamToBase = _teamMapper.TeamDtoToTeamMap(teamDto);
-            _teamsRepository.UpdateTeam(teamToBase);
+            await _teamsRepository.UpdateTeamAsync(teamToBase);
         }
 
-        public void AddTeamForUser(int applicationUserId, int teamId)
+        public async Task AddTeamForUserAsync(int applicationUserId, int teamId)
         {
-            _teamsRepository.AddTeamForUser(applicationUserId, teamId);
-            _teamsRepository.SaveData();
+            await _teamsRepository.AddTeamForUserAsync(applicationUserId, teamId);
         }
 
-        public List<TeamDto> GetMyTeams(int applicationUserId, string searchString)
+        public async Task<List<TeamDto>> GetMyTeamsAsync(int applicationUserId, string searchString)
         {
             List<TeamDto> myTeams = new List<TeamDto>();
-            var teamsFromDataBase = _teamsRepository.GetTeamsForUser(applicationUserId);
+            var teamsFromDataBase = await _teamsRepository.GetTeamsForUserAsync(applicationUserId);
             foreach (var team in teamsFromDataBase)
             {
                 var teamDto = _teamMapper.TeamToTeamDtoMap(team);
@@ -103,7 +92,7 @@ namespace YourScheduler.BusinessLogic.Services
                     teamDto.CanLoggedUserEdit = true;
 
                 }
-                teamDto.IsLoggedUserParticipant = _teamsRepository.CheckIfLoggedUserIsParticipant(applicationUserId, teamDto.Id);
+                teamDto.IsLoggedUserParticipant = await _teamsRepository.CheckIfLoggedUserIsParticipantAsync(applicationUserId, teamDto.Id);
                 myTeams.Add(teamDto);
             }
             if (String.IsNullOrEmpty(searchString))
@@ -117,10 +106,10 @@ namespace YourScheduler.BusinessLogic.Services
            
         }
 
-        public List<UserDto> GetUsersForTeam(int teamtId)
+        public async Task<List<UserDto>> GetUsersForTeamAsync(int teamtId)
         {
             List<UserDto> usersDtos = new List<UserDto>();
-            var usersForTeam = _teamsRepository.GetApplicationUsersForTeam(teamtId);
+            var usersForTeam = await _teamsRepository.GetApplicationUsersForTeamAsync(teamtId);
 
             foreach (var user in usersForTeam)
             {
