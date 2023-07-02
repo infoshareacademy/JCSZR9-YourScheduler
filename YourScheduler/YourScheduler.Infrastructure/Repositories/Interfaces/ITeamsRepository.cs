@@ -9,19 +9,25 @@ namespace YourScheduler.Infrastructure.Repositories.Interfaces
 {
     public interface ITeamsRepository
     {
-        List<Team> GetAvailableTeams();
+        public Task<List<Team>> GetAllExistedTeamsAsync();
 
-        public void AddTeam(Team team);
+        public Task AddTeamAsync(Team team);
 
-        public void SaveData();
+        public Task<Team?> GetTeamByIdAsync(int id);
 
-        public Team GetTeamById(int id);
+        public Task DeleteTeamByIdAsync(int id);
 
-        public void DeleteTeamById(int id);
+        public Task DeleteTeamFromCalendarByIdAsync(int id, int userId);
 
-        public void DeleteTeamFromCalendarById(int id, int userId);
+        public Task UpdateTeamAsync(Team teamToBase);
 
-        public void UpdateTeam(Team teamToBase);
+        public Task AddTeamForUserAsync(int applicationUserId, int teamId);
+
+        public Task<List<Team>> GetTeamsForUserAsync(int applicationUserId);
+
+        public Task<List<ApplicationUser>> GetApplicationUsersForTeamAsync(int teamId);
+
+        public Task<bool> CheckIfLoggedUserIsParticipantAsync(int loggedUserId, int teamId);
 
     }
 }

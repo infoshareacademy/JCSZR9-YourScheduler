@@ -1,20 +1,17 @@
 ﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.DTOs.EventDto>
 
 @{
-    ViewData["Title"] = "MyEventsFinished";
+    ViewData["Title"] = "GetUserEvents";
 }
 
 <h1>Moje wydarzenia</h1>
 <hr />
 <p>
-    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Pokaż wszystkie wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsFinished" class="btn btn-primary">Pokaż zakończone wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsIncoming" class="btn btn-primary">Pokaż nadchodzące wydarzenia</a>
+    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a>
 </p>
 <hr />
 
-<form asp-controller="ApplicationUserEvent" asp-action="MyEvents">
+<form asp-controller="Event" asp-action="GetUserEvents">
     <div class="input-group mb-3">
         <input type="text"
                class="form-control form-control-lg"
@@ -74,14 +71,23 @@
                 <td>
                     <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
                 </td>
+                @if (item.CanLoggedUserEdit)
+                {
+                    <td>
+                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="button" class="btn btn-primary" disabled>Edytuj</button>
+                    </td>
+                }
                 <td>
-                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
+                    <a asp-controller="Event" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
                 </td>
                 <td>
-                    <a asp-controller="ApplicationUserEvent" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
-                </td>
-                <td>
-                    <a asp-action="EventMembers" asp-route-id="@item.Id" class="btn btn-primary">Uczestnicy wydarzenia</a>
+                    <a asp-controller="Event" asp-action="EventMembers" asp-route-id="@item.Id" class="btn btn-primary">Uczestnicy wydarzenia</a>
                 </td>
             </tr>
         }

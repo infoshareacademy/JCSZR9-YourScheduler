@@ -25,8 +25,15 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a> 
-    <a asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a> 
-</div>
+    @if (Model.CanLoggedUserEdit)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
+    }
+    else
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary disabled">Edytuj</a>
+    }
 
+    <a asp-controller="Team" asp-action="GetAllTeams" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a>
+</div>
 

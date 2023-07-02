@@ -26,8 +26,6 @@ namespace YourScheduler.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-      
-
         public List<ApplicationUser> GetUsersFromDataBase()
         {
             var users = new List<ApplicationUser>();   
@@ -48,11 +46,13 @@ namespace YourScheduler.Infrastructure.Repositories
 
         }
 
-        public async  Task<ApplicationUser> GetUserById(string id)
+        public ApplicationUser GetUserById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.ApplicationUsers.FirstOrDefault(u => u.Id == id);
         }
 
-      
+       
+
+
     }
 }

@@ -1,28 +1,29 @@
-﻿@using YourScheduler.BusinessLogic.Models.DTOs
+﻿@using YourScheduler.BusinessLogic.Models.DTOs;
+@model EventMembersDto;
 
-
-@model TeamMembersDto;
 @{
-    ViewData["Title"] = "MyTeams";
+    ViewData["Title"] = "MyEvents";
 }
 
-<h1>Informacje o zespole</h1>
-
-
+<h2>Szczegóły wydarzenia</h2>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Nazwa zespołu
+                Nazwa wydarzenia
             </th>
             <th>
-                Informacje o zespole
+                Opis wydarzenia
             </th>
-
+            <th>
+                Data
+            </th>
+            <th>
+                Wydarzenie publiczne
+            </th>
         </tr>
     </thead>
     <tbody>
-
         <tr>
             <td>
                 @Model.Name
@@ -30,23 +31,29 @@
             <td>
                 @Model.Description
             </td>
-
-
-            @* <td>
-            <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
-            </td>*@
-
+            <td>
+                @Model.Date.ToString("yyyy-MM-dd HH:mm")
+            </td>
+            @if (@Model.Isopen == true)
+            {
+                <td>
+                    Tak
+                </td>
+            }
+            @if (@Model.Isopen == false)
+            {
+                <td>
+                    Nie
+                </td>
+            }        
         </tr>
-
     </tbody>
 </table>
 
-<h1>Członkowie zespołu</h1>
-
+<h2>Uczestnicy</h2>
 <table class="table">
     <thead>
         <tr>
-
             <th>
                 Imię
             </th>
@@ -57,13 +64,12 @@
                 Pseudonim
             </th>
             <th>
-                Email
+                Adres e-mail
             </th>
-
         </tr>
     </thead>
     <tbody>
-        @foreach (UserDto item in Model.TeamUsers)
+        @foreach (UserDto item in Model.EventUsers)
         {
             <tr>
                 <td>
@@ -78,13 +84,10 @@
                 <td>
                     @item.Email
                 </td>
-                @* <td>
-            <a asp-action="Delete" asp-route-id="@item.Id">RemoveThisEvent</a>
-            </td>*@
-
             </tr>
         }
     </tbody>
 </table>
 
-
+<hr />
+<a asp-controller="Event" asp-action="GetUserEvents" class="btn btn-primary">Powrót</a>

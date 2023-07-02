@@ -12,33 +12,42 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-        public TeamController(ITeamService teamService , IUserService userService)
+   
+
+        public TeamController(ITeamService teamService, IUserService userService)
         {
             _teamService = teamService;
             _userService = userService;
+           
+
         }
         // GET: TeamController
         [Authorize]
-        public ActionResult Index(string searchString)
+        public async Task<ActionResult> GetAllTeams(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _teamService.GetAvailableTeams();
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+
+            var viewModel = await _teamService.GetAvailableTeamsAsync(loggedUserId, searchString);
+           
             if (String.IsNullOrEmpty(searchString))
             {
-                return View(model);
+                return View(viewModel);
             }
             else
             {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
+
+                var allTeams2 = viewModel.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                return View(allTeams2);
             }
         }
 
         // GET: TeamController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var model = _teamService.GetTeamById(id);
+            var userNameLogged = HttpContext.User.Identity.GetUserName();
+            var user = _userService.GetUserByEmail(userNameLogged);
+            var model = await _teamService.GetTeamByIdAsync(id);
+         
             return View(model);
         }
 
@@ -53,7 +62,7 @@ namespace YourScheduler.WebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create(TeamDto model)
+        public async Task<ActionResult> Create(TeamDto model)
         {
             try
             {
@@ -62,7 +71,7 @@ namespace YourScheduler.WebApplication.Controllers
                 if (model != null)
                 {
                     model.AdministratorId = user.Id;
-                    _teamService.AddTeam(model);
+                    await _teamService.AddTeamAsync(model);
                 }
                 return RedirectToAction("Index", "User");
             }
@@ -73,12 +82,12 @@ namespace YourScheduler.WebApplication.Controllers
         }
 
         // GET: TeamController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var model= _teamService.GetTeamById(id);
+            var model = await _teamService.GetTeamByIdAsync(id);
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
-            if (model.AdministratorId==user.Id)
+            if (model.AdministratorId == user.Id)
             {
                 return View(model);
             }
@@ -86,21 +95,21 @@ namespace YourScheduler.WebApplication.Controllers
             {
                 return View("EditError");
             }
-            
+
         }
 
         // POST: TeamController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, TeamDto model)
+        public async Task<ActionResult> Edit(int id, TeamDto model)
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
             model.AdministratorId = user.Id;
             try
             {
-                _teamService.UpdateTeam(model);
-                return RedirectToAction(nameof(Index));
+                await _teamService.UpdateTeamAsync(model);
+                return RedirectToAction("MyTeams","ApplicationUserTeam");
             }
             catch
             {
@@ -109,11 +118,11 @@ namespace YourScheduler.WebApplication.Controllers
         }
 
         // GET: TeamController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             var userName = HttpContext.User.Identity.GetUserName();
             var user = _userService.GetUserByEmail(userName);
-            var model = _teamService.GetTeamById(id);
+            var model = await _teamService.GetTeamByIdAsync(id);
             if (model.AdministratorId == user.Id)
             {
                 return View(model);
@@ -128,17 +137,96 @@ namespace YourScheduler.WebApplication.Controllers
         // POST: TeamController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, TeamDto model)
+        public async Task<ActionResult> Delete(int id, TeamDto model)
         {
             try
             {
-                _teamService.DeleteEvent(id);
-                return RedirectToAction("Index");
+                await _teamService.DeleteTeamAsync(id);
+                return RedirectToAction("GetAllTeams");
             }
             catch
             {
                 return View();
             }
+        }
+
+        public async Task<ActionResult> DeleteFromCalendar(int id)
+        {
+            var model = await _teamService.GetTeamByIdAsync(id);
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteFromCalendar(int id, TeamDto model)
+        {
+            try
+            {             
+                var userId = int.Parse(User.Identity.GetUserId());
+                await _teamService.DeleteTeamFromCalendarAsync(id, userId);
+                return RedirectToAction("GetUserTeams");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> GetUserTeams(string searchString)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetMyTeamsAsync(loggedUserId, searchString);
+            return View(model);
+        }
+
+        [Route("addthisteam/{id:int}")]
+        public async Task<ActionResult> AddThisTeam(int id)
+        {
+
+            var model = await _teamService.GetTeamByIdAsync(id);
+            return View(model);
+
+        }
+
+        // POST: ApplicationUserEventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("addthisteam/{id:int}")]
+        public async Task<ActionResult> AddThisTeam(TeamDto model)
+        {
+            try
+            {
+                // var userName = HttpContext.User.Identity.GetUserName();
+                var userId = int.Parse(User.Identity.GetUserId());
+
+                //  var user = _userService.GetUserByEmail(userName);
+                await _teamService.AddTeamForUserAsync(userId, model.Id);
+                return RedirectToAction(nameof(GetAllTeams));
+            }
+            catch (Exception ex)
+            {
+                return View("AddThisTeamError");
+            }
+            finally
+            {
+
+            }
+
+        }
+
+
+        [Route("teammembers/{id:int}")]
+        public async Task<ActionResult> TeamMembers(int id)
+        {
+            TeamMembersDto teamMembersDto = new TeamMembersDto();
+            var modelTeam = await _teamService.GetTeamByIdAsync(id);
+            teamMembersDto.Name = modelTeam.Name;
+            teamMembersDto.Description = modelTeam.Description;
+
+            teamMembersDto.TeamUsers = await _teamService.GetUsersForTeamAsync(id);
+
+            return View(teamMembersDto);
         }
     }
 }
