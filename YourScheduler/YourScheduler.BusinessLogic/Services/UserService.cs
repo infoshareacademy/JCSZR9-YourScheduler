@@ -9,20 +9,26 @@ using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
+
+
 namespace YourScheduler.BusinessLogic.Services
 {
-    internal class UserService : IUserService
+    internal class UserService :IUserService
     {
         private readonly IUsersRepository _usersRepository;
 
         private readonly IUserMapper _userMapper;
+
+ 
         public UserService(IUsersRepository usersRepository,IUserMapper userMapper)
         {
             _userMapper = userMapper;
             _usersRepository = usersRepository;
+            
         }
         public List<UserDto> GetAllUsers()
         {
+
             List<UserDto> users = new List<UserDto>();  
             foreach (var item in _usersRepository.GetUsersFromDataBase())
             {
@@ -37,9 +43,10 @@ namespace YourScheduler.BusinessLogic.Services
             return users;
         }
 
-        public async Task<UserDto> GetUserById(string id)
+        public UserDto GetUserById(int id)
         {
-            var user=await _usersRepository.GetUserById(id);
+           
+            var user= _usersRepository.GetUserById(id);
             UserDto userDto = new UserDto();
             userDto=_userMapper.UserToUserDtoMapp(user);
             return userDto;

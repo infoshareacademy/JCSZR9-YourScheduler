@@ -18,15 +18,15 @@ namespace YourScheduler.BusinessLogic.Initialization
         {
             serviceCollection.AddScoped<IUserService, UserService>();
             serviceCollection.AddScoped<IEventService, EventService>();
-            serviceCollection.AddScoped<IApplicationUserEventService, ApplicationUserEventService>();
             serviceCollection.AddScoped<ITeamService, TeamService>();
-            serviceCollection.AddScoped<IApplicationUserTeamService, ApplicationUserTeamService>();
+           
             serviceCollection.AddScoped<IUserMapper, UserMapper>();
             serviceCollection.AddScoped<IEventMapper, EventMapper>();
             serviceCollection.AddScoped<ITeamMapper, TeamMapper>();
             serviceCollection.AddScoped<IHomeViewService, HomeViewService>();
             serviceCollection.AddScoped<IHomeViewMapper, HomeViewMapper>();
-;
+           
+            
         }
     }
 }

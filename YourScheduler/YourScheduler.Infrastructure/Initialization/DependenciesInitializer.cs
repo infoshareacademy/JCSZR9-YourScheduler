@@ -14,18 +14,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
+using Microsoft.AspNetCore.Builder;
 
 namespace YourScheduler.Infrastructure.Initialization
 {
     public static class DependenciesInitializer
     {
+
         public static void AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IEventsRepository, EventsRepository>();
-            services.AddScoped<IApplicationUsersEventsRepository, ApplicationUsersEventsRepository>();
             services.AddScoped<ITeamsRepository, TeamsRepository>();
-            services.AddScoped<IApplicationUsersTeamsRepository, ApplicationUsersTeamsRepository>();
             services.AddScoped<IHomeViewRepository, HomeViewRepository>();
         }
     }
