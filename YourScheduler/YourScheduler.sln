@@ -12,6 +12,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.WebApplicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.Infrastructure", "YourScheduler.Infrastructure\YourScheduler.Infrastructure.csproj", "{553947E4-4881-4E55-B0D4-2F88EE39BC7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourScheduler.BusinessLogic.xUnitTests", "YourScheduler.BusinessLogic.xUnitTests\YourScheduler.BusinessLogic.xUnitTests.csproj", "{3543CCA5-94BE-4A49-B4CC-8AF298B41C65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourScheduler.Infrastructure.xUnitTests", "YourScheduler.Infrastructure.xUnitTests\YourScheduler.Infrastructure.xUnitTests.csproj", "{F653D799-A678-457C-8C2B-1C2EC282B416}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,14 @@ Global
 		{553947E4-4881-4E55-B0D4-2F88EE39BC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553947E4-4881-4E55-B0D4-2F88EE39BC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{553947E4-4881-4E55-B0D4-2F88EE39BC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3543CCA5-94BE-4A49-B4CC-8AF298B41C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3543CCA5-94BE-4A49-B4CC-8AF298B41C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3543CCA5-94BE-4A49-B4CC-8AF298B41C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3543CCA5-94BE-4A49-B4CC-8AF298B41C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F653D799-A678-457C-8C2B-1C2EC282B416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F653D799-A678-457C-8C2B-1C2EC282B416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F653D799-A678-457C-8C2B-1C2EC282B416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F653D799-A678-457C-8C2B-1C2EC282B416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
