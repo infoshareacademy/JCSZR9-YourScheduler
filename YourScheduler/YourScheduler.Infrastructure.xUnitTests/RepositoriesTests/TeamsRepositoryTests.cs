@@ -73,16 +73,10 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
 
             // Act
             await repository.AddTeamAsync(team);
-
-            
-
             var teamReturned = await repository.GetAllExistedTeamsAsync();  
 
             //Assert
-
             teamReturned.Should().NotBeNullOrEmpty();
-
-
 
         }
     }
