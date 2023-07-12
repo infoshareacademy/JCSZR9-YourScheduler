@@ -13,7 +13,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
     public class TeamsRepositoryTests
     {
         [Fact]
-        public async Task TeamRepository_AddTeam_ReturnAddedTeamName()
+        public async Task TeamRepository_AddTeam_ReturnAddedTeamNameAndDescription()
         {
             //Assign
             var context = ContextGenerator.Generate();
