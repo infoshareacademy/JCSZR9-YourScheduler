@@ -1,11 +1,12 @@
 ﻿using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
 {
-    public class TeamService : ITeamService
+    public  class TeamService : ITeamService
     {
         private readonly ITeamsRepository _teamsRepository;
 
