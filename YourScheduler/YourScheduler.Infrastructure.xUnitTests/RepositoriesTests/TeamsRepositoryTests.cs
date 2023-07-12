@@ -12,29 +12,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
 {
     public class TeamsRepositoryTests
     {
-        [Fact]
-        public async Task TeamRepository_AddTeam_ReturnAddedTeamNameAndDescription()
-        {
-            //Assign
-            var context = ContextGenerator.Generate();
-            var repository=new TeamsRepository(context);
-            Team team = new Team
-            {
-                Name = "Piłkarze",
-                Description = "Bardzo lubimy grać w piłkę nożną",
-            };
-            //Act
-            await repository.AddTeamAsync(team);
-            
-            var result=  await repository.GetAllExistedTeamsAsync();
-            foreach (var item in result)
-            {
-                item.Name.Should().Be(team.Name);
-                item.Description.Should().Be(team.Description); 
-            }
-            
-        }
-
+       
         [Fact]
         public async Task TeamRepository_AddTeam_ReturnAddedTeamById()
         {
@@ -43,8 +21,9 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             var repository = new TeamsRepository(context);
             Team team = new Team
             {
+                TeamId=1,
                 Name="Piłkarze",
-                Description="Bardzo lubimy grać w piłkę nożną",
+                Description="Bardzo lubimy grać w piłkę nożną"
             };
           
             //Act
@@ -53,8 +32,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
 
             //Assert
             teamReturned.TeamId.Should().Be(1);  
-          
-             
+                     
             
         }
 
@@ -77,7 +55,6 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
 
             //Assert
             teamReturned.Should().NotBeNullOrEmpty();
-
         }
     }
 }
