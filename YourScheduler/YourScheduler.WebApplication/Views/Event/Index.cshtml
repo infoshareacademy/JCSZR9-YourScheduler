@@ -7,7 +7,9 @@
 <h1>Dostępne wydarzenia</h1>
 <hr />
 <p>
-    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a>
+    <a asp-controller="Event" asp-action="Create" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz nowe wydarzenie">   
+        <span class="bi bi-calendar-plus main-icons"></span>                                                     
+    </a>
 </p>
 <hr />
 
@@ -22,7 +24,7 @@
 </form>
 
 <table class="table">
-    <thead>
+    @*<thead>
         <tr>
             <th>
                 <label asp-for="First().Name">Nazwa wydarzenia</label>
@@ -40,9 +42,9 @@
             <th></th>
             <th></th>
         </tr>
-    </thead>
+    </thead>*@
     <tbody>
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -76,6 +78,39 @@
                     <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie</a>
                 </td>
             </tr>
-        }
+        }*@
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                        <img src="~/Pictures/team-A.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">@item.Description</h6>
+                        <p class="card-text">@item.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                            @if (@item.Isopen == true)
+                            {
+                                <p class="card-text">Wydarzenie publiczne: Tak</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">Wydarzenie publiczne: Nie</p>
+                            }
+                        @*<a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>*@
+                        <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                                <span class="bi bi-eye main-icons"></span>                                                     
+                        </a>
+                        <a asp-controller="ApplicationUserEvent" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Dodaj wydarzenie do swojego kalendarza">
+                                    <span class="bi bi-calendar-check main-icons"></span>
+                        </a>
+                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń wydarzenie">
+                                <span class="bi bi-calendar-x main-icons"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+</div>
     </tbody>
 </table>

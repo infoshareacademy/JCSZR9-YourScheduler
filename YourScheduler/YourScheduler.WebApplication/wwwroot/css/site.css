@@ -1,5 +1,7 @@
 html {
-  font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -8,13 +10,56 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
   margin-bottom: 60px;
+}
+
+.header-inner {
+    max-width: 580px;
+    position: absolute;
+    transform: translate(50%, 10%);
+    width: 100%;
+    min-width: 300px;
+    padding: 20px;
+    text-align: center;
+    z-index: 60;
+}
+
+.bigtext {
+    font-size: 11px;
+}
+
+.text-color {
+    /*color: #ffffff;*/
+    color: black;
+}
+
+.bigtext > div {
+    font-weight: 600;
+    line-height: 1.1em;
+}
+
+.bigtext-line0 {
+    font-size: 2.38em;
+}
+
+.bigtext-line1 {
+    font-size: 7.92em;
+}
+
+.bigtext > div b {
+    text-transform: uppercase;
+    line-height: 1.125em;
+    font-family: 'Oswald', sans-serif;
+}
+
+.bigtext-line2 {
+    font-size: 2.27em;
+}
+
+.bold, b, strong {
+    font-weight: 600;
 }
 
 .login h2 {
@@ -38,7 +83,7 @@ h1 img {
 
 .main-header{
     font-size: 20px;
-    background-image: linear-gradient(to right, white 150px, rgb(13,110,253));
+    background-image: linear-gradient(to right, rgb(212,133,77) 50px, rgb(65,53,77), rgb(1,34,51));
 }
 
 .login-image-container {
@@ -140,4 +185,28 @@ h1 img {
 
 .card-start-page {
     margin-left: 20px;
+}
+
+.home {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.main-body {
+    background-image: url('../Pictures/bg6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-icons {
+    color: white;   
+    font-size: 30px;
+}
+
+.icon-button {
+    margin: 0px 2px 5px 0px ;
+    height: auto;
+    width: auto;
 }
