@@ -28,6 +28,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
           
             //Act
             await repository.AddTeamAsync(team);
+            
             var teamReturned = await repository.GetTeamByIdAsync(1);
 
             //Assert
