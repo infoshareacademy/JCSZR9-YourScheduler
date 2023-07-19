@@ -2,6 +2,7 @@
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
+using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -53,10 +54,17 @@ namespace YourScheduler.BusinessLogic.Services
             
         }
 
-        public async Task<TeamDto> GetTeamByIdAsync(int id)
+        public async Task<TeamDto> GetTeamByIdAsync(int id,int loggedUserId)
         {
             var teamFromDataBase = await _teamsRepository.GetTeamByIdAsync(id);
-            return _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
+            var teamDto= _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
+            if (teamDto.AdministratorId==loggedUserId)
+            {
+                teamDto.CanLoggedUserDelete = true;
+                teamDto.CanLoggedUserEdit = true;
+            }
+            teamDto.IsLoggedUserParticipant = await _teamsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, teamDto.Id);
+            return teamDto;
         }
 
         public async Task DeleteTeamAsync(int id)

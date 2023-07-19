@@ -29,6 +29,7 @@ namespace YourScheduler.BusinessLogic.Mapppers
         {
             Event eventToBase = new Event
             {
+            
                Name = eventDto.Name,
                Description = eventDto.Description,
                Date = eventDto.Date,

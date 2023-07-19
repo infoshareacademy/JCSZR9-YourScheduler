@@ -45,15 +45,9 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
             
         }
 
-      
-
-       
-
-        
-        
-
+    
         [Fact]
-        public async Task GetAvailableTeamsAsync_NoSearchString_ReturnsAllTeams3()
+        public async Task GetAvailableTeamsAsync_NoSearchString_ReturnsAllTeams()
         {
             // Arrange
             var loggedUserId = 1;
