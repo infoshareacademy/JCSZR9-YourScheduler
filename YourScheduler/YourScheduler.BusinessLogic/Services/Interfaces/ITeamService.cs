@@ -13,7 +13,7 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public Task<List<TeamDto>> GetAvailableTeamsAsync(int loggedUserId, string searchString);
 
-        public Task<TeamDto> GetTeamByIdAsync(int id);
+        public Task<TeamDto> GetTeamByIdAsync(int id,int loggedUserId);
 
         public Task DeleteTeamAsync(int id);
 

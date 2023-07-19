@@ -148,5 +148,8 @@ namespace YourScheduler.BusinessLogic.Services
             eventMembersDto.EventUsers = await GetUsersForEventAsync(eventId);
             return eventMembersDto;
         }
+
+
+        
     }
 }

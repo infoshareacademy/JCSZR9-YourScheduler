@@ -44,9 +44,8 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var userNameLogged = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userNameLogged);
-            var model = await _teamService.GetTeamByIdAsync(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
          
             return View(model);
         }
@@ -66,11 +65,10 @@ namespace YourScheduler.WebApplication.Controllers
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    model.AdministratorId = user.Id;
+                    model.AdministratorId = loggedUserId;
                     await _teamService.AddTeamAsync(model);
                 }
                 return RedirectToAction("Index", "User");
@@ -84,10 +82,10 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var model = await _teamService.GetTeamByIdAsync(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.AdministratorId == user.Id)
+           
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
+            if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
             }
@@ -109,7 +107,7 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 await _teamService.UpdateTeamAsync(model);
-                return RedirectToAction("MyTeams","ApplicationUserTeam");
+                return RedirectToAction("GetAllTeams");
             }
             catch
             {
@@ -120,10 +118,9 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = await _teamService.GetTeamByIdAsync(id);
-            if (model.AdministratorId == user.Id)
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetTeamByIdAsync(id,loggedUserId);
+            if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
             }
@@ -152,7 +149,8 @@ namespace YourScheduler.WebApplication.Controllers
 
         public async Task<ActionResult> DeleteFromCalendar(int id)
         {
-            var model = await _teamService.GetTeamByIdAsync(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
             return View(model);
         }
 
@@ -183,8 +181,8 @@ namespace YourScheduler.WebApplication.Controllers
         [Route("addthisteam/{id:int}")]
         public async Task<ActionResult> AddThisTeam(int id)
         {
-
-            var model = await _teamService.GetTeamByIdAsync(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
             return View(model);
 
         }
@@ -220,7 +218,8 @@ namespace YourScheduler.WebApplication.Controllers
         public async Task<ActionResult> TeamMembers(int id)
         {
             TeamMembersDto teamMembersDto = new TeamMembersDto();
-            var modelTeam = await _teamService.GetTeamByIdAsync(id);
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var modelTeam = await _teamService.GetTeamByIdAsync(id, loggedUserId);
             teamMembersDto.Name = modelTeam.Name;
             teamMembersDto.Description = modelTeam.Description;
 
