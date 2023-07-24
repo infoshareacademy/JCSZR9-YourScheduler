@@ -146,6 +146,7 @@ h1 img {
 .team-event-list ul {
     display: none;
     z-index: 2;
+
 }
 
 .team-event-list:hover > ul {
@@ -157,7 +158,8 @@ h1 img {
     text-align: left;
     white-space: nowrap;
     font-size: 20px;
-    background-image: linear-gradient(to right, white 10px, rgb(13,110,253));
+    background-color: rgb(236, 236, 236);
+    
 }
 
 .team-event-list button {
@@ -200,17 +202,32 @@ h1 img {
     background-repeat: no-repeat;
 }
 
-.other-background {
-    background-color: white;
-}
-
 .main-icons {
     color: white;   
     font-size: 30px;
 }
 
 .icon-button {
-    margin: 0px 2px 5px 0px ;
+    margin: 0px 0px 10px 10px;
     height: auto;
     width: auto;
+
+}
+
+.main-footer {
+    background-color: white;
+}
+
+.custom-card {
+    min-height: 500px;
+    margin: 0px 2px 20px 0px;
+    position: relative;
+
+}
+
+.icon-row {
+    position: absolute; 
+    bottom: 0; 
+    left: 5%; 
+
 }

@@ -6,8 +6,10 @@
 
 <h1>Dostępne zespoły</h1>
 <hr />
-<p>
-    <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a>
+<p>   
+    <a asp-controller="Team" asp-action="Create" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz nowy zespół">   
+        <span class="bi bi-bag-plus main-icons"></span>                                                     
+    </a>
 </p>
 <hr />
 
@@ -17,25 +19,13 @@
                    class="form-control form-control-lg"
                    placeholder="Wpisz nazwę wyszukiwanego zespołu"
                    name="searchString" />
-            <input type="submit" value="Szukaj" class="btn btn-primary" />
+            <button type="submit" value="Szukaj" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Szukaj">
+                <span class="bi bi-search main-icons"></span>
+            </button>
         </div>
 </form>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                <label asp-for="First().Name">Nazwa zespołu</label>
-            </th>
-            <th>
-                <label asp-for="First().Description">Opis zespołu</label>
-            </th>
-            
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         @foreach (var item in Model)
         {
