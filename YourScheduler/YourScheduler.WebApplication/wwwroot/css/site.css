@@ -200,6 +200,10 @@ h1 img {
     background-repeat: no-repeat;
 }
 
+.other-background {
+    background-color: white;
+}
+
 .main-icons {
     color: white;   
     font-size: 30px;
