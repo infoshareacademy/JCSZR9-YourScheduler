@@ -208,7 +208,7 @@ h1 img {
 }
 
 .icon-button {
-    margin: 0px 0px 10px 10px;
+    margin: 0px 0px 0px 10px;
     height: auto;
     width: auto;
 
@@ -227,7 +227,19 @@ h1 img {
 
 .icon-row {
     position: absolute; 
-    bottom: 0; 
+    bottom: 10px; 
     left: 5%; 
+    
+}
 
+.card-row .list-group-item {
+    min-height: 200px; 
+    display: flex;
+    align-items: center;
+}
+
+.card-header .card-title {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
 }

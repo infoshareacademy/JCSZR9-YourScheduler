@@ -6,11 +6,23 @@
 
 <h1>Moje wydarzenia</h1>
 <hr />
-<p>
-    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary">Pokaż wszystkie wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsFinished" class="btn btn-primary">Pokaż zakończone wydarzenia</a> |
-    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsIncoming" class="btn btn-primary">Pokaż nadchodzące wydarzenia</a>
+<p>   
+    <a asp-controller="Event" asp-action="Create" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz nowe wydarzenie">   
+        <span class="bi bi-calendar-plus main-icons"></span>                                                     
+    </a>
+
+    <a asp-controller="ApplicationUserEvent" asp-action="MyEvents" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Pokaż wszystkie wydarzenia">   
+        <span class="bi bi-calendar3 main-icons"></span>                                                     
+    </a>
+
+    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsFinished" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Pokaż zakończone wydarzenia">   
+        <span class="bi bi-calendar-minus main-icons"></span>                                                     
+    </a>
+
+    <a asp-controller="ApplicationUserEvent" asp-action="MyEventsIncoming" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Pokaż nadchodzące wydarzenia">   
+        <span class="bi bi-calendar-day main-icons"></span>                                                     
+    </a>
+
 </p>
 <hr />
 
@@ -20,7 +32,9 @@
                class="form-control form-control-lg"
                placeholder="Wpisz nazwę wyszukiwanego wydarzenia"
                name="searchString"/>
-        <input type="submit" value="Szukaj" class="btn btn-primary" />
+        <button type="submit" value="Szukaj" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Szukaj">
+                <span class="bi bi-search main-icons"></span>
+        </button>
     </div>
 </form>
 
