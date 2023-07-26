@@ -15,8 +15,9 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             var optionBuilder = new DbContextOptionsBuilder<YourSchedulerDbContext>().UseInMemoryDatabase("HelperBase");
             var yourSchedulerDbContext = new YourSchedulerDbContext(optionBuilder.Options);
-           
-            return yourSchedulerDbContext;//new YourSchedulerDbContext(optionBuilder.Options);         
+            yourSchedulerDbContext.Database.EnsureCreated();
+            yourSchedulerDbContext.Database.EnsureDeleted();
+            return yourSchedulerDbContext;    
         }
     }
 }
