@@ -13,11 +13,11 @@
         <button id="logout" type="submit" class="nav-link btn btn-link text-dark nav-button">Wydarzenia</button>
         <ul>
             <li>
-                <a class="nav-link active text-dark" asp-area="" asp-controller="Event" asp-action="Index">Dostępne wydarzenia</a>
+                <a class="nav-link active text-dark" asp-area="" asp-controller="Event" asp-action="GetAllEvents">Dostępne wydarzenia</a>
             </li>
 
             <li>
-                <a class="nav-link text-dark" asp-controller="ApplicationUserEvent" asp-action="MyEvents">Moje wydarzenia</a>
+                <a class="nav-link text-dark" asp-controller="Event" asp-action="GetUserEvents">Moje wydarzenia</a>
             </li>
 
             <li>
@@ -30,15 +30,15 @@
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark nav-button">Zespoły</button>
         <ul>
             <li>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Index">Dostępne zespoły</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="GetAllTeams">Dostępne zespoły</a>
             </li>
 
             <li>
-                <a class="nav-link text-dark" asp-controller="User" asp-action="RedirectToAppliactionUserTeam" >Moje zespoły</a> 
+                <a class="nav-link text-dark" asp-controller="Team" asp-action="GetUserTeams" >Moje zespoły</a> 
             </li>
 
             <li>
-                <a class="nav-link text-dark" asp-controller="User" asp-action="Create" >Stwórz nowy zespół</a>
+                <a class="nav-link text-dark" asp-controller="Team" asp-action="Create" >Stwórz nowy zespół</a>
             </li>
         </ul>                  
     </li>
