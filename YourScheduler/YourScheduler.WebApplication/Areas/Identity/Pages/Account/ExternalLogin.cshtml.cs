@@ -85,6 +85,8 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            public string DisplayName { get; set; }
         }
         
         public IActionResult OnGet() => RedirectToPage("./Login");
@@ -153,8 +155,10 @@ namespace YourScheduler.WebApplication.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                user.Displayname = Input.DisplayName;
+                user.Name = "";
+                user.Surname = "";
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user);
