@@ -14,4 +14,6 @@ public  class Team
 
     ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
 
+    public string PicturePath { get; set; }
+
 }

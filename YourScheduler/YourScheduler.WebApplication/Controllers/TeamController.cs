@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services;
 using YourScheduler.BusinessLogic.Services.Interfaces;
+using System.IO;
 
 namespace YourScheduler.WebApplication.Controllers
 {
@@ -12,14 +13,14 @@ namespace YourScheduler.WebApplication.Controllers
     {
         private readonly ITeamService _teamService;
         private readonly IUserService _userService;
-   
+        private readonly IWebHostEnvironment _webHost;
 
-        public TeamController(ITeamService teamService, IUserService userService)
+        public TeamController(IWebHostEnvironment webHost,ITeamService teamService, IUserService userService)
         {
+            _webHost = webHost;
             _teamService = teamService;
             _userService = userService;
-           
-
+            
         }
         // GET: TeamController
         [Authorize]
@@ -63,14 +64,35 @@ namespace YourScheduler.WebApplication.Controllers
         [Authorize]
         public async Task<ActionResult> Create(TeamDto model)
         {
+           
             try
             {
+              
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
+                    if (model.ImageFile!=null)
+                    {
+                        var saveimg = Path.Combine(_webHost.WebRootPath, "Pictures", model.ImageFile.FileName);
+                        string imgext = Path.GetExtension(model.ImageFile.FileName);
+                        if (imgext == ".jpg" || imgext == ".png")
+                        {
+                            using (var uploading = new FileStream(saveimg, FileMode.Create))
+                            {
+                                await model.ImageFile.CopyToAsync(uploading);
+                            }
+
+                        }
+                        model.PicturePath = "/Pictures/" + model.ImageFile.FileName;
+                    }
+                   
+                    
                     model.AdministratorId = loggedUserId;
                     await _teamService.AddTeamAsync(model);
                 }
+            
+                   
+                
                 return RedirectToAction("Index", "User");
             }
             catch
