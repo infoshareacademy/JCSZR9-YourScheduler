@@ -27,20 +27,21 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Date = DateTime.MaxValue,
                 IsOpen = true,
                 administratorId = 1,
-                
-                
+
+
             };
 
 
-          
-        //Act
-            await repository.AddEventAsync(eventBase);  
+
+            //Act
+            await repository.AddEventAsync(eventBase);
             await repository.SaveDataAsync();
             var eventReturned = await repository.GetEventByIdAsync(1);
             //Assert
             eventReturned.EventId.Should().Be(1);
 
-            await repository.DeleteEventByIdAsync(1);
+
+
         }
 
         [Fact]
@@ -60,9 +61,9 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             };
 
 
-                // Act
+            // Act
             await repository.AddEventAsync(eventBase);
-            await repository.SaveDataAsync();   
+            await repository.SaveDataAsync();
             var teamReturned = await repository.GetAvailableEventsAsync(1);
 
             //Assert
