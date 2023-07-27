@@ -43,15 +43,18 @@
                         <p class="card-text">Wydarzenie publiczne: Nie</p>
                     }    
                 <div class="row icon-row">
-                    @*<a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                    <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
                             <span class="bi bi-eye main-icons"></span>                                                     
                     </a>
+
                     <a asp-controller="Event" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Dodaj wydarzenie do swojego kalendarza">
                                 <span class="bi bi-calendar-check main-icons"></span>
                     </a>
+
                     <a asp-controller="Event" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń wydarzenie z kalendarza">
                             <span class="bi bi-calendar-x main-icons"></span>
-                    </a>*@
+                    </a>
+
                     <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
                     <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
                     <a asp-controller="Event" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
