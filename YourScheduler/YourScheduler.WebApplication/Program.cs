@@ -5,6 +5,8 @@ using YourScheduler.BusinessLogic.Models;
 using YourScheduler.Infrastructure;
 using YourScheduler.Infrastructure.Initialization;
 using YourScheduler.Infrastructure.Entities;
+using YourScheduler.BusinessLogic.Services.Settings;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ var connectionString = builder.Configuration.GetConnectionString("YourSchedulerD
 
 builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
  options.UseSqlServer(connectionString));
+
+var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
+builder.Services.AddSingleton(emailConfig);
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
  .AddEntityFrameworkStores<YourSchedulerDbContext>();
