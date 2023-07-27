@@ -5,38 +5,6 @@
     Layout = "_Layout";
 }
 
-@*<h2>Stwórz nowe wydarzenie</h2>
-<form asp-antiforgery="true" asp-action="Create" method="post">
-    <div>
-        <label asp-for="Name">Nazwa wydarzenia</label>
-        <input asp-for="Name" type="text" />
-        <span asp-validation-for="Name"></span>
-    </div>
-
-    <div>
-        <label asp-for="Description">Opis wydarzenia</label>
-        <input asp-for="Description" type="text" />
-        <span asp-validation-for="Description"></span>
-    </div>
-
-    <div>
-        <label asp-for="Date">Data</label>
-        <input asp-for="Date" type="date" />
-        <span asp-validation-for="Date"></span>
-    </div>
-
-    <div>
-        <label asp-for="Isopen">Wydarzenie publiczne</label>
-        <input asp-for="Isopen" type="checkbox" />
-        <span asp-validation-for="Isopen"></span>
-    </div>
-
-    <button type="submit" class="input-group-text btn-info">Stwórz wydarzenie</button>
-</form>
-
-<a asp-action="Index">Back</a>*@
-
-
 <h2>Stwórz nowe wydarzenie</h2>
 <hr />
 <div class="row">
@@ -70,7 +38,5 @@
         </form>
     </div>
 </div>
-
 <hr />
-
-<a asp-controller="user" asp-action="Index" class="btn btn-primary">Powrót</a>
+<a asp-controller="Event" asp-action="GetAllEvents" class="btn btn-primary">Powrót</a>
