@@ -71,7 +71,7 @@ namespace YourScheduler.WebApplication.Controllers
                     model.AdministratorId = loggedUserId;
                     await _teamService.AddTeamAsync(model);
                 }
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("GetAllTeams", "Team");
             }
             catch
             {
