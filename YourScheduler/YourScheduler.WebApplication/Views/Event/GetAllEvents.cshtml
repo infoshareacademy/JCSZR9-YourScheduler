@@ -28,114 +28,6 @@
 
 <hr />
 
-
-@*<div class="card-group">    
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title">Nazwa wydarzenia</h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">@item.Name</li>
-            }
-        </ul>
-    </div>
-   
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title">Opis wydarzenia</h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">@item.Description</li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title">Data</h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">@item.Date.ToString("yyyy-MM-dd HH:mm")</li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title">Wydarzenie publiczne</h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">
-                    @(item.Isopen ? "Tak" : "Nie")
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title"></h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">
-                    <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title"></h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">
-                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edytuj</a>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title"></h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">
-                    <a asp-controller="ApplicationUserEvent" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie z kalendarza</a>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="card" style="width: 9rem;">
-        <div class="card-header">
-            <h5 class="card-title"></h5>
-        </div>
-        <ul class="list-group list-group-flush card-row">
-            @foreach (var item in Model)
-            {
-                <li class="list-group-item">
-                    <a asp-action="EventMembers" asp-route-id="@item.Id" class="btn btn-primary">Uczestnicy wydarzenia</a>
-                </li>
-            }
-        </ul>
-    </div>
-</div>*@
 <div class="row">
     @foreach (var item in Model)
     {
@@ -155,7 +47,7 @@
                                 <p class="card-text">Wydarzenie publiczne: Nie</p>
                     }    
                     <div class="row icon-row">
-                       @* <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                       <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
                                 <span class="bi bi-eye main-icons"></span>                                                     
                         </a>
                         <a asp-controller="Event" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Dodaj wydarzenie do swojego kalendarza">
@@ -163,7 +55,7 @@
                         </a>
                         <a asp-controller="Event" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń wydarzenie z kalendarza">
                                 <span class="bi bi-calendar-x main-icons"></span>
-                        </a>*@
+                        </a>
                         
                     </div>
                 </div>
