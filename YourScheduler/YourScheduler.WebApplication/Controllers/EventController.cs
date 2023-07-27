@@ -12,37 +12,78 @@ namespace YourScheduler.WebApplication.Controllers
     public class EventController : Controller
     {
         private readonly IEventService _eventService;
-        private readonly IUserService _userService;
 
-        public EventController(IEventService eventService, IUserService userService)
+        public EventController(IEventService eventService)
         {
             _eventService = eventService;
-            _userService = userService;
         }
 
         // GET: EventController
         [Authorize]
-        public ActionResult Index(string searchString)
+        public async Task<ActionResult> GetAllEvents(string searchString)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            var model = _eventService.GetAvailableEvents(user.Id);
-            if (String.IsNullOrEmpty(searchString))
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetAvailableEventsAsync(loggedUserId, searchString);
                 return View(model);
             }
-            else
+            catch
             {
-                model = model.Where(e => e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-                return View(model);
+                //log - TODO
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> GetUserEvents(string searchString)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _eventService.GetMyEventsAsync(loggedUserId, searchString);
+            return View(model);
+        }
+
+        // GET: ApplicationUserEventController/Delete/5
+        [Route("addthisevent/{id:int}")]
+        public async Task<ActionResult> AddThisEvent(int id)
+        {
+            var loggedUserId = int.Parse(User.Identity.GetUserId());
+            var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
+            return View(model);
+        }
+
+        // POST: ApplicationUserEventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("addthisevent/{id:int}")]
+        public async Task<ActionResult> AddThisEvent(EventDto model)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var eventToAddId = model.Id;
+                await _eventService.AddEventForUserAsync(loggedUserId, eventToAddId);
+                return RedirectToAction(nameof(GetAllEvents));
+            }
+            catch
+            {
+                return View();
             }
         }
 
         // GET: EventController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var model = _eventService.GetEventById(id);
-            return View(model);
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
+                return View(model);
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
         }
 
         // GET: EventController/Create
@@ -56,88 +97,137 @@ namespace YourScheduler.WebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create(EventDto model)
+        public async Task<ActionResult> Create(EventDto model)
         {
             try
             {
-                var userName = HttpContext.User.Identity.GetUserName();
-                var user = _userService.GetUserByEmail(userName);
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    model.administratorId = user.Id;
-                    _eventService.AddEvent(model);
+                    await _eventService.AddEventAsync(model, loggedUserId);
                 }
-                return RedirectToAction("Index","User");
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
                 return View();
             }
         }
 
         // GET: EventController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
                 return View(model);
             }
-            else
+            catch
             {
-                return View("EditError");
+                //log - TODO
+                return View();
             }
         }
 
         // POST: EventController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EventDto model)
+        public async Task<ActionResult> Edit(int id, EventDto model)
         {
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            model.administratorId = user.Id;
             try
             {
-                _eventService.UpdateEvent(model);
-                return RedirectToAction(nameof(Index));
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                await _eventService.UpdateEventAsync(model, loggedUserId);
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
                 return View();
             }
         }
 
         // GET: EventController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var model = _eventService.GetEventById(id);
-            var userName = HttpContext.User.Identity.GetUserName();
-            var user = _userService.GetUserByEmail(userName);
-            if (model.administratorId == user.Id)
+            try
             {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
                 return View(model);
             }
-            else
+            catch
             {
-                return View("DeleteError");
+                //log - TODO
+                return View();
             }
         }
 
         // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, EventDto model)
+        public async Task<ActionResult> Delete(int id, EventDto model)
         {
             try
             {
-                _eventService.DeleteEvent(id);
-                return RedirectToAction("Index");
+                await _eventService.DeleteEventAsync(id);
+                return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
+                //log - TODO
+                return View();
+            }
+        }
+
+        // GET: EventController/Delete/5
+        public async Task<ActionResult> DeleteFromCalendar(int id)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
+                return View(model);
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
+        }
+
+        // POST: EventController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteFromCalendar(int id, EventDto model)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                await _eventService.DeleteEventFromCalendarAsync(id, loggedUserId);
+                return RedirectToAction(nameof(GetUserEvents));
+            }
+            catch
+            {
+                //log - TODO
+                return View();
+            }
+        }
+
+        [Route("eventmembers/{id:int}")]
+        public async Task<ActionResult> EventMembers(int id)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var eventMembersDto = await _eventService.GetEventMembersDtoAsync(id, loggedUserId);
+                return View(eventMembersDto);
+            }
+            catch
+            {
+                //log - TODO
                 return View();
             }
         }

@@ -11,14 +11,20 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
     {
         public void AddTeam(TeamDto teamDto);
 
-        public List<TeamDto> GetAvailableTeams();
+        public List<TeamDto> GetAvailableTeams(int loggedUserId, string searchString);
 
         public TeamDto GetTeamById(int id);
 
-        public void DeleteEvent(int id);
+        public void DeleteTeam(int id);
 
         public void DeleteTeamFromCalendar(int id, int userId);
 
         public void UpdateTeam(TeamDto teamDto);
+
+        public void AddTeamForUser(int applicationUserId, int teamId);
+
+        public List<TeamDto> GetMyTeams(int applicationUserId,string searchString);
+
+        public List<UserDto> GetUsersForTeam(int teamid);
     }
 }
