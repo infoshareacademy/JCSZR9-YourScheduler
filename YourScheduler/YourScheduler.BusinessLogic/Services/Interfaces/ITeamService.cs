@@ -9,16 +9,22 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 {
     public interface ITeamService
     {
-        public void AddTeam(TeamDto teamDto);
+        public Task AddTeamAsync(TeamDto teamDto);
 
-        public List<TeamDto> GetAvailableTeams();
+        public Task<List<TeamDto>> GetAvailableTeamsAsync(int loggedUserId, string searchString);
 
-        public TeamDto GetTeamById(int id);
+        public Task<TeamDto> GetTeamByIdAsync(int id,int loggedUserId);
 
-        public void DeleteEvent(int id);
+        public Task DeleteTeamAsync(int id);
 
-        public void DeleteTeamFromCalendar(int id, int userId);
+        public Task DeleteTeamFromCalendarAsync(int id, int userId);
 
-        public void UpdateTeam(TeamDto teamDto);
+        public Task UpdateTeamAsync(TeamDto teamDto);
+
+        public Task AddTeamForUserAsync(int applicationUserId, int teamId);
+
+        public Task<List<TeamDto>> GetMyTeamsAsync(int applicationUserId,string searchString);
+
+        public Task<List<UserDto>> GetUsersForTeamAsync(int teamid);
     }
 }
