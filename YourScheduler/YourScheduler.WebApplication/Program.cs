@@ -6,6 +6,7 @@ using YourScheduler.Infrastructure;
 using YourScheduler.Infrastructure.Initialization;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.BusinessLogic.Services.Settings;
+using Microsoft.AspNetCore.Authentication.Google;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,12 @@ var connectionString = builder.Configuration.GetConnectionString("YourSchedulerD
 
 builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
  options.UseSqlServer(connectionString));
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    });
 
 var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
 builder.Services.AddSingleton(emailConfig);
