@@ -24,6 +24,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddBusinessLogicDependencies();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
