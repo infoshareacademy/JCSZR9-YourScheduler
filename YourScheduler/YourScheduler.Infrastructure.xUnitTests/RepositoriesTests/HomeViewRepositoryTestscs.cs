@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
+﻿namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
 {
     public class HomeViewRepositoryTestscs
     {

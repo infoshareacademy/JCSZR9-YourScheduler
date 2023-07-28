@@ -1,11 +1,4 @@
-﻿using FluentAssertions;
-using Microsoft.AspNet.Identity;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Moq;
 using Xunit;
 using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
