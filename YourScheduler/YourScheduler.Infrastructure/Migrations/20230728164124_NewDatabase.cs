@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YourScheduler.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddpicturesforTeams : Migration
+    public partial class NewDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -263,12 +263,12 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Displayname", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AG6fGtY/APsQ80sce9ZA2ZjA4wk68+sszqX0wVF8ofb5EG2ofUg9auBmjENd0nqs+Q==", "111 222 333", false, "LXXYO3RDE7JHF5PKJLWM23PCWN6UO2UE", "admin", false, "admin@gmail.com" },
-                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "ANi884TAY7hp9lNGPUGCZhaOmnzFnKpcVa0hubJ5EKuLWE/xMdlVV6EdxsCOzWyX5w==", "666 598 456", false, "F2YAMINQUAQ5D6AARJYCSRM7TVZLOPA6", "Jarzyna", false, "jarzyna@gmail.com" },
-                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AIOdP0rYGELserqY8Vg75k2hqbftPc1e5a3ndtth7Fl0tt1JuuLdQuBqo0EK+wbWDg==", "666 598 456", false, "7G6F2ABUBKAJAUE2NN2MD3UHWVZBEXCW", "Johnson", false, "jane_johnson@gmail.com" },
-                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AG6YrIUPreTHfFMbzanjNNicBgbMvIK9skX+ZXOGAxVfJtpCB644gUmgUKjQsQuGyQ==", "987 654 321", false, "CBIMWTXQKWOLC2ZRUEP4YNANSUZOJXXH", "Williams", false, "michaelww@gmail.com" },
-                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "APISCNnbvvDU5L2rY/VJ3ZzElRD63GSjV4pGWTyksAYuZokD8dqSZ5vGga54diCbuQ==", "123 456 789", false, "XHJKLN5BLURRE6AWFYGZB64LZGLMT7RX", "Jones", false, "joneswilliam@gmail.com" },
-                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AGKZCKKByooc46IQS+BLpJ5uUbEGrh5Mg/GhU6k6CtTpnox36/PuIBzlQ5zjOlDuQQ==", "666 598 456", false, "EJ4TLHB6Y6H7MVZCNTH6SW3MPMMAK67F", "Brown", false, "oliviab@gmail.com" }
+                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AIrfr3IsIqD4jf3Zsk2fCHpejABHzE7UnwJ5OiA+SAv2+9J3X5SXKblxHZrGUKKEqg==", "111 222 333", false, "SYLMQTE3GU642HNGL5RN3WHWG4SLBIUY", "admin", false, "admin@gmail.com" },
+                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "ACINh8XYOQEtIUt605AHHcyGJk+jTl5kcZfEoyLTDqoFbAPuCqqZXG0bVxskYKlwuQ==", "666 598 456", false, "POWT3UML5WSBZZJDNEWZDJZD3EXRWLR7", "Jarzyna", false, "jarzyna@gmail.com" },
+                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AJikYtjtBwLnZ9MUtPi2Njg1KaW5Qi3O/NaQ9DfftpYLoKYDjEg1sTEtYeIpfOG9uA==", "666 598 456", false, "WBZPMNAHNWGPQX7AD5WQD6SKUU2II5LJ", "Johnson", false, "jane_johnson@gmail.com" },
+                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AJCCadsdHBlm9oBGOOEFd3bBF/ybOZY8cKEVdYyw0Mya5MMQ8TdX1+aWez4BeQwqxw==", "987 654 321", false, "QEKCCOUEZDM2TWNCACFVWP4EWOSN34S3", "Williams", false, "michaelww@gmail.com" },
+                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "AMIqpeayDWIgAXpWG+JDHZ9nOsO6Osz/oBl8HxS51cPklOE1NzZwu/dAe3buzZckAQ==", "123 456 789", false, "TE2DD4UUPYHMENRDCBUI7SPQTIFLGDIG", "Jones", false, "joneswilliam@gmail.com" },
+                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AH0QSoAhLPFTr7b48GqnOb83CwU7OWNJz/nxfooF2vGGCavE0KEBO25rDu1/QOverg==", "666 598 456", false, "7ABPVLRX2PB6XQWPDU6ETY5T5W5E5EXB", "Brown", false, "oliviab@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
