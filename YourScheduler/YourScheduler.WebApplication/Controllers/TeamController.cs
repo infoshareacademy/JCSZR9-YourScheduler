@@ -99,6 +99,7 @@ namespace YourScheduler.WebApplication.Controllers
                 await _teamService.AddTeamAsync(model);
 
                 return RedirectToAction("Index", "User");
+                return RedirectToAction("GetAllTeams", "Team");
             }
             catch
             {

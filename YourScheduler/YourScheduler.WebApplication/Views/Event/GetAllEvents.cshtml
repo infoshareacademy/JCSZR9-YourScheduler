@@ -1,13 +1,16 @@
 ﻿@model IEnumerable<YourScheduler.BusinessLogic.Models.DTOs.EventDto>
 
 @{
-    ViewData["Title"] = "GetAllEvents";
+    ViewData["Title"] = "MyEvents";
 }
 
 <h1>Dostępne wydarzenia</h1>
 <hr />
-<p>
-    <a asp-controller="Event" asp-action="Create" class="btn btn-primary">Stwórz nowe wydarzenie</a>
+<p>   
+    <a asp-controller="Event" asp-action="Create" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz nowe wydarzenie">   
+        <span class="bi bi-calendar-plus main-icons"></span>                                                     
+    </a>
+ 
 </p>
 <hr />
 
@@ -16,84 +19,50 @@
         <input type="text"
                class="form-control form-control-lg"
                placeholder="Wpisz nazwę wyszukiwanego wydarzenia"
-               name="searchString" />
-        <input type="submit" value="Szukaj" class="btn btn-primary" />
+               name="searchString"/>
+        <button type="submit" value="Szukaj" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Szukaj">
+                <span class="bi bi-search main-icons"></span>
+        </button>
     </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <label asp-for="First().Name">Nazwa wydarzenia</label>
-            </th>
-            <th>
-                <label asp-for="First().Description">Opis wydarzenia</label>
-            </th>
-            <th>
-                <label asp-for="First().Date">Data</label>
-            </th>
-            <th>
-                <label asp-for="First().Isopen">Wydarzenie publiczne</label>
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                <td>
-                    @item.Date.ToString("yyyy-MM-dd HH:mm")
-                </td>
-                @if (@item.Isopen == true)
-                {
-                    <td>
-                        Tak
-                    </td>
-                }
-                @if (@item.Isopen == false)
-                {
-                    <td>
-                        Nie
-                    </td>
-                }
-                <td>
-                    <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
-                </td>
-                @if (item.IsLoggedUserParticipant)
-                {
-                    <td>
-                        <button type="button" class="btn btn-primary" disabled>Dodaj wydarzenie</button>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <a asp-controller="Event" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn btn-primary">Dodaj wydarzenie</a>
-                    </td>
-                }
-                @if (item.CanLoggedUserDelete)
-                {
-                    <td>
-                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń wydarzenie</a>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <button type="button" class="btn btn-primary" disabled>Usuń wydarzenie</button>
-                    </td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>
+<hr />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card border-secondary custom-card" style="width: 18rem;">
+                    <img src="~/Pictures/event-party.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">@item.Description</h6>
+                    <p class="card-text">@item.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                    @if (@item.Isopen == true)
+                    {
+                                <p class="card-text">Wydarzenie publiczne: Tak</p>
+                    }
+                    else
+                    {
+                                <p class="card-text">Wydarzenie publiczne: Nie</p>
+                    }    
+                    <div class="row icon-row">
+                       <a asp-controller="Event" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                                <span class="bi bi-eye main-icons"></span>                                                     
+                        </a>
+                        
+                        <a asp-controller="Event" asp-action="AddThisEvent" asp-route-id="@item.Id" class="btn icon-button @(item.IsLoggedUserParticipant ? "btn-secondary disabled" : "btn-success")" data-bs-toggle="tooltip" data-bs-placement="top" title="Dodaj wydarzenie do swojego kalendarza">
+                            <span class="bi bi-calendar-check main-icons"></span>
+                        </a>
+
+                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@item.Id" class="btn icon-button @(item.CanLoggedUserDelete ? "btn-danger" : "btn-secondary disabled")" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń wydarzenie permanentnie">
+                            <span class="bi bi-calendar-x main-icons"></span>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
