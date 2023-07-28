@@ -15,12 +15,12 @@ namespace YourScheduler.WebApplication.Controllers
         private readonly IUserService _userService;
         private readonly IWebHostEnvironment _webHost;
 
-        public TeamController(IWebHostEnvironment webHost,ITeamService teamService, IUserService userService)
+        public TeamController(IWebHostEnvironment webHost, ITeamService teamService, IUserService userService)
         {
             _webHost = webHost;
             _teamService = teamService;
             _userService = userService;
-            
+
         }
         // GET: TeamController
         [Authorize]
@@ -29,7 +29,7 @@ namespace YourScheduler.WebApplication.Controllers
             var loggedUserId = int.Parse(User.Identity.GetUserId());
 
             var viewModel = await _teamService.GetAvailableTeamsAsync(loggedUserId, searchString);
-           
+
             if (String.IsNullOrEmpty(searchString))
             {
                 return View(viewModel);
@@ -47,7 +47,7 @@ namespace YourScheduler.WebApplication.Controllers
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
             var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
-         
+
             return View(model);
         }
 
@@ -64,14 +64,19 @@ namespace YourScheduler.WebApplication.Controllers
         [Authorize]
         public async Task<ActionResult> Create(TeamDto model)
         {
-           
+
             try
             {
-              
+
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
                 if (model != null)
                 {
-                    if (model.ImageFile!=null)
+                    if (!Directory.Exists("wwwroot/Pictures"))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory("wwwroot/Pictures");
+                    }
+
+                    if (model.ImageFile != null)
                     {
                         var saveimg = Path.Combine(_webHost.WebRootPath, "Pictures", model.ImageFile.FileName);
                         string imgext = Path.GetExtension(model.ImageFile.FileName);
@@ -85,14 +90,14 @@ namespace YourScheduler.WebApplication.Controllers
                         }
                         model.PicturePath = "/Pictures/" + model.ImageFile.FileName;
                     }
-                   
-                    
-                    model.AdministratorId = loggedUserId;
-                    await _teamService.AddTeamAsync(model);
+                    else
+                    {
+                        model.PicturePath = "/Pictures/" + "pilkarz.jpg";
+                    }
                 }
-            
-                   
-                
+                model.AdministratorId = loggedUserId;
+                await _teamService.AddTeamAsync(model);
+
                 return RedirectToAction("Index", "User");
             }
             catch
@@ -104,7 +109,7 @@ namespace YourScheduler.WebApplication.Controllers
         // GET: TeamController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-           
+
             var loggedUserId = int.Parse(User.Identity.GetUserId());
             var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
             if (model.AdministratorId == loggedUserId)
@@ -141,7 +146,7 @@ namespace YourScheduler.WebApplication.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var loggedUserId = int.Parse(User.Identity.GetUserId());
-            var model = await _teamService.GetTeamByIdAsync(id,loggedUserId);
+            var model = await _teamService.GetTeamByIdAsync(id, loggedUserId);
             if (model.AdministratorId == loggedUserId)
             {
                 return View(model);
@@ -182,7 +187,7 @@ namespace YourScheduler.WebApplication.Controllers
         public async Task<ActionResult> DeleteFromCalendar(int id, TeamDto model)
         {
             try
-            {             
+            {
                 var userId = int.Parse(User.Identity.GetUserId());
                 await _teamService.DeleteTeamFromCalendarAsync(id, userId);
                 return RedirectToAction("GetUserTeams");
@@ -234,7 +239,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
 
         }
-
 
         [Route("teammembers/{id:int}")]
         public async Task<ActionResult> TeamMembers(int id)
