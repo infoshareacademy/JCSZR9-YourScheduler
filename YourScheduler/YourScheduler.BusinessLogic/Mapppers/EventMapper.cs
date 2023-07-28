@@ -20,7 +20,8 @@ namespace YourScheduler.BusinessLogic.Mapppers
                Description = eventToBase.Description,
                Date = eventToBase.Date,
                Isopen = eventToBase.IsOpen,
-               AdministratorId = eventToBase.administratorId
+               AdministratorId = eventToBase.administratorId,
+               PicturePath = eventToBase.PicturePath,
             };
             return eventDto;
         }
@@ -34,7 +35,9 @@ namespace YourScheduler.BusinessLogic.Mapppers
                Description = eventDto.Description,
                Date = eventDto.Date,
                IsOpen = eventDto.Isopen,
-               administratorId= eventDto.AdministratorId
+               administratorId= eventDto.AdministratorId,
+               PicturePath = eventDto.PicturePath,
+               
             };
             return eventToBase;
         }
@@ -48,7 +51,8 @@ namespace YourScheduler.BusinessLogic.Mapppers
                 Description = eventDto.Description,
                 Date = eventDto.Date,
                 IsOpen = eventDto.Isopen,
-                administratorId = eventDto.AdministratorId
+                administratorId = eventDto.AdministratorId,
+                
             };
             return eventToBase;
         }
