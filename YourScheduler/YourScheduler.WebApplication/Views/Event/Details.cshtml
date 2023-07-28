@@ -4,56 +4,42 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Szczegóły wydarzenia</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            <label asp-for="Name">Nazwa wydarzenia</label>
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Name
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="Description">Opis wydarzenia</label>
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Description
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="Date">Data</label>
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Date.ToString("yyyy-MM-dd HH:mm")
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="Isopen">Wydarzenie publiczne</label>
-        </dt>
-        @if (@Model.Isopen == true)
-        {
-            <dd class="col-sm-10">
-                Tak
-            </dd>
-        }
-        @if (@Model.Isopen == false)
-        {
-            <dd class="col-sm-10">
-                Nie
-            </dd>
-        }
-    </dl>
+
+<div class="col-md-3">
+    <div class="card border-secondary custom-card" style="width: 18rem;">
+        <h4>Szczegóły zespołu</h4>
+        <img src="~/Pictures/event-party.jpg" class="card-img-top">           
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">@Model.Description</h6>
+            <p class="card-text">@Model.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                @if (@Model.Isopen == true)
+                {
+                    <p class="card-text">Wydarzenie publiczne: Tak</p>
+                }
+                else
+                {
+                    <p class="card-text">Wydarzenie publiczne: Nie</p>
+            }    
+            <div class="row icon-row">
+                @if (Model.CanLoggedUserEdit)
+                {
+                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                            <span class="bi bi-tools main-icons"></span>
+                        </a>
+                }
+                else
+                {
+                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                            <span class="bi bi-tools main-icons"></span>
+                        </a>
+                }
+
+                <a asp-controller="Event" asp-action="GetAllEvents" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Powrót">
+                            <span class="bi bi-arrow-left-circle main-icons"></span>                                                     
+                </a>          
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @if(Model.CanLoggedUserEdit)
-    {
-        <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
-    }
-    else
-    {
-        <button type="button" class="btn btn-primary" disabled>Edytuj</button>
-    }
-    <a asp-controller="Event" asp-action="GetAllEvents" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a>
-</div>
-
-
