@@ -19,7 +19,8 @@ namespace YourScheduler.BusinessLogic.Mapppers
                 TeamId = teamDto.Id,
                 Name = teamDto.Name,
                 Description = teamDto.Description,
-                AdministratorId = teamDto.AdministratorId
+                AdministratorId = teamDto.AdministratorId,
+                PicturePath = teamDto.PicturePath,
             };
 
             return team;
@@ -32,7 +33,8 @@ namespace YourScheduler.BusinessLogic.Mapppers
                Id=team.TeamId,
                Name = team.Name,
                Description = team.Description,
-               AdministratorId = team.AdministratorId
+               AdministratorId = team.AdministratorId,
+               PicturePath = team.PicturePath,              
             };
             return teamDto;
         }

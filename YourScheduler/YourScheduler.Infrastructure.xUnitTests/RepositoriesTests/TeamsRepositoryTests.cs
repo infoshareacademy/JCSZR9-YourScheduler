@@ -23,7 +23,9 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             {
                 TeamId=1,
                 Name="Piłkarze",
-                Description="Bardzo lubimy grać w piłkę nożną"
+                Description="Bardzo lubimy grać w piłkę nożną",
+                PicturePath = "/Picures/Pilkarz.jpg"
+                
             };
           
             //Act
@@ -47,6 +49,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             {
                 Name = "Piłkarze",
                 Description = "Bardzo lubimy grać w piłkę nożną",
+                PicturePath="/Picures/Pilkarz.jpg"
             };
 
 

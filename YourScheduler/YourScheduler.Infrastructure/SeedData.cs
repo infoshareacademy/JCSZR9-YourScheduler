@@ -207,37 +207,43 @@ namespace YourScheduler.Infrastructure
             {
                 TeamId = 1,
                 Name = "Grupa początkująca basen Chełm",
-                Description = "Grupa szkółki pływackiej Argonaut"
+                Description = "Grupa szkółki pływackiej Argonaut",
+                PicturePath="/Pictures/pilkarz.jpg"
             },
             new Team
             {
                 TeamId = 2,
                 Name = "Mieszkańcy osiedla Lawendowe Wzgórze",
-                Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku"
+                Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku",
+                PicturePath="/Pictures/pilkarz.jpg"
             },
             new Team
             {
                 TeamId = 3,
                 Name = "Kreatywny Warsztat Artystyczny",
-                Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki."
+                Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.",
+                PicturePath="/Pictures/pilkarz.jpg"
             },
             new Team
             {
                 TeamId = 4,
                 Name = "Klub Fitness i Wellness",
-                Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów."
+                Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.",
+                PicturePath="/Pictures/pilkarz.jpg"
             },
             new Team
             {
                 TeamId = 5,
                 Name = "Klub Fotograficzny Obiektyw",
-                Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne."
+                Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.",
+                PicturePath="/Pictures/pilkarz.jpg"
             },
             new Team
             {
                 TeamId = 6,
                 Name = "Studio Tańca Ritmo",
-                Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania."
+                Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.",
+                PicturePath="/Pictures/pilkarz.jpg"
             }
         };
         public static ApplicationUserEvent[] applicationUserEventSeed = new ApplicationUserEvent[]
