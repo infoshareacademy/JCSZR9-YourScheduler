@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YourScheduler.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class AddpicturesforTeams : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -263,12 +263,12 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Displayname", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AFaYenEQa2fEBca3Z53NARIZ+EypOTFEIIXa6QfaeA2ysvdivCjcJveeajHXUqcC5g==", "111 222 333", false, "HZYGFBGE2M2XK5JLXP7RBV5ZCN3Y7JGD", "admin", false, "admin@gmail.com" },
-                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "APD9sm7R3hgI4XpeOFaG8CoEluAbPvcdfGuNykmroG2MgDqY06t9pS+Cp8/G85AOLg==", "666 598 456", false, "QU2KMLJ7KS4UBFEQEORIYQXGPLOGM4CF", "Jarzyna", false, "jarzyna@gmail.com" },
-                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AJ/0jliATWHKQrmrAFhSolnmmQ65xlsH2sWeNCEXT+am0SmOKNmk3CmbQW1K1EgXPw==", "666 598 456", false, "LXVCHMNSEQSQFGLK5WJMNOZTGIP7L366", "Johnson", false, "jane_johnson@gmail.com" },
-                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AI2dKN1v0q5lY2sPU4Y6kSvoVlUCozgdqgplb3pWIPmjliN7B2PySEiwwP8rstY38Q==", "987 654 321", false, "CV3MRCWKTY23HSZG6IXL5F2TIHGAK5JR", "Williams", false, "michaelww@gmail.com" },
-                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "AIZOI+psURyAlkS9ccJpTb7meHMVQE6NuHdrjRA5Tu+pacV6Nvv6H9wAZWySBB0doA==", "123 456 789", false, "WU4XD5JDD2KLFDIA5RIEOXYW2LFERMLF", "Jones", false, "joneswilliam@gmail.com" },
-                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AD3F51aTs7StrdYOj6IZWut+abPk7gqzuskxhhisGhrT27oEj5HCmdpxGnDLXl6xnA==", "666 598 456", false, "VBQ6WIXUVK3I5SRXEQKRFGQW4AAR463N", "Brown", false, "oliviab@gmail.com" }
+                    { 1, 0, "", "admin", "admin@gmail.com", false, true, null, "admin", "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AG6fGtY/APsQ80sce9ZA2ZjA4wk68+sszqX0wVF8ofb5EG2ofUg9auBmjENd0nqs+Q==", "111 222 333", false, "LXXYO3RDE7JHF5PKJLWM23PCWN6UO2UE", "admin", false, "admin@gmail.com" },
+                    { 2, 0, "", "kjarzyna", "jarzyna@gmail.com", false, true, null, "Krzysztof", "JARZYNA@GMAIL.COM", "JARZYNA@GMAIL.COM", "ANi884TAY7hp9lNGPUGCZhaOmnzFnKpcVa0hubJ5EKuLWE/xMdlVV6EdxsCOzWyX5w==", "666 598 456", false, "F2YAMINQUAQ5D6AARJYCSRM7TVZLOPA6", "Jarzyna", false, "jarzyna@gmail.com" },
+                    { 3, 0, "", "Jane", "jane_johnson@gmail.com", false, true, null, "Jane", "JANE_JOHNSON@GMAIL.COM", "JANE_JOHNSON@GMAIL.COM", "AIOdP0rYGELserqY8Vg75k2hqbftPc1e5a3ndtth7Fl0tt1JuuLdQuBqo0EK+wbWDg==", "666 598 456", false, "7G6F2ABUBKAJAUE2NN2MD3UHWVZBEXCW", "Johnson", false, "jane_johnson@gmail.com" },
+                    { 4, 0, "", "willmich", "michaelww@gmail.com", false, true, null, "Michael", "MICHAELWW@GMAIL.COM", "MICHAELWW@GMAIL.COM", "AG6YrIUPreTHfFMbzanjNNicBgbMvIK9skX+ZXOGAxVfJtpCB644gUmgUKjQsQuGyQ==", "987 654 321", false, "CBIMWTXQKWOLC2ZRUEP4YNANSUZOJXXH", "Williams", false, "michaelww@gmail.com" },
+                    { 5, 0, "", "william", "joneswilliam@gmail.com", false, true, null, "William", "JONESWILLIAM@GMAIL.COM", "JONESWILLIAM@GMAIL.COM", "APISCNnbvvDU5L2rY/VJ3ZzElRD63GSjV4pGWTyksAYuZokD8dqSZ5vGga54diCbuQ==", "123 456 789", false, "XHJKLN5BLURRE6AWFYGZB64LZGLMT7RX", "Jones", false, "joneswilliam@gmail.com" },
+                    { 6, 0, "", "brownie", "oliviab@gmail.com", false, true, null, "Olivia", "OLIVIAB@GMAIL.COM", "OLIVIAB@GMAIL.COM", "AGKZCKKByooc46IQS+BLpJ5uUbEGrh5Mg/GhU6k6CtTpnox36/PuIBzlQ5zjOlDuQQ==", "666 598 456", false, "EJ4TLHB6Y6H7MVZCNTH6SW3MPMMAK67F", "Brown", false, "oliviab@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -295,12 +295,12 @@ namespace YourScheduler.Infrastructure.Migrations
                 columns: new[] { "TeamId", "AdministratorId", "Description", "Name", "PicturePath" },
                 values: new object[,]
                 {
-                    { 1, 0, "Grupa szkółki pływackiej Argonaut", "Grupa początkująca basen Chełm", "null" },
-                    { 2, 0, "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku", "Mieszkańcy osiedla Lawendowe Wzgórze", "null" },
-                    { 3, 0, "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.", "Kreatywny Warsztat Artystyczny", "null" },
-                    { 4, 0, "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.", "Klub Fitness i Wellness", "null" },
-                    { 5, 0, "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.", "Klub Fotograficzny Obiektyw", "null" },
-                    { 6, 0, "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.", "Studio Tańca Ritmo", "null" }
+                    { 1, 0, "Grupa szkółki pływackiej Argonaut", "Grupa początkująca basen Chełm", "/Pictures/pilkarz.jpg" },
+                    { 2, 0, "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku", "Mieszkańcy osiedla Lawendowe Wzgórze", "/Pictures/pilkarz.jpg" },
+                    { 3, 0, "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.", "Kreatywny Warsztat Artystyczny", "/Pictures/pilkarz.jpg" },
+                    { 4, 0, "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.", "Klub Fitness i Wellness", "/Pictures/pilkarz.jpg" },
+                    { 5, 0, "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.", "Klub Fotograficzny Obiektyw", "/Pictures/pilkarz.jpg" },
+                    { 6, 0, "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.", "Studio Tańca Ritmo", "/Pictures/pilkarz.jpg" }
                 });
 
             migrationBuilder.InsertData(

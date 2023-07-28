@@ -28,6 +28,7 @@
             <hr />
             <hr />
             <div class="form-group">
+                <h5>Wybierz zdjęcie (format jpg lub png) dla swojego zespołu, jeśl nie wybierzesz otrzymasz domyślną grafikę</h5>
                 <label asp-for="ImageFile" class="control-label">Tu wklej zdjęcie dla tworzonego zespołu </label>
                 <input asp-for="ImageFile" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
@@ -45,10 +46,3 @@
 </div>
 <hr />
 <a asp-controller="user" asp-action="Index" class="btn btn-primary">Powrót</a>
-
-@*<form method="post" enctype="multipart/form-data" asp-controller="Team" asp-action="Create">
-  <input type="file" name="imgfile" />
-  <input type="submit" value="Upload Image Files" />
-    <hr />
-    <h4> @ViewData["Message"]</h4>
-</form>*@
