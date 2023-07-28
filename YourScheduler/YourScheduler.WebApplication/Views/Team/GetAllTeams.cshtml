@@ -8,7 +8,11 @@
 <h1>Dostępne zespoły</h1>
 <hr />
 <p>
-    <a asp-controller="Team" asp-action="Create" class="btn btn-primary">Stwórz nowy zespół</a>
+    
+    <a asp-controller="Team" asp-action="Create" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz nowy zespół">   
+        <span class="bi bi-person-plus main-icons"></span>                                                     
+    </a>
+
 </p>
 <hr />
 
@@ -18,65 +22,63 @@
                class="form-control form-control-lg"
                placeholder="Wpisz nazwę wyszukiwanego zespołu"
                name="searchString" />
-        <input type="submit" value="Szukaj" class="btn btn-primary" />
+        <button type="submit" value="Szukaj" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Szukaj">
+                <span class="bi bi-search main-icons"></span>
+        </button>
     </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <label asp-for="First().Name">Nazwa wydarzenia</label>
-            </th>
-            <th>
-                <label asp-for="First().Description">Opis wydarzenia</label>
-            </th>
-            
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                
-               
-                <td>
-                    <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
-                </td>
-                @if (item.IsLoggedUserParticipant)
-                {
-                    <td>
-                        <button type="button" class="btn btn-primary" disabled>Dodaj zespół</button>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <a asp-controller="Team" asp-action="AddThisTeam" asp-route-id="@item.Id" class="btn btn-primary">Dodaj zespół</a>
-                    </td>
-                }
-                @if (item.CanLoggedUserDelete)
-                {
-                    <td>
-                        <a asp-controller="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Usuń zespół</a>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <button type="button" class="btn btn-primary" disabled>Usuń zespół</button>
-                    </td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">   
+
+    @foreach (var item in Model)
+    {
+    <div class="col-md-3">
+        <div class="card border-secondary custom-card" style="width: 18rem;">
+            <img src="~/Pictures/team-A.jpg" class="card-img-top">           
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">@item.Description</h6>  
+                <div class="row icon-row">
+
+                    <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                                <span class="bi bi-eye main-icons"></span>                                                     
+                    </a>
+
+                    @if (item.IsLoggedUserParticipant)
+                    {                       
+                        <a asp-controller="Team" asp-action="AddThisTeam" asp-route-id="@item.Id" class="btn btn-secondary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Dołącz do zespołu">
+                            <span class="bi bi-person-check main-icons"></span>
+                        </a>                                                
+                    }
+                    else
+                    {                                                      
+                        <a asp-controller="Team" asp-action="AddThisTeam" asp-route-id="@item.Id" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Dołącz do zespołu">
+                            <span class="bi bi-person-check main-icons"></span>
+                        </a>
+                    }
+
+                    @if (item.CanLoggedUserDelete)
+                    {
+                            
+                                
+                        <a asp-controller="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń zespół">
+                            <span class="bi bi-person-dash main-icons"></span>
+                        </a>
+                    }
+                    else
+                    {
+                            
+                                
+                        <a asp-controller="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń zespół">
+                            <span class="bi bi-person-dash main-icons"></span>
+                        </a>
+                    }   
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+
+</div>

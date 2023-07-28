@@ -49,19 +49,19 @@
 
                     @if (item.CanLoggedUserEdit)
                     {
-                            <td>
-                                <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
-                                            <span class="bi bi-tools main-icons"></span>
-                                </a>
-                            </td>
+                            
+                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                                        <span class="bi bi-tools main-icons"></span>
+                            </a>
+                            
                     }
                     else
                     {
-                            <td>
-                                <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
-                                            <span class="bi bi-tools main-icons"></span>
-                                </a>
-                            </td>
+                            
+                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                                        <span class="bi bi-tools main-icons"></span>
+                            </a>
+                            
                     }
 
                     <a asp-controller="Event" asp-action="DeleteFromCalendar" asp-route-id="@item.Id" class="btn btn-danger icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń wydarzenie z kalendarza">
