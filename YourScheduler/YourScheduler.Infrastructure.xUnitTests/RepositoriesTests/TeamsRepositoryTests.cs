@@ -165,5 +165,32 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             updatedTeam.Name.Should().Be(updatedTeamName);
             updatedTeam.Description.Should().Be(updatedTeamDescription);
         }
+
+        [Fact]
+        public async Task TeamRepository_AddTeamForUser_ReturnAddedTeamToUser()
+        {
+            //Asign
+            var context = ContextGenerator.Generate();
+            var repository = new TeamsRepository(context);
+            Team team = new Team
+            {
+                Name = "Sangria",
+                Description = "Test",
+                PicturePath = "/Picures/Pilkarz.jpg"
+            };
+
+            //Act
+            await repository.AddTeamAsync(team);
+
+            //Assert
+            var addedTeam = await context.Teams.SingleOrDefaultAsync(t => t.TeamId == team.TeamId);
+
+            addedTeam.Should().NotBeNull();
+            addedTeam.Name.Should().Be(team.Name);
+            addedTeam.Description.Should().Be(team.Description);
+            addedTeam.PicturePath.Should().Be(team.PicturePath);
+
+        }
+
     }
 }
