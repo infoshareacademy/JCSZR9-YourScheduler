@@ -114,6 +114,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             var repository = new TeamsRepository(context);
             Team team = new Team
             {
+                TeamId=1,
                 Name = "Sangria",
                 Description = "Test",
                 PicturePath = "/Picures/Pilkarz.jpg"
@@ -124,12 +125,17 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             await context.SaveChangesAsync();
 
             //Act
-            await repository.DeleteTeamByIdAsync(team.TeamId);
+            await repository.DeleteTeamByIdAsync(1);
 
-            //Assert
-            var deletedTeam = await context.Teams.SingleOrDefaultAsync(t => t.TeamId == team.TeamId);
 
-            deletedTeam.Should().BeNull();
+
+           // Assert
+            var deletedTeam = await repository.GetAllExistedTeamsAsync();
+            foreach (var item in deletedTeam)
+            {
+                deletedTeam.Should().BeNull();
+            }
+           
         }
 
         [Fact]
@@ -139,6 +145,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             var repository = new TeamsRepository(context);
             Team team = new Team
             {
+                TeamId=1,
                 Name = "Sangria",
                 Description = "Test",
                 PicturePath = "/Picures/Pilkarz.jpg"
