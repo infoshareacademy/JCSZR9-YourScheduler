@@ -18,4 +18,6 @@ public  class Event
     public int administratorId { get; set; }
 
     ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
+
+    public string PicturePath { get; set; }
 }
