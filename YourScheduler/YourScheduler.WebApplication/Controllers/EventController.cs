@@ -11,10 +11,12 @@ namespace YourScheduler.WebApplication.Controllers
 {
     public class EventController : Controller
     {
+        private readonly IWebHostEnvironment _webHost;
         private readonly IEventService _eventService;
-
-        public EventController(IEventService eventService)
+       
+        public EventController(IWebHostEnvironment webHost,IEventService eventService)
         {
+            _webHost = webHost;
             _eventService = eventService;
         }
 
@@ -102,8 +104,32 @@ namespace YourScheduler.WebApplication.Controllers
             try
             {
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
+            
                 if (model != null)
                 {
+                    if (!Directory.Exists("wwwroot/Pictures"))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory("wwwroot/Pictures");
+                    }
+
+                    if (model.ImageFile != null)
+                    {
+                        var saveimg = Path.Combine(_webHost.WebRootPath, "Pictures", model.ImageFile.FileName);
+                        string imgext = Path.GetExtension(model.ImageFile.FileName);
+                        if (imgext == ".jpg" || imgext == ".png")
+                        {
+                            using (var uploading = new FileStream(saveimg, FileMode.Create))
+                            {
+                                await model.ImageFile.CopyToAsync(uploading);
+                            }
+
+                        }
+                        model.PicturePath = "/Pictures/" + model.ImageFile.FileName;
+                    }
+                    else
+                    {
+                        model.PicturePath = "/Pictures/" + "pilkarz.jpg";
+                    }
                     await _eventService.AddEventAsync(model, loggedUserId);
                 }
                 return RedirectToAction(nameof(GetAllEvents));

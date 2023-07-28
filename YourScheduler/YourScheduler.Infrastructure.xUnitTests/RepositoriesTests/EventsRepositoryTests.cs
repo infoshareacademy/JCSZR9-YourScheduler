@@ -22,6 +22,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Date = DateTime.MaxValue,
                 IsOpen = true,
                 administratorId = 1,
+                PicturePath = "/Pictures/pilkarz.jpg"
 
 
             };
@@ -53,6 +54,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Date = DateTime.MaxValue,
                 EventId = 1,
                 IsOpen = true,
+                PicturePath = "/Pictures/pilkarz.jpg"
             };
 
 

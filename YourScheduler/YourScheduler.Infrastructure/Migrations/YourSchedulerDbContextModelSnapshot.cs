@@ -251,10 +251,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "admin",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AOKovnwFekJWCyl0ZFRQ6EG0GMdV4O2Rq/nxx0GUw/2+PCHDjWYkDG5NZSrZxuE32g==",
+                            PasswordHash = "AOu06oz5CDw01clwkTNxw2yJGGlY5EOF3jiUiFvTJ/ztpbb2s9WhBUL1zdF6flGxHA==",
                             PhoneNumber = "111 222 333",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "CQ32CK7E3JNAEL45NRT5Y6ATYFPKNLEO",
+                            SecurityStamp = "BWV76ONH57TBWGJCV2SFNUZYBAAUFEHD",
                             Surname = "admin",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
@@ -271,10 +271,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Krzysztof",
                             NormalizedEmail = "JARZYNA@GMAIL.COM",
                             NormalizedUserName = "JARZYNA@GMAIL.COM",
-                            PasswordHash = "AIyZbEQ9YiK6/8lZAWM0cly21Tq8VsDsQE+ZfvWx1UkhTtt98TuKNyYe6O1YIJlZUg==",
+                            PasswordHash = "AA0dPyKeeGx+3SIgWBqKVljQV7Dh9rBUeUJCFBTC41xCz3XyXlJcOjanYsXwiSHu/A==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ELYJG2US3WFS3USJUK4BGQPRO3KMM6DO",
+                            SecurityStamp = "2HT6WKNEZSQ3HOAWYGDQEQYLD7B6D6HD",
                             Surname = "Jarzyna",
                             TwoFactorEnabled = false,
                             UserName = "jarzyna@gmail.com"
@@ -291,10 +291,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Jane",
                             NormalizedEmail = "JANE_JOHNSON@GMAIL.COM",
                             NormalizedUserName = "JANE_JOHNSON@GMAIL.COM",
-                            PasswordHash = "ABAerZJsh9tNiWoUuA7l0ag8/KAl3epUfSI3zip8iCCRQ0fCW8mbef/0MrRruvoaaA==",
+                            PasswordHash = "AFxRI0oybU3pqmqMWNgrVxaBTPoysFkI4uKvJoC882GYOnxG/KH+O2fYd/NcnJHgow==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "SCJSULCVZEC54SKQZYNTPY55OWTVFN6K",
+                            SecurityStamp = "W27DKY2EOLYB7LH2FFIPYR7AO4BFCCLE",
                             Surname = "Johnson",
                             TwoFactorEnabled = false,
                             UserName = "jane_johnson@gmail.com"
@@ -311,10 +311,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Michael",
                             NormalizedEmail = "MICHAELWW@GMAIL.COM",
                             NormalizedUserName = "MICHAELWW@GMAIL.COM",
-                            PasswordHash = "ACdw7/3VTJ2dOjRuZ9ehbdQwjbIRPBGgbOwNhn36+v54e9o2ZcZ18bRx76my2TGyfA==",
+                            PasswordHash = "AHO9wOSIS9nob17IG6af/UjPu4XAecgsRCgC69uefIf1xQQVeivz1ZEztNWmKDd2pw==",
                             PhoneNumber = "987 654 321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "XOPWIDXRJ2MLZCC7WCUP7UTULBVFACEH",
+                            SecurityStamp = "D76AVPRNIY7MMMGZMUMGFUZBIUQ6JPLY",
                             Surname = "Williams",
                             TwoFactorEnabled = false,
                             UserName = "michaelww@gmail.com"
@@ -331,10 +331,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "William",
                             NormalizedEmail = "JONESWILLIAM@GMAIL.COM",
                             NormalizedUserName = "JONESWILLIAM@GMAIL.COM",
-                            PasswordHash = "AO0zXjP/C0TdDRO2Gt7JjkFu0mgwDuYAEpmsj2ZDgSiMCDC+/PmIoDJtvYZf3Jzcqw==",
+                            PasswordHash = "AJw8SQ5yQPh8gTksL487OOSztyJWHJ3Rd7hQtR+WMsczRrQ9IojVPOMRb5CDV4boeQ==",
                             PhoneNumber = "123 456 789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "CXHR6NTRYKFSZDEVLF7SI5YM7SQYLXWG",
+                            SecurityStamp = "5R2Q2H4LXKC3HJG2JIQGPKL5CWZJ6DLI",
                             Surname = "Jones",
                             TwoFactorEnabled = false,
                             UserName = "joneswilliam@gmail.com"
@@ -351,10 +351,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Olivia",
                             NormalizedEmail = "OLIVIAB@GMAIL.COM",
                             NormalizedUserName = "OLIVIAB@GMAIL.COM",
-                            PasswordHash = "AARX6N7OZVNL9Ww6mizN7gitOj3FGYnPCMJldeCHsr5IsRNpw+yddkWpVtHbBvcU2w==",
+                            PasswordHash = "AJLiiyelA301QNibJ5NjyzMvbGwJyB5pWFQ/G0OhrQYvbbnOpQ79ujlZw6+aOEGVTg==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "BR2YJ5OBUV55DBWPO7M4SGXPCVKTH66R",
+                            SecurityStamp = "QNIFYEDXLWWHJKW36SBPPNI2G3FSDCPG",
                             Surname = "Brown",
                             TwoFactorEnabled = false,
                             UserName = "oliviab@gmail.com"
@@ -507,6 +507,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("administratorId")
                         .HasColumnType("int");
 
@@ -522,6 +526,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Koncert z okazji urodzin TVP",
                             IsOpen = true,
                             Name = "Koncert Zenka Martyniuka",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 1
                         },
                         new
@@ -531,6 +536,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
                             IsOpen = true,
                             Name = "Spotkanie Literackie: Autorzy Bestsellerów",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 1
                         },
                         new
@@ -540,6 +546,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Spektakl muzyczny pełen magii i emocji",
                             IsOpen = true,
                             Name = "Występ Teatru Muzycznego: Magiczna Melodia",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 2
                         },
                         new
@@ -549,6 +556,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
                             IsOpen = true,
                             Name = "Konferencja Technologiczna: Przyszłość Innowacji",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 3
                         },
                         new
@@ -558,6 +566,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
                             IsOpen = false,
                             Name = "Sesja Filmowa: Kino bez Granic",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 4
                         },
                         new
@@ -567,6 +576,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
                             IsOpen = false,
                             Name = "Pokaz Kulinarny: Świat Smaków",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 5
                         },
                         new
@@ -576,6 +586,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
                             IsOpen = true,
                             Name = "Sztuka na Scenie: Wieczór Teatru",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 6
                         });
                 });
@@ -628,6 +639,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
@@ -638,42 +653,48 @@ namespace YourScheduler.Infrastructure.Migrations
                             TeamId = 1,
                             AdministratorId = 0,
                             Description = "Grupa szkółki pływackiej Argonaut",
-                            Name = "Grupa początkująca basen Chełm"
+                            Name = "Grupa początkująca basen Chełm",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         },
                         new
                         {
                             TeamId = 2,
                             AdministratorId = 0,
                             Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku",
-                            Name = "Mieszkańcy osiedla Lawendowe Wzgórze"
+                            Name = "Mieszkańcy osiedla Lawendowe Wzgórze",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         },
                         new
                         {
                             TeamId = 3,
                             AdministratorId = 0,
                             Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.",
-                            Name = "Kreatywny Warsztat Artystyczny"
+                            Name = "Kreatywny Warsztat Artystyczny",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         },
                         new
                         {
                             TeamId = 4,
                             AdministratorId = 0,
                             Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.",
-                            Name = "Klub Fitness i Wellness"
+                            Name = "Klub Fitness i Wellness",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         },
                         new
                         {
                             TeamId = 5,
                             AdministratorId = 0,
                             Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.",
-                            Name = "Klub Fotograficzny Obiektyw"
+                            Name = "Klub Fotograficzny Obiektyw",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         },
                         new
                         {
                             TeamId = 6,
                             AdministratorId = 0,
                             Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.",
-                            Name = "Studio Tańca Ritmo"
+                            Name = "Studio Tańca Ritmo",
+                            PicturePath = "/Pictures/pilkarz.jpg"
                         });
                 });
 

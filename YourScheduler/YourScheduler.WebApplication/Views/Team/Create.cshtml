@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create Team";
+    ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
 
@@ -9,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Nazwa zespołu</label>
@@ -22,14 +23,21 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-
             <div>
-               
-                <input type="file" class="form-control" />
-                
             </div>
-
             <hr />
+            <hr />
+            <div class="form-group">
+                <h5>Wybierz zdjęcie (format jpg lub png) dla swojego zespołu, jeśl nie wybierzesz otrzymasz domyślną grafikę</h5>
+                <label asp-for="ImageFile" class="control-label">Tu wklej zdjęcie dla tworzonego zespołu </label>
+                <input asp-for="ImageFile" accept="image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <hr />
+            <hr />
+
+
+
             <div class="form-group">
                 <input type="submit" value="Stwórz zespół" class="btn btn-primary" />
             </div>
@@ -37,4 +45,6 @@
     </div>
 </div>
 <hr />
-<a asp-controller="user" asp-action="Index" class="btn btn-primary">Powrót</a>
+
+<a asp-controller="Team" asp-action="GetAllTeams" class="btn btn-primary">Powrót</a>
+

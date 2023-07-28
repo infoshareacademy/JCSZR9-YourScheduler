@@ -4,11 +4,15 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Szczegóły zespołu</h1>
 
+<h1>Szczegóły zespołu</h1>
+<dd class="col-sm-10">
+    <img src="@Model.PicturePath" , style="width:500px" />
+</dd>
 <div>
     <hr />
     <dl class="row">
+        
         <dt class="col-sm-2">
             <label asp-for="Name">Nazwa zespołu</label>
         </dt>
@@ -21,19 +25,18 @@
         <dd class="col-sm-10">
             @Model.Description
         </dd>
+       
+        
 
     </dl>
+   
 </div>
-<div>
-    @if (Model.CanLoggedUserEdit)
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
-    }
-    else
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary disabled">Edytuj</a>
-    }
 
-    <a asp-controller="Team" asp-action="GetAllTeams" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a> 
+    <a asp-action="GetAllTeams" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a> 
+  
 </div>
+
 
