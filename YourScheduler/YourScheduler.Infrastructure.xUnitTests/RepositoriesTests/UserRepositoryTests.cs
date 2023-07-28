@@ -1,11 +1,4 @@
 ﻿using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using MimeKit.Cryptography;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories;
