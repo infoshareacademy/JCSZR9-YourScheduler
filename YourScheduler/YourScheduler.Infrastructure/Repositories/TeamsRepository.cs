@@ -31,8 +31,14 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task DeleteTeamByIdAsync(int id)
         {
-            await _dbContext.Teams.Where(t => t.TeamId == id).ExecuteDeleteAsync();
-            await _dbContext.ApplicationUsersTeams.Where(t => t.TeamId == id).ExecuteDeleteAsync();
+            var teamToDelete = await GetTeamByIdAsync(id);
+            if (teamToDelete != null)
+            {
+                _dbContext.Teams.Remove(teamToDelete);
+                var applicationUserTeamsToDelete = _dbContext.ApplicationUsersTeams.Where(x => x.TeamId == teamToDelete.TeamId);
+                _dbContext.ApplicationUsersTeams.RemoveRange(applicationUserTeamsToDelete);
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteTeamFromCalendarByIdAsync(int id, int userId)
@@ -42,9 +48,14 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task UpdateTeamAsync(Team teamToBase)
         {
-            await _dbContext.Teams.Where(t => t.TeamId == teamToBase.TeamId).ExecuteUpdateAsync(setters => setters
-            .SetProperty(t => t.Name, teamToBase.Name)
-            .SetProperty(t => t.Description, teamToBase.Description));
+            var teamToUpdate = await _dbContext.Teams.SingleOrDefaultAsync(e => e.TeamId == teamToBase.TeamId);
+            if (teamToUpdate != null)
+            {
+                teamToUpdate.Name = teamToBase.Name;
+                teamToUpdate.Description = teamToBase.Description;
+                teamToUpdate.PicturePath = teamToBase.PicturePath;
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task AddTeamForUserAsync(int applicationUserId, int teamId)
@@ -52,7 +63,6 @@ namespace YourScheduler.Infrastructure.Repositories
             await _dbContext.ApplicationUsersTeams.AddAsync(new ApplicationUserTeam { ApplicationUserId = applicationUserId, TeamId = teamId });
             await _dbContext.SaveChangesAsync();
         }
-       
 
         public async Task<List<Team>> GetTeamsForUserAsync(int applicationUserId)
         {
