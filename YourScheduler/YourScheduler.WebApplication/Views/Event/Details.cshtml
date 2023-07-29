@@ -8,19 +8,18 @@
 
 <div class="col-md-3">
     <div class="card border-secondary custom-card" style="width: 18rem;">
-        <h4>Szczegóły zespołu</h4>
-        <img src="~/Pictures/event-party.jpg" class="card-img-top">           
+        <img src="@Model.PicturePath" class="card-img-top">           
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">@Model.Description</h6>
             <p class="card-text">@Model.Date.ToString("yyyy-MM-dd HH:mm")</p>
                 @if (@Model.Isopen == true)
                 {
-                    <p class="card-text">Wydarzenie publiczne: Tak</p>
+                        <p class="card-text last-card">Wydarzenie publiczne: Tak</p>
                 }
                 else
                 {
-                    <p class="card-text">Wydarzenie publiczne: Nie</p>
+                        <p class="card-text last-card">Wydarzenie publiczne: Nie</p>
             }    
             <div class="row icon-row">
                 @if (Model.CanLoggedUserEdit)
