@@ -6,11 +6,11 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
     {
         public static YourSchedulerDbContext Generate()
         {
-            var optionBuilder = new DbContextOptionsBuilder<YourSchedulerDbContext>().UseInMemoryDatabase("HelperBase");
-            var yourSchedulerDbContext = new YourSchedulerDbContext(optionBuilder.Options);
-            yourSchedulerDbContext.Database.EnsureCreated();
-            yourSchedulerDbContext.Database.EnsureDeleted();
-            return yourSchedulerDbContext;    
+            var options = new DbContextOptionsBuilder<YourSchedulerDbContext>()
+               .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+               .Options;
+
+            return new YourSchedulerDbContext(options);
         }
     }
 }
