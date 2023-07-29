@@ -12,8 +12,8 @@ using YourScheduler.Infrastructure;
 namespace YourScheduler.Infrastructure.Migrations
 {
     [DbContext(typeof(YourSchedulerDbContext))]
-    [Migration("20230728145752_Add pictures for Teams")]
-    partial class AddpicturesforTeams
+    [Migration("20230729093447_Refresh2")]
+    partial class Refresh2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -254,10 +254,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "admin",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AG6fGtY/APsQ80sce9ZA2ZjA4wk68+sszqX0wVF8ofb5EG2ofUg9auBmjENd0nqs+Q==",
+                            PasswordHash = "AOGnNxt9gE15pi+ZMWWj+Vu7k1NIlDPFl5wg+32SnQyF7qcAWVwqVAXv818L6UqnoA==",
                             PhoneNumber = "111 222 333",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "LXXYO3RDE7JHF5PKJLWM23PCWN6UO2UE",
+                            SecurityStamp = "FSEA7D6HQBKHHFGSFXXPMKEU64H2RFWR",
                             Surname = "admin",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
@@ -274,10 +274,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Krzysztof",
                             NormalizedEmail = "JARZYNA@GMAIL.COM",
                             NormalizedUserName = "JARZYNA@GMAIL.COM",
-                            PasswordHash = "ANi884TAY7hp9lNGPUGCZhaOmnzFnKpcVa0hubJ5EKuLWE/xMdlVV6EdxsCOzWyX5w==",
+                            PasswordHash = "APapdT5yP+ozCP9Xhq0PQ7E0X1rJns3zFsR7Izcixqu41Lg/WmC+nyu3f8YWCeJq4Q==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "F2YAMINQUAQ5D6AARJYCSRM7TVZLOPA6",
+                            SecurityStamp = "PWI33Z4FVMK6XF6ZVM5IDIJ6VIMASRWI",
                             Surname = "Jarzyna",
                             TwoFactorEnabled = false,
                             UserName = "jarzyna@gmail.com"
@@ -294,10 +294,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Jane",
                             NormalizedEmail = "JANE_JOHNSON@GMAIL.COM",
                             NormalizedUserName = "JANE_JOHNSON@GMAIL.COM",
-                            PasswordHash = "AIOdP0rYGELserqY8Vg75k2hqbftPc1e5a3ndtth7Fl0tt1JuuLdQuBqo0EK+wbWDg==",
+                            PasswordHash = "AETd31ke32K7aSNljAigYgTJJvrnJcR3mRP9Ctg/3OvZ86WEFGm/qqllRT2ap9YFSA==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7G6F2ABUBKAJAUE2NN2MD3UHWVZBEXCW",
+                            SecurityStamp = "6RVJRC2A7QDMSID6VZKYFZLD464TC4HC",
                             Surname = "Johnson",
                             TwoFactorEnabled = false,
                             UserName = "jane_johnson@gmail.com"
@@ -314,10 +314,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Michael",
                             NormalizedEmail = "MICHAELWW@GMAIL.COM",
                             NormalizedUserName = "MICHAELWW@GMAIL.COM",
-                            PasswordHash = "AG6YrIUPreTHfFMbzanjNNicBgbMvIK9skX+ZXOGAxVfJtpCB644gUmgUKjQsQuGyQ==",
+                            PasswordHash = "AGLXVqhZ4VgqxH5qzMiiVh+V4leFdtVcoVOL33X9MBv5TMiOqCWiQPh6FE9i0FamLQ==",
                             PhoneNumber = "987 654 321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "CBIMWTXQKWOLC2ZRUEP4YNANSUZOJXXH",
+                            SecurityStamp = "DMYWP22XJLRDGTMWXGNGGTDFXRQJ7O3P",
                             Surname = "Williams",
                             TwoFactorEnabled = false,
                             UserName = "michaelww@gmail.com"
@@ -334,10 +334,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "William",
                             NormalizedEmail = "JONESWILLIAM@GMAIL.COM",
                             NormalizedUserName = "JONESWILLIAM@GMAIL.COM",
-                            PasswordHash = "APISCNnbvvDU5L2rY/VJ3ZzElRD63GSjV4pGWTyksAYuZokD8dqSZ5vGga54diCbuQ==",
+                            PasswordHash = "AMQ5LW/poopUSrc1FZe/xKbjph6t9VT7VAmwqLVzkSJNHz0pDpJX7m10FS0YMF8Wzw==",
                             PhoneNumber = "123 456 789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "XHJKLN5BLURRE6AWFYGZB64LZGLMT7RX",
+                            SecurityStamp = "AHYC57KGOP7UAVWXS6B4M57ABLZ7EL5O",
                             Surname = "Jones",
                             TwoFactorEnabled = false,
                             UserName = "joneswilliam@gmail.com"
@@ -354,10 +354,10 @@ namespace YourScheduler.Infrastructure.Migrations
                             Name = "Olivia",
                             NormalizedEmail = "OLIVIAB@GMAIL.COM",
                             NormalizedUserName = "OLIVIAB@GMAIL.COM",
-                            PasswordHash = "AGKZCKKByooc46IQS+BLpJ5uUbEGrh5Mg/GhU6k6CtTpnox36/PuIBzlQ5zjOlDuQQ==",
+                            PasswordHash = "ABbRaghHytj3EB2t/a5qiLcJrbSPCApsKtRB0/I1We0toxOOZGWe5UZNJxiZOx66ig==",
                             PhoneNumber = "666 598 456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "EJ4TLHB6Y6H7MVZCNTH6SW3MPMMAK67F",
+                            SecurityStamp = "JJT2TWFD5W246SHQNI3QQSFE4AE5SW36",
                             Surname = "Brown",
                             TwoFactorEnabled = false,
                             UserName = "oliviab@gmail.com"
@@ -510,6 +510,10 @@ namespace YourScheduler.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("administratorId")
                         .HasColumnType("int");
 
@@ -525,6 +529,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Koncert z okazji urodzin TVP",
                             IsOpen = true,
                             Name = "Koncert Zenka Martyniuka",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 1
                         },
                         new
@@ -534,6 +539,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
                             IsOpen = true,
                             Name = "Spotkanie Literackie: Autorzy Bestsellerów",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 1
                         },
                         new
@@ -543,6 +549,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Spektakl muzyczny pełen magii i emocji",
                             IsOpen = true,
                             Name = "Występ Teatru Muzycznego: Magiczna Melodia",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 2
                         },
                         new
@@ -552,6 +559,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
                             IsOpen = true,
                             Name = "Konferencja Technologiczna: Przyszłość Innowacji",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 3
                         },
                         new
@@ -561,6 +569,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
                             IsOpen = false,
                             Name = "Sesja Filmowa: Kino bez Granic",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 4
                         },
                         new
@@ -570,6 +579,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
                             IsOpen = false,
                             Name = "Pokaz Kulinarny: Świat Smaków",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 5
                         },
                         new
@@ -579,6 +589,7 @@ namespace YourScheduler.Infrastructure.Migrations
                             Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
                             IsOpen = true,
                             Name = "Sztuka na Scenie: Wieczór Teatru",
+                            PicturePath = "/Pictures/pilkarz.jpg",
                             administratorId = 6
                         });
                 });
