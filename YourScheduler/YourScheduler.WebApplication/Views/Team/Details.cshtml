@@ -4,39 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
+<div class="col-md-3">
+    <div class="card border-secondary custom-card" style="width: 18rem;">
+        <img src="@Model.PicturePath" class="card-img-top">           
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">@Model.Description</h6>  
+            <p class="last-card"></p> 
+            <div class="row icon-row">
+                @if (Model.CanLoggedUserEdit)
+                {
+                    <a asp-controller="Team" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                        <span class="bi bi-tools main-icons"></span>
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Team" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                        <span class="bi bi-tools main-icons"></span>
+                    </a>
+                }
 
-<h1>Szczegóły zespołu</h1>
-<dd class="col-sm-10">
-    <img src="@Model.PicturePath" , style="width:500px" />
-</dd>
-<div>
-    <hr />
-    <dl class="row">
-        
-        <dt class="col-sm-2">
-            <label asp-for="Name">Nazwa zespołu</label>
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Name
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="Description">Opis zespołu</label>
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Description
-        </dd>
-       
-        
-
-    </dl>
-   
+                <a asp-controller="Team" asp-action="GetAllTeams" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Powrót">
+                            <span class="bi bi-arrow-left-circle main-icons"></span>                                                     
+                </a>          
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a> 
-    <a asp-action="GetAllTeams" asp-route-id="@Model.Id" class="btn btn-primary">Powrót</a> 
-  
-</div>
 
 
