@@ -8,6 +8,7 @@
 <div class="card" style="width: 32rem;">
     <div class="card-header">
         Stwórz nowe wydarzenie
+       
     </div>
     <ul class="list-group list-group-flush">
         <form asp-action="Create" enctype="multipart/form-data">
@@ -40,6 +41,10 @@
                 <span asp-validation-for="Isopen"></span>
             </div>
         </li>
+        <div>
+            <img src="/Pictures/defaultEvent.jpg" class="card-img-top" width="200" height="200">
+        </div>
+        
         <li class="list-group-item">
             <div class="form-group">
                 <div>Wybierz zdjęcie (format .jpg lub .png)</div>
