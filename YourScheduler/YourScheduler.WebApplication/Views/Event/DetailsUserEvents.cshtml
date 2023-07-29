@@ -1,10 +1,8 @@
 ﻿@model YourScheduler.BusinessLogic.Models.DTOs.EventDto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "DetailsUserEvents";
 }
-
-
 
 <div class="col-md-3">
     <div class="card border-secondary custom-card" style="width: 18rem;">
@@ -24,7 +22,7 @@
             <div class="row icon-row">
                 @if (Model.CanLoggedUserEdit)
                 {
-                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
+                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edytuj">
                             <span class="bi bi-tools main-icons"></span>
                         </a>
                 }
@@ -35,7 +33,7 @@
                         </a>
                 }
 
-                <a asp-controller="Event" asp-action="GetAllEvents" asp-route-id="@Model.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Powrót">
+                <a asp-controller="Event" asp-action="GetUserEvents" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Powrót">
                             <span class="bi bi-arrow-left-circle main-icons"></span>                                                     
                 </a>          
             </div>

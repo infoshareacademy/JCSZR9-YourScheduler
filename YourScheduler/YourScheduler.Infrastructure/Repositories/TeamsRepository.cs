@@ -53,8 +53,15 @@ namespace YourScheduler.Infrastructure.Repositories
             {
                 teamToUpdate.Name = teamToBase.Name;
                 teamToUpdate.Description = teamToBase.Description;
-                teamToUpdate.PicturePath = teamToBase.PicturePath;
-                await _dbContext.SaveChangesAsync();
+                if (teamToBase.PicturePath is null)
+                {
+                    await _dbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    teamToUpdate.PicturePath = teamToBase.PicturePath;
+                    await _dbContext.SaveChangesAsync();
+                }
             }
         }
 

@@ -72,7 +72,15 @@ namespace YourScheduler.Infrastructure.Repositories
                 eventToUpdate.Date = eventToBase.Date;
                 eventToUpdate.IsOpen = eventToBase.IsOpen;
                 eventToUpdate.administratorId = eventToBase.administratorId;
-                await _dbContext.SaveChangesAsync();
+                if(eventToBase.PicturePath is null)
+                {
+                    await _dbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    eventToUpdate.PicturePath = eventToBase.PicturePath;
+                    await _dbContext.SaveChangesAsync();
+                }
             }
         }
 

@@ -142,70 +142,70 @@ namespace YourScheduler.Infrastructure
                 EventId = 1,
                 Name = "Koncert Zenka Martyniuka",
                 Description = "Koncert z okazji urodzin TVP",
-                Date = new DateTime(2023,6,22),
+                Date = new DateTime(2023,6,22,19,0,0),
                 IsOpen = true,
                 administratorId = 1,
-                 PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/eventId=1.jpg"
             },
             new Event
             {
                 EventId = 2,
                 Name = "Spotkanie Literackie: Autorzy Bestsellerów",
                 Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
-                Date = new DateTime(2023,12,1),
+                Date = new DateTime(2023,12,1,17,0,0),
                 IsOpen = true,
                 administratorId = 1,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/eventId=2.jpg"
             },
             new Event
             {
                 EventId = 3,
                 Name = "Występ Teatru Muzycznego: Magiczna Melodia",
                 Description = "Spektakl muzyczny pełen magii i emocji",
-                Date = new DateTime(2023,10,02),
+                Date = new DateTime(2023,10,02,15,0,0),
                 IsOpen = true,
                 administratorId = 2,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/eventId=3.jpg"
             },
             new Event
             {
                 EventId = 4,
                 Name = "Konferencja Technologiczna: Przyszłość Innowacji",
                 Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
-                Date = new DateTime(2023,9,11),
+                Date = new DateTime(2023,9,11,12,0,0),
                 IsOpen = true,
                 administratorId = 3,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultEvent.jpg"
             },
             new Event
             {
                 EventId = 5,
                 Name = "Sesja Filmowa: Kino bez Granic",
                 Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
-                Date = new DateTime(2024,1,8),
+                Date = new DateTime(2024,1,8,20,0,0),
                 IsOpen = false,
                 administratorId = 4,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultEvent.jpg"
             },
             new Event
             {
                 EventId = 6,
                 Name = "Pokaz Kulinarny: Świat Smaków",
                 Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
-                Date = new DateTime(2023,7,15),
+                Date = new DateTime(2023,7,15,16,0,0),
                 IsOpen = false,
                 administratorId = 5,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/eventId=6.jpg"
             },
             new Event
             {
                 EventId = 7,
                 Name = "Sztuka na Scenie: Wieczór Teatru",
                 Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
-                Date = new DateTime(2023,8,10),
+                Date = new DateTime(2023,8,10,18,0,0),
                 IsOpen = true,
                 administratorId = 6,
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultEvent.jpg"
             },
         };
         public static Team[] teamSeed = new Team[]
@@ -215,42 +215,42 @@ namespace YourScheduler.Infrastructure
                 TeamId = 1,
                 Name = "Grupa początkująca basen Chełm",
                 Description = "Grupa szkółki pływackiej Argonaut",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/teamId=1.jpg"
             },
             new Team
             {
                 TeamId = 2,
                 Name = "Mieszkańcy osiedla Lawendowe Wzgórze",
                 Description = "Grupa zrzeszająca mieszkańców osiedla Lawendowe Wzgórze w Gdańsku",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/teamId=2.jpg"
             },
             new Team
             {
                 TeamId = 3,
                 Name = "Kreatywny Warsztat Artystyczny",
                 Description = "Zapraszamy do naszego kreatywnego warsztatu artystycznego, gdzie możesz rozwijać swoje umiejętności w różnych dziedzinach sztuki.",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultTeam.jpg"
             },
             new Team
             {
                 TeamId = 4,
                 Name = "Klub Fitness i Wellness",
                 Description = "Dołącz do naszego klubu fitness i wellness, gdzie możesz ćwiczyć, relaksować się i dbać o swoje zdrowie pod okiem profesjonalnych instruktorów.",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath="/Pictures/teamId=4.jpg"
             },
             new Team
             {
                 TeamId = 5,
                 Name = "Klub Fotograficzny Obiektyw",
                 Description = "Zapraszamy do naszego klubu fotograficznego, gdzie pasjonaci fotografii mogą się spotkać, dzielić się wiedzą i rozwijać swoje umiejętności fotograficzne.",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultTeam.jpg"
             },
             new Team
             {
                 TeamId = 6,
                 Name = "Studio Tańca Ritmo",
                 Description = "Nasze studio tańca Ritmo oferuje różnorodne style taneczne dla osób w każdym wieku, bez względu na poziom zaawansowania.",
-                PicturePath="/Pictures/pilkarz.jpg"
+                PicturePath = "/Pictures/defaultTeam.jpg"
             }
         };
         public static ApplicationUserEvent[] applicationUserEventSeed = new ApplicationUserEvent[]
