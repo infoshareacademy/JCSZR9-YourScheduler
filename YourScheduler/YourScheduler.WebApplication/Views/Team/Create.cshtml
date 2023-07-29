@@ -6,45 +6,50 @@
     Layout = "_Layout";
 }
 
-<h2>Stwórz nowy zespół</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Nazwa zespołu</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-
-            <div>
-                <label asp-for="Description" class="control-label">Opis zespołu</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div>
-            </div>
-            <hr />
-            <hr />
-            <div class="form-group">
-                <h5>Wybierz zdjęcie (format jpg lub png) dla swojego zespołu, jeśl nie wybierzesz otrzymasz domyślną grafikę</h5>
-                <label asp-for="ImageFile" class="control-label">Tu wklej zdjęcie dla tworzonego zespołu </label>
-                <input asp-for="ImageFile" accept="image/*" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
-            </div>
-            <hr />
-            <hr />
-
-
-
-            <div class="form-group">
-                <input type="submit" value="Stwórz zespół" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="card" style="width: 32rem;">
+    <div class="card-header">
+        Stwórz nowy zespół
     </div>
+    <ul class="list-group list-group-flush">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <li class="list-group-item">                
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Nazwa zespołu</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </li>
+            <li class="list-group-item"> 
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Opis zespołu</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </li>
+            <li class="list-group-item"> 
+                    <div class="form-group">
+                        <h5>Wybierz zdjęcie (format .jpg lub .png) dla swojego zespołu, jeśl nie wybierzesz otrzymasz domyślną grafikę</h5>
+                        <label asp-for="ImageFile" class="control-label">Tu wklej zdjęcie dla tworzonego zespołu </label>
+                        <input asp-for="ImageFile" accept="image/*" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+            </li>
+            <li class="list-group-item"> 
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Stwórz zespół">
+                            <span class="bi bi-person-plus main-icons"></span>   
+                        </button>
+                    </div>
+            </li>
+        </form>
+
+            <li class="list-group-item"> 
+                <a asp-controller="Team" asp-action="GetAllTeams" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Powrót">
+                    <span class="bi bi-arrow-return-left main-icons"></span>
+                </a>
+            </li>
+
+
+    </ul>
 </div>
-<hr />
-
-<a asp-controller="Team" asp-action="GetAllTeams" class="btn btn-primary">Powrót</a>
-
