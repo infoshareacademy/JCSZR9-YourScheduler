@@ -20,9 +20,15 @@ namespace YourScheduler.BusinessLogic.Mapppers
                 Name = teamDto.Name,
                 Description = teamDto.Description,
                 AdministratorId = teamDto.AdministratorId,
-                PicturePath = teamDto.PicturePath,
             };
-
+            if (teamDto.ImageFile is null)
+            {
+                return team;
+            }
+            else
+            {
+                team.PicturePath = teamDto.PicturePath;
+            }
             return team;
         }
 
@@ -33,9 +39,16 @@ namespace YourScheduler.BusinessLogic.Mapppers
                Id=team.TeamId,
                Name = team.Name,
                Description = team.Description,
-               AdministratorId = team.AdministratorId,
-               PicturePath = team.PicturePath,              
+               AdministratorId = team.AdministratorId,            
             };
+            if (team.PicturePath is null)
+            {
+                return teamDto;
+            }
+            else
+            {
+                teamDto.PicturePath = team.PicturePath;
+            }
             return teamDto;
         }
     }
