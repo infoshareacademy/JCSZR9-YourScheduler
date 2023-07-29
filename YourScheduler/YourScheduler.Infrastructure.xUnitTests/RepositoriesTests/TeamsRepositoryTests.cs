@@ -1,6 +1,11 @@
 ﻿using Castle.Core.Logging;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
+using MimeKit.Cryptography;
+using Moq;
 using Xunit;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories;
@@ -15,7 +20,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
                 TeamId=1,
@@ -40,7 +46,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
                 Name = "Piłkarze",
@@ -62,7 +69,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
                 Name = "Sangria",
@@ -86,7 +94,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_GetTeamById_ReturnAddedTeamById()
         {
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context,null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
                 Name = "Sangria",
@@ -112,7 +121,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_DeleteTeamById()
         {
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context,null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
                 TeamId=1,
@@ -143,7 +153,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_UpdateTeam_ReturnUpdatedTeam()
         {
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context,null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
                 TeamId=1,
@@ -179,7 +190,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Asign
             var context = ContextGenerator.Generate();
-            var repository = new TeamsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
                 Name = "Sangria",

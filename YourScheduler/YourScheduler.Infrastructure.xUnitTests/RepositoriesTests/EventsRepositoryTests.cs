@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories;
@@ -13,7 +15,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new EventsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new EventsRepository(context, loggerMock.Object);
             Event eventBase = new Event
             {
                 EventId = 1,
@@ -45,7 +48,8 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new EventsRepository(context, null);
+            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var repository = new EventsRepository(context, loggerMock.Object);
             Event eventBase = new Event
             {
                 Name = "Piłkarze",
