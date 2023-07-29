@@ -86,13 +86,12 @@ namespace YourScheduler.WebApplication.Controllers
                     }
                     else
                     {
-                        model.PicturePath = "/Pictures/" + "team-A.jpg";
+                        model.PicturePath = "/Pictures/" + "defaultTeam.jpg";
                     }
+                    model.AdministratorId = loggedUserId;
+                    await _teamService.AddTeamAsync(model);
+                    //TODO - move out of controller
                 }
-                model.AdministratorId = loggedUserId;
-                await _teamService.AddTeamAsync(model);
-                //TODO - move out of controller
-
                 return RedirectToAction("GetAllTeams", "Team");
             }
             catch
