@@ -41,7 +41,7 @@
                  <p class="last-card"></p> 
                 <div class="row icon-row">
 
-                    <a asp-controller="Team" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
+                    <a asp-controller="Team" asp-action="DetailsAllTeams" asp-route-id="@item.Id" class="btn btn-primary icon-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Szczegóły">
                                 <span class="bi bi-eye main-icons"></span>                                                     
                     </a>
 
@@ -68,8 +68,6 @@
                     }
                     else
                     {
-                            
-                                
                         <a asp-controller="Team" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary icon-button disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuń zespół">
                             <span class="bi bi-person-dash main-icons"></span>
                         </a>

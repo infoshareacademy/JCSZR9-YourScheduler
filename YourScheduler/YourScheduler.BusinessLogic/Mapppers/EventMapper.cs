@@ -36,10 +36,16 @@ namespace YourScheduler.BusinessLogic.Mapppers
                Date = eventDto.Date,
                IsOpen = eventDto.Isopen,
                administratorId= eventDto.AdministratorId,
-               PicturePath = eventDto.PicturePath,
-               
             };
-            return eventToBase;
+            if (eventDto.PicturePath is null)
+            {
+                return eventToBase;
+            }
+            else
+            {
+                eventToBase.PicturePath = eventDto.PicturePath;
+                return eventToBase;
+            }
         }
 
         public Event EventDtoWithIdToEventMap(EventDto eventDto)
@@ -52,9 +58,16 @@ namespace YourScheduler.BusinessLogic.Mapppers
                 Date = eventDto.Date,
                 IsOpen = eventDto.Isopen,
                 administratorId = eventDto.AdministratorId,
-                
             };
-            return eventToBase;
+            if (eventDto.PicturePath is null)
+            {
+                return eventToBase;
+            }
+            else
+            {
+                eventToBase.PicturePath = eventDto.PicturePath;
+                return eventToBase;
+            }
         }
     }
 }
