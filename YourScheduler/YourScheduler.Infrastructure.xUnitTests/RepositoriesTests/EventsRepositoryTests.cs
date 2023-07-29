@@ -13,7 +13,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new EventsRepository(context);
+            var repository = new EventsRepository(context, null);
             Event eventBase = new Event
             {
                 EventId = 1,
@@ -45,7 +45,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var repository = new EventsRepository(context);
+            var repository = new EventsRepository(context, null);
             Event eventBase = new Event
             {
                 Name = "Piłkarze",
