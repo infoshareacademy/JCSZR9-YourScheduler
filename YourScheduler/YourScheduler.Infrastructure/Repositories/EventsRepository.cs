@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,16 @@ namespace YourScheduler.Infrastructure.Repositories
     public class EventsRepository : IEventsRepository
     {
         private readonly YourSchedulerDbContext _dbContext;
+        private readonly ILogger _logger;
 
-        public EventsRepository(YourSchedulerDbContext dbContext)
+        public EventsRepository(YourSchedulerDbContext dbContext, ILogger<EventsRepository> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
         public async Task AddEventAsync(Event eventTobase)
         {
+            _logger.LogInformation("User attempt to add new event at {DT}", DateTime.Now.ToLongTimeString());
             await _dbContext.Events.AddAsync(eventTobase);
         }
         public async Task SaveDataAsync()
@@ -29,6 +33,7 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task<List<Event>> GetAvailableEventsAsync(int loggedUserId)
         {
+            _logger.LogInformation("User attempt to get available events at {DT}", DateTime.Now.ToLongTimeString());
             List<Event> events = new List<Event>();
             events = await _dbContext.Events.Where(i => i.IsOpen == true || i.administratorId == loggedUserId).ToListAsync();
             return events;
@@ -36,11 +41,13 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task<Event> GetEventByIdAsync(int id)
         {
+            _logger.LogInformation("User attempt to get event by ID at {DT}", DateTime.Now.ToLongTimeString());
             return await _dbContext.Events.SingleOrDefaultAsync(x => x.EventId == id);
         }
 
         public async Task DeleteEventByIdAsync(int id)
         {
+            _logger.LogInformation("User attempt to delete event by ID at {DT}", DateTime.Now.ToLongTimeString());
             var eventToDelete = await GetEventByIdAsync(id);
             if (eventToDelete != null)
             {
@@ -53,6 +60,7 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task DeleteEventFromCalendarByIdAsync(int id, int userId)
         {
+            _logger.LogInformation("User attempt to delete event from calendar by ID at {DT}", DateTime.Now.ToLongTimeString());
             var eventToDelete = await GetEventByIdAsync(id);
             if (eventToDelete != null)
             {
@@ -64,6 +72,7 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task UpdateEventAsync(Event eventToBase)
         {
+            _logger.LogInformation("User attempt to update event at {DT}", DateTime.Now.ToLongTimeString());
             var eventToUpdate = await _dbContext.Events.SingleOrDefaultAsync(e => e.EventId == eventToBase.EventId);
             if (eventToUpdate != null)
             {
@@ -72,7 +81,15 @@ namespace YourScheduler.Infrastructure.Repositories
                 eventToUpdate.Date = eventToBase.Date;
                 eventToUpdate.IsOpen = eventToBase.IsOpen;
                 eventToUpdate.administratorId = eventToBase.administratorId;
-                await _dbContext.SaveChangesAsync();
+                if(eventToBase.PicturePath is null)
+                {
+                    await _dbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    eventToUpdate.PicturePath = eventToBase.PicturePath;
+                    await _dbContext.SaveChangesAsync();
+                }
             }
         }
 
@@ -84,6 +101,7 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task AddEventForUserAsync(int applicationUserId, int eventId)
         {
+            _logger.LogInformation("User attempt to add event to own calendar at {DT}", DateTime.Now.ToLongTimeString());
             await _dbContext.ApplicationUsersEvents.AddAsync(new ApplicationUserEvent { ApplicationUserId = applicationUserId, EventId = eventId });
         }
 
@@ -97,6 +115,7 @@ namespace YourScheduler.Infrastructure.Repositories
 
         public async Task<List<ApplicationUser>> GetApplicationUsersForEventAsync(int eventId)
         {
+            _logger.LogInformation("User attempt to get list of users for event {DT}", DateTime.Now.ToLongTimeString());
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();
             applicationUsers = await _dbContext.ApplicationUsersEvents.Where(x => x.EventId == eventId).Select(x => x.ApplicationUser).ToListAsync();
             return applicationUsers;

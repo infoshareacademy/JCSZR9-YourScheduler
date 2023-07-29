@@ -20,7 +20,6 @@ namespace YourScheduler.WebApplication.Controllers
             _eventService = eventService;
         }
 
-        // GET: EventController
         [Authorize]
         public async Task<ActionResult> GetAllEvents(string searchString)
         {
@@ -32,7 +31,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
@@ -44,7 +42,6 @@ namespace YourScheduler.WebApplication.Controllers
             return View(model);
         }
 
-        // GET: ApplicationUserEventController/Delete/5
         [Route("addthisevent/{id:int}")]
         public async Task<ActionResult> AddThisEvent(int id)
         {
@@ -53,9 +50,7 @@ namespace YourScheduler.WebApplication.Controllers
             return View(model);
         }
 
-        // POST: ApplicationUserEventController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Route("addthisevent/{id:int}")]
         public async Task<ActionResult> AddThisEvent(EventDto model)
         {
@@ -72,8 +67,7 @@ namespace YourScheduler.WebApplication.Controllers
             }
         }
 
-        // GET: EventController/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> DetailsAllEvents(int id)
         {
             try
             {
@@ -83,21 +77,30 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
+                return View();
+            }
+        }
+        public async Task<ActionResult> DetailsUserEvents(int id)
+        {
+            try
+            {
+                var loggedUserId = int.Parse(User.Identity.GetUserId());
+                var model = await _eventService.GetEventByIdAsync(id, loggedUserId);
+                return View(model);
+            }
+            catch
+            {
                 return View();
             }
         }
 
-        // GET: EventController/Create
         [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EventController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<ActionResult> Create(EventDto model)
         {
@@ -107,11 +110,11 @@ namespace YourScheduler.WebApplication.Controllers
             
                 if (model != null)
                 {
+                    //TODO - move out of controller
                     if (!Directory.Exists("wwwroot/Pictures"))
                     {
                         DirectoryInfo di = Directory.CreateDirectory("wwwroot/Pictures");
                     }
-
                     if (model.ImageFile != null)
                     {
                         var saveimg = Path.Combine(_webHost.WebRootPath, "Pictures", model.ImageFile.FileName);
@@ -122,7 +125,6 @@ namespace YourScheduler.WebApplication.Controllers
                             {
                                 await model.ImageFile.CopyToAsync(uploading);
                             }
-
                         }
                         model.PicturePath = "/Pictures/" + model.ImageFile.FileName;
                     }
@@ -131,17 +133,16 @@ namespace YourScheduler.WebApplication.Controllers
                         model.PicturePath = "/Pictures/" + "event-party.jpg";
                     }
                     await _eventService.AddEventAsync(model, loggedUserId);
+                    //TODO - move out of controller
                 }
                 return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // GET: EventController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             try
@@ -152,30 +153,45 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // POST: EventController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, EventDto model)
         {
             try
             {
+                //TODO - move out of controller
+                if (!Directory.Exists("wwwroot/Pictures"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory("wwwroot/Pictures");
+                }
+                if (model.ImageFile != null)
+                {
+                    var saveimg = Path.Combine(_webHost.WebRootPath, "Pictures", model.ImageFile.FileName);
+                    string imgext = Path.GetExtension(model.ImageFile.FileName);
+                    if (imgext == ".jpg" || imgext == ".png")
+                    {
+                        using (var uploading = new FileStream(saveimg, FileMode.Create))
+                        {
+                            await model.ImageFile.CopyToAsync(uploading);
+                        }
+                    }
+                    model.PicturePath = "/Pictures/" + model.ImageFile.FileName;
+                }
+                //TODO - move out of controller
+
                 var loggedUserId = int.Parse(User.Identity.GetUserId());
                 await _eventService.UpdateEventAsync(model, loggedUserId);
                 return RedirectToAction(nameof(GetAllEvents));
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // GET: EventController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
             try
@@ -186,14 +202,11 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // POST: EventController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, EventDto model)
         {
             try
@@ -203,12 +216,10 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // GET: EventController/Delete/5
         public async Task<ActionResult> DeleteFromCalendar(int id)
         {
             try
@@ -219,14 +230,11 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
 
-        // POST: EventController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteFromCalendar(int id, EventDto model)
         {
             try
@@ -237,7 +245,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
@@ -253,7 +260,6 @@ namespace YourScheduler.WebApplication.Controllers
             }
             catch
             {
-                //log - TODO
                 return View();
             }
         }
