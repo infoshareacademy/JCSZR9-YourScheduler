@@ -128,7 +128,7 @@ namespace YourScheduler.WebApplication.Controllers
                     }
                     else
                     {
-                        model.PicturePath = "/Pictures/" + "pilkarz.jpg";
+                        model.PicturePath = "/Pictures/" + "event-party.jpg";
                     }
                     await _eventService.AddEventAsync(model, loggedUserId);
                 }
