@@ -92,7 +92,7 @@ namespace YourScheduler.WebApplication.Controllers
                     }
                     else
                     {
-                        model.PicturePath = "/Pictures/" + "pilkarz.jpg";
+                        model.PicturePath = "/Pictures/" + "team-A.jpg";
                     }
                 }
                 model.AdministratorId = loggedUserId;
