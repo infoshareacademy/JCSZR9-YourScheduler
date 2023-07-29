@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,4 +29,8 @@ public class EventDto
     public bool CanLoggedUserDelete { get; set; } = false;
 
     public bool IsLoggedUserParticipant { get; set; } = false;
+
+    public string PicturePath { get; set; }
+
+    public IFormFile ImageFile { get; set; }
 }

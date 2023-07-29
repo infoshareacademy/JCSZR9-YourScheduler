@@ -1,9 +1,4 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories;
@@ -27,6 +22,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Date = DateTime.MaxValue,
                 IsOpen = true,
                 administratorId = 1,
+                PicturePath = "/Pictures/pilkarz.jpg"
 
 
             };
@@ -58,6 +54,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Date = DateTime.MaxValue,
                 EventId = 1,
                 IsOpen = true,
+                PicturePath = "/Pictures/pilkarz.jpg"
             };
 
 
