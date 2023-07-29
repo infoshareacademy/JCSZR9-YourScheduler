@@ -130,7 +130,7 @@ namespace YourScheduler.WebApplication.Controllers
                     }
                     else
                     {
-                        model.PicturePath = "/Pictures/" + "event-party.jpg";
+                        model.PicturePath = "/Pictures/" + "defaultEvent.jpg";
                     }
                     await _eventService.AddEventAsync(model, loggedUserId);
                     //TODO - move out of controller

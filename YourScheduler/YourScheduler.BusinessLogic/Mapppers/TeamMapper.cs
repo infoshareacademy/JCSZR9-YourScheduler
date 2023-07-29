@@ -21,7 +21,7 @@ namespace YourScheduler.BusinessLogic.Mapppers
                 Description = teamDto.Description,
                 AdministratorId = teamDto.AdministratorId,
             };
-            if (teamDto.ImageFile is null)
+            if (teamDto.PicturePath is null)
             {
                 return team;
             }
