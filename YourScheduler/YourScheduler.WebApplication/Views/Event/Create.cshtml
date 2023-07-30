@@ -8,7 +8,7 @@
 <div class="card" style="width: 32rem;">
     <div class="card-header">
         Stwórz nowe wydarzenie
-       
+
     </div>
     <ul class="list-group list-group-flush">
         <form asp-action="Create" enctype="multipart/form-data">
@@ -42,13 +42,13 @@
             </div>
         </li>
         <div>
-            <img src="/Pictures/defaultEvent.jpg" class="card-img-top" width="200" height="200">
+            <img id="defaultEvent" src="/Pictures/defaultEvent.jpg" class="card-img-top" width="200" height="200">
         </div>
-        
+
         <li class="list-group-item">
             <div class="form-group">
                 <div>Wybierz zdjęcie (format .jpg lub .png)</div>
-                <input asp-for="ImageFile" accept="image/*" />
+                <input asp-for="ImageFile" accept="image/*" onchange="loadImage(event)" />
             </div>
         </li>
         <li class="list-group-item">
@@ -66,3 +66,18 @@
         </li>
     </ul>
 </div>
+
+
+<script>
+    function loadImage(event) {
+        var image = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var imageElement = document.getElementById('defaultEvent');
+            imageElement.src = e.target.result;
+        };
+
+        reader.readAsDataURL(image);
+    }
+</script>

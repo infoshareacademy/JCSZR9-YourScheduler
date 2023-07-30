@@ -28,12 +28,12 @@
             </div>
         </li>
         <div>
-            <img src="/Pictures/defaultTeam.jpg" class="card-img-top" width="200" height="200">
+            <img id="defaultTeam" src="/Pictures/defaultTeam.jpg" class="card-img-top" width="200" height="200">
         </div>
         <li class="list-group-item">
             <div class="form-group">
                 <div>Wybierz zdjęcie (format .jpg lub .png)</div>
-                <input asp-for="ImageFile" accept="image/*"/>
+                <input asp-for="ImageFile" accept="image/*" onchange="loadImage(event)" />
             </div>
         </li>
         <li class="list-group-item">
@@ -53,3 +53,17 @@
 
     </ul>
 </div>
+
+<script>
+    function loadImage(event) {
+        var image = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var imageElement = document.getElementById('defaultTeam');
+            imageElement.src = e.target.result;
+        };
+
+        reader.readAsDataURL(image);
+    }
+</script>
