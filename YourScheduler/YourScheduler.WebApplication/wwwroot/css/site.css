@@ -222,6 +222,7 @@ h1 img {
 .custom-card {
     min-height: 500px;
     margin: 0px 2px 20px 0px;
+    padding: 2px 20px 2px 20pxl
     position: relative;
 }
 

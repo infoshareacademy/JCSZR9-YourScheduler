@@ -4,18 +4,17 @@
 @{
     ViewData["Title"] = "Log in";
 }
-
+ <div class="col-md-10 mx-auto">
+     <div class="card border-secondary custom-card" style="padding:20px 20px 20px 20px">
 <h1>
-    <img src="/Pictures/login1.jpg" />
+    <img src="/Pictures/login2.png" width="120" height="120"/>
     <span>Zaloguj się</span>
     
 </h1>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <section class="login">
             <form id="account" method="post">
-                <h2>Wykorzystaj konto lokalne do zalogowania</h2>
-                <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
@@ -38,7 +37,7 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Zaloguj</button>
                 </div>
-                <div>
+                <div style="padding:20px 0px 0px 0px ">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Zapomniałeś hasła?</a>
                     </p>
@@ -81,6 +80,8 @@
                 }
             }
         </section>
+        </div>
+        </div>
     </div>
 </div>
 
