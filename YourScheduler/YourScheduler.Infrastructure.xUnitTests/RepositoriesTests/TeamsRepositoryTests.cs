@@ -20,7 +20,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
@@ -46,7 +46,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
@@ -69,7 +69,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Assign
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
@@ -94,7 +94,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_GetTeamById_ReturnAddedTeamById()
         {
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
@@ -121,7 +121,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_DeleteTeamById()
         {
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
@@ -153,7 +153,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         public async Task TeamRepository_UpdateTeam_ReturnUpdatedTeam()
         {
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context,loggerMock.Object);
             Team team = new Team
             {
@@ -190,7 +190,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
         {
             //Asign
             var context = ContextGenerator.Generate();
-            var loggerMock = new Mock<ILogger<EventsRepository>>();
+            var loggerMock = new Mock<ILogger<TeamsRepository>>();
             var repository = new TeamsRepository(context, loggerMock.Object);
             Team team = new Team
             {
