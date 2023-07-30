@@ -1,0 +1,256 @@
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+
+body {
+  margin-bottom: 60px;
+}
+
+.header-inner {   
+    max-width: 580px;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 0);
+    width: 90%; 
+    padding: 20px;
+    text-align: center;
+    z-index: 60;
+}
+
+.bigtext {
+    font-size: 11px;
+}
+
+.text-color {
+    /*color: #ffffff;*/
+    color: black;
+}
+
+.bigtext > div {
+    font-weight: 600;
+    line-height: 1.1em;
+}
+
+.bigtext-line0 {
+    font-size: 2.38em;
+}
+
+.bigtext-line1 {
+    font-size: 7.92em;
+}
+
+.bigtext > div b {
+    text-transform: uppercase;
+    line-height: 1.125em;
+    font-family: 'Oswald', sans-serif;
+}
+
+.bigtext-line2 {
+    font-size: 2.27em;
+}
+
+.bold, b, strong {
+    font-weight: 600;
+}
+
+.login h2 {
+    font-size: 18px;
+}
+
+.login .checkbox {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+h1 img {
+    width: 100px;
+    height: auto;
+}
+
+.main-header {
+    font-size: 20px;
+    background-image: linear-gradient(to right, rgb(212,133,77) 50px, rgb(65,53,77), rgb(1,34,51));
+}
+
+.login-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(13, 110, 253, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.login-image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-text {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+}
+
+.main-site-image {
+    margin-bottom: 10px;
+    height: 250px;
+    width: auto;
+}
+
+.user-panel-list ul {
+    display: none;
+}
+
+.user-panel-list:hover > ul {
+    display: block;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+.user-panel-list img {
+    height: 80px;
+    width: auto;
+    padding-right: 50px;
+}
+
+.team-event-list ul {
+    display: none;
+    z-index: 2;
+}
+
+.team-event-list:hover > ul {
+    display: block;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 20px;
+    background-color: rgb(236, 236, 236);
+}
+
+.team-event-list button {
+    font-size: 20px;
+}
+#UserPicture{
+    padding-right: 0px;
+}
+.userInfo{
+    padding-right: 40px;
+}
+.admin {
+    font-size: 20px;
+}
+
+.start-page-img-container img {
+    width: 300px;
+    height: auto;
+}
+
+.nav-button {
+    padding: 24px 0;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.card-start-page {
+    margin-left: 20px;
+}
+
+.home {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main-body {
+    background-image: url('../Pictures/bg6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-icons {
+    color: white;
+    font-size: 30px;
+}
+
+.icon-button {
+    margin: 0px 0px 0px 10px;
+    height: auto;
+    width: auto;
+}
+
+.main-footer {
+    background-color: white;
+}
+
+.custom-card {
+    min-height: 500px;
+    margin: 0px 2px 20px 0px;
+    padding: 2px 20px 2px 20pxl
+    position: relative;
+}
+
+.icon-row {
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+}
+
+.card-row .list-group-item {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.card-header .card-title {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.last-card {
+    margin-bottom: 60px;
+}
+
+.card-image {
+    object-fit: fill;
+    height: 40%;
+    height: 200px;
+    width: 100%;
+}
