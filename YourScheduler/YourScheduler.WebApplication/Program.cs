@@ -1,0 +1,70 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using YourScheduler.BusinessLogic.Initialization;
+using YourScheduler.BusinessLogic.Models;
+using YourScheduler.Infrastructure;
+using YourScheduler.Infrastructure.Initialization;
+using YourScheduler.Infrastructure.Entities;
+using YourScheduler.BusinessLogic.Services.Settings;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("YourSchedulerDbContextConnection") ?? throw new InvalidOperationException("Connection string 'YourSchedulerDbContextConnection' not found.");
+
+builder.Services.AddDbContext<YourSchedulerDbContext>(options =>
+ options.UseSqlServer(connectionString));
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.ClientId = builder.Configuration["Authentication:Facebook:ClientId"];
+        options.ClientSecret = builder.Configuration["Authentication:Facebook:ClientSecret"];
+    })
+    .AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    });
+    
+
+var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
+builder.Services.AddSingleton(emailConfig);
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+ .AddEntityFrameworkStores<YourSchedulerDbContext>();
+
+builder.Services.AddInfrastructureDependencies(builder.Configuration);
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthorization();
+
+builder.Services.AddBusinessLogicDependencies();
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseAuthentication();;
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
+
+app.Run();
+
