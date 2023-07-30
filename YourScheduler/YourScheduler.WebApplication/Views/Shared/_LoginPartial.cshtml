@@ -9,13 +9,16 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-        <li class="nav-item user-panel-list">
-
-        <img src="/Pictures/login2.png" />
+    <li class="nav-item user-panel-list">
+        <span class="userInfo">
+            <img src="/Pictures/login2.png" id="UserPicture"/>
+            <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserService.GetUserByEmail(UserManager.GetUserName(User)).Displayname</a>
+        </span>
+        
          
         <ul>
             <li class="nav-item">
-                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Dane użytkownika</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">Dane użytkownika</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -24,15 +27,14 @@
             </li>
         </ul>
     </li>
-    <li class="nav-link text-dark">
-        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserService.GetUserByEmail(UserManager.GetUserName(User)).Displayname</a>
-    </li>
     
 }
 else
 {
     <li class="nav-item user-panel-list">
-        <img src="/Pictures/login2.png" />
+        <span class="userInfo">
+            <img src="/Pictures/login2.png" id="UserPicture"/>
+        </span>
         <ul>
             <li>
                 <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Rejestracja</a>
