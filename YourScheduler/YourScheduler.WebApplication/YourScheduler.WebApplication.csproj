@@ -50,4 +50,9 @@
     <None Include="wwwroot\js\index.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\Events\" />
+    <Folder Include="API\Teams\" />
+  </ItemGroup>
+
 </Project>
