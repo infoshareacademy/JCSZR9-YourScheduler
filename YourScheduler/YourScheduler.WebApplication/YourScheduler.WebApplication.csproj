@@ -52,7 +52,6 @@
 
   <ItemGroup>
     <Folder Include="API\Events\" />
-    <Folder Include="API\Teams\" />
   </ItemGroup>
 
 </Project>
