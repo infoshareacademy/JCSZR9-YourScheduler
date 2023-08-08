@@ -18,7 +18,7 @@ namespace YourScheduler.BusinessLogic.API.Users
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetAllUsersAPI()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace YourScheduler.BusinessLogic.API.Users
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<ApplicationUser>> GetUser(int userId)
+        public async Task<ActionResult<ApplicationUser>> GetUserAPI(int userId)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace YourScheduler.BusinessLogic.API.Users
 
         }
         [HttpGet("email:string")]
-        public async Task<ActionResult<ApplicationUser>> GetUser(string email)
+        public async Task<ActionResult<ApplicationUser>> GetUserAPI(string email)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace YourScheduler.BusinessLogic.API.Users
             }
         }
         [HttpPost]
-        public async Task<ActionResult> AddUser(ApplicationUser user)
+        public async Task<ActionResult> AddUserAPI(ApplicationUser user)
         {
             try
             {
