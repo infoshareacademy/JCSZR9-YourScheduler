@@ -6,6 +6,7 @@ using YourScheduler.Infrastructure;
 using YourScheduler.Infrastructure.Initialization;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.BusinessLogic.Services.Settings;
+using FluentAssertions.Common;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,9 @@ builder.Services.AddAuthentication()
 
 var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
 builder.Services.AddSingleton(emailConfig);
+
+builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
  .AddEntityFrameworkStores<YourSchedulerDbContext>();

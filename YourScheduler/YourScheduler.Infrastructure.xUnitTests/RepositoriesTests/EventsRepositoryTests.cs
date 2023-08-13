@@ -24,7 +24,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
                 Description = "Bardzo lubimy grać w piłkę nożną",
                 Date = DateTime.MaxValue,
                 IsOpen = true,
-                administratorId = 1,
+                AdministratorId = 1,
                 PicturePath = "/Pictures/pilkarz.jpg"
 
 
@@ -54,7 +54,7 @@ namespace YourScheduler.Infrastructure.xUnitTests.RepositoriesTests
             {
                 Name = "Piłkarze",
                 Description = "Bardzo lubimy grać w piłkę nożną",
-                administratorId = 1,
+                AdministratorId = 1,
                 Date = DateTime.MaxValue,
                 EventId = 1,
                 IsOpen = true,

@@ -14,6 +14,6 @@ namespace YourScheduler.BusinessLogic.Models.DTOs
 
         public string Description { get; set; }
 
-        public IEnumerable<UserDto> TeamUsers { get; set; }
+        public IEnumerable<ApplicationUserDto> TeamUsers { get; set; }
     }
 }

@@ -226,7 +226,7 @@ namespace YourScheduler.WebApplication.Controllers
                 await _teamService.AddTeamForUserAsync(userId, model.Id);
                 return RedirectToAction(nameof(GetAllTeams));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View("AddThisTeamError");
             }

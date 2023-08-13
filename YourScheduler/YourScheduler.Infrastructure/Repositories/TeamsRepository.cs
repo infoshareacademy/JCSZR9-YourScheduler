@@ -77,7 +77,7 @@ namespace YourScheduler.Infrastructure.Repositories
         public async Task AddTeamForUserAsync(int applicationUserId, int teamId)
         {
             _logger.LogInformation("User attempt to add team to user at {DT}", DateTime.Now.ToLongTimeString());
-            await _dbContext.ApplicationUsersTeams.AddAsync(new ApplicationUserTeam { ApplicationUserId = applicationUserId, TeamId = teamId });
+            await _dbContext.ApplicationUsersTeams.AddAsync(new ApplicationUserTeams { ApplicationUserId = applicationUserId, TeamId = teamId });
             await _dbContext.SaveChangesAsync();
         }
 

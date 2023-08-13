@@ -1,6 +1,6 @@
-﻿using Moq;
+﻿using AutoMapper;
+using Moq;
 using Xunit;
-using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
@@ -10,16 +10,14 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
     public class TeamServiceTests
     {
         private readonly Mock<ITeamsRepository> _teamsRepositoryMock;
-        private readonly Mock<ITeamMapper> _teamMapperMock;
-        private readonly Mock<IUserMapper> _userMapperMock;
+        private readonly Mock<IMapper> _mapperMock;
         private readonly TeamService _teamService;
 
         public TeamServiceTests()
         {
             _teamsRepositoryMock = new Mock<ITeamsRepository>();
-            _teamMapperMock = new Mock<ITeamMapper>();
-            _userMapperMock = new Mock<IUserMapper>();
-            _teamService = new TeamService(_teamsRepositoryMock.Object, _teamMapperMock.Object, _userMapperMock.Object);
+            _mapperMock = new Mock<IMapper>();
+            _teamService = new TeamService(_teamsRepositoryMock.Object, _mapperMock.Object);
         }
 
         [Fact]
@@ -28,7 +26,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
             // Arrange
             var teamDto = new TeamDto();
             var teamToDatabase = new Team();
-            _teamMapperMock.Setup(m => m.TeamDtoToTeamMap(teamDto)).Returns(teamToDatabase);
+            _mapperMock.Setup(m => m.Map<Team>(teamDto)).Returns(teamToDatabase);
 
             // Act
             await _teamService.AddTeamAsync(teamDto);
@@ -58,7 +56,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
             new TeamDto { Id = 3, Name = "Team 3" }
         };
             _teamsRepositoryMock.Setup(m => m.GetAllExistedTeamsAsync()).ReturnsAsync(teamsFromDatabase);
-            _teamMapperMock.Setup(m => m.TeamToTeamDtoMap(It.IsAny<Team>()))
+            _mapperMock.Setup(m => m.Map<TeamDto>(It.IsAny<Team>()))
                 .Returns((Team t) => teamDtos.FirstOrDefault(dto => dto.Id == t.TeamId));
 
             // Act

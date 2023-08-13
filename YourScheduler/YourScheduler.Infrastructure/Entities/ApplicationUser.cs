@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace YourScheduler.Infrastructure.Entities;
 
@@ -15,7 +11,7 @@ public  class ApplicationUser : IdentityUser<int>
     public string Displayname { get; set; }
 
 
-    public ICollection<ApplicationUserEvent> ApplicationUsersEvents { get; set; }
+    public ICollection<ApplicationUserEvents> ApplicationUsersEvents { get; set; }
 
-    public ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }   
+    public ICollection<ApplicationUserTeams> ApplicationUsersTeams { get; set; }   
 }

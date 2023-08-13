@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YourScheduler.BusinessLogic.Mapppers.Interfaces;
+﻿using AutoMapper;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
@@ -16,63 +11,55 @@ namespace YourScheduler.BusinessLogic.Services
     public class UserService :IUserService
     {
         private readonly IUsersRepository _usersRepository;
-
-        private readonly IUserMapper _userMapper;
+        private readonly IMapper _mapper;
 
  
-        public UserService(IUsersRepository usersRepository,IUserMapper userMapper)
+        public UserService(IUsersRepository usersRepository, IMapper mapper)
         {
-            _userMapper = userMapper;
+            _mapper = mapper;
             _usersRepository = usersRepository;
             
         }
-        public List<UserDto> GetAllUsers()
+        public List<ApplicationUserDto> GetAllUsers()
         {
 
-            List<UserDto> users = new List<UserDto>();  
+            List<ApplicationUserDto> users = new List<ApplicationUserDto>();  
             foreach (var item in _usersRepository.GetUsersFromDataBase())
-            {
-                UserDto user = new UserDto();
-
-                user = _userMapper.UserToUserDtoMapp(item);
-                
-                users.Add(user);    
-               
+            { 
+                users.Add(_mapper.Map<ApplicationUserDto>(item));    
             }
 
             return users;
         }
 
-        public UserDto GetUserById(int id)
+        public ApplicationUserDto GetUserById(int id)
         {
            
-            var user= _usersRepository.GetUserById(id);
-            UserDto userDto = new UserDto();
-            userDto=_userMapper.UserToUserDtoMapp(user);
-            return userDto;
+            var user = _usersRepository.GetUserById(id);
+            return _mapper.Map<ApplicationUserDto>(user);
         }
 
-        public void UpdateUser(UserDto userDtoUpdated)
+        public void UpdateUser(ApplicationUserDto userDtoUpdated)
         {
-            var user = _userMapper.UserDtoToUserMap(userDtoUpdated);
+            var user = _mapper.Map<ApplicationUser>(userDtoUpdated);
 
             _usersRepository.UpdateUser(user);
         }
 
-        public void AddUser(UserDto newUser)
+        public void AddUser(ApplicationUserDto newUser)
         {
-            var user = _userMapper.UserDtoToUserMap(newUser);
+            var user = _mapper.Map<ApplicationUser>(newUser);
             _usersRepository.AddUser(user);
         }
 
-        public  UserDto GetUserByEmail(String email)
+        public  ApplicationUserDto GetUserByEmail(String email)
         {
-            ApplicationUser application = new ApplicationUser();
-           // application.Email = _mapper.UserDtoToUserMap(email);
-            var user =  _usersRepository.GetUserByEmail(email);
-           // UserDto userDto = new UserDto();
-            var userDto = _userMapper.UserToUserDtoMapp(user);
-            return userDto;
+            var user = _usersRepository.GetUserByEmail(email);
+
+            var mappedUser = _mapper.Map<ApplicationUserDto>(user);
+
+
+            return mappedUser;
         }
 
 

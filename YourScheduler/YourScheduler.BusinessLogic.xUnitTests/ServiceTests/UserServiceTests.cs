@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
+﻿using AutoMapper;
+using FluentAssertions;
 using Moq;
 using Xunit;
-using YourScheduler.BusinessLogic.Mapppers.Interfaces;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
@@ -14,7 +14,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
     public class UserServiceTests
     {
         private readonly Mock<IUsersRepository> _repositoryMock= new Mock<IUsersRepository>();
-        private readonly Mock<IUserMapper> _mapperMock = new Mock<IUserMapper>();
+        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
         private readonly UserService _userService;
         public UserServiceTests()
         {
@@ -31,7 +31,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
                 new ApplicationUser(),
                 new ApplicationUser()
             });
-            _mapperMock.Setup(m => m.UserDtoToUserMap(new UserDto())).Returns(new ApplicationUser());
+            _mapperMock.Setup(m => m.Map<ApplicationUser>(new ApplicationUserDto())).Returns(new ApplicationUser());
             var users = _userService.GetAllUsers();
 
             users.Should().HaveCount(3);
@@ -67,7 +67,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
 
             _repositoryMock.Setup(r => r.GetUserById(id)).Returns(dataBase.FirstOrDefault(d => d.Id == id));
 
-            _mapperMock.Setup(m => m.UserToUserDtoMapp(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new UserDto { Id = user.Id });
+            _mapperMock.Setup(m => m.Map<ApplicationUserDto>(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new ApplicationUserDto { Id = user.Id });
             var user = _userService.GetUserById(id);
 
             user.Should().NotBeNull();
@@ -103,7 +103,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
 
             _repositoryMock.Setup(r => r.GetUserById(id)).Returns(dataBase.FirstOrDefault(d => d.Id == id));
 
-            _mapperMock.Setup(m => m.UserToUserDtoMapp(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new UserDto { Id = user.Id });
+            _mapperMock.Setup(m => m.Map<ApplicationUserDto>(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new ApplicationUserDto { Id = user.Id });
 
             Action act = () => _userService.GetUserById(id);
 
@@ -114,11 +114,11 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
         {
             var dataBase = new List<ApplicationUser>();
 
-            var userToBeAdded = new UserDto { Id = 12, Email = "Kokos12@gmail.com" };
+            var userToBeAdded = new ApplicationUserDto { Id = 12, Email = "Kokos12@gmail.com" };
 
             _repositoryMock.Setup(r => r.AddUser(It.IsAny<ApplicationUser>())).Callback((ApplicationUser user) => dataBase.Add(user));
 
-            _mapperMock.Setup(m => m.UserDtoToUserMap(It.IsAny<UserDto>())).Returns((UserDto userDto) => new ApplicationUser {Id = userDto.Id, Email = userDto.Email});
+            _mapperMock.Setup(m => m.Map<ApplicationUser>(It.IsAny<ApplicationUserDto>())).Returns((ApplicationUserDto userDto) => new ApplicationUser {Id = userDto.Id, Email = userDto.Email});
 
             _userService.AddUser(userToBeAdded);
 
@@ -160,7 +160,7 @@ namespace YourScheduler.BusinessLogic.xUnitTests.ServiceTests
             };
 
             _repositoryMock.Setup(r => r.GetUserByEmail(It.IsAny<string>())).Returns(dataBase.FirstOrDefault(d => d.Email == email));
-            _mapperMock.Setup(m => m.UserToUserDtoMapp(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new UserDto { Id = user.Id, Email = user.Email});
+            _mapperMock.Setup(m => m.Map<ApplicationUserDto>(It.IsAny<ApplicationUser>())).Returns((ApplicationUser user) => new ApplicationUserDto { Id = user.Id, Email = user.Email});
 
             var user = _userService.GetUserByEmail(email);
 

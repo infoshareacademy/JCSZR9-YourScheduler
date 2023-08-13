@@ -10,6 +10,6 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 {
     public interface IHomeViewService
     {
-        public HomeViewDto GetHomeView(int id);  
+        public HomeView GetHomeView(int id);  
     }
 }

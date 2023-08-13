@@ -1,8 +1,7 @@
-﻿using YourScheduler.BusinessLogic.Mapppers.Interfaces;
+﻿using AutoMapper;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
-using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -10,20 +9,17 @@ namespace YourScheduler.BusinessLogic.Services
     public  class TeamService : ITeamService
     {
         private readonly ITeamsRepository _teamsRepository;
+        private readonly IMapper _mapper;
 
-        private readonly ITeamMapper _teamMapper;
-
-        private readonly IUserMapper _userMapper;
-        public TeamService(ITeamsRepository teamsRepository,ITeamMapper teamMapper,IUserMapper userMapper)
+        public TeamService(ITeamsRepository teamsRepository, IMapper mapper)
         {
             _teamsRepository = teamsRepository;
-            _teamMapper = teamMapper;
-            _userMapper = userMapper;
+            _mapper = mapper;
         }
 
         public async Task AddTeamAsync(TeamDto teamDto)
         {
-            var teamToDatabase=_teamMapper.TeamDtoToTeamMap(teamDto);
+            var teamToDatabase=_mapper.Map<Team>(teamDto);
             await _teamsRepository.AddTeamAsync(teamToDatabase);
         }
 
@@ -34,8 +30,8 @@ namespace YourScheduler.BusinessLogic.Services
 
             foreach (var teamFromBase in teamsFromDataBase)
             {
-                var team = _teamMapper.TeamToTeamDtoMap(teamFromBase);
-                if (loggedUserId==teamFromBase.AdministratorId)
+                var team = _mapper.Map<TeamDto>(teamFromBase);
+                if (loggedUserId == teamFromBase.AdministratorId)
                 {
                     team.CanLoggedUserDelete = true;
                     team.CanLoggedUserEdit = true;
@@ -57,7 +53,7 @@ namespace YourScheduler.BusinessLogic.Services
         public async Task<TeamDto> GetTeamByIdAsync(int id,int loggedUserId)
         {
             var teamFromDataBase = await _teamsRepository.GetTeamByIdAsync(id);
-            var teamDto= _teamMapper.TeamToTeamDtoMap(teamFromDataBase);
+            var teamDto = _mapper.Map<TeamDto>(teamFromDataBase);
             if (teamDto.AdministratorId==loggedUserId)
             {
                 teamDto.CanLoggedUserDelete = true;
@@ -79,7 +75,7 @@ namespace YourScheduler.BusinessLogic.Services
 
         public async Task UpdateTeamAsync(TeamDto teamDto)
         {
-            var teamToBase = _teamMapper.TeamDtoToTeamMap(teamDto);
+            var teamToBase = _mapper.Map<Team>(teamDto);
             await _teamsRepository.UpdateTeamAsync(teamToBase);
         }
 
@@ -94,7 +90,7 @@ namespace YourScheduler.BusinessLogic.Services
             var teamsFromDataBase = await _teamsRepository.GetTeamsForUserAsync(applicationUserId);
             foreach (var team in teamsFromDataBase)
             {
-                var teamDto = _teamMapper.TeamToTeamDtoMap(team);
+                var teamDto = _mapper.Map<TeamDto>(team);
                 if (applicationUserId==team.AdministratorId)
                 {
                     teamDto.CanLoggedUserDelete = true;
@@ -114,15 +110,14 @@ namespace YourScheduler.BusinessLogic.Services
             }
            
         }
-
-        public async Task<List<UserDto>> GetUsersForTeamAsync(int teamtId)
+        public async Task<List<ApplicationUserDto>> GetUsersForTeamAsync(int teamtId)
         {
-            List<UserDto> usersDtos = new List<UserDto>();
+            List<ApplicationUserDto> usersDtos = new List<ApplicationUserDto>();
             var usersForTeam = await _teamsRepository.GetApplicationUsersForTeamAsync(teamtId);
 
             foreach (var user in usersForTeam)
             {
-                var userDto = _userMapper.UserToUserDtoMapp(user);
+                var userDto = _mapper.Map<ApplicationUserDto>(user);
                 usersDtos.Add(userDto);
             }
             return usersDtos;

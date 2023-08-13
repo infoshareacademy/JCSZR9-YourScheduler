@@ -25,6 +25,6 @@ namespace YourScheduler.BusinessLogic.Services.Interfaces
 
         public Task<List<TeamDto>> GetMyTeamsAsync(int applicationUserId,string searchString);
 
-        public Task<List<UserDto>> GetUsersForTeamAsync(int teamid);
+        public Task<List<ApplicationUserDto>> GetUsersForTeamAsync(int teamid);
     }
 }
