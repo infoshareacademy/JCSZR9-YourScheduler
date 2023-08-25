@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace YourScheduler.Infrastructure.Entities;
 
 [PrimaryKey("ApplicationUserId", "EventId")]
-public  class ApplicationUserEvent
+public  class ApplicationUserEvents
 {
     public int ApplicationUserId { get; set; }
     public ApplicationUser ApplicationUser { get; set; }

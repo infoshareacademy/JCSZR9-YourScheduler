@@ -12,7 +12,7 @@ public  class Team
 
     public int AdministratorId { get; set; }
 
-    ICollection<ApplicationUserTeam> ApplicationUsersTeams { get; set; }
+    ICollection<ApplicationUserTeams> ApplicationUsersTeams { get; set; }
 
     public string PicturePath { get; set; }
 

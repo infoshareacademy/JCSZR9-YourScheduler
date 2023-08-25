@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YourScheduler.BusinessLogic.Mappers;
-using YourScheduler.BusinessLogic.Mapppers.Interfaces;
+﻿using AutoMapper;
 using YourScheduler.BusinessLogic.Models.DTOs;
 using YourScheduler.BusinessLogic.Services.Interfaces;
 using YourScheduler.Infrastructure.Entities;
-using YourScheduler.Infrastructure.Repositories;
 using YourScheduler.Infrastructure.Repositories.Interfaces;
 
 namespace YourScheduler.BusinessLogic.Services
@@ -16,23 +9,19 @@ namespace YourScheduler.BusinessLogic.Services
     public class EventService : IEventService
     {
         private readonly IEventsRepository _eventsRepository;
+        private readonly IMapper _mapper;
 
-        private readonly IEventMapper _eventMapper;
-
-        private readonly IUserMapper _userMapper;
-
-        public EventService(IEventsRepository eventsRepository,IEventMapper eventMapper, IUserMapper userMapper)
-        {
-            _eventMapper = eventMapper;
+        public EventService(IEventsRepository eventsRepository, IMapper mapper)
+        { 
             _eventsRepository = eventsRepository;
-            _userMapper = userMapper;
+            _mapper = mapper;
         }
 
         public async Task AddEventAsync(EventDto eventDto, int loggedUserId)
         {
             eventDto.AdministratorId = loggedUserId;
-            var eventToBase = _eventMapper.EventDtoToEventMap(eventDto);
-            await _eventsRepository.AddEventAsync(eventToBase);
+
+            await _eventsRepository.AddEventAsync(_mapper.Map<Event>(eventDto));
             await _eventsRepository.SaveDataAsync();
         }
 
@@ -43,13 +32,13 @@ namespace YourScheduler.BusinessLogic.Services
             foreach (var eventFromDatabase in events)
             {
                 EventDto eventDto = new EventDto();
-                eventDto = _eventMapper.EventToEventDtoMapp(eventFromDatabase);
+                eventDto = _mapper.Map<EventDto>(eventFromDatabase);
                 if (loggedUserId == eventDto.AdministratorId)
                 {
                     eventDto.CanLoggedUserDelete = true;
                     eventDto.CanLoggedUserEdit = true;
                 }
-                eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, eventDto.Id);
+                eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, eventDto.AdministratorId);
                 eventsDto.Add(eventDto);
             }
             if (String.IsNullOrEmpty(searchString))
@@ -64,14 +53,14 @@ namespace YourScheduler.BusinessLogic.Services
 
         public async Task<EventDto> GetEventByIdAsync(int id, int loggedUserId)
         {
-            var eventFromDataBase= await _eventsRepository.GetEventByIdAsync(id);
-            var eventDto = _eventMapper.EventToEventDtoMapp(eventFromDataBase);
+            var eventFromDataBase = await _eventsRepository.GetEventByIdAsync(id);
+            var eventDto = _mapper.Map<EventDto>(eventFromDataBase);
             if (loggedUserId == eventDto.AdministratorId)
             {
                 eventDto.CanLoggedUserDelete = true;
                 eventDto.CanLoggedUserEdit = true;
             }
-            eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, eventDto.Id);
+            eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(loggedUserId, eventDto.AdministratorId);
             return eventDto;
         }
 
@@ -88,7 +77,7 @@ namespace YourScheduler.BusinessLogic.Services
         public async Task UpdateEventAsync(EventDto eventDto, int loggedUserId)
         {
             eventDto.AdministratorId = loggedUserId;
-            var eventToBase = _eventMapper.EventDtoWithIdToEventMap(eventDto);
+            var eventToBase = _mapper.Map<Event>(eventDto);
             await _eventsRepository.UpdateEventAsync(eventToBase);
         }
 
@@ -105,13 +94,13 @@ namespace YourScheduler.BusinessLogic.Services
             foreach (var eventEntity in eventsForUser)
             {
                 EventDto eventDto = new EventDto();
-                eventDto = _eventMapper.EventToEventDtoMapp(eventEntity);
-                if (applicationUserId == eventEntity.administratorId)
+                eventDto = _mapper.Map<EventDto>(eventEntity);
+                if (applicationUserId == eventEntity.AdministratorId)
                 {
                     eventDto.CanLoggedUserDelete = true;
                     eventDto.CanLoggedUserEdit = true;
                 }
-                eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(applicationUserId, eventDto.Id);
+                eventDto.IsLoggedUserParticipant = await _eventsRepository.CheckIfLoggedUserIsParticipantAsync(applicationUserId, eventDto.AdministratorId);
                 myEvents.Add(eventDto);
             }
             if (String.IsNullOrEmpty(searchString))
@@ -124,14 +113,14 @@ namespace YourScheduler.BusinessLogic.Services
             }
         }
 
-        public async Task<List<UserDto>> GetUsersForEventAsync(int eventId)
+        public async Task<List<ApplicationUserDto>> GetUsersForEventAsync(int eventId)
         {
-            List<UserDto> usersDtos = new List<UserDto>();
+            List<ApplicationUserDto> usersDtos = new List<ApplicationUserDto>();
             var usersForEvents = await _eventsRepository.GetApplicationUsersForEventAsync(eventId);
 
             foreach (var user in usersForEvents)
             {
-                var userDto = _userMapper.UserToUserDtoMapp(user);
+                var userDto = _mapper.Map<ApplicationUserDto>(user);
                 usersDtos.Add(userDto);
             }
             return usersDtos;

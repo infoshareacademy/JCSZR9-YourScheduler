@@ -35,7 +35,7 @@ namespace YourScheduler.Infrastructure.Repositories
         {
             _logger.LogInformation("User attempt to get available events at {DT}", DateTime.Now.ToLongTimeString());
             List<Event> events = new List<Event>();
-            events = await _dbContext.Events.Where(i => i.IsOpen == true || i.administratorId == loggedUserId).ToListAsync();
+            events = await _dbContext.Events.Where(i => i.IsOpen == true || i.AdministratorId == loggedUserId).ToListAsync();
             return events;
         }
 
@@ -80,7 +80,7 @@ namespace YourScheduler.Infrastructure.Repositories
                 eventToUpdate.Description = eventToBase.Description;
                 eventToUpdate.Date = eventToBase.Date;
                 eventToUpdate.IsOpen = eventToBase.IsOpen;
-                eventToUpdate.administratorId = eventToBase.administratorId;
+                eventToUpdate.AdministratorId = eventToBase.AdministratorId;
                 if(eventToBase.PicturePath is null)
                 {
                     await _dbContext.SaveChangesAsync();
@@ -102,7 +102,7 @@ namespace YourScheduler.Infrastructure.Repositories
         public async Task AddEventForUserAsync(int applicationUserId, int eventId)
         {
             _logger.LogInformation("User attempt to add event to own calendar at {DT}", DateTime.Now.ToLongTimeString());
-            await _dbContext.ApplicationUsersEvents.AddAsync(new ApplicationUserEvent { ApplicationUserId = applicationUserId, EventId = eventId });
+            await _dbContext.ApplicationUsersEvents.AddAsync(new ApplicationUserEvents { ApplicationUserId = applicationUserId, EventId = eventId });
         }
 
         public async Task<List<Event>> GetEventsForUserAsync(int applicationUserId)

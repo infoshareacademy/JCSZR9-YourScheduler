@@ -144,7 +144,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Koncert z okazji urodzin TVP",
                 Date = new DateTime(2023,6,22,19,0,0),
                 IsOpen = true,
-                administratorId = 1,
+                AdministratorId = 1,
                 PicturePath = "/Pictures/eventId=1.jpg"
             },
             new Event
@@ -154,7 +154,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Wyjątkowe spotkanie z autorami bestsellerowych książek",
                 Date = new DateTime(2023,12,1,17,0,0),
                 IsOpen = true,
-                administratorId = 1,
+                AdministratorId = 1,
                 PicturePath = "/Pictures/eventId=2.jpg"
             },
             new Event
@@ -164,7 +164,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Spektakl muzyczny pełen magii i emocji",
                 Date = new DateTime(2023,10,02,15,0,0),
                 IsOpen = true,
-                administratorId = 2,
+                AdministratorId = 2,
                 PicturePath = "/Pictures/eventId=3.jpg"
             },
             new Event
@@ -174,7 +174,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Najnowsze trendy i innowacje technologiczne na światowym poziomie",
                 Date = new DateTime(2023,9,11,12,0,0),
                 IsOpen = true,
-                administratorId = 3,
+                AdministratorId = 3,
                 PicturePath = "/Pictures/defaultEvent.jpg"
             },
             new Event
@@ -184,7 +184,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Przyjemny wieczór filmowy z wyjątkowymi produkcjami z całego świata",
                 Date = new DateTime(2024,1,8,20,0,0),
                 IsOpen = false,
-                administratorId = 4,
+                AdministratorId = 4,
                 PicturePath = "/Pictures/defaultEvent.jpg"
             },
             new Event
@@ -194,7 +194,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Wyjątkowy pokaz kulinarny, podczas którego można odkryć smaki z różnych zakątków świata",
                 Date = new DateTime(2023,7,15,16,0,0),
                 IsOpen = false,
-                administratorId = 5,
+                AdministratorId = 5,
                 PicturePath = "/Pictures/eventId=6.jpg"
             },
             new Event
@@ -204,7 +204,7 @@ namespace YourScheduler.Infrastructure
                 Description = "Niezwykłe przedstawienie teatralne pełne emocji i wrażeń",
                 Date = new DateTime(2023,8,10,18,0,0),
                 IsOpen = true,
-                administratorId = 6,
+                AdministratorId = 6,
                 PicturePath = "/Pictures/defaultEvent.jpg"
             },
         };
@@ -253,29 +253,29 @@ namespace YourScheduler.Infrastructure
                 PicturePath = "/Pictures/defaultTeam.jpg"
             }
         };
-        public static ApplicationUserEvent[] applicationUserEventSeed = new ApplicationUserEvent[]
+        public static ApplicationUserEvents[] applicationUserEventSeed = new ApplicationUserEvents[]
         {
-            new ApplicationUserEvent {ApplicationUserId = 1, EventId = 1},
-            new ApplicationUserEvent {ApplicationUserId = 2, EventId = 2},
-            new ApplicationUserEvent {ApplicationUserId = 2, EventId = 3},
-            new ApplicationUserEvent {ApplicationUserId = 2, EventId = 4},
-            new ApplicationUserEvent {ApplicationUserId = 3, EventId = 4},
-            new ApplicationUserEvent {ApplicationUserId = 4, EventId = 5},
-            new ApplicationUserEvent {ApplicationUserId = 5, EventId = 5},
-            new ApplicationUserEvent {ApplicationUserId = 6, EventId = 6}
+            new ApplicationUserEvents {ApplicationUserId = 1, EventId = 1},
+            new ApplicationUserEvents {ApplicationUserId = 2, EventId = 2},
+            new ApplicationUserEvents {ApplicationUserId = 2, EventId = 3},
+            new ApplicationUserEvents {ApplicationUserId = 2, EventId = 4},
+            new ApplicationUserEvents {ApplicationUserId = 3, EventId = 4},
+            new ApplicationUserEvents {ApplicationUserId = 4, EventId = 5},
+            new ApplicationUserEvents {ApplicationUserId = 5, EventId = 5},
+            new ApplicationUserEvents {ApplicationUserId = 6, EventId = 6}
         };
-        public static ApplicationUserTeam[] applicationUserTeamSeed = new ApplicationUserTeam[]
+        public static ApplicationUserTeams[] applicationUserTeamSeed = new ApplicationUserTeams[]
         {
-            new ApplicationUserTeam {ApplicationUserId = 1, TeamId = 1},
-            new ApplicationUserTeam {ApplicationUserId = 2, TeamId = 2},
-            new ApplicationUserTeam {ApplicationUserId = 2, TeamId = 3},
-            new ApplicationUserTeam {ApplicationUserId = 2, TeamId = 4},
-            new ApplicationUserTeam {ApplicationUserId = 3, TeamId = 4},
-            new ApplicationUserTeam {ApplicationUserId = 4, TeamId = 4},
-            new ApplicationUserTeam {ApplicationUserId = 5, TeamId = 5},
-            new ApplicationUserTeam {ApplicationUserId = 5, TeamId = 6},
-            new ApplicationUserTeam {ApplicationUserId = 6, TeamId = 5},
-            new ApplicationUserTeam {ApplicationUserId = 6, TeamId = 6}
+            new ApplicationUserTeams {ApplicationUserId = 1, TeamId = 1},
+            new ApplicationUserTeams {ApplicationUserId = 2, TeamId = 2},
+            new ApplicationUserTeams {ApplicationUserId = 2, TeamId = 3},
+            new ApplicationUserTeams {ApplicationUserId = 2, TeamId = 4},
+            new ApplicationUserTeams {ApplicationUserId = 3, TeamId = 4},
+            new ApplicationUserTeams {ApplicationUserId = 4, TeamId = 4},
+            new ApplicationUserTeams {ApplicationUserId = 5, TeamId = 5},
+            new ApplicationUserTeams {ApplicationUserId = 5, TeamId = 6},
+            new ApplicationUserTeams {ApplicationUserId = 6, TeamId = 5},
+            new ApplicationUserTeams {ApplicationUserId = 6, TeamId = 6}
         };
         public static ApplicationUser[] GetUsersSeed()
         {
@@ -289,11 +289,11 @@ namespace YourScheduler.Infrastructure
         {
             return teamSeed;
         }
-        public static ApplicationUserEvent[] GetApplicationUserEventSeed()
+        public static ApplicationUserEvents[] GetApplicationUserEventSeed()
         {
             return applicationUserEventSeed;
         }
-        public static ApplicationUserTeam[] GetApplicationUserTeamSeed()
+        public static ApplicationUserTeams[] GetApplicationUserTeamSeed()
         {
             return applicationUserTeamSeed;
         }

@@ -76,7 +76,7 @@ namespace YourScheduler.UI.Controllers
         [ValidateAntiForgeryToken]
 
         [Route("edit/{id:int}")]
-        public ActionResult Edit(int id, UserDto userDto)
+        public ActionResult Edit(int id, ApplicationUserDto userDto)
         {
             try
             {

@@ -6,20 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace YourScheduler.BusinessLogic.Models.DTOs;
 
-public class UserDto : IdentityUser
+public class ApplicationUserDto : IdentityUser<int>
 {
-
-    public int Id { get; set; }
 
     public string Name { get; set; } = null!;
 
     public string Surname { get; set; } = null!;
 
     public string Displayname { get; set; } = null!;
-
-    public string Email { get; set; } = null!;
-
-    //[DataType(DataType.Password)]
-   
 
 }
