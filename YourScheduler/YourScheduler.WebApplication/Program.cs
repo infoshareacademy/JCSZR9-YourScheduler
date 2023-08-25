@@ -7,7 +7,7 @@ using YourScheduler.Infrastructure.Initialization;
 using YourScheduler.Infrastructure.Entities;
 using YourScheduler.BusinessLogic.Services.Settings;
 using FluentAssertions.Common;
-
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +32,7 @@ var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSetti
 builder.Services.AddSingleton(emailConfig);
 
 builder.Services.AddControllers();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -69,6 +70,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+var mapper = app.Services.GetRequiredService<IMapper>();
+mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
 app.Run();
 
